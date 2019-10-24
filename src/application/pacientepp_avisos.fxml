@@ -24,13 +24,13 @@
             <Label layoutX="328.0" layoutY="222.0" text="Paciente" />
             <ImageView fitHeight="53.0" fitWidth="54.0" layoutX="323.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@logo.jpeg" />
+                  <Image url="@../imagenes/logo.png" />
                </image>
             </ImageView>
             <Label layoutX="69.0" layoutY="68.0" text="Avisos" />
             <ImageView fitHeight="124.0" fitWidth="45.0" layoutX="13.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@avisos.png" />
+                  <Image url="@../imagenes/avisos.png" />
                </image>
             </ImageView>
             <TextField layoutX="122.0" layoutY="113.0" prefHeight="27.0" prefWidth="225.0" />

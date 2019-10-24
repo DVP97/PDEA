@@ -29,9 +29,9 @@
                </font>
             </Label>
             <Separator layoutX="19.0" layoutY="48.0" prefHeight="5.0" prefWidth="151.0" />
-            <ImageView fitHeight="54.0" fitWidth="67.0" layoutX="404.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="54.0" fitWidth="67.0" layoutX="435.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@logo.jpeg" />
+                  <Image url="@../imagenes/logo.png" />
                </image>
             </ImageView>
             <GridPane layoutX="19.0" layoutY="67.0" prefHeight="26.0" prefWidth="340.0">
@@ -50,7 +50,7 @@
             <Label layoutX="418.0" layoutY="462.0" text="Médico" />
             <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="19.0" layoutY="111.0">
                <image>
-                  <Image url="@exercise.png" />
+                  <Image url="@../imagenes/exercise.png" />
                </image>
             </ImageView>
             <Accordion layoutX="78.0" layoutY="176.0" prefHeight="251.0" prefWidth="368.0">
