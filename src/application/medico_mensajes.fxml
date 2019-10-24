@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -34,7 +35,7 @@
    <bottom>
       <AnchorPane prefHeight="15.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Paciente" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+            <Label text="Médico" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
             <Button layoutX="18.0" layoutY="-13.0" mnemonicParsing="false" text="Salir" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
@@ -72,10 +73,10 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enviar mensaje al Médico:" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" />
-                        <Button layoutX="154.0" layoutY="123.0" mnemonicParsing="false" text="Enviar" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="325.0" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enviar mensaje a:" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" />
                         <TextArea prefHeight="136.0" prefWidth="183.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
                         <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redactar:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <TextField layoutX="125.0" layoutY="125.0" AnchorPane.bottomAnchor="3.0" />
                      </children>
                   </AnchorPane>
               </items>
