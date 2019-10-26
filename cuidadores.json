@@ -1,0 +1,26 @@
+[
+  {
+    "dni": "94928344R",
+    "nombre": "Sofía Martínez Parada",
+    "telefono": 698149747,
+    "contrasena": "a",
+  },
+  {
+    "dni": "23958294G",
+    "nombre": "Marta López Pérez",
+    "telefono": 692847294,
+    "contrasena": "a",
+  },
+  {
+    "dni": "39582948D",
+    "nombre": "Ángel Zas Rodríguez",
+    "telefono": 693859285,
+    "contrasena": "a",
+  },
+  {
+    "dni": "49183049N",
+    "nombre": "Andrés Montes Martínez",
+    "telefono": 674920493,
+    "contrasena": "a",
+  }
+]
