@@ -13,6 +13,12 @@ public abstract class Usuario {
 		this.contrasena= contrasena;
 	}
 	
+	public Usuario() {
+		this.dni= null;
+		this.contrasena= null;
+		this.nombre = null;
+		this.telefono= null;
+	}
 	
 	//GETTERS
 	public String getContrasena() {
