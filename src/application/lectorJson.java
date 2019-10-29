@@ -29,6 +29,15 @@ public class lectorJson {
 	private ArrayList<Medico> medicos= new ArrayList<Medico>();
 	private ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
 
+	public ArrayList<Paciente> devolverPacientes(){
+		return pacientes;
+	}
+	public ArrayList<Medico> devolverMedicos(){
+		return medicos;
+	}
+	public ArrayList<Cuidador> devolverCuidadores(){
+		return cuidadores;
+	}
 	
 	public void lectorJson() {
 		
