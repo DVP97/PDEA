@@ -35,8 +35,8 @@
                   <TextField fx:id="txtInputPassword" floatText="Contraseña" maxWidth="600.0" opacity="0.8" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <JFXButton fx:id="buttonAceptar" buttonType="RAISED" layoutX="429.0" layoutY="288.0" onAction="#aceptado" styleClass="btnAceptar" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/application/application.css" text="Aceptar" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="14.0" />
-            <JFXButton fx:id="buttonCancelar" buttonType="RAISED" styleClass="btnAceptar" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/application/application.css" text="Cancelar" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" />
+            <JFXButton fx:id="buttonAceptar" buttonType="RAISED" layoutX="429.0" layoutY="288.0" onAction="#pressBtnAceptar" styleClass="btnAceptar" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/application/application.css" text="Aceptar" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="14.0" />
+            <JFXButton fx:id="buttonCancelar" buttonType="RAISED" onAction="#pressBtnCancelar" styleClass="btnAceptar" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/application/application.css" text="Cancelar" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" />
          </children>
       </AnchorPane>
    </center>
