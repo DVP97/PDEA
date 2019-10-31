@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
@@ -31,8 +32,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField fx:id="txtInputUsuario" floatText="Usuario" maxWidth="600.0" opacity="0.8" />
-                  <TextField fx:id="txtInputPassword" floatText="Contraseña" maxWidth="600.0" opacity="0.8" GridPane.rowIndex="1" />
+                  <JFXPasswordField promptText="Contraseña" GridPane.rowIndex="1" />
+                  <JFXTextField promptText="Usuario" />
                </children>
             </GridPane>
             <JFXButton fx:id="buttonAceptar" buttonType="RAISED" layoutX="429.0" layoutY="288.0" onAction="#pressBtnAceptar" styleClass="btnAceptar" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/application/application.css" text="Aceptar" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="14.0" />
