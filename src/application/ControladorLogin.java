@@ -17,9 +17,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 
 
-public class ControladorInterfaz implements Initializable{
+public class ControladorLogin implements Initializable{
 	
 	@FXML
 	private Button myButton;
@@ -37,10 +39,10 @@ public class ControladorInterfaz implements Initializable{
 	private GridPane gridPanelLogin;
 	
 	@FXML
-    private TextField txtInputUsuario;
+    private JFXTextField txtInputUsuario;
 	
 	@FXML
-    private TextField txtInputPassword;
+    private  JFXPasswordField txtInputPassword;
 	
 	@FXML
 	private JFXButton buttonAceptar;
@@ -65,6 +67,7 @@ public class ControladorInterfaz implements Initializable{
 			
 		}
 		catch(ExcepcionUser loginfailure){
+			
 			JOptionPane.showMessageDialog(null, "El usuario debe estar compuesto por 8 digitos y una letra.", "Aviso", JOptionPane.WARNING_MESSAGE);
 		}
 		

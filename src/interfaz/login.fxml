@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorInterfaz">
+<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControladorLogin">
    <center>
       <AnchorPane maxHeight="1000.0" maxWidth="600.0" minHeight="268.0" minWidth="500.0" prefHeight="268.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
@@ -32,8 +32,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <JFXPasswordField promptText="Contraseña" GridPane.rowIndex="1" />
-                  <JFXTextField promptText="Usuario" />
+                  <JFXPasswordField fx:id="txtInputPassword" promptText="Contraseña" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="txtInputUsuario" promptText="Usuario" />
                </children>
             </GridPane>
             <JFXButton fx:id="buttonAceptar" buttonType="RAISED" layoutX="429.0" layoutY="288.0" onAction="#pressBtnAceptar" styleClass="btnAceptar" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/application/application.css" text="Aceptar" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="14.0" />
