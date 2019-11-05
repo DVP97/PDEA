@@ -8,10 +8,13 @@ import javax.swing.JOptionPane;
 import com.gluonhq.charm.glisten.control.TextField;
 import com.jfoenix.controls.JFXButton;
 
-
+import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
@@ -67,14 +70,23 @@ public class ControladorLogin implements Initializable{
 			
 		}
 		catch(ExcepcionUser loginfailure){
-			
-			JOptionPane.showMessageDialog(null, "El usuario debe estar compuesto por 8 digitos y una letra.", "Aviso", JOptionPane.WARNING_MESSAGE);
+			try {
+				ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
+				Parent avisos = FXMLLoader.load(getClass().getResource("/interfaz/avisos.fxml"));
+				Stage VentanaAvisos = new Stage();
+				VentanaAvisos.setTitle("Aviso");
+				VentanaAvisos.setScene(new Scene(avisos));
+				VentanaAvisos.show();
+			}
+			catch(Exception a) {
+				 a.printStackTrace();
+			}
 		}
 		
 	}
 	//Acciones ejecutadas al pulsar el Boton Cancelar
 	public void pressBtnCancelar(ActionEvent event) {
-		System.out.println("Saliendo de la aplicación. Hasta pronto.");
+		System.out.println("Saliendo de la aplicacion. Hasta pronto.");
 		System.exit(0);
 	}	
 
@@ -103,7 +115,7 @@ public class ControladorLogin implements Initializable{
 			return false;
 		}
 		else {
-			System.out.println("Usuario válido.");
+			System.out.println("Usuario valido.");
 			return true;
 		}
 		

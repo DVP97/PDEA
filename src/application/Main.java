@@ -11,9 +11,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/interfaz/login.fxml"));
-			primaryStage.setTitle("PDEA");
-			primaryStage.setScene(new Scene(root));
+			Parent Login = FXMLLoader.load(getClass().getResource("/interfaz/login.fxml"));
+			primaryStage.setTitle("PDEA Login");
+			primaryStage.setScene(new Scene(Login));
 			primaryStage.show();
 
 		} catch(Exception e) {

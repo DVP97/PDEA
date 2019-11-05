@@ -32,8 +32,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <JFXPasswordField fx:id="txtInputPassword" promptText="Contraseña" GridPane.rowIndex="1" />
                   <JFXTextField fx:id="txtInputUsuario" promptText="Usuario" />
+                  <JFXPasswordField fx:id="txtInputPassword" promptText="Contraseña" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <JFXButton fx:id="buttonAceptar" buttonType="RAISED" layoutX="429.0" layoutY="288.0" onAction="#pressBtnAceptar" styleClass="btnAceptar" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/application/application.css" text="Aceptar" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="14.0" />
@@ -49,7 +49,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Separator fx:id="separatorTop" layoutY="18.0" prefHeight="5.0" prefWidth="165.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="25.0" />
+            <Separator fx:id="separatorTop" layoutY="18.0" prefHeight="5.0" prefWidth="170.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="30.0" />
          </children>
       </AnchorPane>
    </top>
