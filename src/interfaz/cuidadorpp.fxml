@@ -25,7 +25,7 @@
             <Separator layoutX="19.0" layoutY="48.0" prefHeight="5.0" prefWidth="151.0" />
             <ImageView fitHeight="54.0" fitWidth="67.0" layoutX="404.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@logo.jpeg" />
+                  <Image url="@../imagenes/logo.png" />
                </image>
             </ImageView>
             <GridPane layoutX="19.0" layoutY="67.0" prefHeight="26.0" prefWidth="340.0">
@@ -38,30 +38,30 @@
               </rowConstraints>
                <children>
                   <Label text="Paciente:" />
-                  <ComboBox prefHeight="27.0" prefWidth="196.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="comboPacientes" prefHeight="27.0" prefWidth="196.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <Button contentDisplay="TOP" layoutX="169.0" layoutY="140.0" mnemonicParsing="false" prefHeight="112.0" prefWidth="116.0" text="Avisos">
+            <Button fx:id="btnAvisos" contentDisplay="TOP" layoutX="169.0" layoutY="140.0" mnemonicParsing="false" prefHeight="112.0" prefWidth="116.0" text="Avisos">
                <graphic>
                   <ImageView fitHeight="112.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@avisos.png" />
+                        <Image url="@../imagenes/avisos.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button contentDisplay="TOP" layoutX="28.0" layoutY="140.0" mnemonicParsing="false" prefHeight="112.0" prefWidth="116.0" text="Ejercicios">
+            <Button fx:id="btnEjercicios" contentDisplay="TOP" layoutX="28.0" layoutY="140.0" mnemonicParsing="false" prefHeight="112.0" prefWidth="116.0" text="Ejercicios">
                <graphic>
                   <ImageView fitHeight="112.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@exercise.png" />
+                        <Image url="@../imagenes/exercise.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button contentDisplay="TOP" layoutX="312.0" layoutY="140.0" mnemonicParsing="false" prefHeight="112.0" prefWidth="120.0" text="Datos">
+            <Button fx:id="btnDatos" contentDisplay="TOP" layoutX="312.0" layoutY="140.0" mnemonicParsing="false" prefHeight="112.0" prefWidth="120.0" text="Datos">
                <graphic>
                   <ImageView fitHeight="112.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@datos.png" />
+                        <Image url="@../imagenes/datos.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
