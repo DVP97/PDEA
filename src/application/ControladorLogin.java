@@ -54,18 +54,19 @@ public class ControladorLogin implements Initializable{
 	@FXML
 	private JFXButton buttonCancelar;
 	
+	// Lectura inicial de los json
 	lectorJson lector = new lectorJson();
 	ArrayList<Paciente> pacientes = lector.devolverPacientes();
 	ArrayList<Medico> medicos = lector.devolverMedicos();
 	ArrayList<Cuidador> cuidadores = lector.devolverCuidadores();
-
+	//----------------------------
 	
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 		
-		
 	}
-		
+	
+	
 	//Acciones ejecutadas al pulsar el Boton Aceptar
 	public void pressBtnAceptar(ActionEvent event) {
 		
@@ -75,28 +76,70 @@ public class ControladorLogin implements Initializable{
 				throw new ExcepcionUser(01);
 			}
 			
+			System.out.println("Cargando ventana principal...");
+				
+			if( esPaciente() == true) {
+				try {
+					Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/interfaz/menupaciente.fxml"));
+					Stage Pacientepp = new Stage();
+					Pacientepp.setTitle("Menu Principal Paciente");
+					Pacientepp.setScene(new Scene(PacienteVentana));
+					Pacientepp.show();
+				}
+				catch(Exception a){
+					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
+					abrirVentanaAvisos();
+				}
+			}
+							
+			if( esCuidador() == true) {
+				try {
+					Parent CuidadorVentana = FXMLLoader.load(getClass().getResource("/interfaz/cuidadorpp.fxml"));
+					Stage Cuidadorpp = new Stage();
+					Cuidadorpp.setTitle("Menu Principal Cuidador");
+					Cuidadorpp.setScene(new Scene(CuidadorVentana));
+					Cuidadorpp.show();
+				}
+				catch(Exception a){
+					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Cuidador.");
+					abrirVentanaAvisos();
+				}
+			}
+				
+				
+			if( esMedico() == true) {
+				try {
+					Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/interfaz/medicopp.fxml"));
+					Stage Medicopp = new Stage();
+					Medicopp.setTitle("Menu Principal Medico");
+					Medicopp.setScene(new Scene(MedicoVentana));
+					Medicopp.show();
+					}
+				catch(Exception a){
+					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
+					abrirVentanaAvisos();
+				}
+			}
 		}
+
 		catch(ExcepcionUser loginfailure){
-			try {
-				ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
-				Parent avisos = FXMLLoader.load(getClass().getResource("/interfaz/avisos.fxml"));
-				Stage VentanaAvisos = new Stage();
-				VentanaAvisos.setTitle("Aviso");
-				VentanaAvisos.setScene(new Scene(avisos));
-				VentanaAvisos.show();
-			}
-			catch(Exception a) {
-				 a.printStackTrace();
-			}
+			ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
+			abrirVentanaAvisos();
 		}
 		
 	}
-	//Acciones ejecutadas al pulsar el Boton Cancelar
+	//----------------------------------------------
+	
+	
+	// Acciones ejecutadas al pulsar el Boton Cancelar
 	public void pressBtnCancelar(ActionEvent event) {
 		System.out.println("Saliendo de la aplicacion. Hasta pronto.");
 		System.exit(0);
 	}	
-
+	//------------------------------------------------
+	
+	
+	// Funcion donde se comprueba que los datos introducidos son correctos
 	public boolean comprobarInputUser() {		
 		// capturar texto  del TextField de usuario y convierte a mayus.
 		String inputUser = txtInputUsuario.getText().toUpperCase();
@@ -119,27 +162,18 @@ public class ControladorLogin implements Initializable{
 		
 		//comprueba la longitud del string inputUser
 		if(inputUser.length()!=9) {
+			System.out.println("Usuario no valido.");
 			return false;
 		}
 		else {
 			System.out.println("Usuario valido.");
 			return true;
-		}
-		
-		
+		}	
 	}
+	//------------------------------------------------------
 	
-	public class ExcepcionUser extends Exception{
-	     
-	    private int codigoError;
-	    
-	    public ExcepcionUser(int codigoError){
-	        this.codigoError=codigoError;
-	    }
-	}
 	
-
-	
+	// funciones para comprobar el tipo de usuario
 	public boolean esPaciente() {
 		for (int i=0; i< pacientes.size(); i++) {
 			Paciente p = pacientes.get(i);
@@ -161,6 +195,7 @@ public class ControladorLogin implements Initializable{
 		return false;	
 	}
 	
+	
 	public boolean esCuidador() {
 		for (int i=0; i< cuidadores.size(); i++) {
 			Cuidador p = cuidadores.get(i);
@@ -170,5 +205,34 @@ public class ControladorLogin implements Initializable{
 		}
 		return false;	
 	}
-
+	//--------------------------------------------
+	
+	
+	// funcion para declarar excepciones propias
+	public class ExcepcionUser extends Exception{
+		
+		private int codigoError;
+	    
+	    public ExcepcionUser(int codigoError){
+	        this.codigoError=codigoError;
+	    }
+	}
+	//-----------------------------------------
+	
+	
+	// funcion desde la que se llama a la ventana de avisos
+	public void abrirVentanaAvisos() {
+		try {
+			Parent avisos = FXMLLoader.load(getClass().getResource("/interfaz/avisos.fxml"));
+			Stage VentanaAvisos = new Stage();
+			VentanaAvisos.setTitle("Aviso");
+			VentanaAvisos.setScene(new Scene(avisos));
+			VentanaAvisos.show();
+		}
+		catch(Exception a) {
+			System.out.println("Error");
+			 a.printStackTrace();
+		}
+	}
+	//---------------------------------------------------
 }
