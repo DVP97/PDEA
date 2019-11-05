@@ -158,4 +158,15 @@ public class lectorJson {
 		}
 		
 	}
+	
+	public ArrayList<Paciente> devolverPacientes(){
+		return pacientes;
+	}
+	
+	public ArrayList<Cuidador> devolverCuidadores(){
+		return cuidadores;
+	}
+	public ArrayList<Medico> devolverMedicos(){
+		return medicos;
+	}
 }
