@@ -30,7 +30,7 @@ public class lectorJson {
 	private ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
 
 	
-	public void lectorJson() {
+	public lectorJson() {
 		
 		try {
 			leerJsonPartes("pacientes.json");

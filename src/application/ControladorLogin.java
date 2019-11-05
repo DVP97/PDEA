@@ -1,6 +1,7 @@
 package application;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -53,10 +54,16 @@ public class ControladorLogin implements Initializable{
 	@FXML
 	private JFXButton buttonCancelar;
 	
+	lectorJson lector = new lectorJson();
+	ArrayList<Paciente> pacientes = lector.devolverPacientes();
+	ArrayList<Medico> medicos = lector.devolverMedicos();
+	ArrayList<Cuidador> cuidadores = lector.devolverCuidadores();
+
 	
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
-	//no hace falta hacer nada aqu�	
+		
+		
 	}
 		
 	//Acciones ejecutadas al pulsar el Boton Aceptar
@@ -129,6 +136,39 @@ public class ControladorLogin implements Initializable{
 	    public ExcepcionUser(int codigoError){
 	        this.codigoError=codigoError;
 	    }
+	}
+	
+
+	
+	public boolean esPaciente() {
+		for (int i=0; i< pacientes.size(); i++) {
+			Paciente p = pacientes.get(i);
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
+				return true;
+			}
+		}
+		return false;	
+	}
+	
+	
+	public boolean esMedico() {
+		for (int i=0; i< medicos.size(); i++) {
+			Medico p = medicos.get(i);
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
+				return true;
+			}
+		}
+		return false;	
+	}
+	
+	public boolean esCuidador() {
+		for (int i=0; i< cuidadores.size(); i++) {
+			Cuidador p = cuidadores.get(i);
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
+				return true;
+			}
+		}
+		return false;	
 	}
 
 }
