@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
@@ -17,7 +17,7 @@
    <children>
       <AnchorPane prefHeight="325.0" prefWidth="600.0">
          <children>
-            <Label layoutX="19.0" layoutY="14.0" text="Hola Sergio,">
+            <Label layoutX="19.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio,">
                <font>
                   <Font size="20.0" />
                </font>
@@ -37,35 +37,38 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Paciente:" />
-                  <ComboBox fx:id="comboPacientes" prefHeight="27.0" prefWidth="196.0" GridPane.columnIndex="1" />
+                  <Label styleClass="normalLabel" stylesheets="@application.css" text="Paciente:" />
+                  <JFXComboBox fx:id="comboPaciente" prefHeight="27.0" prefWidth="198.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <Button fx:id="btnAvisos" contentDisplay="TOP" layoutX="169.0" layoutY="140.0" mnemonicParsing="false" prefHeight="112.0" prefWidth="116.0" text="Avisos">
+            <Label layoutX="408.0" layoutY="291.0" styleClass="smallLabel" stylesheets="@application.css" text="Cuidador" />
+            <JFXButton fx:id="btnAvisos" buttonType="RAISED" contentDisplay="TOP" layoutX="174.0" layoutY="140.0" styleClass="btn" stylesheets="@application.css" text="Avisos">
                <graphic>
                   <ImageView fitHeight="112.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../imagenes/avisos.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="btnEjercicios" contentDisplay="TOP" layoutX="28.0" layoutY="140.0" mnemonicParsing="false" prefHeight="112.0" prefWidth="116.0" text="Ejercicios">
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnEjercicios" buttonType="RAISED" contentDisplay="TOP" layoutX="30.0" layoutY="140.0" styleClass="btn" stylesheets="@application.css" text="Ejercicios">
                <graphic>
                   <ImageView fitHeight="112.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../imagenes/exercise.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="btnDatos" contentDisplay="TOP" layoutX="312.0" layoutY="140.0" mnemonicParsing="false" prefHeight="112.0" prefWidth="120.0" text="Datos">
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btnDatos" buttonType="RAISED" contentDisplay="TOP" layoutX="324.0" layoutY="140.0" styleClass="btn" stylesheets="@application.css" text="Datos">
                <graphic>
                   <ImageView fitHeight="112.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../imagenes/datos.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Label layoutX="408.0" layoutY="291.0" text="Cuidador" />
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

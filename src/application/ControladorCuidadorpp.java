@@ -22,6 +22,8 @@ public class ControladorCuidadorpp implements Initializable {
 	    @FXML
 	    private Button btnDatos;
 	    
+	    Cuidador cuidadorActual = new Cuidador();
+	    
 	    @Override
 	    public void initialize(URL location, ResourceBundle reosurces) {
 		

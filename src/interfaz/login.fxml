@@ -36,15 +36,15 @@
                   <JFXPasswordField fx:id="txtInputPassword" promptText="Contraseña" GridPane.rowIndex="1" />
                </children>
             </GridPane>
-            <JFXButton fx:id="buttonAceptar" buttonType="RAISED" layoutX="429.0" layoutY="288.0" onAction="#pressBtnAceptar" styleClass="btnAceptar" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/application/application.css" text="Aceptar" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="14.0" />
-            <JFXButton fx:id="buttonCancelar" buttonType="RAISED" onAction="#pressBtnCancelar" styleClass="btnAceptar" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/application/application.css" text="Cancelar" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" />
+            <JFXButton fx:id="buttonAceptar" buttonType="RAISED" layoutX="429.0" layoutY="288.0" onAction="#pressBtnAceptar" styleClass="btn" stylesheets="@application.css" text="Aceptar" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="14.0" />
+            <JFXButton fx:id="buttonCancelar" buttonType="RAISED" onAction="#pressBtnCancelar" styleClass="btn" stylesheets="@application.css" text="Cancelar" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" />
          </children>
       </AnchorPane>
    </center>
    <top>
       <AnchorPane prefHeight="35.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="txtBienvenida" styleClass="mainLabel" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/application/application.css" text="Bienvenido a PDEA," AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <Label fx:id="txtBienvenida" styleClass="mainLabel" stylesheets="@application.css" text="Bienvenido a PDEA," AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font size="20.0" />
                </font>

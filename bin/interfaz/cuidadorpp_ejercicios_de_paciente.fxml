@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -21,7 +21,7 @@
    <children>
       <AnchorPane prefHeight="325.0" prefWidth="600.0">
          <children>
-            <Label layoutX="19.0" layoutY="14.0" text="Hola Sergio,">
+            <Label layoutX="19.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio,">
                <font>
                   <Font size="20.0" />
                </font>
@@ -41,11 +41,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Paciente:" />
-                  <ComboBox prefHeight="26.0" prefWidth="190.0" GridPane.columnIndex="1" />
+                  <Label styleClass="normalLabel" stylesheets="@application.css" text="Paciente:" />
+                  <JFXComboBox fx:id="comboPaciente" prefHeight="27.0" prefWidth="188.0" stylesheets="@application.css" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <Label layoutX="418.0" layoutY="462.0" text="Cuidador" />
+            <Label layoutX="418.0" layoutY="462.0" styleClass="smallLabel" stylesheets="@application.css" text="Cuidador" />
             <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="19.0" layoutY="111.0">
                <image>
                   <Image url="@../imagenes/exercise.png" />
@@ -59,9 +59,9 @@
                            <children>
                               <TableView prefHeight="200.0" prefWidth="300.0">
                                 <columns>
-                                  <TableColumn prefWidth="93.0" text="Nombre" />
-                                  <TableColumn prefWidth="92.0" text="Link" />
-                                    <TableColumn prefWidth="114.0" text="Duración" />
+                                  <TableColumn fx:id="columnaNombre1" prefWidth="93.0" text="Nombre" />
+                                  <TableColumn fx:id="columnaLink1" prefWidth="92.0" text="Link" />
+                                    <TableColumn fx:id="columnaDuracion1" prefWidth="114.0" text="Duración" />
                                 </columns>
                               </TableView>
                            </children>
@@ -74,9 +74,9 @@
                            <children>
                               <TableView prefHeight="200.0" prefWidth="300.0">
                                  <columns>
-                                    <TableColumn prefWidth="93.0" text="Nombre" />
-                                    <TableColumn prefWidth="92.0" text="Link" />
-                                    <TableColumn prefWidth="114.0" text="Duración" />
+                                    <TableColumn fx:id="columnaNombre2" prefWidth="93.0" text="Nombre" />
+                                    <TableColumn fx:id="columnaLink2" prefWidth="92.0" text="Link" />
+                                    <TableColumn fx:id="columnaDuracion2" prefWidth="114.0" text="Duración" />
                                  </columns>
                               </TableView>
                            </children>
@@ -89,9 +89,9 @@
                            <children>
                               <TableView prefHeight="200.0" prefWidth="300.0">
                                  <columns>
-                                    <TableColumn prefWidth="93.0" text="Nombre" />
-                                    <TableColumn prefWidth="92.0" text="Link" />
-                                    <TableColumn prefWidth="114.0" text="Duración" />
+                                    <TableColumn fx:id="columnaNombre3" prefWidth="93.0" text="Nombre" />
+                                    <TableColumn fx:id="columnaLink3" prefWidth="92.0" text="Link" />
+                                    <TableColumn fx:id="columnaLik3" prefWidth="114.0" text="Duración" />
                                  </columns>
                               </TableView>
                            </children>

@@ -11,6 +11,11 @@
 	-fx-font: 100% sans-serif;
 }
 
+.smallLabel{
+		-fx-font: 100% sans-serif;
+		-fx-text-fill: grey;
+}
+
 .btn{
 	-fx-background-color: #eeeeee;
 	-fx-text-fill: black;

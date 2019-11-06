@@ -84,6 +84,7 @@ public class ControladorLogin implements Initializable{
 					Stage Pacientepp = new Stage();
 					Pacientepp.setTitle("Menu Principal Paciente");
 					Pacientepp.setScene(new Scene(PacienteVentana));
+					ControladorPacientepp.setPacienteActual(this.quePaciente());
 					Pacientepp.show();
 				}
 				catch(Exception a){
@@ -204,6 +205,39 @@ public class ControladorLogin implements Initializable{
 			}
 		}
 		return false;	
+	}
+	
+	//Funciones para obtener el Usuario
+	public Paciente quePaciente() {
+		for (int i=0; i< pacientes.size(); i++) {
+			Paciente p = pacientes.get(i);
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
+				return p;
+			}
+		}
+		return null;	
+	}
+	
+	
+	public Medico queMedico() {
+		for (int i=0; i< pacientes.size(); i++) {
+			Medico p = medicos.get(i);
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
+				return p;
+			}
+		}
+		return null;	
+	}
+	
+	
+	public Cuidador queCuidador() {
+		for (int i=0; i< cuidadores.size(); i++) {
+			Cuidador p = cuidadores.get(i);
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
+				return p;
+			}
+		}
+		return null;	
 	}
 	//--------------------------------------------
 	
