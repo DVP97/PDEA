@@ -15,6 +15,6 @@
       </ImageView>
       <Label fx:id="LabelTituloAvisos" layoutX="14.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="PDEA informa:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="30.0" />
       <Label fx:id="LabelMensajeError" layoutX="236.0" layoutY="119.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <JFXButton fx:id="ButtonVolver" layoutX="431.0" layoutY="161.0" onAction="#pressBtnVolver" text="Volver" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="19.0" />
+      <JFXButton fx:id="ButtonVolver" layoutX="431.0" layoutY="161.0" onAction="#pressBtnVolver" styleClass="btn" stylesheets="@application.css" text="Volver" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="19.0" />
    </children>
 </AnchorPane>
