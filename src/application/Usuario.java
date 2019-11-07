@@ -3,12 +3,14 @@ package application;
 public abstract class Usuario {
 	private String dni;
 	private String nombre;
+	private String apellidos;
 	private Integer telefono;
 	private String contrasena;
 	
-	public Usuario (String dni, String nombre, Integer telefono, String contrasena) {
+	public Usuario (String dni, String nombre, String apellidos, Integer telefono, String contrasena) {
 		this.dni= dni;
 		this.nombre= nombre;
+		this.apellidos= apellidos;
 		this.telefono= telefono;
 		this.contrasena= contrasena;
 	}
@@ -17,6 +19,7 @@ public abstract class Usuario {
 		this.dni= null;
 		this.contrasena= null;
 		this.nombre = null;
+		this.apellidos= null;
 		this.telefono= null;
 	}
 	
@@ -37,6 +40,10 @@ public abstract class Usuario {
 		return telefono;
 	}
 	
+	public String getApellidos() {
+		return apellidos;
+	}
+	
 	//SETTERS
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
@@ -52,5 +59,9 @@ public abstract class Usuario {
 	
 	public void setTelefono(Integer telefono) {
 		this.telefono = telefono;
+	}
+	
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
 	}
 }
