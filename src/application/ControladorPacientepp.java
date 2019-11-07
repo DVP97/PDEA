@@ -29,7 +29,7 @@ public class ControladorPacientepp implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
     //add controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahi).
-    campoPaciente.setText("Hola " +ControladorPacientepp.devuelveNombre() +",");
+    campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre() +",");
     
 	}
     
@@ -42,18 +42,5 @@ public class ControladorPacientepp implements Initializable {
   		pacienteActual = PacienteActual;
   	}
 	
-	public static String devuelveNombre() {
-		  String nombre= null;
-		  char[] nom = null;
 
-		  String paciente = pacienteActual.getNombre();
-		  char [] pac = paciente.toCharArray(); 
-		  for (int i = 0; i< paciente.length(); i++) {
-		    while(pac[i]!= ' ') {
-		      nom[i] = pac[i];
-		    }
-		    nombre = nom.toString();
-		  }	
-		  return nombre;
-		}
 }
