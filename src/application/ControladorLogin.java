@@ -4,9 +4,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
-
-import com.gluonhq.charm.glisten.control.TextField;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.stage.Stage;
@@ -142,7 +139,7 @@ public class ControladorLogin implements Initializable{
 	//------------------------------------------------
 	
 	
-	// Funcion donde se comprueba que los datos introducidos son correctos
+	// Funciones donde se comprueba que los datos introducidos son correctos
 	public boolean comprobarInputUser() {		
 		// capturar texto  del TextField de usuario y convierte a mayus.
 		String inputUser = txtInputUsuario.getText().toUpperCase();
@@ -150,21 +147,8 @@ public class ControladorLogin implements Initializable{
 		System.out.println("Usuario introducido: "+inputUser);
 		
 		
-		/*
-		//comprobar caracter a caracter si es un numero
-		for(int i=0; i<inputUser.length()-1; i++){
-		 
-			System.out.println(inputUser.charAt(i));
-		//	Double a = Double.parseDouble(inputUser.charAt(i);
-			if (inputUser.charAt(i) == instanceof java.lang.Integer){
-				System.out.println("error");
-				return false;
-			}
-		}
-		*/
-		
-		//comprueba la longitud del string inputUser
-		if(inputUser.length()!=9) {
+		// comprueba la longitud del string inputUser, que los primeros 8 caracteres son numeros y que el ultimo caracter es una letra
+		if(inputUser.length()!=9|| comprobarDigitosDNI() == false || Character.isLetter(inputUser.charAt(8)) == false ) {
 			System.out.println("Usuario no valido.");
 			return false;
 		}
@@ -172,6 +156,16 @@ public class ControladorLogin implements Initializable{
 			System.out.println("Usuario valido.");
 			return true;
 		}	
+	}
+	// comprobacion de que los primeros 8 caracteres introducidos en el campode ussuario son digitos 
+	public boolean comprobarDigitosDNI() {
+		String inputUser = txtInputUsuario.getText().toUpperCase();
+		for(int i=0; i<inputUser.length(); i++) { 
+			if(Character.isDigit((inputUser.charAt(i)))==true) {
+					return false;
+			}
+		}
+		return true;
 	}
 	//------------------------------------------------------
 	
