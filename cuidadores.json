@@ -1,25 +1,29 @@
 [
   {
     "dni": "94928344R",
-    "nombre": "Sofía Martínez Parada",
+    "nombre": "Sofia",
+    "apellidos": "Martinez Parada",
     "telefono": 698149747,
     "contrasena": "a"
   },
   {
     "dni": "23958294G",
-    "nombre": "Marta López Pérez",
+    "nombre": "Marta",
+    "apellidos": "Lopez Perez",
     "telefono": 692847294,
     "contrasena": "a"
   },
   {
     "dni": "39582948D",
-    "nombre": "Ángel Zas Rodríguez",
+    "nombre": "Angel",
+    "apellidos": "Zas Rodriguez",
     "telefono": 693859285,
     "contrasena": "a"
   },
   {
     "dni": "49183049N",
-    "nombre": "Andrés Montes Martínez",
+    "nombre": "Andres",
+    "apellidos": "Montes Martinez",
     "telefono": 674920493,
     "contrasena": "a"
   }

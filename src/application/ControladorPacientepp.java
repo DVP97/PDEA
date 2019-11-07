@@ -29,7 +29,7 @@ public class ControladorPacientepp implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
     //add controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahi).
-    campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre()+",");
+    campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre() +",");
     
 	}
     
@@ -41,4 +41,6 @@ public class ControladorPacientepp implements Initializable {
 	public static void setPacienteActual(Paciente PacienteActual) {
   		pacienteActual = PacienteActual;
   	}
+	
+
 }
