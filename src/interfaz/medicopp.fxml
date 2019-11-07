@@ -24,7 +24,7 @@
    <children>
       <AnchorPane prefHeight="597.0" prefWidth="728.0">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Hola Sergio,">
+            <Label fx:id="campoMedico" layoutX="14.0" layoutY="14.0" text="Hola Sergio,">
                <font>
                   <Font size="20.0" />
                </font>
@@ -32,7 +32,7 @@
             <Separator layoutX="14.0" layoutY="39.0" prefHeight="4.0" prefWidth="152.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="45.0" />
             <ImageView fitHeight="50.0" fitWidth="45.0" layoutX="669.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@logo.jpeg" />
+                  <Image url="@../imagenes/logo.png" />
                </image>
             </ImageView>
             <Label layoutX="669.0" layoutY="557.0" text="Médico" />

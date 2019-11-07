@@ -95,7 +95,7 @@ public class ControladorLogin implements Initializable{
 							
 			if( esCuidador() == true) {
 				try {
-					//ControladorCuidadorpp.setCuidadorActual(this.queCuidador());
+					ControladorCuidadorpp.setCuidadorActual(this.queCuidador());
 					Parent CuidadorVentana = FXMLLoader.load(getClass().getResource("/interfaz/cuidadorpp.fxml"));
 					Stage Cuidadorpp = new Stage();
 					Cuidadorpp.setTitle("Menu Principal Cuidador");
@@ -111,7 +111,7 @@ public class ControladorLogin implements Initializable{
 				
 			if( esMedico() == true) {
 				try {
-					//ControladorCuidadorpp.setCuidadorActual(this.queCuidador());
+					ControladorMedicopp.setMedicoActual(this.queMedico());
 					Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/interfaz/medicopp.fxml"));
 					Stage Medicopp = new Stage();
 					Medicopp.setTitle("Menu Principal Medico");

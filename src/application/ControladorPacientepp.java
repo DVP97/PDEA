@@ -3,10 +3,10 @@ package application;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.gluonhq.charm.glisten.control.TextField;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 
 public class ControladorPacientepp implements Initializable {
@@ -21,14 +21,14 @@ public class ControladorPacientepp implements Initializable {
     private JFXButton btnMensajes;
     
     @FXML
-    private TextField campoPaciente;
+    private Label campoPaciente;
 
     private static Paciente pacienteActual = new Paciente();
     
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
-    //añadir controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahí).
+    //add controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahi).
     campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre()+",");
     
 	}

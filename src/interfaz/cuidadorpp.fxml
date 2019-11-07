@@ -17,12 +17,12 @@
    <children>
       <AnchorPane prefHeight="325.0" prefWidth="600.0">
          <children>
-            <Label layoutX="19.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio,">
+            <Label fx:id="campoCuidador" layoutX="19.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="..." AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="19.0" layoutY="48.0" prefHeight="5.0" prefWidth="151.0" />
+            <Separator layoutX="19.0" layoutY="48.0" prefHeight="5.0" prefWidth="151.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0" />
             <ImageView fitHeight="54.0" fitWidth="67.0" layoutX="404.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/logo.png" />
