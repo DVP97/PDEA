@@ -4,7 +4,6 @@ import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
 import com.google.gson.JsonParser;
@@ -79,6 +78,9 @@ public class lectorJson {
                     else if (key.equalsIgnoreCase("nombre")) {
                     	pac.setNombre(entrada.getValue().getAsString());
                     }
+                    else if (key.equalsIgnoreCase("apellidos")) {
+                    	pac.setApellidos(entrada.getValue().getAsString());
+                    }
                     else if (key.equalsIgnoreCase("telefono")) {
                     	pac.setTelefono(entrada.getValue().getAsInt());
                     }
@@ -118,6 +120,9 @@ public class lectorJson {
                     else if (key.equalsIgnoreCase("nombre")) {
                     	cui.setNombre(entrada.getValue().getAsString());
                     }
+                    else if (key.equalsIgnoreCase("apellidos")) {
+                    	cui.setApellidos(entrada.getValue().getAsString());
+                    }
                     else if (key.equalsIgnoreCase("telefono")) {
                     	cui.setTelefono(entrada.getValue().getAsInt());
                     }
@@ -145,6 +150,9 @@ public class lectorJson {
                     }
                     else if (key.equalsIgnoreCase("nombre")) {
                     	med.setNombre(entrada.getValue().getAsString());
+                    }
+                    else if (key.equalsIgnoreCase("apellidos")) {
+                    	med.setApellidos(entrada.getValue().getAsString());
                     }
                     else if (key.equalsIgnoreCase("telefono")) {
                     	med.setTelefono(entrada.getValue().getAsInt());
