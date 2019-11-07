@@ -83,6 +83,12 @@ public class ControladorLogin implements Initializable{
 					Pacientepp.setTitle("Menu Principal Paciente");
 					Pacientepp.setScene(new Scene(PacienteVentana));
 					Pacientepp.show();
+					
+
+					System.out.println("Cerrando ventana de Login.");
+					Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
+					CerrarVentanaLogin.close();
+					
 				}
 				catch(Exception a){
 					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
@@ -98,6 +104,11 @@ public class ControladorLogin implements Initializable{
 					Cuidadorpp.setTitle("Menu Principal Cuidador");
 					Cuidadorpp.setScene(new Scene(CuidadorVentana));
 					Cuidadorpp.show();
+
+					System.out.println("Cerrando ventana de Login.");
+					Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
+					CerrarVentanaLogin.close();
+					
 				}
 				catch(Exception a){
 					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Cuidador.");
@@ -114,6 +125,11 @@ public class ControladorLogin implements Initializable{
 					Medicopp.setTitle("Menu Principal Medico");
 					Medicopp.setScene(new Scene(MedicoVentana));
 					Medicopp.show();
+					
+					System.out.println("Cerrando ventana de Login.");
+					Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
+					CerrarVentanaLogin.close();
+					
 					}
 				catch(Exception a){
 					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
@@ -148,7 +164,7 @@ public class ControladorLogin implements Initializable{
 		
 		
 		// comprueba la longitud del string inputUser, que los primeros 8 caracteres son numeros y que el ultimo caracter es una letra
-		if(inputUser.length()!=9|| comprobarDigitosDNI() == false || Character.isLetter(inputUser.charAt(8)) == false ) {
+		if(inputUser.length()!=9 || comprobarDigitosDNI() == false || Character.isLetter(inputUser.charAt(8)) == false ) {
 			System.out.println("Usuario no valido.");
 			return false;
 		}
@@ -157,11 +173,11 @@ public class ControladorLogin implements Initializable{
 			return true;
 		}	
 	}
-	// comprobacion de que los primeros 8 caracteres introducidos en el campode ussuario son digitos 
+	// comprobacion de que los primeros 8 caracteres introducidos en el campo de ussuario son digitos 
 	public boolean comprobarDigitosDNI() {
 		String inputUser = txtInputUsuario.getText().toUpperCase();
-		for(int i=0; i<inputUser.length(); i++) { 
-			if(Character.isDigit((inputUser.charAt(i)))==true) {
+		for(int i=0; i<inputUser.length()-1; i++) {
+			if(Character.isDigit((inputUser.charAt(i)))==false) {
 					return false;
 			}
 		}
