@@ -28,7 +28,9 @@ public class ControladorPacientepp implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
-    	campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre()+",");
+    //añadir controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahí).
+    campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre()+",");
+    
 	}
     
   //Getters y Setters

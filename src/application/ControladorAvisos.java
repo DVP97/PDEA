@@ -33,13 +33,14 @@ public class ControladorAvisos implements Initializable {
     private JFXButton ButtonVolver;
    
   
-	//Metodos
+	@Override
     public void initialize(URL location, ResourceBundle reosurces) {
     	
     	System.out.println("Ventana de avisos:");
     	LabelMensajeError.setText(MensajeError);
     }
     
+	//Metodos
     public void pressBtnVolver(ActionEvent event) {
 		System.out.println("Cerrando ventana de avisos.");
 		Stage VentanaAvisos = (Stage) ButtonVolver.getScene().getWindow();

@@ -80,11 +80,11 @@ public class ControladorLogin implements Initializable{
 				
 			if( esPaciente() == true) {
 				try {
+					ControladorPacientepp.setPacienteActual(this.quePaciente());
 					Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/interfaz/menupaciente.fxml"));
 					Stage Pacientepp = new Stage();
 					Pacientepp.setTitle("Menu Principal Paciente");
 					Pacientepp.setScene(new Scene(PacienteVentana));
-					ControladorPacientepp.setPacienteActual(this.quePaciente());
 					Pacientepp.show();
 				}
 				catch(Exception a){
@@ -95,6 +95,7 @@ public class ControladorLogin implements Initializable{
 							
 			if( esCuidador() == true) {
 				try {
+					//ControladorCuidadorpp.setCuidadorActual(this.queCuidador());
 					Parent CuidadorVentana = FXMLLoader.load(getClass().getResource("/interfaz/cuidadorpp.fxml"));
 					Stage Cuidadorpp = new Stage();
 					Cuidadorpp.setTitle("Menu Principal Cuidador");
@@ -110,6 +111,7 @@ public class ControladorLogin implements Initializable{
 				
 			if( esMedico() == true) {
 				try {
+					//ControladorCuidadorpp.setCuidadorActual(this.queCuidador());
 					Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/interfaz/medicopp.fxml"));
 					Stage Medicopp = new Stage();
 					Medicopp.setTitle("Menu Principal Medico");
