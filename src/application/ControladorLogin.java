@@ -73,69 +73,94 @@ public class ControladorLogin implements Initializable{
 				throw new ExcepcionUser(01);
 			}
 			
-			System.out.println("Cargando ventana principal...");
-				
-			if( esPaciente() == true) {
-				try {
-					ControladorPacientepp.setPacienteActual(this.quePaciente());
-					Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/interfaz/menupaciente.fxml"));
-					Stage Pacientepp = new Stage();
-					Pacientepp.setTitle("Menu Principal Paciente");
-					Pacientepp.setScene(new Scene(PacienteVentana));
-					Pacientepp.show();
-					
-
-					System.out.println("Cerrando ventana de Login.");
-					Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
-					CerrarVentanaLogin.close();
-					
-				}
-				catch(Exception a){
-					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
-					abrirVentanaAvisos();
-				}
+			//comprobar tipo de usuario, usamos switch para optimizar programa
+			int usertype=0;
+			if (esPaciente()==true) {
+				usertype=1;
 			}
-							
-			if( esCuidador() == true) {
-				try {
-					ControladorCuidadorpp.setCuidadorActual(this.queCuidador());
-					Parent CuidadorVentana = FXMLLoader.load(getClass().getResource("/interfaz/cuidadorpp.fxml"));
-					Stage Cuidadorpp = new Stage();
-					Cuidadorpp.setTitle("Menu Principal Cuidador");
-					Cuidadorpp.setScene(new Scene(CuidadorVentana));
-					Cuidadorpp.show();
-
-					System.out.println("Cerrando ventana de Login.");
-					Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
-					CerrarVentanaLogin.close();
-					
-				}
-				catch(Exception a){
-					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Cuidador.");
-					abrirVentanaAvisos();
-				}
+			if (esCuidador()==true) {
+				usertype=2;
 			}
-				
-				
-			if( esMedico() == true) {
-				try {
-					ControladorMedicopp.setMedicoActual(this.queMedico());
-					Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/interfaz/medicopp.fxml"));
-					Stage Medicopp = new Stage();
-					Medicopp.setTitle("Menu Principal Medico");
-					Medicopp.setScene(new Scene(MedicoVentana));
-					Medicopp.show();
+			if (esMedico()==true) {
+				usertype=3;
+			}
+			
+			switch (usertype) {
 					
-					System.out.println("Cerrando ventana de Login.");
-					Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
-					CerrarVentanaLogin.close();
+				case 1:
+					try {
+						System.out.println("Cargando ventana principal de Paciente...");
+						ControladorPacientepp.setPacienteActual(this.quePaciente());
+						Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/interfaz/menupaciente.fxml"));
+						Stage Pacientepp = new Stage();
+						Pacientepp.setTitle("Menu Principal Paciente");
+						Pacientepp.setScene(new Scene(PacienteVentana));
+						Pacientepp.show();
+						
+
+						System.out.println("Cerrando ventana de Login.");
+						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
+						CerrarVentanaLogin.close();
+						}
+						
 					
+					catch(Exception a){
+						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
+						abrirVentanaAvisos();
 					}
-				catch(Exception a){
-					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
+
+					break;
+					
+				case 2:
+					try {
+						System.out.println("Cargando ventana principal de Cuidador...");
+						ControladorCuidadorpp.setCuidadorActual(this.queCuidador());
+						Parent CuidadorVentana = FXMLLoader.load(getClass().getResource("/interfaz/cuidadorpp.fxml"));
+						Stage Cuidadorpp = new Stage();
+						Cuidadorpp.setTitle("Menu Principal Cuidador");
+						Cuidadorpp.setScene(new Scene(CuidadorVentana));
+						Cuidadorpp.show();
+
+						System.out.println("Cerrando ventana de Login.");
+						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
+						CerrarVentanaLogin.close();
+						
+					}
+					catch(Exception a){
+						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Cuidador.");
+						abrirVentanaAvisos();
+					}
+
+					break;
+					
+				case 3:
+					try {
+						System.out.println("Cargando ventana principal de Medico...");
+						ControladorMedicopp.setMedicoActual(this.queMedico());
+						Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/interfaz/medicopp.fxml"));
+						Stage Medicopp = new Stage();
+						Medicopp.setTitle("Menu Principal Medico");
+						Medicopp.setScene(new Scene(MedicoVentana));
+						Medicopp.show();
+						
+						System.out.println("Cerrando ventana de Login.");
+						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
+						CerrarVentanaLogin.close();
+						
+						}
+					catch(Exception a){
+						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
+						abrirVentanaAvisos();
+					}
+
+					break;
+					
+				default:
+					// en caso de que se introduzca un DNI que no se encuentre en la base de datos
+					ControladorAvisos.setMensajeError("Datos incorrectos.");
 					abrirVentanaAvisos();
-				}
-			}
+					break;
+			}	
 		}
 
 		catch(ExcepcionUser loginfailure){
@@ -158,16 +183,16 @@ public class ControladorLogin implements Initializable{
 	// Funciones donde se comprueba que los datos introducidos son correctos
 	public boolean comprobarInputUser() {		
 		// capturar texto  del TextField de usuario y convierte a mayus.
-		String inputUser = txtInputUsuario.getText().toUpperCase();
-		
-		System.out.println("Usuario introducido: "+inputUser);
-		
+		String inputUsuario = txtInputUsuario.getText().toUpperCase();
+		System.out.println("Usuario introducido: "+inputUsuario);
+		System.out.println("Password introducido: "+txtInputPassword.getText());
 		
 		// comprueba la longitud del string inputUser, que los primeros 8 caracteres son numeros y que el ultimo caracter es una letra
-		if(inputUser.length()!=9 || comprobarDigitosDNI() == false || Character.isLetter(inputUser.charAt(8)) == false ) {
+		if(inputUsuario.length()!=9 || comprobarDigitosDNI() == false || Character.isLetter(inputUsuario.charAt(8)) == false ) {
 			System.out.println("Usuario no valido.");
 			return false;
 		}
+
 		else {
 			System.out.println("Usuario valido.");
 			return true;
@@ -184,13 +209,23 @@ public class ControladorLogin implements Initializable{
 		return true;
 	}
 	//------------------------------------------------------
-	
-	
+
 	// funciones para comprobar el tipo de usuario
 	public boolean esPaciente() {
 		for (int i=0; i< pacientes.size(); i++) {
 			Paciente p = pacientes.get(i);
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && p.getContrasena().equalsIgnoreCase(txtInputPassword.getText()) ) {
+				return true;
+			}
+		}
+		return false;	
+	}
+	
+
+	public boolean esCuidador() {
+		for (int i=0; i< cuidadores.size(); i++) {
+			Cuidador p = cuidadores.get(i);
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && p.getContrasena().equalsIgnoreCase(txtInputPassword.getText()) ){
 				return true;
 			}
 		}
@@ -201,7 +236,7 @@ public class ControladorLogin implements Initializable{
 	public boolean esMedico() {
 		for (int i=0; i< medicos.size(); i++) {
 			Medico p = medicos.get(i);
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && p.getContrasena().equalsIgnoreCase(txtInputPassword.getText()) ){
 				return true;
 			}
 		}
@@ -209,17 +244,7 @@ public class ControladorLogin implements Initializable{
 	}
 	
 	
-	public boolean esCuidador() {
-		for (int i=0; i< cuidadores.size(); i++) {
-			Cuidador p = cuidadores.get(i);
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
-				return true;
-			}
-		}
-		return false;	
-	}
-	
-	//Funciones para obtener el Usuario
+	//Funciones para establecer el Usuario en el menu principal
 	public Paciente quePaciente() {
 		for (int i=0; i< pacientes.size(); i++) {
 			Paciente p = pacientes.get(i);
