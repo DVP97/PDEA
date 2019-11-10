@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -66,7 +67,7 @@ public class ControladorLogin implements Initializable{
 	
 	
 	//Acciones ejecutadas al pulsar el Boton Aceptar
-	public void pressBtnAceptar(ActionEvent event) {
+	public void pressBtnAceptar() {
 		
 		try {
 			comprobarInputUser();
@@ -171,9 +172,15 @@ public class ControladorLogin implements Initializable{
 		
 	}
 	
-	public void textoClavePressed(ActionEvent event){
-		   System.out.println("test") ;
-		   pressBtnAceptar(event);
+	public void btnAceptarActionPerformed(ActionEvent event) {
+		this.pressBtnAceptar();
+	}
+	
+	public void textoClavePressed(KeyEvent event){
+		if(event.getKeyCode() == KeyEvent.VK_ENTER) {
+			this.pressBtnAceptar();
+		}
+		
 	}
 	//----------------------------------------------
 	
