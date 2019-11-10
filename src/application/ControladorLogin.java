@@ -1,6 +1,5 @@
 package application;
 
-import java.awt.event.KeyEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -9,6 +8,8 @@ import com.jfoenix.controls.JFXButton;
 
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,6 +52,8 @@ public class ControladorLogin implements Initializable{
 	
 	@FXML
 	private JFXButton buttonCancelar;
+	
+	
 	
 	// Lectura inicial de los json
 	lectorJson lector = new lectorJson();
@@ -177,7 +180,7 @@ public class ControladorLogin implements Initializable{
 	}
 	
 	public void textoClavePressed(KeyEvent event){
-		if(event.getKeyCode() == KeyEvent.VK_ENTER) {
+		if(event.getCode().equals(KeyCode.ENTER)) {
 			this.pressBtnAceptar();
 		}
 		
