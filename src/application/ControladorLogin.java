@@ -249,7 +249,9 @@ public class ControladorLogin implements Initializable{
 	public boolean esCuidador() {
 		for (int i=0; i< cuidadores.size(); i++) {
 			Cuidador p = cuidadores.get(i);
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && p.getContrasena().equalsIgnoreCase(txtInputPassword.getText()) ){
+			String passwordCuidador = p.getContrasena();
+			String passwordEncriptada = getMd5(txtInputPassword.getText());
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && passwordCuidador.equals(passwordEncriptada) ){
 				return true;
 			}
 		}
@@ -260,7 +262,9 @@ public class ControladorLogin implements Initializable{
 	public boolean esMedico() {
 		for (int i=0; i< medicos.size(); i++) {
 			Medico p = medicos.get(i);
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && p.getContrasena().equalsIgnoreCase(txtInputPassword.getText()) ){
+			String passwordMedico = p.getContrasena();
+			String passwordEncriptada = getMd5(txtInputPassword.getText());
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && passwordMedico.equals(passwordEncriptada) ){
 				return true;
 			}
 		}
