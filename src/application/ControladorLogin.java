@@ -1,6 +1,9 @@
 package application;
 
+import java.math.BigInteger;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -52,6 +55,7 @@ public class ControladorLogin implements Initializable{
 	
 	@FXML
 	private JFXButton buttonCancelar;
+	
 	
 	
 	
@@ -185,6 +189,7 @@ public class ControladorLogin implements Initializable{
 		}
 		
 	}
+	
 	//----------------------------------------------
 	
 	
@@ -208,6 +213,7 @@ public class ControladorLogin implements Initializable{
 			System.out.println("Usuario no valido.");
 			return false;
 		}
+		
 
 		else {
 			System.out.println("Usuario valido.");
@@ -230,7 +236,9 @@ public class ControladorLogin implements Initializable{
 	public boolean esPaciente() {
 		for (int i=0; i< pacientes.size(); i++) {
 			Paciente p = pacientes.get(i);
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && p.getContrasena().equalsIgnoreCase(txtInputPassword.getText()) ) {
+			String passwordPaciente = p.getContrasena();
+			String passwordEncriptada = getMd5(txtInputPassword.getText());
+			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && passwordPaciente.equals(passwordEncriptada) ) {
 				return true;
 			}
 		}
@@ -305,7 +313,40 @@ public class ControladorLogin implements Initializable{
 	    }
 	}
 	//-----------------------------------------
-	
+	//funcion hash recibe contrasena y devuelve contrasena encriptado
+	public static String getMd5(String input) 
+    { 
+        try { 
+  
+            // Static getInstance method is called with hashing MD5 
+            MessageDigest md = MessageDigest.getInstance("MD5"); 
+  
+            // digest() method is called to calculate message digest 
+            //  of an input digest() return array of byte 
+            byte[] messageDigest = md.digest(input.getBytes()); 
+  
+            // Convert byte array into signum representation 
+            BigInteger no = new BigInteger(1, messageDigest); 
+  
+            // Convert message digest into hex value 
+            String hashtext = no.toString(16); 
+            while (hashtext.length() < 32) { 
+                hashtext = "0" + hashtext; 
+            } 
+            
+            	
+            
+            return hashtext; 
+        }  
+        catch (NoSuchAlgorithmException e) { 
+            throw new RuntimeException(e); 
+        } 
+    } 
+  
+        
+      //-----------------------------------------
+        
+	//-----------------------------------------
 	
 	// funcion desde la que se llama a la ventana de avisos
 	public void abrirVentanaAvisos() {
