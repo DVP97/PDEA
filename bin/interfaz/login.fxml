@@ -35,7 +35,7 @@
                </rowConstraints>
                <children>
                   <JFXTextField fx:id="txtInputUsuario" promptText="Usuario" />
-                  <JFXPasswordField fx:id="txtInputPassword" promptText="Contraseña" GridPane.rowIndex="1" />
+                  <JFXPasswordField fx:id="txtInputPassword" onKeyPressed="#textoClavePressed" promptText="Contraseña" GridPane.rowIndex="1" />
                </children>
             </GridPane>
             <JFXButton fx:id="buttonAceptar" buttonType="RAISED" layoutX="429.0" layoutY="288.0" onAction="#pressBtnAceptar" styleClass="btn" stylesheets="@application.css" text="Aceptar" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="14.0">

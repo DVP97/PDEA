@@ -64,6 +64,7 @@ public class ControladorLogin implements Initializable{
 	}
 	
 	
+	
 	//Acciones ejecutadas al pulsar el Boton Aceptar
 	public void pressBtnAceptar(ActionEvent event) {
 		
@@ -168,6 +169,11 @@ public class ControladorLogin implements Initializable{
 			abrirVentanaAvisos();
 		}
 		
+	}
+	
+	public void textoClavePressed(ActionEvent event){
+		   System.out.println("test") ;
+		   pressBtnAceptar(event);
 	}
 	//----------------------------------------------
 	
