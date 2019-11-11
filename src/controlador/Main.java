@@ -15,7 +15,11 @@ public class Main extends Application {
 			primaryStage.setTitle("PDEA Login");
 			primaryStage.setScene(new Scene(Login));
 			primaryStage.show();
-
+			primaryStage.setMinHeight(340);
+			primaryStage.setMinWidth(520);
+			primaryStage.setMaxHeight(500);
+			primaryStage.setMaxWidth(520);
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
