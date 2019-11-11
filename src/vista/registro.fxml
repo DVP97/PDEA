@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorRegistro">
    <children>
       <AnchorPane prefHeight="338.0" prefWidth="600.0">
          <children>
@@ -48,7 +48,7 @@
                   <Label text="Contraseña:" GridPane.rowIndex="3" />
                   <Label text="Repite la contraseña:" GridPane.rowIndex="4" />
                   <Label text="Rol:" GridPane.rowIndex="5" />
-                  <ComboBox fx:id="comboRol" prefHeight="27.0" prefWidth="237.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="comboRol" onAction="#elegirRol" prefHeight="27.0" prefWidth="237.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="Apellidos:" GridPane.rowIndex="2" />
                   <TextField fx:id="textoApellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
@@ -58,8 +58,8 @@
                   <Image url="@../modelo/logo.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutX="14.0" layoutY="297.0" styleClass="btn" stylesheets="@application.css" text="Cancelar" />
-            <JFXButton fx:id="btnAceptar" buttonType="RAISED" layoutX="531.0" layoutY="297.0" styleClass="btn" stylesheets="@application.css" text="Aceptar" />
+            <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutX="14.0" layoutY="297.0" onAction="#pulsarBtnCancelar_reg" styleClass="btn" stylesheets="@application.css" text="Cancelar" />
+            <JFXButton fx:id="btnAceptar" buttonType="RAISED" layoutX="531.0" layoutY="297.0" onAction="#pulsarBtnAceptar_reg" styleClass="btn" stylesheets="@application.css" text="Aceptar" />
          </children>
       </AnchorPane>
    </children>

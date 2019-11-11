@@ -64,7 +64,19 @@ public class ControladorLogin implements Initializable{
     
     @FXML
     void pressBtnRegistrar(ActionEvent event) {
-
+    	try {
+    	System.out.println("Cargando ventana de Registro...");
+		ControladorPacientepp.setPacienteActual(this.quePaciente());
+		Parent NuevoRegistro = FXMLLoader.load(getClass().getResource("/vista/registro.fxml"));
+		Stage Registro = new Stage();
+		Registro.setTitle("Registro de Nuevo Usuario");
+		Registro.setScene(new Scene(NuevoRegistro));
+		Registro.show();
+    	}
+    	catch(Exception r){
+    		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Registro.");
+			abrirVentanaAvisos();
+    	}
     }
 		
 	
