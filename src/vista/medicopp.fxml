@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.control.Accordion?>
@@ -71,11 +70,12 @@
                                  </children>
                               </GridPane>
                               <Button fx:id="btnEditar" layoutX="376.0" layoutY="407.0" mnemonicParsing="false" text="Editar" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="305.0" />
-                              <Button fx:id="btnEjercicios" layoutX="623.0" layoutY="407.0" mnemonicParsing="false" text="Ejercicios" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="30.0" />
-                              <Button layoutX="463.0" layoutY="407.0" mnemonicParsing="false" text="Datos" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="218.0" />
-                              <Button layoutX="545.0" layoutY="407.0" mnemonicParsing="false" text="Citar" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="130.0" />
+                              <Button fx:id="btnEjercicios" layoutX="637.0" layoutY="401.0" mnemonicParsing="false" text="Ejercicios" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="21.0" />
+                              <Button layoutX="438.0" layoutY="401.0" mnemonicParsing="false" text="Datos" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="239.0" />
+                              <Button layoutX="581.0" layoutY="401.0" mnemonicParsing="false" text="Citar" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="102.0" />
                               <Button layoutX="288.0" layoutY="16.0" mnemonicParsing="false" text="Buscar" AnchorPane.leftAnchor="288.0" AnchorPane.topAnchor="16.0" />
                               <Separator layoutX="361.0" layoutY="103.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="361.0" AnchorPane.topAnchor="20.0" />
+                              <Button fx:id="btnRegistrar" layoutX="502.0" layoutY="401.0" mnemonicParsing="false" text="Registrar" />
                               
                            </children>
                         </AnchorPane>

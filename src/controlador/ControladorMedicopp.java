@@ -35,6 +35,7 @@ public class ControladorMedicopp implements Initializable {
 
     @FXML
     private Button btnEjercicios;
+    
 
     @FXML
     private Label campoMedico;
