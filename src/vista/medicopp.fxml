@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.control.Accordion?>
@@ -29,7 +30,7 @@
    <children>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="597.0" prefWidth="728.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="campoMedico" layoutX="14.0" layoutY="14.0" text="Hola Sergio," AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <Label fx:id="campoMedico" layoutX="14.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio," AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -40,7 +41,7 @@
                   <Image url="@../modelo/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="669.0" layoutY="557.0" text="Médico" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+            <Label layoutX="669.0" layoutY="557.0" styleClass="smallLabel" stylesheets="@application.css" text="Médico" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
             <TabPane layoutX="8.0" layoutY="61.0" prefHeight="481.0" prefWidth="712.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
               <tabs>
                 <Tab text="Pacientes">
@@ -75,6 +76,7 @@
                               <Button layoutX="545.0" layoutY="407.0" mnemonicParsing="false" text="Citar" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="130.0" />
                               <Button layoutX="288.0" layoutY="16.0" mnemonicParsing="false" text="Buscar" AnchorPane.leftAnchor="288.0" AnchorPane.topAnchor="16.0" />
                               <Separator layoutX="361.0" layoutY="103.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="361.0" AnchorPane.topAnchor="20.0" />
+                              <JFXButton fx:id="btnRegistrar" buttonType="RAISED" layoutX="647.0" layoutY="15.0" onAction="#pressBtnRegistrar" styleClass="btn" stylesheets="@application.css" text="Registrar" />
                            </children>
                         </AnchorPane>
                   </content>
