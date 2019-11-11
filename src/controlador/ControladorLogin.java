@@ -392,9 +392,10 @@ public class ControladorLogin implements Initializable{
 			VentanaAvisos.setScene(new Scene(avisos));
 			VentanaAvisos.show();
 			VentanaAvisos.setMinHeight(200);
-			VentanaAvisos.setMinWidth(520);
-			VentanaAvisos.setMaxHeight(200);
 			VentanaAvisos.setMinWidth(500);
+			VentanaAvisos.setMaxHeight(200);
+			VentanaAvisos.setMaxWidth(600);
+			
 		}
 		catch(Exception a) {
 			System.out.println("Error");
