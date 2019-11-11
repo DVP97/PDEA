@@ -1,4 +1,5 @@
-/controlador/
-/vista/
-/interfaz/
+/.settings/
 /modelo/
+/vista/
+/controlador/
+/application/
