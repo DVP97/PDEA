@@ -224,6 +224,7 @@ public class ControladorLogin implements Initializable{
 			return true;
 		}	
 	}
+	
 	// comprobacion de que los primeros 8 caracteres introducidos en el campo de ussuario son digitos 
 	public boolean comprobarDigitosDNI() {
 		String inputUser = txtInputUsuario.getText().toUpperCase();

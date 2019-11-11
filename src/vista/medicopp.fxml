@@ -76,7 +76,7 @@
                               <Button layoutX="545.0" layoutY="407.0" mnemonicParsing="false" text="Citar" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="130.0" />
                               <Button layoutX="288.0" layoutY="16.0" mnemonicParsing="false" text="Buscar" AnchorPane.leftAnchor="288.0" AnchorPane.topAnchor="16.0" />
                               <Separator layoutX="361.0" layoutY="103.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="361.0" AnchorPane.topAnchor="20.0" />
-                              <JFXButton fx:id="btnRegistrar" buttonType="RAISED" layoutX="647.0" layoutY="15.0" onAction="#pressBtnRegistrar" styleClass="btn" stylesheets="@application.css" text="Registrar" />
+                              
                            </children>
                         </AnchorPane>
                   </content>

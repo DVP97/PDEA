@@ -3,9 +3,7 @@ package controlador;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXButton;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import modelo.Medico;
 import javafx.fxml.Initializable;
+
 
 public class ControladorMedicopp implements Initializable {
 
@@ -40,9 +39,7 @@ public class ControladorMedicopp implements Initializable {
     @FXML
     private Label campoMedico;
     
-    @FXML
-    private JFXButton btnRegistrar;
-    
+
     
     private static Medico medicoActual = new Medico();
     
@@ -50,6 +47,7 @@ public class ControladorMedicopp implements Initializable {
     public void initialize(URL location, ResourceBundle reosurces) {
     	 campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
 	}
+    
     
 
     //Getters y Setters
@@ -61,9 +59,7 @@ public class ControladorMedicopp implements Initializable {
 		medicoActual = MedicoActual;
 	}
 	
-	//Metodos
-	public void btnRegistrarActionPerformed(ActionEvent event) {
-		
-	}
+	
+	
     
 }
