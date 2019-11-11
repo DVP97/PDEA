@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 public class ControladorRegistro {
@@ -45,7 +46,9 @@ public class ControladorRegistro {
 
     @FXML
     void pulsarBtnCancelar_reg(ActionEvent event) {
-
+    	System.out.println("Cerrando ventana de Login.");
+		Stage CerrarVentanaRegistro = (Stage) btnAceptar.getScene().getWindow();
+		CerrarVentanaRegistro.close();
     }
 
     //Getters y Setters
