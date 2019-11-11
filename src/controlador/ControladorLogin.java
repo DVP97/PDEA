@@ -59,8 +59,14 @@ public class ControladorLogin implements Initializable{
 	@FXML
 	private JFXButton buttonCancelar;
 	
-	
-	
+    @FXML
+    private JFXButton buttonRegistrar;
+    
+    @FXML
+    void pressBtnRegistrar(ActionEvent event) {
+
+    }
+		
 	
 	
 	// Lectura inicial de los json
