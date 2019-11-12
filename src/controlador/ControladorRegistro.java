@@ -10,7 +10,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
-import com.sun.javafx.geom.AreaOp.AddOp;
 
 import application.Main;
 import javafx.fxml.FXML;
@@ -141,7 +140,7 @@ public class ControladorRegistro implements Initializable {
 							pacientes.add(newPaciente);
 							Main.setPacientes(pacientes);
 							
-							//escritorJson pacientesRe = new escritorJson();
+							new escritorJson();
 							
 							ControladorAvisos.setMensajeError("Usuario Registrado.");
 							abrirVentanaAvisos();
@@ -171,7 +170,7 @@ public class ControladorRegistro implements Initializable {
 							cuidadores = Main.getCuidadores();
 							cuidadores.add(newCuidador);
 							Main.setCuidadores(cuidadores);
-							//escritorJson cuidadoresRe = new escritorJson();
+							new escritorJson();
 							
 							ControladorAvisos.setMensajeError("Usuario Registrado.");
 							abrirVentanaAvisos();
@@ -202,7 +201,7 @@ public class ControladorRegistro implements Initializable {
 							medicos = Main.getMedicos();
 							medicos.add(newMedico);
 							Main.setMedicos(medicos);
-							//escritorJson medicosRe = new escritorJson();
+							new escritorJson();
 							
 							ControladorAvisos.setMensajeError("Usuario Registrado.");
 							abrirVentanaAvisos();

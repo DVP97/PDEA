@@ -1,34 +1,24 @@
 package controlador;
 
 import java.io.FileReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+import java.lang.reflect.Type;
 
-import com.google.gson.JsonParser;
+import java.util.ArrayList;
+
+
 
 import application.Main;
 import modelo.Cuidador;
 import modelo.Medico;
 import modelo.Paciente;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonArray;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 
 public class lectorJson {
 
 
-	JsonArray arraypacientes = new JsonArray();
-	JsonArray arraycuidadores = new JsonArray();
-	JsonArray arraymedicos = new JsonArray();
-
-	private static ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-	private static ArrayList<Medico> medicos= new ArrayList<Medico>();
-	private static ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
-
-	
 	public lectorJson() {
 		
 		try {
@@ -42,134 +32,22 @@ public class lectorJson {
 
 	
 	private void leerJsonPartes(String sFile) throws java.io.IOException {
-        JsonParser parser = new JsonParser();
         FileReader fr = new FileReader(sFile);
-        JsonElement datos = parser.parse(fr);
+        Gson gson= new Gson();
         if (sFile.equalsIgnoreCase("pacientes.json")) {
-        	arraypacientes = datos.getAsJsonArray();
+			Type tipoListaPacientes = new TypeToken<ArrayList<Paciente>>(){}.getType();
+			ArrayList<Paciente> pacientes = gson.fromJson(fr, tipoListaPacientes);
+			Main.setPacientes(pacientes);
         }
         else if (sFile.equalsIgnoreCase("cuidadores.json")) {
-        	arraycuidadores = datos.getAsJsonArray();
-        }else if (sFile.equalsIgnoreCase("medicos.json")) {
-        	arraymedicos = datos.getAsJsonArray();
-        }
-        convertir();
-    }
-	
-	private void convertir ()  {
-		Paciente pac;
-		Cuidador cui;
-		Medico med;
-		
-		if (arraypacientes != null) {
-            java.util.Iterator<JsonElement> iter = arraypacientes.iterator();
-            while(iter.hasNext()) {
-            	pac= new Paciente();
-            	JsonElement elemento = iter.next();
-            	JsonObject objeto = elemento.getAsJsonObject();
-            	java.util.Set<java.util.Map.Entry<String,JsonElement>> entradas = objeto.entrySet();
-            	java.util.Iterator<java.util.Map.Entry<String,JsonElement>> iter2 = entradas.iterator();
-                while (iter2.hasNext()) {
-                    java.util.Map.Entry<String,JsonElement> entrada = iter2.next();
-                    String key = entrada.getKey();
-                    if (key.equalsIgnoreCase("dni")) {
-                    	pac.setDni(entrada.getValue().getAsString());
-                    }
-                    else if (key.equalsIgnoreCase("nombre")) {
-                    	pac.setNombre(entrada.getValue().getAsString());
-                    }
-                    else if (key.equalsIgnoreCase("apellidos")) {
-                    	pac.setApellidos(entrada.getValue().getAsString());
-                    }
-                    else if (key.equalsIgnoreCase("telefono")) {
-                    	pac.setTelefono(entrada.getValue().getAsInt());
-                    }
-                    else if (key.equalsIgnoreCase("contrasena")) {
-                    	pac.setContrasena(entrada.getValue().getAsString());;
-                    }
-                    else if (key.equalsIgnoreCase("fecha_nacimiento")) {
-                    	String valorS = entrada.getValue().getAsString();                    	
-                    	Date valorD;
-						try {
-							valorD = new SimpleDateFormat("dd/MM/yyyy").parse(valorS);
-	                    	pac.setFecha_nacimiento(valorD);
-						} catch (ParseException e) {
-							e.printStackTrace();
-						}
-                    } 
-                }
-                
-                pacientes.add(pac);
-            }
-            Main.setPacientes(pacientes);
-		}
-		
-		
-		if (arraycuidadores!= null) {
-			java.util.Iterator<JsonElement> iter = arraycuidadores.iterator();
-			while(iter.hasNext()) {
-				cui= new Cuidador();
-				JsonElement elemento = iter.next();
-				JsonObject objeto = elemento.getAsJsonObject();
-				java.util.Set<java.util.Map.Entry<String, JsonElement>> entradas= objeto.entrySet();
-				java.util.Iterator<java.util.Map.Entry<String, JsonElement>> iter2 = entradas.iterator();
-				while(iter2.hasNext()) {
-					java.util.Map.Entry<String,JsonElement> entrada = iter2.next();
-                    String key = entrada.getKey();
-                    if (key.equalsIgnoreCase("dni")) {
-                    	cui.setDni(entrada.getValue().getAsString());
-                    }
-                    else if (key.equalsIgnoreCase("nombre")) {
-                    	cui.setNombre(entrada.getValue().getAsString());
-                    }
-                    else if (key.equalsIgnoreCase("apellidos")) {
-                    	cui.setApellidos(entrada.getValue().getAsString());
-                    }
-                    else if (key.equalsIgnoreCase("telefono")) {
-                    	cui.setTelefono(entrada.getValue().getAsInt());
-                    }
-                    else if (key.equalsIgnoreCase("contrasena")) {
-                    	cui.setContrasena(entrada.getValue().getAsString());;
-                    }
-				}
-				cuidadores.add(cui);
-			}
+        	Type tipoListaCuidadores = new TypeToken<ArrayList<Cuidador>>(){}.getType();
+			ArrayList<Cuidador> cuidadores = gson.fromJson(fr, tipoListaCuidadores);
 			Main.setCuidadores(cuidadores);
-		}
-		
-		if (arraymedicos!= null) {
-			java.util.Iterator<JsonElement> iter = arraymedicos.iterator();
-			while(iter.hasNext()) {
-				med= new Medico();
-				JsonElement elemento = iter.next();
-				JsonObject objeto = elemento.getAsJsonObject();
-				java.util.Set<java.util.Map.Entry<String, JsonElement>> entradas= objeto.entrySet();
-				java.util.Iterator<java.util.Map.Entry<String, JsonElement>> iter2 = entradas.iterator();
-				while(iter2.hasNext()) {
-					java.util.Map.Entry<String,JsonElement> entrada = iter2.next();
-                    String key = entrada.getKey();
-                    if (key.equalsIgnoreCase("dni")) {
-                    	med.setDni(entrada.getValue().getAsString());
-                    }
-                    else if (key.equalsIgnoreCase("nombre")) {
-                    	med.setNombre(entrada.getValue().getAsString());
-                    }
-                    else if (key.equalsIgnoreCase("apellidos")) {
-                    	med.setApellidos(entrada.getValue().getAsString());
-                    }
-                    else if (key.equalsIgnoreCase("telefono")) {
-                    	med.setTelefono(entrada.getValue().getAsInt());
-                    }
-                    else if (key.equalsIgnoreCase("contrasena")) {
-                    	med.setContrasena(entrada.getValue().getAsString());;
-                    }
-				}
-				medicos.add(med);
-			}
+        }else if (sFile.equalsIgnoreCase("medicos.json")) {
+        	Type tipoListaMedicos = new TypeToken<ArrayList<Medico>>(){}.getType();
+			ArrayList<Medico> medicos = gson.fromJson(fr, tipoListaMedicos);
 			Main.setMedicos(medicos);
-		}
-		
-	}
-	
+        }
+    }
 	
 }
