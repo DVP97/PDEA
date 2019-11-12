@@ -47,7 +47,7 @@
                   <TextField fx:id="textoApellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <PasswordField fx:id="textoContrasena" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <PasswordField fx:id="textoContrasena2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="comboRol" onAction="#elegirRol" prefHeight="27.0" prefWidth="237.0" styleClass="normalLabel" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <ComboBox fx:id="comboRol" prefHeight="27.0" prefWidth="237.0" styleClass="normalLabel" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <Label text="DNI:" />
                   <Label text="Nombre:" GridPane.rowIndex="1" />
                   <Label text="Contraseña:" GridPane.rowIndex="3" />
