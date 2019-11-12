@@ -4,12 +4,15 @@ import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.sun.javafx.geom.AreaOp.AddOp;
 
+import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -50,16 +53,18 @@ public class ControladorRegistro implements Initializable {
     private JFXButton btnCancelar;
 
     @FXML
+    private TextField textoTelefono;
+
+    @FXML
+    private TextField textoFechaNac;
+    
+    @FXML
     private JFXButton btnAceptar;
     
 
     
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("Paciente","Cuidador","Medico");
-    
-    lectorJson lector = new lectorJson();
-	ArrayList<Paciente> pacientes = lector.devolverPacientes();
-	ArrayList<Medico> medicos = lector.devolverMedicos();
-	ArrayList<Cuidador> cuidadores = lector.devolverCuidadores();
+ 
     
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
@@ -112,7 +117,23 @@ public class ControladorRegistro implements Initializable {
 				
 				case 1:
 					try {
+						String sDate1=textoFechaNac.getText();  
+						Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+						
+						Paciente newPaciente = new Paciente();
+						newPaciente.setDni(textoDNI.getText());
+						newPaciente.setNombre(textoNombre.getText());
+						newPaciente.setApellidos(textoDNI.getText());
+						
+						newPaciente.setFecha_nacimiento(date1);
+						newPaciente.setTelefono(Integer.parseInt(textoTelefono.getText()));
+						newPaciente.setContrasena(pswrd);
 						System.out.println("Registrando usuario Paciente");
+						
+						ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+						pacientes.add(newPaciente);
+						Main.setPacientes(pacientes);
+						escritorJson pacientesRe = new escritorJson();
 						
 					}
 					catch(Exception a) {
@@ -123,7 +144,23 @@ public class ControladorRegistro implements Initializable {
 					
 				case 2:
 					try {
-						System.out.println("Registrando usuario Cuidador");
+						String sDate1=textoFechaNac.getText();  
+						Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+						
+						Cuidador newCuidador = new Cuidador();
+						newCuidador.setDni(textoDNI.getText());
+						newCuidador.setNombre(textoNombre.getText());
+						newCuidador.setApellidos(textoDNI.getText());
+						
+						
+						newCuidador.setTelefono(Integer.parseInt(textoTelefono.getText()));
+						newCuidador.setContrasena(pswrd);
+						
+						
+						ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
+						cuidadores.add(newCuidador);
+						Main.setCuidadores(cuidadores);
+						escritorJson cuidadoresRe = new escritorJson();
 					}
 					catch(Exception a) {
 						ControladorAvisos.setMensajeError(" ");
@@ -133,7 +170,23 @@ public class ControladorRegistro implements Initializable {
 					
 				case 3:
 					try {
-						System.out.println("Registrando usuario Medico");
+						String sDate1=textoFechaNac.getText();  
+						Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+						
+						Medico newMedico = new Medico();
+						newMedico.setDni(textoDNI.getText());
+						newMedico.setNombre(textoNombre.getText());
+						newMedico.setApellidos(textoDNI.getText());
+						
+						
+						newMedico.setTelefono(Integer.parseInt(textoTelefono.getText()));
+						newMedico.setContrasena(pswrd);
+						
+						
+						ArrayList<Medico> medicos = new ArrayList<Medico>();
+						medicos.add(newMedico);
+						Main.setMedicos(medicos);
+						escritorJson medicosRe = new escritorJson();
 					}
 					catch(Exception a) {
 						ControladorAvisos.setMensajeError(" ");

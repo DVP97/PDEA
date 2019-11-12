@@ -40,21 +40,23 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <TextField fx:id="textoDNI" GridPane.columnIndex="1" />
                   <TextField fx:id="textoNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="textoApellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <PasswordField fx:id="textoContrasena" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <PasswordField fx:id="textoContrasena2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ComboBox fx:id="comboRol" prefHeight="27.0" prefWidth="237.0" styleClass="normalLabel" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <PasswordField fx:id="textoContrasena2" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="comboRol" prefHeight="27.0" prefWidth="237.0" styleClass="normalLabel" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="DNI:" />
                   <Label text="Nombre:" GridPane.rowIndex="1" />
                   <Label text="Contraseña:" GridPane.rowIndex="3" />
-                  <Label text="Repite la contraseña:" GridPane.rowIndex="4" />
-                  <Label text="Rol:" GridPane.rowIndex="5" />
+                  <Label text="Repite la contraseña:" GridPane.rowIndex="6" />
+                  <Label text="Rol:" GridPane.rowIndex="7" />
                   <Label text="Apellidos:" GridPane.rowIndex="2" />
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="8">
                      <children>
                         <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutY="6.0" onAction="#pulsarBtnCancelar_reg" styleClass="btn" stylesheets="@application.css" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <ripplerFill>
@@ -67,7 +69,7 @@
                            </ripplerFill></JFXButton>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <children>
                         <JFXButton fx:id="btnAceptar" buttonType="RAISED" layoutX="284.0" layoutY="5.0" onAction="#pulsarBtnAceptar_reg" styleClass="btn" stylesheets="@application.css" text="Aceptar" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <ripplerFill>
@@ -80,6 +82,10 @@
                            </ripplerFill></JFXButton>
                      </children>
                   </AnchorPane>
+                  <Label text="Telefono:" GridPane.rowIndex="4" />
+                  <Label text="Fecha de nacimiento (dd/MM/yyyy):" GridPane.rowIndex="5" />
+                  <TextField fx:id="textoTelefono" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="textoFechaNac" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                </children>
             </GridPane>
             <ImageView fitHeight="55.0" fitWidth="67.0" layoutX="527.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">

@@ -108,19 +108,19 @@ public class ControladorLogin implements Initializable{
 		
 		try {
 			comprobarInputUser();
-			if (comprobarInputUser() == false) {
+			if (!comprobarInputUser() ) {
 				throw new ExcepcionUser(01);
 			}
 			
 			//comprobar tipo de usuario, usamos switch para optimizar programa
 			int usertype=0;
-			if (esPaciente()==true) {
+			if (esPaciente()) {
 				usertype=1;
 			}
-			if (esCuidador()==true) {
+			if (esCuidador()) {
 				usertype=2;
 			}
-			if (esMedico()==true) {
+			if (esMedico()) {
 				usertype=3;
 			}
 			
