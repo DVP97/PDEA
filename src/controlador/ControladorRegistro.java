@@ -56,15 +56,15 @@ public class ControladorRegistro implements Initializable {
 
     @FXML
     private TextField textoFechaNac;
-    
+
     @FXML
     private JFXButton btnAceptar;
-    
 
-    
+
+
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("Paciente","Cuidador","Medico");
- 
-    
+
+
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 		comboRol.setItems(dbTypeList);
@@ -75,31 +75,21 @@ public class ControladorRegistro implements Initializable {
     	textoDNI.getText();
     	textoNombre.getText();
     	textoApellidos.getText();
-    	
+
     	System.out.printf(comboRol.getValue());
     	//Comprobaci�n de que coinciden las contrase�as
     	String pswrd =textoContrasena.getText();
     	String pswrdSecond =textoContrasena2.getText();
     	String passwordEncriptada = getMd5(pswrd);
 		System.out.println(passwordEncriptada);
-		
-    	if ( pswrd.length()<4 | !pswrd.equals(pswrdSecond)){
-    		try {
-    			ControladorAvisos.setMensajeError("Ambas contrase�as deben coincidir y tener m�s de 4 caracteres.");
-    			abrirVentanaAvisos();
-    			
-    		}
-    		catch(Exception a) {
-    			System.out.println("Error");
-    			 a.printStackTrace();
-    		}
-    	}
-    	
-    	//Comprobaci�n de el resto de campos
-    	
-    	
+
+
+
+    	//Comprobacion de el resto de campos
+
+
     	int roltype=0;
-    	
+
 		if (comboRol.getValue().equals ("Paciente")) {
 			roltype=1;
 		}
@@ -109,120 +99,141 @@ public class ControladorRegistro implements Initializable {
 		if (comboRol.getValue().equals ("Medico")) {
 			roltype=3;
 		}
-		
+
 		if (roltype==0) {
 			abrirVentanaAvisos();
 		}
-		
-		
-		
-		else {
-			try {
-				switch (roltype) {
-					
-					case 1:
-						try {
-							String sDate1=textoFechaNac.getText();  
-							Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-							
-							Paciente newPaciente = new Paciente();
-							newPaciente.setDni(textoDNI.getText());
-							newPaciente.setNombre(textoNombre.getText());
-							newPaciente.setApellidos(textoDNI.getText());
-							
-							newPaciente.setFecha_nacimiento(date1);
-							newPaciente.setTelefono(Integer.parseInt(textoTelefono.getText()));
-							newPaciente.setContrasena(passwordEncriptada);
-							System.out.println("Registrando usuario Paciente");
-							
-							ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-							pacientes = Main.getPacientes();
-							pacientes.add(newPaciente);
-							Main.setPacientes(pacientes);
-							
-							new escritorJson();
-							
-							ControladorAvisos.setMensajeError("Usuario Registrado.");
-							abrirVentanaAvisos();
-							Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
-							CerrarRegistro.close();
-						}
-						catch(Exception a) {
-							ControladorAvisos.setMensajeError("error registrando paciente");
-							abrirVentanaAvisos();
-						}
-						break;
-						
-					case 2:
-						try {
 
-							Cuidador newCuidador = new Cuidador();
-							newCuidador.setDni(textoDNI.getText());
-							newCuidador.setNombre(textoNombre.getText());
-							newCuidador.setApellidos(textoDNI.getText());
-							
-							
-							newCuidador.setTelefono(Integer.parseInt(textoTelefono.getText()));
-							newCuidador.setContrasena(passwordEncriptada);
-							
-							
-							ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
-							cuidadores = Main.getCuidadores();
-							cuidadores.add(newCuidador);
-							Main.setCuidadores(cuidadores);
-							new escritorJson();
-							
-							ControladorAvisos.setMensajeError("Usuario Registrado.");
-							abrirVentanaAvisos();
-							Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
-							CerrarRegistro.close();
-						}
-						catch(Exception a) {
-							ControladorAvisos.setMensajeError("error registrando cuidador");
-							abrirVentanaAvisos();
-						}
-						break;
-						
-					case 3:
-						try {
-							
-							
-							Medico newMedico = new Medico();
-							newMedico.setDni(textoDNI.getText());
-							newMedico.setNombre(textoNombre.getText());
-							newMedico.setApellidos(textoDNI.getText());
-							
-							
-							newMedico.setTelefono(Integer.parseInt(textoTelefono.getText()));
-							newMedico.setContrasena(passwordEncriptada);
-							
-							
-							ArrayList<Medico> medicos = new ArrayList<Medico>();
-							medicos = Main.getMedicos();
-							medicos.add(newMedico);
-							Main.setMedicos(medicos);
-							new escritorJson();
-							
-							ControladorAvisos.setMensajeError("Usuario Registrado.");
-							abrirVentanaAvisos();
-							Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
-							CerrarRegistro.close();
-						}
-						catch(Exception a) {
-							ControladorAvisos.setMensajeError("error registrando medico");
-							abrirVentanaAvisos();
-						}
-						break;
-						
-					default:
-						ControladorAvisos.setMensajeError("Elija un Rol.");
-						abrirVentanaAvisos();
+
+
+		else {
+			if ( pswrd.length()<4 | !pswrd.equals(pswrdSecond) ){
+	    		try {
+	    			ControladorAvisos.setMensajeError("Ambas contrasenas deben coincidir y tener minimos de 4 caracteres.");
+	    			abrirVentanaAvisos();
+
+	    		}
+	    		catch(Exception a) {
+	    			System.out.println("Error");
+	    			 a.printStackTrace();
+	    		}
+	    	}
+
+
+			else {
+
+				if( comprobarDigitosDNI()==false) {//| Character.isLetter(asdf.charAt(8)) == false) {
+		    			abrirVentanaAvisos();
 				}
-			}
-			
-			catch(Exception a) {
-				ControladorAvisos.setMensajeError("Elija un Rol ");
-				abrirVentanaAvisos();
+				else {
+					try {
+						switch (roltype) {
+
+							case 1:
+								try {
+									String sDate1=textoFechaNac.getText();
+									Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+
+									Paciente newPaciente = new Paciente();
+									newPaciente.setDni(textoDNI.getText().toUpperCase());
+									newPaciente.setNombre(textoNombre.getText());
+									newPaciente.setApellidos(textoApellidos.getText());
+
+									newPaciente.setFecha_nacimiento(date1);
+									newPaciente.setTelefono(Integer.parseInt(textoTelefono.getText()));
+									newPaciente.setContrasena(passwordEncriptada);
+									System.out.println("Registrando usuario Paciente");
+
+									ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+									pacientes = Main.getPacientes();
+									pacientes.add(newPaciente);
+									Main.setPacientes(pacientes);
+
+									escritorJson pacientesRe = new escritorJson();
+
+									ControladorAvisos.setMensajeError("Usuario Registrado.");
+									abrirVentanaAvisos();
+									Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
+									CerrarRegistro.close();
+								}
+								catch(Exception a) {
+									ControladorAvisos.setMensajeError("Error registrando paciente, por favor revise los datos introducidos.");
+									abrirVentanaAvisos();
+								}
+								break;
+
+							case 2:
+								try {
+
+									Cuidador newCuidador = new Cuidador();
+									newCuidador.setDni(textoDNI.getText());
+									newCuidador.setNombre(textoNombre.getText());
+									newCuidador.setApellidos(textoApellidos.getText());
+
+
+									newCuidador.setTelefono(Integer.parseInt(textoTelefono.getText()));
+									newCuidador.setContrasena(passwordEncriptada);
+
+
+									ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
+									cuidadores = Main.getCuidadores();
+									cuidadores.add(newCuidador);
+									Main.setCuidadores(cuidadores);
+									escritorJson cuidadoresRe = new escritorJson();
+
+									ControladorAvisos.setMensajeError("Usuario Registrado.");
+									abrirVentanaAvisos();
+									Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
+									CerrarRegistro.close();
+								}
+								catch(Exception a) {
+									ControladorAvisos.setMensajeError("error registrando cuidador, por favor revise los datos introducidos.");
+									abrirVentanaAvisos();
+								}
+								break;
+
+							case 3:
+								try {
+
+
+									Medico newMedico = new Medico();
+									newMedico.setDni(textoDNI.getText());
+									newMedico.setNombre(textoNombre.getText());
+									newMedico.setApellidos(textoApellidos.getText());
+
+
+									newMedico.setTelefono(Integer.parseInt(textoTelefono.getText()));
+									newMedico.setContrasena(passwordEncriptada);
+
+
+									ArrayList<Medico> medicos = new ArrayList<Medico>();
+									medicos = Main.getMedicos();
+									medicos.add(newMedico);
+									Main.setMedicos(medicos);
+									escritorJson medicosRe = new escritorJson();
+
+									ControladorAvisos.setMensajeError("Usuario Registrado.");
+									abrirVentanaAvisos();
+									Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
+									CerrarRegistro.close();
+								}
+								catch(Exception a) {
+									ControladorAvisos.setMensajeError("error registrando medico, por favor revise los datos introducidos.");
+									abrirVentanaAvisos();
+								}
+								break;
+
+							default:
+								ControladorAvisos.setMensajeError("Elija un Rol.");
+								abrirVentanaAvisos();
+						}
+					}
+
+					catch(Exception a) {
+						ControladorAvisos.setMensajeError("Elija un Rol ");
+						abrirVentanaAvisos();
+					}
+				}
 			}
 		}
     }
@@ -234,35 +245,35 @@ public class ControladorRegistro implements Initializable {
 		CerrarVentanaRegistro.close();
     }
 
-    public static String getMd5(String input) 
-    { 
-        try { 
-  
-            // Static getInstance method is called with hashing MD5 
-            MessageDigest md = MessageDigest.getInstance("MD5"); 
-  
-            // digest() method is called to calculate message digest 
-            //  of an input digest() return array of byte 
-            byte[] messageDigest = md.digest(input.getBytes()); 
-  
-            // Convert byte array into signum representation 
-            BigInteger no = new BigInteger(1, messageDigest); 
-  
-            // Convert message digest into hex value 
-            String hashtext = no.toString(16); 
-            while (hashtext.length() < 32) { 
-                hashtext = "0" + hashtext; 
-            } 
-            
-            	
-            
-            return hashtext; 
-        }  
-        catch (NoSuchAlgorithmException e) { 
-            throw new RuntimeException(e); 
-        } 
-    } 
-  
+    public static String getMd5(String input)
+    {
+        try {
+
+            // Static getInstance method is called with hashing MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+
+            // digest() method is called to calculate message digest
+            //  of an input digest() return array of byte
+            byte[] messageDigest = md.digest(input.getBytes());
+
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+
+
+
+            return hashtext;
+        }
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
@@ -274,15 +285,28 @@ public class ControladorRegistro implements Initializable {
 			VentanaAvisos.setMinWidth(500);
 			VentanaAvisos.setMaxHeight(200);
 			VentanaAvisos.setMaxWidth(600);
-			
+
 		}
 		catch(Exception a) {
 			System.out.println("Error");
 		}
 	}
-        
+    public boolean comprobarDigitosDNI() {
+		String inputUser = textoDNI.getText().toUpperCase();
+		for(int i=0; i<inputUser.length()-1; i++) {
+			if(Character.isDigit((inputUser.charAt(i)))==false) {
+				ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
+					return false;
+			}
+		}
+		if(textoDNI.getText().length()!=9 | textoNombre.getText().length()<1 | textoApellidos.getText().length()<1 | textoTelefono.getText().length()<1) {
+			ControladorAvisos.setMensajeError("Por favor revise los datos introducidos.");
+			return false;
+		}
+		return true;
+	}
       //-----------------------------------------
-    
+
     //Getters y Setters
 	public TextField getTextoDNI() {
 		return textoDNI;
@@ -331,6 +355,6 @@ public class ControladorRegistro implements Initializable {
 	public void setTextoApellidos(TextField textoApellidos) {
 		this.textoApellidos = textoApellidos;
 	}
-    
-    
+
+
 }
