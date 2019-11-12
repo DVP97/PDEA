@@ -28,10 +28,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.scene.layout.BorderPane;
 
 
 public class ControladorLogin implements Initializable{
-	
+
+    @FXML
+    private BorderPane BorderPaneGlobal;
+    
 	@FXML
 	private Button myButton;
 	
@@ -64,7 +68,21 @@ public class ControladorLogin implements Initializable{
     
     @FXML
     void pressBtnRegistrar(ActionEvent event) {
-
+    	try {
+    	System.out.println("Cargando ventana de Registro...");
+		ControladorPacientepp.setPacienteActual(this.quePaciente());
+		Parent NuevoRegistro = FXMLLoader.load(getClass().getResource("/vista/registro.fxml"));
+		Stage Registro = new Stage();
+		Registro.setTitle("Registro de Nuevo Usuario");
+		Registro.setScene(new Scene(NuevoRegistro));
+		Registro.show();
+		Registro.setMinHeight(350);
+		Registro.setMinWidth(500);
+    	}
+    	catch(Exception r){
+    		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Registro.");
+			abrirVentanaAvisos();
+    	}
     }
 		
 	
@@ -115,19 +133,18 @@ public class ControladorLogin implements Initializable{
 						Pacientepp.setTitle("Menu Principal Paciente");
 						Pacientepp.setScene(new Scene(PacienteVentana));
 						Pacientepp.show();
-						
+						Pacientepp.setMinHeight(550);
+						Pacientepp.setMinWidth(500);
 
 						System.out.println("Cerrando ventana de Login.");
 						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
 						CerrarVentanaLogin.close();
-						}
-						
+					}	
 					
 					catch(Exception a){
 						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
 						abrirVentanaAvisos();
 					}
-
 					break;
 					
 				case 2:
@@ -139,17 +156,18 @@ public class ControladorLogin implements Initializable{
 						Cuidadorpp.setTitle("Menu Principal Cuidador");
 						Cuidadorpp.setScene(new Scene(CuidadorVentana));
 						Cuidadorpp.show();
+						Cuidadorpp.setMinHeight(360);
+						Cuidadorpp.setMinWidth(500);
 
 						System.out.println("Cerrando ventana de Login.");
 						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
-						CerrarVentanaLogin.close();
-						
+						CerrarVentanaLogin.close();	
 					}
+					
 					catch(Exception a){
 						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Cuidador.");
 						abrirVentanaAvisos();
 					}
-
 					break;
 					
 				case 3:
@@ -161,17 +179,19 @@ public class ControladorLogin implements Initializable{
 						Medicopp.setTitle("Menu Principal Medico");
 						Medicopp.setScene(new Scene(MedicoVentana));
 						Medicopp.show();
+						Medicopp.setMinHeight(600);
+						Medicopp.setMinWidth(740);
 						
 						System.out.println("Cerrando ventana de Login.");
 						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
 						CerrarVentanaLogin.close();
 						
-						}
+					}
+					
 					catch(Exception a){
 						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
 						abrirVentanaAvisos();
 					}
-
 					break;
 					
 				default:
@@ -371,6 +391,11 @@ public class ControladorLogin implements Initializable{
 			VentanaAvisos.setTitle("Aviso");
 			VentanaAvisos.setScene(new Scene(avisos));
 			VentanaAvisos.show();
+			VentanaAvisos.setMinHeight(200);
+			VentanaAvisos.setMinWidth(500);
+			VentanaAvisos.setMaxHeight(200);
+			VentanaAvisos.setMaxWidth(600);
+			
 		}
 		catch(Exception a) {
 			System.out.println("Error");

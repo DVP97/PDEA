@@ -7,6 +7,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
@@ -70,12 +71,11 @@
                                  </children>
                               </GridPane>
                               <Button fx:id="btnEditar" layoutX="376.0" layoutY="407.0" mnemonicParsing="false" text="Editar" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="305.0" />
-                              <Button fx:id="btnEjercicios" layoutX="637.0" layoutY="401.0" mnemonicParsing="false" text="Ejercicios" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="21.0" />
-                              <Button layoutX="438.0" layoutY="401.0" mnemonicParsing="false" text="Datos" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="239.0" />
-                              <Button layoutX="581.0" layoutY="401.0" mnemonicParsing="false" text="Citar" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="102.0" />
+                              <Button fx:id="btnEjercicios" layoutX="633.0" layoutY="407.0" mnemonicParsing="false" text="Ejercicios" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="30.0" />
+                              <Button layoutX="462.0" layoutY="407.0" mnemonicParsing="false" text="Datos" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="220.0" />
+                              <Button layoutX="558.0" layoutY="407.0" mnemonicParsing="false" text="Citar" AnchorPane.bottomAnchor="52.0" AnchorPane.rightAnchor="135.0" />
                               <Button layoutX="288.0" layoutY="16.0" mnemonicParsing="false" text="Buscar" AnchorPane.leftAnchor="288.0" AnchorPane.topAnchor="16.0" />
                               <Separator layoutX="361.0" layoutY="103.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="361.0" AnchorPane.topAnchor="20.0" />
-                              <Button fx:id="btnRegistrar" layoutX="502.0" layoutY="401.0" mnemonicParsing="false" text="Registrar" />
                               
                            </children>
                         </AnchorPane>
@@ -129,7 +129,7 @@
                                     <TableColumn prefWidth="245.0" text="Dato" />
                                 </columns>
                               </TableView>
-                              <Button layoutX="656.0" layoutY="400.0" mnemonicParsing="false" text="Citar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" />
+                              <Button layoutX="656.0" layoutY="400.0" mnemonicParsing="false" text="Citar" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="20.0" />
                            </children>
                         </AnchorPane>
                     </content>
@@ -143,33 +143,74 @@
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
                                           <Label layoutX="14.0" layoutY="33.0" text="Recibidos:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-                                          <Accordion layoutX="14.0" layoutY="42.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0">
-                                            <panes>
-                                              <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
-                                                <content>
-                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                                </content>
-                                              </TitledPane>
-                                              <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
-                                                <content>
-                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                                </content>
-                                              </TitledPane>
-                                              <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
-                                                <content>
-                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                                </content>
-                                              </TitledPane>
-                                            </panes>
-                                          </Accordion>
+                                          <ScrollPane layoutX="14.0" layoutY="66.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="35.0">
+                                             <content>
+                                                <Accordion>
+                                                  <panes>
+                                                    <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
+                                                      <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <ScrollPane layoutX="-63.0" layoutY="-86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <content>
+                                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                                                    </content>
+                                                                  </ScrollPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                      </content>
+                                                    </TitledPane>
+                                                    <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
+                                                      <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                                                     </content>
+                                                                  </ScrollPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                      </content>
+                                                    </TitledPane>
+                                                    <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
+                                                      <content>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                                                     </content>
+                                                                  </ScrollPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                      </content>
+                                                    </TitledPane>
+                                                      <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <ScrollPane layoutX="-63.0" layoutY="-86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                                                                     </content>
+                                                                  </ScrollPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content>
+                                                      </TitledPane>
+                                                  </panes>
+                                                </Accordion>
+                                             </content>
+                                          </ScrollPane>
                                        </children>
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
                                           <Label layoutX="14.0" layoutY="14.0" text="Redactar:" />
                                           <TextArea layoutX="14.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="40.0" />
-                                          <Button layoutX="86.0" layoutY="192.0" mnemonicParsing="false" text="Confirmar envío" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="273.0" />
-                                          <GridPane layoutX="14.0" layoutY="133.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0">
+                                          <Button layoutX="86.0" layoutY="192.0" mnemonicParsing="false" text="Confirmar envío" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="14.0" />
+                                          <GridPane layoutX="14.0" layoutY="133.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="130.0">
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
