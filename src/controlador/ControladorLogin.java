@@ -318,7 +318,7 @@ public class ControladorLogin implements Initializable{
 	
 	
 	public Medico queMedico() {
-		for (int i=0; i< pacientes.size(); i++) {
+		for (int i=0; i< medicos.size(); i++) {
 			Medico p = medicos.get(i);
 			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
 				return p;
