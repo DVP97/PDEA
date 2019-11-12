@@ -72,170 +72,177 @@ public class ControladorRegistro implements Initializable {
 
     @FXML
     void pulsarBtnAceptar_reg(ActionEvent event) {
-    	textoDNI.getText();
-    	textoNombre.getText();
-    	textoApellidos.getText();
-
-    	System.out.printf(comboRol.getValue());
-    	//Comprobaci�n de que coinciden las contrase�as
-    	String pswrd =textoContrasena.getText();
-    	String pswrdSecond =textoContrasena2.getText();
-    	String passwordEncriptada = getMd5(pswrd);
-		System.out.println(passwordEncriptada);
-
-
-
-    	//Comprobacion de el resto de campos
-
-
-    	int roltype=0;
-
-		if (comboRol.getValue().equals ("Paciente")) {
-			roltype=1;
-		}
-		if (comboRol.getValue().equals ("Cuidador")) {
-			roltype=2;
-		}
-		if (comboRol.getValue().equals ("Medico")) {
-			roltype=3;
-		}
-
-		if (roltype==0) {
-			abrirVentanaAvisos();
-		}
-
-
-
-		else {
-			if ( pswrd.length()<4 | !pswrd.equals(pswrdSecond) ){
-	    		try {
-	    			ControladorAvisos.setMensajeError("Ambas contrasenas deben coincidir y tener minimos de 4 caracteres.");
-	    			abrirVentanaAvisos();
-
-	    		}
-	    		catch(Exception a) {
-	    			System.out.println("Error");
-	    			 a.printStackTrace();
-	    		}
-	    	}
-
-
+    try {
+	    	textoDNI.getText();
+	    	textoNombre.getText();
+	    	textoApellidos.getText();
+	
+	    	System.out.printf(comboRol.getValue());
+	    	//Comprobacion de que coinciden las contrase�as
+	    	String pswrd =textoContrasena.getText();
+	    	String pswrdSecond =textoContrasena2.getText();
+	    	String passwordEncriptada = getMd5(pswrd);
+			System.out.println(passwordEncriptada);
+	
+	
+	
+	    	//Comprobacion de el resto de campos
+	
+	
+	    	int roltype=0;
+	
+			if (comboRol.getValue().equals ("Paciente")) {
+				roltype=1;
+			}
+			if (comboRol.getValue().equals ("Cuidador")) {
+				roltype=2;
+			}
+			if (comboRol.getValue().equals ("Medico")) {
+				roltype=3;
+			}
+	
+			if (roltype==0) {
+				abrirVentanaAvisos();
+			}
+	
+	
+	
 			else {
-
-				if( comprobarDigitosDNI()==false) {//| Character.isLetter(asdf.charAt(8)) == false) {
+				if ( pswrd.length()<4 | !pswrd.equals(pswrdSecond) ){
+		    		try {
+		    			ControladorAvisos.setMensajeError("Ambas contrasenas deben coincidir y tener minimos de 4 caracteres.");
 		    			abrirVentanaAvisos();
-				}
+	
+		    		}
+		    		catch(Exception a) {
+		    			System.out.println("Error");
+		    			 a.printStackTrace();
+		    		}
+		    	}
+	
+	
 				else {
-					try {
-						switch (roltype) {
-
-							case 1:
-								try {
-									String sDate1=textoFechaNac.getText();
-									Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-
-									Paciente newPaciente = new Paciente();
-									newPaciente.setDni(textoDNI.getText().toUpperCase());
-									newPaciente.setNombre(textoNombre.getText());
-									newPaciente.setApellidos(textoApellidos.getText());
-
-									newPaciente.setFecha_nacimiento(date1);
-									newPaciente.setTelefono(Integer.parseInt(textoTelefono.getText()));
-									newPaciente.setContrasena(passwordEncriptada);
-									System.out.println("Registrando usuario Paciente");
-
-									ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-									pacientes = Main.getPacientes();
-									pacientes.add(newPaciente);
-									Main.setPacientes(pacientes);
-
-									escritorJson pacientesRe = new escritorJson();
-
-									ControladorAvisos.setMensajeError("Usuario Registrado.");
-									abrirVentanaAvisos();
-									Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
-									CerrarRegistro.close();
-								}
-								catch(Exception a) {
-									ControladorAvisos.setMensajeError("Error registrando paciente, por favor revise los datos introducidos.");
-									abrirVentanaAvisos();
-								}
-								break;
-
-							case 2:
-								try {
-
-									Cuidador newCuidador = new Cuidador();
-									newCuidador.setDni(textoDNI.getText());
-									newCuidador.setNombre(textoNombre.getText());
-									newCuidador.setApellidos(textoApellidos.getText());
-
-
-									newCuidador.setTelefono(Integer.parseInt(textoTelefono.getText()));
-									newCuidador.setContrasena(passwordEncriptada);
-
-
-									ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
-									cuidadores = Main.getCuidadores();
-									cuidadores.add(newCuidador);
-									Main.setCuidadores(cuidadores);
-									escritorJson cuidadoresRe = new escritorJson();
-
-									ControladorAvisos.setMensajeError("Usuario Registrado.");
-									abrirVentanaAvisos();
-									Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
-									CerrarRegistro.close();
-								}
-								catch(Exception a) {
-									ControladorAvisos.setMensajeError("error registrando cuidador, por favor revise los datos introducidos.");
-									abrirVentanaAvisos();
-								}
-								break;
-
-							case 3:
-								try {
-
-
-									Medico newMedico = new Medico();
-									newMedico.setDni(textoDNI.getText());
-									newMedico.setNombre(textoNombre.getText());
-									newMedico.setApellidos(textoApellidos.getText());
-
-
-									newMedico.setTelefono(Integer.parseInt(textoTelefono.getText()));
-									newMedico.setContrasena(passwordEncriptada);
-
-
-									ArrayList<Medico> medicos = new ArrayList<Medico>();
-									medicos = Main.getMedicos();
-									medicos.add(newMedico);
-									Main.setMedicos(medicos);
-									escritorJson medicosRe = new escritorJson();
-
-									ControladorAvisos.setMensajeError("Usuario Registrado.");
-									abrirVentanaAvisos();
-									Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
-									CerrarRegistro.close();
-								}
-								catch(Exception a) {
-									ControladorAvisos.setMensajeError("error registrando medico, por favor revise los datos introducidos.");
-									abrirVentanaAvisos();
-								}
-								break;
-
-							default:
-								ControladorAvisos.setMensajeError("Elija un Rol.");
-								abrirVentanaAvisos();
-						}
+	
+					if( comprobarDigitosDNI()==false| Character.isLetter(textoDNI.getText().charAt(8)) == false) {
+						ControladorAvisos.setMensajeError("Por favor revise los datos introducidos.");
+			    			abrirVentanaAvisos();
 					}
-
-					catch(Exception a) {
-						ControladorAvisos.setMensajeError("Elija un Rol ");
-						abrirVentanaAvisos();
+					else {
+						try {
+							switch (roltype) {
+	
+								case 1:
+									try {
+										String sDate1=textoFechaNac.getText();
+										Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+	
+										Paciente newPaciente = new Paciente();
+										newPaciente.setDni(textoDNI.getText().toUpperCase());
+										newPaciente.setNombre(textoNombre.getText());
+										newPaciente.setApellidos(textoApellidos.getText());
+	
+										newPaciente.setFecha_nacimiento(date1);
+										newPaciente.setTelefono(Integer.parseInt(textoTelefono.getText()));
+										newPaciente.setContrasena(passwordEncriptada);
+										System.out.println("Registrando usuario Paciente");
+	
+										ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+										pacientes = Main.getPacientes();
+										pacientes.add(newPaciente);
+										Main.setPacientes(pacientes);
+	
+										escritorJson pacientesRe = new escritorJson();
+	
+										ControladorAvisos.setMensajeError("Usuario Registrado.");
+										abrirVentanaAvisos();
+										Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
+										CerrarRegistro.close();
+									}
+									catch(Exception a) {
+										ControladorAvisos.setMensajeError("Error registrando paciente, por favor revise los datos introducidos.");
+										abrirVentanaAvisos();
+									}
+									break;
+	
+								case 2:
+									try {
+	
+										Cuidador newCuidador = new Cuidador();
+										newCuidador.setDni(textoDNI.getText());
+										newCuidador.setNombre(textoNombre.getText());
+										newCuidador.setApellidos(textoApellidos.getText());
+	
+	
+										newCuidador.setTelefono(Integer.parseInt(textoTelefono.getText()));
+										newCuidador.setContrasena(passwordEncriptada);
+	
+	
+										ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
+										cuidadores = Main.getCuidadores();
+										cuidadores.add(newCuidador);
+										Main.setCuidadores(cuidadores);
+										escritorJson cuidadoresRe = new escritorJson();
+	
+										ControladorAvisos.setMensajeError("Usuario Registrado.");
+										abrirVentanaAvisos();
+										Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
+										CerrarRegistro.close();
+									}
+									catch(Exception a) {
+										ControladorAvisos.setMensajeError("error registrando cuidador, por favor revise los datos introducidos.");
+										abrirVentanaAvisos();
+									}
+									break;
+	
+								case 3:
+									try {
+	
+	
+										Medico newMedico = new Medico();
+										newMedico.setDni(textoDNI.getText());
+										newMedico.setNombre(textoNombre.getText());
+										newMedico.setApellidos(textoApellidos.getText());
+	
+	
+										newMedico.setTelefono(Integer.parseInt(textoTelefono.getText()));
+										newMedico.setContrasena(passwordEncriptada);
+	
+	
+										ArrayList<Medico> medicos = new ArrayList<Medico>();
+										medicos = Main.getMedicos();
+										medicos.add(newMedico);
+										Main.setMedicos(medicos);
+										escritorJson medicosRe = new escritorJson();
+	
+										ControladorAvisos.setMensajeError("Usuario Registrado.");
+										abrirVentanaAvisos();
+										Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
+										CerrarRegistro.close();
+									}
+									catch(Exception a) {
+										ControladorAvisos.setMensajeError("error registrando medico, por favor revise los datos introducidos.");
+										abrirVentanaAvisos();
+									}
+									break;
+	
+								default:
+									ControladorAvisos.setMensajeError("Elija un Rol.");
+									abrirVentanaAvisos();
+							}
+						}
+	
+						catch(Exception a) {
+							ControladorAvisos.setMensajeError("Elija un Rol ");
+							abrirVentanaAvisos();
+						}
 					}
 				}
 			}
-		}
+    	}
+    	catch(Exception a) {
+    		ControladorAvisos.setMensajeError("Elija un Rol ");
+    		abrirVentanaAvisos();
+    	}
     }
 
     @FXML
@@ -299,7 +306,7 @@ public class ControladorRegistro implements Initializable {
 					return false;
 			}
 		}
-		if(textoDNI.getText().length()!=9 | textoNombre.getText().length()<1 | textoApellidos.getText().length()<1 | textoTelefono.getText().length()<1) {
+		if(textoDNI.getText().length()!=9 | textoNombre.getText().length()<1 | textoApellidos.getText().length()<1 | textoTelefono.getText().length()!=9) {
 			ControladorAvisos.setMensajeError("Por favor revise los datos introducidos.");
 			return false;
 		}
