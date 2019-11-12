@@ -78,13 +78,15 @@ public class ControladorRegistro implements Initializable {
     	textoApellidos.getText();
     	
     	System.out.printf(comboRol.getValue());
-    	//Comprobación de que coinciden las contraseñas
+    	//Comprobaciï¿½n de que coinciden las contraseï¿½as
     	String pswrd =textoContrasena.getText();
     	String pswrdSecond =textoContrasena2.getText();
-    
-    	if ( pswrd.length()<4 | pswrd.equals (pswrdSecond) ==false){
+    	String passwordEncriptada = getMd5(pswrd);
+		System.out.println(passwordEncriptada);
+		
+    	if ( pswrd.length()<4 | !pswrd.equals(pswrdSecond)){
     		try {
-    			ControladorAvisos.setMensajeError("Ambas contraseñas deben coincidir y tener más de 4 caracteres.");
+    			ControladorAvisos.setMensajeError("Ambas contraseï¿½as deben coincidir y tener mï¿½s de 4 caracteres.");
     			abrirVentanaAvisos();
     			
     		}
@@ -93,12 +95,8 @@ public class ControladorRegistro implements Initializable {
     			 a.printStackTrace();
     		}
     	}
-    	else {
-    		String passwordEncriptada = getMd5(pswrd);
-    		System.out.println(passwordEncriptada);
-    	}
     	
-    	//Comprobación de el resto de campos
+    	//Comprobaciï¿½n de el resto de campos
     	
     	
     	int roltype=0;
@@ -117,6 +115,8 @@ public class ControladorRegistro implements Initializable {
 			abrirVentanaAvisos();
 		}
 		
+		
+		
 		else {
 			try {
 				switch (roltype) {
@@ -133,10 +133,11 @@ public class ControladorRegistro implements Initializable {
 							
 							newPaciente.setFecha_nacimiento(date1);
 							newPaciente.setTelefono(Integer.parseInt(textoTelefono.getText()));
-							newPaciente.setContrasena(pswrd);
+							newPaciente.setContrasena(passwordEncriptada);
 							System.out.println("Registrando usuario Paciente");
 							
 							ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+							pacientes = Main.getPacientes();
 							pacientes.add(newPaciente);
 							Main.setPacientes(pacientes);
 							
@@ -163,10 +164,11 @@ public class ControladorRegistro implements Initializable {
 							
 							
 							newCuidador.setTelefono(Integer.parseInt(textoTelefono.getText()));
-							newCuidador.setContrasena(pswrd);
+							newCuidador.setContrasena(passwordEncriptada);
 							
 							
 							ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
+							cuidadores = Main.getCuidadores();
 							cuidadores.add(newCuidador);
 							Main.setCuidadores(cuidadores);
 							//escritorJson cuidadoresRe = new escritorJson();
@@ -193,10 +195,11 @@ public class ControladorRegistro implements Initializable {
 							
 							
 							newMedico.setTelefono(Integer.parseInt(textoTelefono.getText()));
-							newMedico.setContrasena(pswrd);
+							newMedico.setContrasena(passwordEncriptada);
 							
 							
 							ArrayList<Medico> medicos = new ArrayList<Medico>();
+							medicos = Main.getMedicos();
 							medicos.add(newMedico);
 							Main.setMedicos(medicos);
 							//escritorJson medicosRe = new escritorJson();
