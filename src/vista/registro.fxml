@@ -47,12 +47,12 @@
                   <TextField fx:id="textoDNI" GridPane.columnIndex="1" />
                   <TextField fx:id="textoNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="textoApellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <PasswordField fx:id="textoContrasena" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <PasswordField fx:id="textoContrasena" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                   <PasswordField fx:id="textoContrasena2" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <ComboBox fx:id="comboRol" prefHeight="27.0" prefWidth="237.0" styleClass="normalLabel" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="DNI:" />
                   <Label text="Nombre:" GridPane.rowIndex="1" />
-                  <Label text="Contraseña:" GridPane.rowIndex="3" />
+                  <Label text="Contraseña:" GridPane.rowIndex="5" />
                   <Label text="Repite la contraseña:" GridPane.rowIndex="6" />
                   <Label text="Rol:" GridPane.rowIndex="7" />
                   <Label text="Apellidos:" GridPane.rowIndex="2" />
@@ -83,9 +83,9 @@
                      </children>
                   </AnchorPane>
                   <Label text="Telefono:" GridPane.rowIndex="4" />
-                  <Label text="Fecha de nacimiento (dd/MM/yyyy):" GridPane.rowIndex="5" />
+                  <Label text="Fecha de nacimiento (dd/MM/yyyy):" GridPane.rowIndex="3" />
                   <TextField fx:id="textoTelefono" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="textoFechaNac" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="textoFechaNac" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <ImageView fitHeight="55.0" fitWidth="67.0" layoutX="527.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">

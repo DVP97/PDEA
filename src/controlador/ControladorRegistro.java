@@ -82,7 +82,7 @@ public class ControladorRegistro implements Initializable {
     	String pswrd =textoContrasena.getText();
     	String pswrdSecond =textoContrasena2.getText();
     
-    	if ( pswrd.length()<4 |pswrdSecond.length()<4 | pswrd.equals (pswrdSecond) ==false){
+    	if ( pswrd.length()<4 | pswrd.equals (pswrdSecond) ==false){
     		try {
     			ControladorAvisos.setMensajeError("Ambas contraseñas deben coincidir y tener más de 4 caracteres.");
     			abrirVentanaAvisos();
@@ -102,6 +102,7 @@ public class ControladorRegistro implements Initializable {
     	
     	
     	int roltype=0;
+    	
 		if (comboRol.getValue().equals ("Paciente")) {
 			roltype=1;
 		}
@@ -112,99 +113,116 @@ public class ControladorRegistro implements Initializable {
 			roltype=3;
 		}
 		
-		try {
-			switch (roltype) {
-				
-				case 1:
-					try {
-						String sDate1=textoFechaNac.getText();  
-						Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-						
-						Paciente newPaciente = new Paciente();
-						newPaciente.setDni(textoDNI.getText());
-						newPaciente.setNombre(textoNombre.getText());
-						newPaciente.setApellidos(textoDNI.getText());
-						
-						newPaciente.setFecha_nacimiento(date1);
-						newPaciente.setTelefono(Integer.parseInt(textoTelefono.getText()));
-						newPaciente.setContrasena(pswrd);
-						System.out.println("Registrando usuario Paciente");
-						
-						ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-						pacientes.add(newPaciente);
-						Main.setPacientes(pacientes);
-						escritorJson pacientesRe = new escritorJson();
-						
-					}
-					catch(Exception a) {
-						ControladorAvisos.setMensajeError(" ");
-						abrirVentanaAvisos();
-					}
-					break;
-					
-				case 2:
-					try {
-						String sDate1=textoFechaNac.getText();  
-						Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-						
-						Cuidador newCuidador = new Cuidador();
-						newCuidador.setDni(textoDNI.getText());
-						newCuidador.setNombre(textoNombre.getText());
-						newCuidador.setApellidos(textoDNI.getText());
-						
-						
-						newCuidador.setTelefono(Integer.parseInt(textoTelefono.getText()));
-						newCuidador.setContrasena(pswrd);
-						
-						
-						ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
-						cuidadores.add(newCuidador);
-						Main.setCuidadores(cuidadores);
-						escritorJson cuidadoresRe = new escritorJson();
-					}
-					catch(Exception a) {
-						ControladorAvisos.setMensajeError(" ");
-						abrirVentanaAvisos();
-					}
-					break;
-					
-				case 3:
-					try {
-						String sDate1=textoFechaNac.getText();  
-						Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-						
-						Medico newMedico = new Medico();
-						newMedico.setDni(textoDNI.getText());
-						newMedico.setNombre(textoNombre.getText());
-						newMedico.setApellidos(textoDNI.getText());
-						
-						
-						newMedico.setTelefono(Integer.parseInt(textoTelefono.getText()));
-						newMedico.setContrasena(pswrd);
-						
-						
-						ArrayList<Medico> medicos = new ArrayList<Medico>();
-						medicos.add(newMedico);
-						Main.setMedicos(medicos);
-						escritorJson medicosRe = new escritorJson();
-					}
-					catch(Exception a) {
-						ControladorAvisos.setMensajeError(" ");
-						abrirVentanaAvisos();
-					}
-					break;
-					
-				default:
-					ControladorAvisos.setMensajeError("Elija un Rol.");
-					abrirVentanaAvisos();
-			}
-		}
-		
-		catch(Exception a) {
-			ControladorAvisos.setMensajeError("Elija un Rol ");
+		if (roltype==0) {
 			abrirVentanaAvisos();
 		}
 		
+		else {
+			try {
+				switch (roltype) {
+					
+					case 1:
+						try {
+							String sDate1=textoFechaNac.getText();  
+							Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+							
+							Paciente newPaciente = new Paciente();
+							newPaciente.setDni(textoDNI.getText());
+							newPaciente.setNombre(textoNombre.getText());
+							newPaciente.setApellidos(textoDNI.getText());
+							
+							newPaciente.setFecha_nacimiento(date1);
+							newPaciente.setTelefono(Integer.parseInt(textoTelefono.getText()));
+							newPaciente.setContrasena(pswrd);
+							System.out.println("Registrando usuario Paciente");
+							
+							ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+							pacientes.add(newPaciente);
+							Main.setPacientes(pacientes);
+							
+							//escritorJson pacientesRe = new escritorJson();
+							
+							ControladorAvisos.setMensajeError("Usuario Registrado.");
+							abrirVentanaAvisos();
+							Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
+							CerrarRegistro.close();
+						}
+						catch(Exception a) {
+							ControladorAvisos.setMensajeError("error registrando paciente");
+							abrirVentanaAvisos();
+						}
+						break;
+						
+					case 2:
+						try {
+
+							Cuidador newCuidador = new Cuidador();
+							newCuidador.setDni(textoDNI.getText());
+							newCuidador.setNombre(textoNombre.getText());
+							newCuidador.setApellidos(textoDNI.getText());
+							
+							
+							newCuidador.setTelefono(Integer.parseInt(textoTelefono.getText()));
+							newCuidador.setContrasena(pswrd);
+							
+							
+							ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
+							cuidadores.add(newCuidador);
+							Main.setCuidadores(cuidadores);
+							//escritorJson cuidadoresRe = new escritorJson();
+							
+							ControladorAvisos.setMensajeError("Usuario Registrado.");
+							abrirVentanaAvisos();
+							Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
+							CerrarRegistro.close();
+						}
+						catch(Exception a) {
+							ControladorAvisos.setMensajeError("error registrando cuidador");
+							abrirVentanaAvisos();
+						}
+						break;
+						
+					case 3:
+						try {
+							
+							
+							Medico newMedico = new Medico();
+							newMedico.setDni(textoDNI.getText());
+							newMedico.setNombre(textoNombre.getText());
+							newMedico.setApellidos(textoDNI.getText());
+							
+							
+							newMedico.setTelefono(Integer.parseInt(textoTelefono.getText()));
+							newMedico.setContrasena(pswrd);
+							
+							
+							ArrayList<Medico> medicos = new ArrayList<Medico>();
+							medicos.add(newMedico);
+							Main.setMedicos(medicos);
+							//escritorJson medicosRe = new escritorJson();
+							
+							ControladorAvisos.setMensajeError("Usuario Registrado.");
+							abrirVentanaAvisos();
+							Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
+							CerrarRegistro.close();
+						}
+						catch(Exception a) {
+							ControladorAvisos.setMensajeError("error registrando medico");
+							abrirVentanaAvisos();
+						}
+						break;
+						
+					default:
+						ControladorAvisos.setMensajeError("Elija un Rol.");
+						abrirVentanaAvisos();
+				}
+			}
+			
+			catch(Exception a) {
+				ControladorAvisos.setMensajeError("Elija un Rol ");
+				abrirVentanaAvisos();
+			}
+		}
     }
 
     @FXML
