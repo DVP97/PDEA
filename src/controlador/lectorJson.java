@@ -8,6 +8,7 @@ import java.util.Date;
 
 import com.google.gson.JsonParser;
 
+import application.Main;
 import modelo.Cuidador;
 import modelo.Medico;
 import modelo.Paciente;
@@ -23,9 +24,9 @@ public class lectorJson {
 	JsonArray arraycuidadores = new JsonArray();
 	JsonArray arraymedicos = new JsonArray();
 
-	private ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-	private ArrayList<Medico> medicos= new ArrayList<Medico>();
-	private ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
+	private static ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+	private static ArrayList<Medico> medicos= new ArrayList<Medico>();
+	private static ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
 
 	
 	public lectorJson() {
@@ -97,8 +98,10 @@ public class lectorJson {
 						}
                     } 
                 }
+                
                 pacientes.add(pac);
             }
+            Main.setPacientes(pacientes);
 		}
 		
 		
@@ -131,6 +134,7 @@ public class lectorJson {
 				}
 				cuidadores.add(cui);
 			}
+			Main.setCuidadores(cuidadores);
 		}
 		
 		if (arraymedicos!= null) {
@@ -162,18 +166,10 @@ public class lectorJson {
 				}
 				medicos.add(med);
 			}
+			Main.setMedicos(medicos);
 		}
 		
 	}
 	
-	public ArrayList<Paciente> devolverPacientes(){
-		return pacientes;
-	}
 	
-	public ArrayList<Cuidador> devolverCuidadores(){
-		return cuidadores;
-	}
-	public ArrayList<Medico> devolverMedicos(){
-		return medicos;
-	}
 }

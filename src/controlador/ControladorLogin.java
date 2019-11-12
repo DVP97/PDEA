@@ -28,6 +28,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+
+import application.Main;
 import javafx.scene.layout.BorderPane;
 
 
@@ -89,9 +91,9 @@ public class ControladorLogin implements Initializable{
 	
 	// Lectura inicial de los json
 	lectorJson lector = new lectorJson();
-	ArrayList<Paciente> pacientes = lector.devolverPacientes();
-	ArrayList<Medico> medicos = lector.devolverMedicos();
-	ArrayList<Cuidador> cuidadores = lector.devolverCuidadores();
+	ArrayList<Paciente> pacientes = Main.getPacientes();
+	ArrayList<Medico> medicos = Main.getMedicos();
+	ArrayList<Cuidador> cuidadores = Main.getCuidadores();
 	//----------------------------
 	
 	@Override

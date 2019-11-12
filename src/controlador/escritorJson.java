@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-
+import application.Main;
 import modelo.Cuidador;
 import modelo.Medico;
 import modelo.Paciente;
@@ -38,10 +38,10 @@ public class escritorJson {
 	
 	private void escribirEnJson(String sFile) throws java.io.IOException{
 
-		//Aqui deberiamos tener los arrays que vienen del main actualizados y escribirlos
-		//pacientes = lector.devolverPacientes();
-		//cuidadores = lector.devolverCuidadores();
-		//medicos = lector.devolverMedicos();
+		pacientes = Main.getPacientes();
+		cuidadores = Main.getCuidadores();
+		medicos = Main.getMedicos();
+		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try (FileWriter writer = new FileWriter (sFile)){
 			if (sFile.equalsIgnoreCase("pacientes.json")) {
