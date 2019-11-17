@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
-import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -147,11 +146,10 @@ public class ControladorRegistro implements Initializable {
 										System.out.println("Registrando usuario Paciente");
 	
 										ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-										pacientes = Main.getPacientes();
+										pacientes = lectorJson.lectorJsonPacientes();
 										pacientes.add(newPaciente);
-										Main.setPacientes(pacientes);
+										escritorJson.escribirEnJsonPacientes(pacientes);
 	
-										escritorJson pacientesRe = new escritorJson();
 	
 										ControladorAvisos.setMensajeError("Usuario Registrado.");
 										abrirVentanaAvisos();
@@ -178,10 +176,9 @@ public class ControladorRegistro implements Initializable {
 	
 	
 										ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
-										cuidadores = Main.getCuidadores();
+										cuidadores = lectorJson.lectorJsonCuidadores();
 										cuidadores.add(newCuidador);
-										Main.setCuidadores(cuidadores);
-										escritorJson cuidadoresRe = new escritorJson();
+										escritorJson.escribirEnJsonCuidadores(cuidadores);
 	
 										ControladorAvisos.setMensajeError("Usuario Registrado.");
 										abrirVentanaAvisos();
@@ -209,10 +206,9 @@ public class ControladorRegistro implements Initializable {
 	
 	
 										ArrayList<Medico> medicos = new ArrayList<Medico>();
-										medicos = Main.getMedicos();
+										medicos = lectorJson.lectorJsonMedicos();
 										medicos.add(newMedico);
-										Main.setMedicos(medicos);
-										escritorJson medicosRe = new escritorJson();
+										escritorJson.escribirEnJsonMedicos(medicos);
 	
 										ControladorAvisos.setMensajeError("Usuario Registrado.");
 										abrirVentanaAvisos();

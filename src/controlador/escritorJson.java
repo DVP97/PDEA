@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import application.Main;
 import modelo.Cuidador;
 import modelo.Medico;
 import modelo.Paciente;
@@ -18,42 +17,36 @@ import modelo.Paciente;
 
 public class escritorJson {
 
-	lectorJson lector = new lectorJson();
-	ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-	ArrayList<Medico> medicos = new ArrayList<Medico>();
-	ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
-	
-	
-	public escritorJson() {
-		try {
-			escribirEnJson("pacientes.json");
-			escribirEnJson("medicos.json");
-			escribirEnJson("cuidadores.json");
-		}catch(Exception e) {
-			System.out.println("Fallo en: " +e);
-		}
-	}
 
 
-
-	
-	private void escribirEnJson(String sFile) throws java.io.IOException{
-
-		pacientes = Main.getPacientes();
-		cuidadores = Main.getCuidadores();
-		medicos = Main.getMedicos();
-		
+	public static void escribirEnJsonPacientes(ArrayList<Paciente> pacientes) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		try (FileWriter writer = new FileWriter (sFile)){
-			if (sFile.equalsIgnoreCase("pacientes.json")) {
-				gson.toJson(pacientes, writer);
-			}else if (sFile.equalsIgnoreCase("cuidadores.json")) {
-				gson.toJson(cuidadores, writer);
-	        }else if (sFile.equalsIgnoreCase("medicos.json")) {
-				gson.toJson(medicos, writer);
-	        }
+		try (FileWriter writer = new FileWriter ("pacientes.json")){
+			gson.toJson(pacientes, writer);
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void escribirEnJsonMedicos(ArrayList<Medico> medicos) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		try (FileWriter writer = new FileWriter ("medicos.json")){
+			gson.toJson(medicos, writer);
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void escribirEnJsonCuidadores(ArrayList<Cuidador> cuidadores) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		try (FileWriter writer = new FileWriter ("cuidadores.json")){
+			gson.toJson(cuidadores, writer);
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	
+	
 }

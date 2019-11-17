@@ -29,7 +29,6 @@ import javafx.scene.layout.GridPane;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
-import application.Main;
 import javafx.scene.layout.BorderPane;
 
 
@@ -72,7 +71,7 @@ public class ControladorLogin implements Initializable{
     void pressBtnRegistrar(ActionEvent event) {
     	try {
     	System.out.println("Cargando ventana de Registro...");
-		ControladorPacientepp.setPacienteActual(this.quePaciente());
+		ControladorPacientepp.setPacienteActual(lectorJson.getPaciente(txtInputPassword.getText().toUpperCase()));
 		Parent NuevoRegistro = FXMLLoader.load(getClass().getResource("/vista/registro.fxml"));
 		Stage Registro = new Stage();
 		Registro.setTitle("Registro de Nuevo Usuario");
@@ -87,15 +86,7 @@ public class ControladorLogin implements Initializable{
     	}
     }
 		
-	
-	
-	// Lectura inicial de los json
-	lectorJson lector = new lectorJson();
-	ArrayList<Paciente> pacientes = Main.getPacientes();
-	ArrayList<Medico> medicos = Main.getMedicos();
-	ArrayList<Cuidador> cuidadores = Main.getCuidadores();
-	//----------------------------
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 		
@@ -129,7 +120,7 @@ public class ControladorLogin implements Initializable{
 				case 1:
 					try {
 						System.out.println("Cargando ventana principal de Paciente...");
-						ControladorPacientepp.setPacienteActual(this.quePaciente());
+						ControladorPacientepp.setPacienteActual(lectorJson.getPaciente(txtInputPassword.getText().toUpperCase()));
 						Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 						Stage Pacientepp = new Stage();
 						Pacientepp.setTitle("Menu Principal Paciente");
@@ -152,7 +143,7 @@ public class ControladorLogin implements Initializable{
 				case 2:
 					try {
 						System.out.println("Cargando ventana principal de Cuidador...");
-						ControladorCuidadorpp.setCuidadorActual(this.queCuidador());
+						ControladorCuidadorpp.setCuidadorActual(lectorJson.getCuidador(txtInputUsuario.getText().toUpperCase()));
 						Parent CuidadorVentana = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp.fxml"));
 						Stage Cuidadorpp = new Stage();
 						Cuidadorpp.setTitle("Menu Principal Cuidador");
@@ -175,7 +166,7 @@ public class ControladorLogin implements Initializable{
 				case 3:
 					try {
 						System.out.println("Cargando ventana principal de Medico...");
-						ControladorMedicopp.setMedicoActual(this.queMedico());
+						ControladorMedicopp.setMedicoActual(lectorJson.getMedico(txtInputUsuario.getText().toUpperCase()));
 						Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/vista/medicopp.fxml"));
 						Stage Medicopp = new Stage();
 						Medicopp.setTitle("Menu Principal Medico");
@@ -267,6 +258,7 @@ public class ControladorLogin implements Initializable{
 
 	// funciones para comprobar el tipo de usuario
 	public boolean esPaciente() {
+		ArrayList<Paciente> pacientes= lectorJson.lectorJsonPacientes();
 		for (int i=0; i< pacientes.size(); i++) {
 			Paciente p = pacientes.get(i);
 			String passwordPaciente = p.getContrasena();
@@ -280,6 +272,8 @@ public class ControladorLogin implements Initializable{
 	
 
 	public boolean esCuidador() {
+		ArrayList<Cuidador> cuidadores= lectorJson.lectorJsonCuidadores();
+
 		for (int i=0; i< cuidadores.size(); i++) {
 			Cuidador p = cuidadores.get(i);
 			String passwordCuidador = p.getContrasena();
@@ -293,6 +287,8 @@ public class ControladorLogin implements Initializable{
 	
 	
 	public boolean esMedico() {
+		ArrayList<Medico> medicos= lectorJson.lectorJsonMedicos();
+
 		for (int i=0; i< medicos.size(); i++) {
 			Medico p = medicos.get(i);
 			String passwordMedico = p.getContrasena();
@@ -304,41 +300,7 @@ public class ControladorLogin implements Initializable{
 		return false;	
 	}
 	
-	
-	//Funciones para establecer el Usuario en el menu principal
-	public Paciente quePaciente() {
-		for (int i=0; i< pacientes.size(); i++) {
-			Paciente p = pacientes.get(i);
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
-				return p;
-			}
-		}
-		return null;	
-	}
-	
-	
-	public Medico queMedico() {
-		for (int i=0; i< medicos.size(); i++) {
-			Medico p = medicos.get(i);
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
-				return p;
-			}
-		}
-		return null;	
-	}
-	
-	
-	public Cuidador queCuidador() {
-		for (int i=0; i< cuidadores.size(); i++) {
-			Cuidador p = cuidadores.get(i);
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText())) {
-				return p;
-			}
-		}
-		return null;	
-	}
-	//--------------------------------------------
-	
+
 	
 	// funcion para declarar excepciones propias
 	public class ExcepcionUser extends Exception{

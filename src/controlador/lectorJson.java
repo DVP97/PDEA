@@ -5,9 +5,6 @@ import java.lang.reflect.Type;
 
 import java.util.ArrayList;
 
-
-
-import application.Main;
 import modelo.Cuidador;
 import modelo.Medico;
 import modelo.Paciente;
@@ -17,37 +14,83 @@ import com.google.gson.reflect.TypeToken;
 
 
 public class lectorJson {
-
-
-	public lectorJson() {
-		
-		try {
-			leerJsonPartes("pacientes.json");
-			leerJsonPartes("cuidadores.json");
-			leerJsonPartes("medicos.json");
-		}catch(Exception e) {
-			System.out.println("Fallo en: "+e);
-		}
-	}
-
 	
-	private void leerJsonPartes(String sFile) throws java.io.IOException {
-        FileReader fr = new FileReader(sFile);
-        Gson gson= new Gson();
-        if (sFile.equalsIgnoreCase("pacientes.json")) {
+	
+	
+	public static ArrayList<Paciente> lectorJsonPacientes() {
+		try {
+			FileReader fr = new FileReader("pacientes.json");
+			Gson gson= new Gson();
 			Type tipoListaPacientes = new TypeToken<ArrayList<Paciente>>(){}.getType();
 			ArrayList<Paciente> pacientes = gson.fromJson(fr, tipoListaPacientes);
-			Main.setPacientes(pacientes);
-        }
-        else if (sFile.equalsIgnoreCase("cuidadores.json")) {
-        	Type tipoListaCuidadores = new TypeToken<ArrayList<Cuidador>>(){}.getType();
-			ArrayList<Cuidador> cuidadores = gson.fromJson(fr, tipoListaCuidadores);
-			Main.setCuidadores(cuidadores);
-        }else if (sFile.equalsIgnoreCase("medicos.json")) {
-        	Type tipoListaMedicos = new TypeToken<ArrayList<Medico>>(){}.getType();
-			ArrayList<Medico> medicos = gson.fromJson(fr, tipoListaMedicos);
-			Main.setMedicos(medicos);
-        }
-    }
+			return pacientes;
+		}catch (Exception e) {
+			System.out.println("Fallo en: " +e);
+		}
+		return null;
+	}
+
+	public static ArrayList<Medico> lectorJsonMedicos() {
+		try {
+			FileReader fr = new FileReader("medicos.json");
+			Gson gson= new Gson();
+			Type tipoListaMedico = new TypeToken<ArrayList<Medico>>(){}.getType();
+			ArrayList<Medico> medicos = gson.fromJson(fr, tipoListaMedico);
+			return medicos;
+		}catch (Exception e) {
+			System.out.println("Fallo en: " +e);
+		}
+		return null;
+	}
 	
+	public static ArrayList<Cuidador> lectorJsonCuidadores() {
+		try {
+			FileReader fr = new FileReader("cuidadores.json");
+			Gson gson= new Gson();
+			Type tipoListaCuidador = new TypeToken<ArrayList<Cuidador>>(){}.getType();
+			ArrayList<Cuidador> cuidadores = gson.fromJson(fr, tipoListaCuidador);
+			return cuidadores;
+		}catch (Exception e) {
+			System.out.println("Fallo en: " +e);
+		}
+		return null;
+	}
+	
+	//METODOS
+	public static Paciente getPaciente (String dni) {
+		Paciente p = new Paciente();
+		ArrayList<Paciente> pac = lectorJsonPacientes();
+		for (int i = 0; i< pac.size(); i++) {
+			p = pac.get(i);
+			if (p.getDni().equalsIgnoreCase(dni)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
+	public static Medico getMedico (String dni) {
+		Medico p = new Medico();
+		ArrayList<Medico> pac = lectorJsonMedicos();
+		for (int i = 0; i< pac.size(); i++) {
+			p = pac.get(i);
+			if (p.getDni().equalsIgnoreCase(dni)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
+	public static Cuidador getCuidador (String dni) {
+		Cuidador p = new Cuidador();
+		ArrayList<Cuidador> pac = lectorJsonCuidadores();
+		for (int i = 0; i< pac.size(); i++) {
+			p = pac.get(i);
+			if (p.getDni().equalsIgnoreCase(dni)) {
+				return p;
+			}
+		}
+		return null;
+	}
+
 }
