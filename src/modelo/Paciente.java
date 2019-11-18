@@ -18,11 +18,19 @@ public final class Paciente extends Usuario{
 	public Paciente () {
 		super();
 		this.fecha_nacimiento= null;
+		this.medico = null;
+		this.cuidadores = new ArrayList<Cuidador>();
 	}
 	
 	//GETTERS
 	public Date getFecha_nacimiento() {
 		return fecha_nacimiento;
+	}
+	public ArrayList<Cuidador> getCuidadores(){
+		return cuidadores;
+	}
+	public String getMedico() {
+		return medico;
 	}
 	
 	//SETTERS
@@ -30,6 +38,13 @@ public final class Paciente extends Usuario{
 		this.fecha_nacimiento= fecha_nacimiento;
 	}
 
+	public void setCuidadores (ArrayList<Cuidador> cuidadores) {
+		this.cuidadores = cuidadores;
+	}
+	
+	public void setMedico (String medico) {
+		this.medico = medico;
+	}
 	//METODOS
 
 

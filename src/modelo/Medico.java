@@ -13,6 +13,16 @@ public final class Medico extends Usuario{
 	}
 	public Medico() {
 		super();
-		this.pacientes = null;
+		this.pacientes = new ArrayList<Paciente>();
+	}
+	
+	//GETTERS
+	public ArrayList<Paciente> getPacientes(){
+		return pacientes;
+	}
+	
+	//SETTERS
+	public void setPacientes (ArrayList<Paciente> pacientes) {
+		this.pacientes = pacientes;
 	}
 }
