@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorEjercicios">
    <children>
       <AnchorPane prefHeight="431.0" prefWidth="449.0">
          <children>
@@ -21,7 +21,7 @@
                   <Image url="@../modelo/exercise.png" />
                </image>
             </ImageView>
-            <Label layoutX="14.0" layoutY="14.0" text="Hola Sergio,">
+            <Label fx:id="campoPacienteEj" layoutX="14.0" layoutY="14.0" text="Hola Sergio,">
                <font>
                   <Font size="20.0" />
                </font>
@@ -34,18 +34,10 @@
                </image>
             </ImageView>
             <Label layoutX="69.0" layoutY="68.0" text="Ejercicios" />
-            <Button layoutX="158.0" layoutY="336.0" mnemonicParsing="false" text="Comenzar" />
+            <Button fx:id="btnComenzar" layoutX="158.0" layoutY="336.0" mnemonicParsing="false" text="Comenzar" />
             <TitledPane animated="false" layoutX="61.0" layoutY="135.0" prefHeight="178.0" prefWidth="264.0" text="Ejercicio 1">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="142.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="153.0" fitWidth="264.0" layoutX="-2.0">
-                           <image>
-                              <Image url="@../imagenes/ejercicios-video-mockup.jpg" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="142.0" prefWidth="200.0" />
               </content>
             </TitledPane>
             <Text layoutX="127.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ejercicio 1 de 6">
@@ -53,14 +45,14 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Button layoutX="259.0" layoutY="336.0" mnemonicParsing="false" text="Siguiente" />
-            <Button layoutX="64.0" layoutY="336.0" mnemonicParsing="false" text="Anterior" />
-            <Circle fill="#5ad39f" layoutX="414.0" layoutY="224.0" opacity="0.8" radius="43.0" stroke="BLACK" strokeType="INSIDE" />
-            <Text layoutX="393.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="00:16">
+            <Button fx:id="btnSiguiente" layoutX="259.0" layoutY="336.0" mnemonicParsing="false" text="Siguiente" />
+            <Button fx:id="btnAnterior" layoutX="64.0" layoutY="336.0" mnemonicParsing="false" text="Anterior" />
+            <Circle fill="#2a8675" layoutX="405.0" layoutY="215.0" opacity="0.8" radius="52.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label fx:id="cronometro" alignment="CENTER" layoutX="361.0" layoutY="202.0" prefHeight="26.0" prefWidth="89.0" text="00:16:00" textAlignment="CENTER" textFill="#fcf8f8">
                <font>
-                  <Font size="18.0" />
+                  <Font size="20.0" />
                </font>
-            </Text>
+            </Label>
          </children>
       </AnchorPane>
    </children>

@@ -40,7 +40,8 @@ public class ControladorMedicopp implements Initializable {
     @FXML
     private Label campoMedico;
     
-
+    @FXML
+    private Label cronometro;
     
     private static Medico medicoActual = new Medico();
     
