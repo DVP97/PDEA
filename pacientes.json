@@ -1,74 +1,92 @@
 [
   {
     "fecha_nacimiento": "Apr 23, 1954 12:00:00 AM",
-    "dni": "59385922F",
+    "dni": "39042568E",
     "nombre": "Miguel",
     "apellidos": "Hernandez Rodriguez",
     "telefono": 693850285,
-    "contrasena": "0cc175b9c0f1b6a831c399e269772661"
+    "contrasena": "0cc175b9c0f1b6a831c399e269772661",
+    "medico": "62544518C",
+    "cuidadores": ["60314786T","31612316N"]
   },
   {
     "fecha_nacimiento": "Dec 30, 1957 12:00:00 AM",
-    "dni": "12345678A",
+    "dni": "07447768T",
     "nombre": "Sofia",
     "apellidos": "Lopez Fernandez",
     "telefono": 692858294,
-    "contrasena": "0cc175b9c0f1b6a831c399e269772661"
+    "contrasena": "0cc175b9c0f1b6a831c399e269772661",
+    "medico": "62544518C",
+    "cuidadores": ["76359752M"]
   },
   {
     "fecha_nacimiento": "Oct 16, 1955 12:00:00 AM",
-    "dni": "49582739P",
+    "dni": "07813720E",
     "nombre": "Luis",
     "apellidos": "Torres Rodriguez",
     "telefono": 684628482,
-    "contrasena": "0cc175b9c0f1b6a831c399e269772661"
+    contrasena": "0cc175b9c0f1b6a831c399e269772661",
+    "medico": "62544518C",
+    "cuidadores": ["53222466Y"]
   },
   {
     "fecha_nacimiento": "Jan 9, 1952 12:00:00 AM",
-    "dni": "93857293F",
+    "dni": "07522677K",
     "nombre": "Andres",
     "apellidos": "Lara Martinez",
     "telefono": 692840293,
-    "contrasena": "0cc175b9c0f1b6a831c399e269772661"
+    "contrasena": "0cc175b9c0f1b6a831c399e269772661",
+    "medico": "62544518C",
+    "cuidadores": ["60314786T"]
   },
   {
     "fecha_nacimiento": "Jun 5, 1948 12:00:00 AM",
-    "dni": "82736499H",
+    "dni": "60186612M",
     "nombre": "Laura",
     "apellidos": "Fernandez Arias",
     "telefono": 639485724,
-    "contrasena": "0cc175b9c0f1b6a831c399e269772661"
+    "contrasena": "0cc175b9c0f1b6a831c399e269772661",
+    "medico": "62544518C",
+    "cuidadores": ["31612316N"]
   },
   {
     "fecha_nacimiento": "Feb 12, 1953 12:00:00 AM",
-    "dni": "69838496S",
+    "dni": "38542880D",
     "nombre": "Maria",
     "apellidos": "Vega Rodriguez",
     "telefono": 692847264,
-    "contrasena": "0cc175b9c0f1b6a831c399e269772661"
+    "contrasena": "0cc175b9c0f1b6a831c399e269772661",
+    "medico": "20005620J",
+    "cuidadores": ["76359752M"]
   },
   {
     "fecha_nacimiento": "Aug 13, 1949 12:00:00 AM",
-    "dni": "86938592K",
+    "dni": "80777450R",
     "nombre": "Marcos",
     "apellidos": "Perez Parada",
     "telefono": 692848284,
-    "contrasena": "0cc175b9c0f1b6a831c399e269772661"
+    "contrasena": "0cc175b9c0f1b6a831c399e269772661",
+    "medico": "20005620J",
+    "cuidadores": ["53222466Y"]
   },
   {
     "fecha_nacimiento": "Oct 11, 1952 12:00:00 AM",
-    "dni": "69385204G",
+    "dni": "66151022D",
     "nombre": "Luisa",
     "apellidos": "Martinez Rodriguez",
     "telefono": 691848275,
-    "contrasena": "0cc175b9c0f1b6a831c399e269772661"
+    "contrasena": "0cc175b9c0f1b6a831c399e269772661",
+    "medico": "20005620J",
+    "cuidadores": ["60314786T"]
   },
   {
     "fecha_nacimiento": "Jul 18, 1950 12:00:00 AM",
-    "dni": "93847592C",
+    "dni": "23733239E",
     "nombre": "Diego",
     "apellidos": "Cabanas Rodriguez",
     "telefono": 694967395,
-    "contrasena": "0cc175b9c0f1b6a831c399e269772661"
+    "contrasena": "0cc175b9c0f1b6a831c399e269772661",
+    "medico": "20005620J",
+    "cuidadores": ["31612316N"]
   }
 ]

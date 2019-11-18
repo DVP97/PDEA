@@ -3,6 +3,7 @@ package controlador;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -38,6 +39,7 @@ public class ControladorAvisos implements Initializable {
     	
     	System.out.println("Ventana de avisos:");
     	LabelMensajeError.setText(MensajeError);
+    
     }
     
 	//Metodos
@@ -46,6 +48,8 @@ public class ControladorAvisos implements Initializable {
 		Stage VentanaAvisos = (Stage) ButtonVolver.getScene().getWindow();
 		VentanaAvisos.close();
 	}
+    
+  
     
     //Getters y Setters
     public static String getMensajeError() {

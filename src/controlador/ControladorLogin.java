@@ -100,7 +100,7 @@ public class ControladorLogin implements Initializable{
 		try {
 			comprobarInputUser();
 			if (!comprobarInputUser() ) {
-				throw new ExcepcionUser(01);
+				throw new ExcepcionUser();
 			}
 			
 			//comprobar tipo de usuario, usamos switch para optimizar programa
@@ -304,12 +304,9 @@ public class ControladorLogin implements Initializable{
 	
 	// funcion para declarar excepciones propias
 	public class ExcepcionUser extends Exception{
-		
-		private int codigoError;
-	    
-	    public ExcepcionUser(int codigoError){
-	        this.codigoError=codigoError;
-	    }
+
+		private static final long serialVersionUID = 2918227521048319923L;
+
 	}
 	//-----------------------------------------
 	//funcion hash recibe contrasena y devuelve contrasena encriptado
