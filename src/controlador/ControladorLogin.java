@@ -98,7 +98,6 @@ public class ControladorLogin implements Initializable{
 	public void pressBtnAceptar() {
 		
 		try {
-			comprobarInputUser();
 			if (!comprobarInputUser() ) {
 				throw new ExcepcionUser();
 			}

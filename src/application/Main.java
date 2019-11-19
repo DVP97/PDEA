@@ -1,12 +1,9 @@
 package application;
 
 
-import java.util.ArrayList;
 
-import controlador.lectorJson;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import modelo.Cuidador;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
@@ -27,10 +24,7 @@ public class Main extends Application {
 			primaryStage.setMaxHeight(500);
 			primaryStage.setMaxWidth(520);
 			
-			//ArrayList<Cuidador> cuidadores = lectorJson.lectorJsonCuidadores();
-			//for (int i = 0; i<cuidadores.size(); i++) {
-			//	System.out.println("Nombre: " + cuidadores.get(i).getNombre());
-			//}
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();

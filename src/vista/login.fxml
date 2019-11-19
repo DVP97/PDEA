@@ -43,7 +43,7 @@
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
                         <Stop color="#81f1c1" />
-                        <Stop color="WHITE" offset="1.0" />
+                        <Stop color="#5d5d52" offset="1.0" />
                      </stops>
                   </RadialGradient>
                </ripplerFill></JFXButton>
@@ -52,16 +52,16 @@
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
                         <Stop color="#81f1c1" />
-                        <Stop color="WHITE" offset="1.0" />
+                        <Stop color="#5d5d52" offset="1.0" />
                      </stops>
                   </RadialGradient>
                </ripplerFill></JFXButton>
             <JFXButton fx:id="buttonRegistrar" buttonType="RAISED" layoutX="180.0" layoutY="230.0" onAction="#pressBtnRegistrar" styleClass="btn" stylesheets="@application.css" text="Registrar nuevo usuario" AnchorPane.bottomAnchor="13.0">
                <ripplerFill>
-                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                  <RadialGradient centerX="0.4943820224719101" centerY="0.5" radius="0.5">
                      <stops>
                         <Stop color="#81f1c1" />
-                        <Stop color="WHITE" offset="1.0" />
+                        <Stop color="#5d5d52" offset="1.0" />
                      </stops>
                   </RadialGradient>
                </ripplerFill></JFXButton>
