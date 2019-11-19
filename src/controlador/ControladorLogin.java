@@ -1,5 +1,6 @@
 package controlador;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
@@ -68,10 +69,10 @@ public class ControladorLogin implements Initializable{
     private JFXButton buttonRegistrar;
     
     @FXML
-    void pressBtnRegistrar(ActionEvent event) {
+    void pressBtnRegistrar(ActionEvent event)  {
     	try {
     	System.out.println("Cargando ventana de Registro...");
-		
+		ControladorPacientepp.setPacienteActual(lectorJson.getPaciente(txtInputPassword.getText().toUpperCase()));
 		Parent NuevoRegistro = FXMLLoader.load(getClass().getResource("/vista/registro.fxml"));
 		Stage Registro = new Stage();
 		Registro.setTitle("Registro de Nuevo Usuario");
@@ -82,7 +83,7 @@ public class ControladorLogin implements Initializable{
     	}
     	catch(Exception r){
     		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Registro.");
-			abrirVentanaAvisos();
+		
     	}
     }
 		
@@ -95,13 +96,9 @@ public class ControladorLogin implements Initializable{
 	
 	
 	//Acciones ejecutadas al pulsar el Boton Aceptar
-	public void pressBtnAceptar() {
+	public void pressBtnAceptar() throws IOException {
 		
 		try {
-			comprobarInputUser();
-			if (!comprobarInputUser() ) {
-				throw new ExcepcionUser();
-			}
 			
 			//comprobar tipo de usuario, usamos switch para optimizar programa
 			int usertype=0;
@@ -134,9 +131,9 @@ public class ControladorLogin implements Initializable{
 						CerrarVentanaLogin.close();
 					}	
 					
-					catch(Exception a){
+					catch(ExcepcionUser case1){
 						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
-						abrirVentanaAvisos();
+						case1.abrirVentanaAvisos();
 					}
 					break;
 					
@@ -157,9 +154,9 @@ public class ControladorLogin implements Initializable{
 						CerrarVentanaLogin.close();	
 					}
 					
-					catch(Exception a){
+					catch(ExcepcionUser case2){
 						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Cuidador.");
-						abrirVentanaAvisos();
+						case2.abrirVentanaAvisos();
 					}
 					break;
 					
@@ -181,34 +178,50 @@ public class ControladorLogin implements Initializable{
 						
 					}
 					
-					catch(Exception a){
+					catch(ExcepcionUser case3){
 						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
-						abrirVentanaAvisos();
+						case3.abrirVentanaAvisos();
 					}
 					break;
 					
 				default:
 					// en caso de que se introduzca un DNI que no se encuentre en la base de datos
 					ControladorAvisos.setMensajeError("Datos incorrectos.");
-					abrirVentanaAvisos();
-					break;
+					throw new ExcepcionUser();
+					
+	
 			}	
 		}
 
 		catch(ExcepcionUser loginfailure){
-			ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
-			abrirVentanaAvisos();
+			if (!comprobarInputUser() ) {
+				ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
+			}
+			else {
+				ControladorAvisos.setMensajeError("Datos incorrectos.");
+			}
+			loginfailure.abrirVentanaAvisos();
 		}
 		
 	}
 	
-	public void btnAceptarActionPerformed(ActionEvent event) {
-		this.pressBtnAceptar();
+	public void btnAceptarActionPerformed(ActionEvent event) throws IOException {
+		try {
+			this.pressBtnAceptar();
+		} catch (ExcepcionUser e) {
+			ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
+			e.abrirVentanaAvisos();
+		}
 	}
 	
-	public void textoClavePressed(KeyEvent event){
+	public void textoClavePressed(KeyEvent event) throws IOException{
 		if(event.getCode().equals(KeyCode.ENTER)) {
-			this.pressBtnAceptar();
+			try {
+				this.pressBtnAceptar();
+			} catch (ExcepcionUser e) {
+				ControladorAvisos.setMensajeError("Datos incorrectos.");
+				e.abrirVentanaAvisos();
+			}
 		}
 		
 	}
@@ -303,12 +316,33 @@ public class ControladorLogin implements Initializable{
 
 	
 	// funcion para declarar excepciones propias
-	public class ExcepcionUser extends Exception{
-
+	public class ExcepcionUser extends IOException {
+		
 		private static final long serialVersionUID = 2918227521048319923L;
+		public ExcepcionUser(){};
+		
 
+		public void abrirVentanaAvisos() {
+			try {
+				Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
+				Stage VentanaAvisos = new Stage();
+				VentanaAvisos.setTitle("Aviso");
+				VentanaAvisos.setScene(new Scene(avisos));
+				VentanaAvisos.show();
+				VentanaAvisos.setMinHeight(200);
+				VentanaAvisos.setMinWidth(500);
+				VentanaAvisos.setMaxHeight(200);
+				VentanaAvisos.setMaxWidth(600);
+				
+			}
+			catch(IOException a) {
+				System.out.println("Error");
+				 a.printStackTrace();
+			}
+		}
 	}
 	//-----------------------------------------
+	
 	//funcion hash recibe contrasena y devuelve contrasena encriptado
 	public static String getMd5(String input) 
     { 
@@ -338,30 +372,8 @@ public class ControladorLogin implements Initializable{
             throw new RuntimeException(e); 
         } 
     } 
-  
-        
-      //-----------------------------------------
+	//-----------------------------------------
         
 	//-----------------------------------------
 	
-	// funcion desde la que se llama a la ventana de avisos
-	public void abrirVentanaAvisos() {
-		try {
-			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
-			Stage VentanaAvisos = new Stage();
-			VentanaAvisos.setTitle("Aviso");
-			VentanaAvisos.setScene(new Scene(avisos));
-			VentanaAvisos.show();
-			VentanaAvisos.setMinHeight(200);
-			VentanaAvisos.setMinWidth(500);
-			VentanaAvisos.setMaxHeight(200);
-			VentanaAvisos.setMaxWidth(600);
-			
-		}
-		catch(Exception a) {
-			System.out.println("Error");
-			 a.printStackTrace();
-		}
-	}
-	//---------------------------------------------------
 }
