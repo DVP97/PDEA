@@ -71,7 +71,7 @@ public class ControladorLogin implements Initializable{
     void pressBtnRegistrar(ActionEvent event) {
     	try {
     	System.out.println("Cargando ventana de Registro...");
-		ControladorPacientepp.setPacienteActual(lectorJson.getPaciente(txtInputPassword.getText().toUpperCase()));
+		
 		Parent NuevoRegistro = FXMLLoader.load(getClass().getResource("/vista/registro.fxml"));
 		Stage Registro = new Stage();
 		Registro.setTitle("Registro de Nuevo Usuario");

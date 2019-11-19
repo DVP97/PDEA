@@ -5,10 +5,10 @@ import java.util.Date;
 
 public final class Paciente extends Usuario{
 	private Date fecha_nacimiento;
-	ArrayList<Cuidador> cuidadores; 
+	ArrayList<String> cuidadores; 
 	String medico;
 	
-	public Paciente(String dni, String nombre, String apellidos, Integer telefono, String contrasena, Date fecha_nacimiento, ArrayList<Cuidador> cuidadores, String medico) {
+	public Paciente(String dni, String nombre, String apellidos, Integer telefono, String contrasena, Date fecha_nacimiento, ArrayList<String> cuidadores, String medico) {
 		super(dni, nombre, apellidos, telefono, contrasena);
 		this.fecha_nacimiento= fecha_nacimiento;
 		this.cuidadores = cuidadores;
@@ -19,14 +19,14 @@ public final class Paciente extends Usuario{
 		super();
 		this.fecha_nacimiento= null;
 		this.medico = null;
-		this.cuidadores = new ArrayList<Cuidador>();
+		this.cuidadores = new ArrayList<String>();
 	}
 	
 	//GETTERS
 	public Date getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
-	public ArrayList<Cuidador> getCuidadores(){
+	public ArrayList<String> getCuidadores(){
 		return cuidadores;
 	}
 	public String getMedico() {
@@ -38,7 +38,7 @@ public final class Paciente extends Usuario{
 		this.fecha_nacimiento= fecha_nacimiento;
 	}
 
-	public void setCuidadores (ArrayList<Cuidador> cuidadores) {
+	public void setCuidadores (ArrayList<String> cuidadores) {
 		this.cuidadores = cuidadores;
 	}
 	
