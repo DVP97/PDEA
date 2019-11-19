@@ -17,8 +17,9 @@
 }
 
 .btn{
-	-fx-background-color: #eeeeee;
-	-fx-text-fill: black;
+	-fx-background-color: #008f82;
+	-fx-text-fill: #ffffff;
+	-fx-font-weight: bold;
 	-fx-background-radius: 10px;
 }
 
