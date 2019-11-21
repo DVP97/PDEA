@@ -20,14 +20,14 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Separator layoutX="14.0" layoutY="44.0" prefHeight="7.0" prefWidth="138.0" />
+            <Separator layoutX="15.0" layoutY="37.0" prefHeight="7.0" prefWidth="138.0" />
             <Label layoutX="328.0" layoutY="222.0" text="Paciente" />
             <ImageView fitHeight="53.0" fitWidth="54.0" layoutX="323.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../modelo/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="69.0" layoutY="68.0" text="Avisos" />
+            <Label layoutX="63.0" layoutY="61.0" text="Avisos" />
             <ImageView fitHeight="124.0" fitWidth="45.0" layoutX="13.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../modelo/avisos.png" />
@@ -39,7 +39,7 @@
             <TextField layoutX="122.0" layoutY="160.0" prefHeight="27.0" prefWidth="225.0" />
             <Text layoutX="35.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ejercicios:" />
             <Text layoutX="128.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Button layoutX="121.0" layoutY="210.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Salir" />
+            <Button layoutX="112.0" layoutY="209.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="177.0" text="Salir" />
          </children>
       </AnchorPane>
    </children>
