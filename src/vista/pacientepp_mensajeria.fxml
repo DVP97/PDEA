@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
@@ -13,11 +16,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="489.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <AnchorPane prefHeight="35.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="35.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label styleClass="mainLabel" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/controlador/application.css" text="Bienvenido SERGIO," AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <Label fx:id="campoPaciente" styleClass="mainLabel" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/controlador/application.css" text="Bienvenido SERGIO," AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -35,12 +38,12 @@
       <AnchorPane prefHeight="15.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Paciente" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-            <Button layoutX="18.0" layoutY="-13.0" mnemonicParsing="false" text="Salir" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0" />
+            <JFXButton fx:id="btnSalir" layoutX="10.0" layoutY="-18.0" prefHeight="50.0" prefWidth="100.0" styleClass="btn" stylesheets="@application.css" text="Salir" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="-80.0" />
          </children>
       </AnchorPane>
    </bottom>
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="311.0" prefWidth="119.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="45.0" fitWidth="45.0" layoutY="6.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                <image>
@@ -56,26 +59,79 @@
          <children>
             <SplitPane dividerPositions="0.5" layoutX="8.0" layoutY="27.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="388.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                     <children>
-                        <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recibidos" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                        <TitledPane animated="false" layoutX="-1.0" layoutY="19.0" prefHeight="20.0" prefWidth="396.0" text="Asunto" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="1.0" AnchorPane.topAnchor="25.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="152.0" prefWidth="396.0">
+                  <TabPane>
+                     <tabs>
+                        <Tab fx:id="tabRecibidos" closable="false" text="Recibidos">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="148.0" prefWidth="422.0">
                                  <children>
-                                    <TextArea prefHeight="116.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                    <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recibidos:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <TitledPane fx:id="structMensajeRecib" animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="30.0">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="200.0">
+                                             <children>
+                                                <ScrollPane layoutX="-63.0" layoutY="-86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <content>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="282.0">
+                                                         <children>
+                                                            <Label fx:id="textoMensajeRecib" alignment="TOP_LEFT" text="SampleText" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
                                  </children>
                               </AnchorPane>
-                          </content>
-                        </TitledPane>
-                     </children>
-                  </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           </content>
+                        </Tab>
+                        <Tab fx:id="tabEnviados" closable="false" text="Enviados">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="148.0" prefWidth="422.0">
+                                 <children>
+                                    <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enviados:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Text>
+                                    <TitledPane fx:id="structMensajeEnv" animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="30.0">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="200.0">
+                                             <children>
+                                                <ScrollPane layoutX="-63.0" layoutY="-86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <content>
+                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="282.0">
+                                                         <children>
+                                                            <Label fx:id="textoMensajeEnv" alignment="TOP_LEFT" text="SampleText" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </TitledPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+                <AnchorPane maxHeight="300.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enviar mensaje al Médico:" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" />
-                        <Button layoutX="154.0" layoutY="123.0" mnemonicParsing="false" text="Enviar" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="325.0" />
-                        <TextArea prefHeight="136.0" prefWidth="183.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
-                        <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redactar:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        <TextArea fx:id="campoEscritura" prefHeight="99.0" prefWidth="313.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="30.0" />
+                        <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redactar:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <JFXButton fx:id="btnEnviar" layoutX="380.0" layoutY="22.0" prefHeight="100.0" prefWidth="100.0" styleClass="btn" stylesheets="@application.css" text="Enviar" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
                      </children>
                   </AnchorPane>
               </items>
