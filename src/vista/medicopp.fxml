@@ -44,7 +44,7 @@
             <Label layoutX="669.0" layoutY="557.0" styleClass="smallLabel" stylesheets="@application.css" text="Médico" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
             <TabPane layoutX="8.0" layoutY="61.0" prefHeight="481.0" prefWidth="712.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
               <tabs>
-                <Tab text="Pacientes">
+                <Tab closable="false" text="Pacientes">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="352.0" prefWidth="712.0">
                            <children>
@@ -81,7 +81,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Citas">
+                <Tab closable="false" text="Citas">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="388.0" prefWidth="712.0">
                            <children>
@@ -118,7 +118,7 @@
                         </AnchorPane>
                   </content>
                 </Tab>
-                  <Tab text="Avisos">
+                  <Tab closable="false" text="Avisos">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -134,7 +134,7 @@
                         </AnchorPane>
                     </content>
                   </Tab>
-                  <Tab text="Mensajes">
+                  <Tab closable="false" text="Mensajes">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
