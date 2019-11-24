@@ -72,7 +72,7 @@ public class ControladorLogin implements Initializable{
     void pressBtnRegistrar(ActionEvent event)  {
     	try {
     	System.out.println("Cargando ventana de Registro...");
-		ControladorPacientepp.setPacienteActual(lectorJson.getPaciente(txtInputPassword.getText().toUpperCase()));
+		ControladorPacientepp.setPacienteActual(lectorJson.getPaciente(txtInputUsuario.getText().toUpperCase()));
 		Parent NuevoRegistro = FXMLLoader.load(getClass().getResource("/vista/registro.fxml"));
 		Stage Registro = new Stage();
 		Registro.setTitle("Registro de Nuevo Usuario");
@@ -117,7 +117,7 @@ public class ControladorLogin implements Initializable{
 				case 1:
 					try {
 						System.out.println("Cargando ventana principal de Paciente...");
-						ControladorPacientepp.setPacienteActual(lectorJson.getPaciente(txtInputPassword.getText().toUpperCase()));
+						ControladorPacientepp.setPacienteActual(lectorJson.getPaciente(txtInputUsuario.getText().toUpperCase()));
 						Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 						Stage Pacientepp = new Stage();
 						Pacientepp.setTitle("Menu Principal Paciente");
