@@ -46,7 +46,7 @@
                         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                            <stops>
                               <Stop color="#81f1c1" />
-                              <Stop color="WHITE" offset="1.0" />
+                              <Stop color="#5d5d52" offset="1.0" />
                            </stops>
                         </RadialGradient>
                      </ripplerFill>
@@ -55,7 +55,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <JFXButton fx:id="btnMensajes" buttonType="RAISED" onAction="#pressBtnMensajes" contentDisplay="TOP" layoutX="-60.0" prefHeight="185.0" prefWidth="214.0" styleClass="btn" stylesheets="@application.css" text="Mensajes" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="-45.0" AnchorPane.rightAnchor="-45.0" AnchorPane.topAnchor="10.0">
+                  <JFXButton fx:id="btnMensajes" buttonType="RAISED" contentDisplay="TOP" layoutX="-60.0" onAction="#pressBtnMensajes" prefHeight="185.0" prefWidth="214.0" styleClass="btn" stylesheets="@application.css" text="Mensajes" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="-45.0" AnchorPane.rightAnchor="-45.0" AnchorPane.topAnchor="10.0">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -67,7 +67,7 @@
                         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                            <stops>
                               <Stop color="#81f1c1" />
-                              <Stop color="WHITE" offset="1.0" />
+                              <Stop color="#5d5d52" offset="1.0" />
                            </stops>
                         </RadialGradient>
                      </ripplerFill>
@@ -88,7 +88,7 @@
                         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                            <stops>
                               <Stop color="#81f1c1" />
-                              <Stop color="WHITE" offset="1.0" />
+                              <Stop color="#5d5d52" offset="1.0" />
                            </stops>
                         </RadialGradient>
                      </ripplerFill>

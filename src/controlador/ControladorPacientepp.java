@@ -1,5 +1,6 @@
 package controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,13 +37,11 @@ public class ControladorPacientepp implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
     //add controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahi).
-    	System.out.println("entrado");
     	campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre() +",");
-    	System.out.println("nombre cargado");
 	}
     
     @FXML
-    void pressBtnMensajes(ActionEvent event)  {
+    void pressBtnMensajes(ActionEvent event) throws IOException  {
     	try {
         	System.out.println("Cargando ventana de Mensajes...");
     		Parent Mensajeria = FXMLLoader.load(getClass().getResource("/vista/pacientepp_mensajeria.fxml"));
@@ -50,11 +49,15 @@ public class ControladorPacientepp implements Initializable {
     		MensajeriaPaciente.setTitle("Mensajeria Paciente");
     		MensajeriaPaciente.setScene(new Scene(Mensajeria));
     		MensajeriaPaciente.show();
-    		MensajeriaPaciente.setMinHeight(350);
-    		MensajeriaPaciente.setMinWidth(500);
+    		MensajeriaPaciente.setMinHeight(525);
+    		MensajeriaPaciente.setMinWidth(620);
+    		
+    		Stage CambioVentanaEjs = (Stage) btnEjercicios.getScene().getWindow();
+    		CambioVentanaEjs.close();
         	}
-        	catch(Exception r){
+        	catch(ControladorExcepciones r){
         		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Mensajeria para Pacientes.");
+        		r.abrirVentanaAvisos();
         	}
     }
     

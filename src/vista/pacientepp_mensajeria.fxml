@@ -13,6 +13,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -20,7 +22,7 @@
    <top>
       <AnchorPane prefHeight="35.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="campoPaciente" styleClass="mainLabel" stylesheets="@../../../../UEm/Proyecto%202o/PDEA/src/controlador/application.css" text="Bienvenido SERGIO," AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <Label fx:id="campoPaciente" styleClass="mainLabel" stylesheets="@application.css" text="Bienvenido SERGIO," AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -38,7 +40,6 @@
       <AnchorPane prefHeight="15.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Paciente" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-            <JFXButton fx:id="btnVolver" layoutX="10.0" layoutY="-18.0" prefHeight="50.0" prefWidth="100.0" styleClass="btn" stylesheets="@application.css" text="Volver" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="-80.0" />
          </children>
       </AnchorPane>
    </bottom>
@@ -51,6 +52,15 @@
                </image>
             </ImageView>
             <Text layoutX="50.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mensajes" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="30.0" />
+            <JFXButton fx:id="btnVolver" buttonType="RAISED" layoutX="10.0" layoutY="240.0" onAction="#pressBtnVolver" prefHeight="100.0" prefWidth="100.0" styleClass="btn" stylesheets="@application.css" text="Volver" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0">
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#81f1c1" />
+                        <Stop color="#5d5d52" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill></JFXButton>
          </children>
       </AnchorPane>
    </left>
@@ -131,7 +141,15 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <JFXButton fx:id="btnEnviar" layoutX="380.0" layoutY="22.0" prefHeight="100.0" prefWidth="100.0" styleClass="btn" stylesheets="@application.css" text="Enviar" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0" />
+                        <JFXButton fx:id="btnEnviar" buttonType="RAISED" layoutX="380.0" layoutY="22.0" prefHeight="100.0" prefWidth="100.0" styleClass="btn" stylesheets="@application.css" text="Enviar" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                           <ripplerFill>
+                              <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="#81f1c1" />
+                                    <Stop color="#5d5d52" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </ripplerFill></JFXButton>
                      </children>
                   </AnchorPane>
               </items>

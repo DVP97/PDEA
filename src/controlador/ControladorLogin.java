@@ -131,7 +131,7 @@ public class ControladorLogin implements Initializable{
 						CerrarVentanaLogin.close();
 					}	
 					
-					catch(ExcepcionUser case1){
+					catch(ControladorExcepciones case1){
 						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
 						case1.abrirVentanaAvisos();
 					}
@@ -154,7 +154,7 @@ public class ControladorLogin implements Initializable{
 						CerrarVentanaLogin.close();	
 					}
 					
-					catch(ExcepcionUser case2){
+					catch(ControladorExcepciones case2){
 						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Cuidador.");
 						case2.abrirVentanaAvisos();
 					}
@@ -178,7 +178,7 @@ public class ControladorLogin implements Initializable{
 						
 					}
 					
-					catch(ExcepcionUser case3){
+					catch(ControladorExcepciones case3){
 						ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
 						case3.abrirVentanaAvisos();
 					}
@@ -187,13 +187,13 @@ public class ControladorLogin implements Initializable{
 				default:
 					// en caso de que se introduzca un DNI que no se encuentre en la base de datos
 					ControladorAvisos.setMensajeError("Datos incorrectos.");
-					throw new ExcepcionUser();
+					throw new ControladorExcepciones();
 					
 	
 			}	
 		}
 
-		catch(ExcepcionUser loginfailure){
+		catch(ControladorExcepciones loginfailure){
 			if (!comprobarInputUser() ) {
 				ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
 			}
@@ -208,7 +208,7 @@ public class ControladorLogin implements Initializable{
 	public void btnAceptarActionPerformed(ActionEvent event) throws IOException {
 		try {
 			this.pressBtnAceptar();
-		} catch (ExcepcionUser e) {
+		} catch (ControladorExcepciones e) {
 			ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
 			e.abrirVentanaAvisos();
 		}
@@ -218,7 +218,7 @@ public class ControladorLogin implements Initializable{
 		if(event.getCode().equals(KeyCode.ENTER)) {
 			try {
 				this.pressBtnAceptar();
-			} catch (ExcepcionUser e) {
+			} catch (ControladorExcepciones e) {
 				ControladorAvisos.setMensajeError("Datos incorrectos.");
 				e.abrirVentanaAvisos();
 			}
@@ -315,33 +315,6 @@ public class ControladorLogin implements Initializable{
 	
 
 	
-	// funcion para declarar excepciones propias
-	public class ExcepcionUser extends IOException {
-		
-		private static final long serialVersionUID = 2918227521048319923L;
-		public ExcepcionUser(){};
-		
-
-		public void abrirVentanaAvisos() {
-			try {
-				Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
-				Stage VentanaAvisos = new Stage();
-				VentanaAvisos.setTitle("Aviso");
-				VentanaAvisos.setScene(new Scene(avisos));
-				VentanaAvisos.show();
-				VentanaAvisos.setMinHeight(200);
-				VentanaAvisos.setMinWidth(500);
-				VentanaAvisos.setMaxHeight(200);
-				VentanaAvisos.setMaxWidth(600);
-				
-			}
-			catch(IOException a) {
-				System.out.println("Error");
-				 a.printStackTrace();
-			}
-		}
-	}
-	//-----------------------------------------
 	
 	//funcion hash recibe contrasena y devuelve contrasena encriptado
 	public static String getMd5(String input) 

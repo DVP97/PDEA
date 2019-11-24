@@ -76,14 +76,12 @@ public class ControladorRegistro implements Initializable {
 	    	textoNombre.getText();
 	    	textoApellidos.getText();
 	
-	    	System.out.printf(comboRol.getValue());
+	    	
 	    	//Comprobacion de que coinciden las contrase�as
 	    	String pswrd =textoContrasena.getText();
 	    	String pswrdSecond =textoContrasena2.getText();
 	    	String passwordEncriptada = getMd5(pswrd);
-			System.out.println(passwordEncriptada);
-	
-	
+
 	
 	    	//Comprobacion de el resto de campos
 	
@@ -107,6 +105,7 @@ public class ControladorRegistro implements Initializable {
 	
 	
 			else {
+				System.out.println("Usuario seleccionado: " +comboRol.getValue());
 				if ( pswrd.length()<4 | !pswrd.equals(pswrdSecond) ){
 		    		try {
 		    			ControladorAvisos.setMensajeError("Ambas contrasenas deben coincidir y tener minimos de 4 caracteres.");
@@ -121,7 +120,8 @@ public class ControladorRegistro implements Initializable {
 	
 	
 				else {
-	
+					
+					System.out.println(passwordEncriptada);
 					if( comprobarDigitosDNI()==false| Character.isLetter(textoDNI.getText().charAt(8)) == false) {
 						ControladorAvisos.setMensajeError("Por favor revise los datos introducidos.");
 			    			abrirVentanaAvisos();
@@ -236,7 +236,7 @@ public class ControladorRegistro implements Initializable {
 			}
     	}
     	catch(Exception a) {
-    		ControladorAvisos.setMensajeError("Elija un Rol ");
+    		ControladorAvisos.setMensajeError("Revise los campos a completar.");
     		abrirVentanaAvisos();
     	}
     }
