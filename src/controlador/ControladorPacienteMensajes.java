@@ -16,8 +16,6 @@ import modelo.Paciente;
 
 public class ControladorPacienteMensajes implements Initializable{
 
-	@FXML
-	private BorderPane BorderPaneGlobal;
 	
 	@FXML
 	private JFXButton btnEnviar; 
