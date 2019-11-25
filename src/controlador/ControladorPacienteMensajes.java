@@ -63,6 +63,11 @@ public class ControladorPacienteMensajes implements Initializable{
 	}
 
 	@FXML
+	void pressBtnEnviar(ActionEvent event) {
+		
+	}
+	
+	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
 			System.out.println("Cargando ventana principal de Paciente...");

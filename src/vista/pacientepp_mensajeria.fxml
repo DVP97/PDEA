@@ -141,7 +141,7 @@
                               <Font size="20.0" />
                            </font>
                         </Text>
-                        <JFXButton fx:id="btnEnviar" buttonType="RAISED" layoutX="380.0" layoutY="22.0" prefHeight="100.0" prefWidth="100.0" styleClass="btn" stylesheets="@application.css" text="Enviar" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+                        <JFXButton fx:id="btnEnviar" buttonType="RAISED" layoutX="380.0" layoutY="22.0" onAction="#pressBtnEnviar" prefHeight="100.0" prefWidth="100.0" styleClass="btn" stylesheets="@application.css" text="Enviar" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
                            <ripplerFill>
                               <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                  <stops>
