@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -16,8 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import modelo.Mensaje;
 import modelo.Paciente;
 
 public class ControladorPacienteMensajes implements Initializable{
@@ -64,7 +65,12 @@ public class ControladorPacienteMensajes implements Initializable{
 
 	@FXML
 	void pressBtnEnviar(ActionEvent event) {
-		
+		Paciente p = ControladorPacientepp.getPacienteActual();
+		String medPac = p.getMedico();
+		Mensaje msg = new Mensaje(p.getDni(), medPac, campoEscritura.getText());
+		ArrayList<Mensaje> mensajes = lectorJson.lectorJsonMensajes();
+		mensajes.add(msg);
+		escritorJson.escribirEnJsonMensajes(mensajes);
 	}
 	
 	@FXML

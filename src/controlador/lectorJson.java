@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import modelo.Cuidador;
 import modelo.Medico;
+import modelo.Mensaje;
 import modelo.Paciente;
 
 import com.google.gson.Gson;
@@ -56,6 +57,20 @@ public class lectorJson {
 		return null;
 	}
 	
+	public static ArrayList<Mensaje> lectorJsonMensajes() {
+		try {
+			FileReader fr = new FileReader("mensajes.json");
+			Gson gson= new Gson();
+			Type tipoListoMensajes = new TypeToken<ArrayList<Mensaje>>(){}.getType();
+			ArrayList<Mensaje> mensajes = gson.fromJson(fr, tipoListoMensajes);
+			return mensajes;
+		}catch (Exception e) {
+			System.out.println("Fallo en: " +e);
+		}
+		return null;
+	}
+	
+	
 	//METODOS
 	public static Paciente getPaciente (String dni) {
 		Paciente p = new Paciente();
@@ -92,5 +107,28 @@ public class lectorJson {
 		}
 		return null;
 	}
+	
+	public static Mensaje getMensajeEnviadoPor (String dni) {
+		Mensaje m = new Mensaje();
+		ArrayList<Mensaje> mensajes = lectorJsonMensajes();
+		for (int i = 0; i< mensajes.size(); i++) {
+			m = mensajes.get(i);
+			if (m.getEmisor().equalsIgnoreCase(dni)) {
+				return m;
+			}
+		}
+		return null;
+	}
 
+	public static Mensaje getMensajeEnviadoA (String dni) {
+		Mensaje m = new Mensaje();
+		ArrayList<Mensaje> mensajes = lectorJsonMensajes();
+		for (int i = 0; i< mensajes.size(); i++) {
+			m = mensajes.get(i);
+			if (m.getReceptor().equalsIgnoreCase(dni)) {
+				return m;
+			}
+		}
+		return null;
+	}
 }

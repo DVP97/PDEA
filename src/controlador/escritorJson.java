@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 
 import modelo.Cuidador;
 import modelo.Medico;
+import modelo.Mensaje;
 import modelo.Paciente;
 
 
@@ -41,6 +42,15 @@ public class escritorJson {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try (FileWriter writer = new FileWriter ("cuidadores.json")){
 			gson.toJson(cuidadores, writer);
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void escribirEnJsonMensajes(ArrayList<Mensaje> mensajes) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		try (FileWriter writer = new FileWriter ("mensajes.json")){
+			gson.toJson(mensajes, writer);
 		}catch (IOException e) {
 			e.printStackTrace();
 		}
