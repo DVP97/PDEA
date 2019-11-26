@@ -80,7 +80,7 @@
                                           <Font size="20.0" />
                                        </font>
                                     </Text>
-                                    <TitledPane fx:id="structMensajeRecib" animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="30.0">
+                                    <TitledPane fx:id="structMensajeRecib" animated="false" text="De: &lt;Nombre_Usuario&gt; " AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="30.0">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="200.0">
                                              <children>

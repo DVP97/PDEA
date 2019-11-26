@@ -108,27 +108,29 @@ public class lectorJson {
 		return null;
 	}
 	
-	public static Mensaje getMensajeEnviadoPor (String dni) {
+	public static ArrayList<Mensaje> getMensajesEnviadosPor (String dni) {
+		ArrayList<Mensaje> mensajesEnviados = new ArrayList<Mensaje>();
 		Mensaje m = new Mensaje();
 		ArrayList<Mensaje> mensajes = lectorJsonMensajes();
 		for (int i = 0; i< mensajes.size(); i++) {
 			m = mensajes.get(i);
 			if (m.getEmisor().equalsIgnoreCase(dni)) {
-				return m;
+				mensajesEnviados.add(m);
 			}
 		}
-		return null;
+		return mensajesEnviados;
 	}
 
-	public static Mensaje getMensajeEnviadoA (String dni) {
+	public static ArrayList<Mensaje> getMensajesEnviadosA (String dni) {
+		ArrayList<Mensaje> mensajesRecibidos = new ArrayList<Mensaje>();
 		Mensaje m = new Mensaje();
 		ArrayList<Mensaje> mensajes = lectorJsonMensajes();
 		for (int i = 0; i< mensajes.size(); i++) {
 			m = mensajes.get(i);
 			if (m.getReceptor().equalsIgnoreCase(dni)) {
-				return m;
+				mensajesRecibidos.add(m);
 			}
 		}
-		return null;
+		return mensajesRecibidos;
 	}
 }

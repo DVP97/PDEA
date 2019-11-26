@@ -105,4 +105,15 @@ public class ControladorPacienteMensajes implements Initializable{
 	public static void setPacienteActual(Paciente pacienteActual) {
 		ControladorPacienteMensajes.pacienteActual = pacienteActual;
 	}
+	
+	//METODOS
+	public Integer numeroMensajesRecibidos() {
+		Paciente p = ControladorPacientepp.getPacienteActual();
+		return lectorJson.getMensajesEnviadosA(p.getDni()).size();
+	}
+	
+	public Integer numeroMensajesEnviados() {
+		Paciente p = ControladorPacientepp.getPacienteActual();
+		return lectorJson.getMensajesEnviadosPor(p.getDni()).size();
+	}
 }
