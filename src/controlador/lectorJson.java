@@ -58,16 +58,16 @@ public class lectorJson {
 	}
 	
 	public static ArrayList<Mensaje> lectorJsonMensajes() {
+		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
 		try {
 			FileReader fr = new FileReader("mensajes.json");
 			Gson gson= new Gson();
 			Type tipoListoMensajes = new TypeToken<ArrayList<Mensaje>>(){}.getType();
-			ArrayList<Mensaje> mensajes = gson.fromJson(fr, tipoListoMensajes);
-			return mensajes;
+			mensajes = gson.fromJson(fr, tipoListoMensajes);
 		}catch (Exception e) {
 			System.out.println("Fallo en: " +e);
 		}
-		return null;
+		return mensajes;
 	}
 	
 	
@@ -114,8 +114,10 @@ public class lectorJson {
 		ArrayList<Mensaje> mensajes = lectorJsonMensajes();
 		for (int i = 0; i< mensajes.size(); i++) {
 			m = mensajes.get(i);
-			if (m.getEmisor().equalsIgnoreCase(dni)) {
-				mensajesEnviados.add(m);
+			if(m.isBorrado()) {
+				if (m.getEmisor().equalsIgnoreCase(dni)) {
+					mensajesEnviados.add(m);
+				}
 			}
 		}
 		return mensajesEnviados;
@@ -129,25 +131,13 @@ public class lectorJson {
 		ArrayList<Mensaje> mensajes = lectorJsonMensajes();
 		for (int i = 0; i< mensajes.size(); i++) {
 			m = mensajes.get(i);
-			if (m.getReceptor().equalsIgnoreCase(dni)) {
-				mensajesRecibidos.add(m);
-			}
-		}
-		return mensajesRecibidos;
-	}
-	
-	public static ArrayList<Mensaje> getMensajesEnviadosNoLeidosA (String dni) {
-		ArrayList<Mensaje> mensajesRecibidos = new ArrayList<Mensaje>();
-		Mensaje m = new Mensaje();
-		ArrayList<Mensaje> mensajes = lectorJsonMensajes();
-		for (int i = 0; i< mensajes.size(); i++) {
-			m = mensajes.get(i);
-			if (m.getReceptor().equalsIgnoreCase(dni)) {
-				if(!m.isLeido()) {
+			if(m.isBorrado()) {
+				if (m.getReceptor().equalsIgnoreCase(dni)) {
 					mensajesRecibidos.add(m);
 				}
 			}
 		}
 		return mensajesRecibidos;
 	}
+	
 }

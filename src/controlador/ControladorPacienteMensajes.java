@@ -66,17 +66,29 @@ public class ControladorPacienteMensajes implements Initializable{
 	public void initialize(URL location, ResourceBundle reosurces) {
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
-
 	}
 
 	@FXML
 	void pressBtnEnviar(ActionEvent event) {
-		Paciente p = ControladorPacientepp.getPacienteActual();
-		String medPac = p.getMedico();
-		Mensaje msg = new Mensaje(p.getDni(), medPac, campoEscritura.getText());
-		ArrayList<Mensaje> mensajes = lectorJson.lectorJsonMensajes();
-		mensajes.add(msg);
-		escritorJson.escribirEnJsonMensajes(mensajes);
+		try {
+			Paciente p = ControladorPacientepp.getPacienteActual();
+			String medPac = p.getMedico();
+			Mensaje msg = new Mensaje(p.getDni(), medPac, campoEscritura.getText());
+			System.out.println("El mensaje ha sido creado");
+			ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
+			mensajes= lectorJson.lectorJsonMensajes();
+			mensajes.add(msg);
+			escritorJson.escribirEnJsonMensajes(mensajes);
+		
+			ControladorAvisos.setMensajeError("Mensaje Enviado.");
+			abrirVentanaAvisos();
+			Stage  CerrarRegistro= (Stage) btnEnviar.getScene().getWindow();
+			CerrarRegistro.close();
+		}
+		catch(Exception a) {
+			ControladorAvisos.setMensajeError("Error enviando el mensaje.");
+			abrirVentanaAvisos();
+		}
 	}
 	
     
@@ -122,5 +134,23 @@ public class ControladorPacienteMensajes implements Initializable{
 	public Integer numeroMensajesEnviados() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		return lectorJson.getMensajesEnviadosPor(p.getDni()).size();
+	}
+	
+    public void abrirVentanaAvisos() {
+		try {
+			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
+			Stage VentanaAvisos = new Stage();
+			VentanaAvisos.setTitle("Aviso");
+			VentanaAvisos.setScene(new Scene(avisos));
+			VentanaAvisos.show();
+			VentanaAvisos.setMinHeight(200);
+			VentanaAvisos.setMinWidth(500);
+			VentanaAvisos.setMaxHeight(200);
+			VentanaAvisos.setMaxWidth(600);
+
+		}
+		catch(Exception a) {
+			System.out.println("Error");
+		}
 	}
 }
