@@ -3,13 +3,11 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -81,27 +79,7 @@
                                           <Font size="20.0" />
                                        </font>
                                     </Text>
-                                    <Accordion fx:id="AccordionMensajesRec" maxWidth="100.0" prefWidth="900.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="5.0">
-                                      <panes>
-                                          <TitledPane fx:id="structMensajeRecib" animated="false" maxWidth="100.0" prefWidth="960.0" text="De: &lt;Nombre_Usuario&gt; ">
-                                             <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="200.0">
-                                                   <children>
-                                                      <ScrollPane layoutX="-63.0" layoutY="-86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                         <content>
-                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="282.0">
-                                                               <children>
-                                                                  <Label fx:id="textoMensajeRecib" alignment="TOP_LEFT" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </content>
-                                                      </ScrollPane>
-                                                   </children>
-                                                </AnchorPane>
-                                             </content>
-                                          </TitledPane>
-                                      </panes>
-                                    </Accordion>
+                                    <Accordion fx:id="AccordionMensajesRec" maxWidth="100.0" prefWidth="900.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="5.0" />
                                  </children>
                               </AnchorPane>
                            </content>

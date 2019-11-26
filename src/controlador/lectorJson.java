@@ -114,7 +114,7 @@ public class lectorJson {
 		ArrayList<Mensaje> mensajes = lectorJsonMensajes();
 		for (int i = 0; i< mensajes.size(); i++) {
 			m = mensajes.get(i);
-			if(m.isBorrado()) {
+			if(!m.isBorrado()) {
 				if (m.getEmisor().equalsIgnoreCase(dni)) {
 					mensajesEnviados.add(m);
 				}
@@ -131,7 +131,7 @@ public class lectorJson {
 		ArrayList<Mensaje> mensajes = lectorJsonMensajes();
 		for (int i = 0; i< mensajes.size(); i++) {
 			m = mensajes.get(i);
-			if(m.isBorrado()) {
+			if(!m.isBorrado()) {
 				if (m.getReceptor().equalsIgnoreCase(dni)) {
 					mensajesRecibidos.add(m);
 				}

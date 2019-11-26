@@ -1,11 +1,12 @@
 [
   {
-    "emisor": "07447768T",
-    "receptor": "62544518C",
+    "emisor": "62544518C",
+    "receptor": "07447768T",
     "mensaje": "hola",
     "leido": false,
     "contestado": false,
     "borrado": false,
     "fecha": "Nov 26, 2019 6:18:21 PM"
   }
+
 ]

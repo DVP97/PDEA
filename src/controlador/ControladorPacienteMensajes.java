@@ -19,6 +19,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Accordion;
+import modelo.Medico;
 import modelo.Mensaje;
 import modelo.Paciente;
 
@@ -66,6 +67,22 @@ public class ControladorPacienteMensajes implements Initializable{
 	public void initialize(URL location, ResourceBundle reosurces) {
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
+		
+		ArrayList<TitledPane> tps = new ArrayList<TitledPane>();
+		
+		if (numeroMensajesRecibidos() != 0) {
+		
+			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
+				ArrayList<Mensaje> mensajesRec  = lectorJson.getMensajesEnviadosA(p.getDni());
+				Mensaje mensajeAct = mensajesRec.get(i);
+				Medico medEmisor = lectorJson.getMedico(mensajeAct.getEmisor());
+				Label contenido = new Label(mensajeAct.getMensaje());
+				TitledPane tp = new TitledPane("De: " + medEmisor.getNombre() , contenido) ;
+						
+				tps.add(i, tp);
+			}
+			AccordionMensajesRec.getPanes().addAll(tps);
+		}
 	}
 
 	@FXML
