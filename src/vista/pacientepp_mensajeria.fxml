@@ -88,7 +88,7 @@
                                                    <content>
                                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="282.0">
                                                          <children>
-                                                            <Label fx:id="textoMensajeRecib" alignment="TOP_LEFT" text="SampleText" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                            <Label fx:id="textoMensajeRecib" alignment="TOP_LEFT" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                                          </children>
                                                       </AnchorPane>
                                                    </content>
@@ -118,7 +118,7 @@
                                                    <content>
                                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="282.0">
                                                          <children>
-                                                            <Label fx:id="textoMensajeEnv" alignment="TOP_LEFT" text="SampleText" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                                            <Label fx:id="textoMensajeEnv" alignment="TOP_LEFT" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                                                          </children>
                                                       </AnchorPane>
                                                    </content>
