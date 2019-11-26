@@ -56,7 +56,7 @@
                <font>
                   <Font size="20.0" />
                </font></Text>
-            <JFXButton layoutX="203.0" layoutY="334.0" prefHeight="34.0" prefWidth="138.0" styleClass="btn" stylesheets="@application.css" text="Salir" />
+            <JFXButton cancelButton="true" defaultButton="true" layoutX="203.0" layoutY="334.0" prefHeight="34.0" prefWidth="138.0" styleClass="btn" stylesheets="@application.css" text="Salir" />
          </children>
       </AnchorPane>
    </children>
