@@ -17,8 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.control.Accordion;
 import modelo.Mensaje;
 import modelo.Paciente;
 
@@ -55,6 +55,9 @@ public class ControladorPacienteMensajes implements Initializable{
 	@FXML
 	private TextArea campoEscritura;
 	
+	@FXML
+    private Accordion AccordionMensajesRec;
+	
 	
 	private static Paciente pacienteActual = new Paciente();
 	
@@ -62,10 +65,8 @@ public class ControladorPacienteMensajes implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 		Paciente p = ControladorPacientepp.getPacienteActual();
-
 		campoPaciente.setText("Hola " +p.getNombre()+",");
-		structMensajeEnv.setContent(new Text("De: " +(lectorJson.getMensajesEnviadosA(p.getDni()).get(0))));
-		structMensajeEnv.setExpanded(false);
+
 	}
 
 	@FXML
@@ -78,6 +79,7 @@ public class ControladorPacienteMensajes implements Initializable{
 		escritorJson.escribirEnJsonMensajes(mensajes);
 	}
 	
+    
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
