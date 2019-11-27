@@ -14,11 +14,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Accordion;
+import javafx.scene.text.Font;
 import modelo.Medico;
 import modelo.Mensaje;
 import modelo.Paciente;
@@ -59,6 +62,16 @@ public class ControladorPacienteMensajes implements Initializable{
 	@FXML
     private Accordion AccordionMensajesRec;
 	
+	@FXML
+    private Accordion AccordionMensajesEnv;
+	
+    @FXML
+    private AnchorPane anchorPaneRecibidos;
+
+    @FXML
+    private AnchorPane anchorPaneEnviados;
+
+		
 	
 	private static Paciente pacienteActual = new Paciente();
 	
@@ -82,6 +95,42 @@ public class ControladorPacienteMensajes implements Initializable{
 				tps.add(i, tp);
 			}
 			AccordionMensajesRec.getPanes().addAll(tps);
+			AccordionMensajesRec.setLayoutY(60);
+			AccordionMensajesRec.setLayoutX(5);
+			AccordionMensajesRec.setMinHeight(100);
+		}
+		else {
+			Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
+			emptyRec.setFont(new Font("Arial", 18));
+			emptyRec.setLayoutY(60);
+			emptyRec.setLayoutX(5);
+			anchorPaneRecibidos.getChildren().add(emptyRec);
+		}
+		if (numeroMensajesEnviados() != 0) {
+			
+			for (int i = 0; i < numeroMensajesEnviados(); i++) {
+				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(p.getDni());
+				Mensaje mensajeAct = mensajesEnv.get(i);
+				Medico medReceptor = lectorJson.getMedico(mensajeAct.getReceptor());
+				Label contenido = new Label(mensajeAct.getMensaje());
+				ScrollPane panelContenido = new ScrollPane(contenido);
+				panelContenido.setMinHeight(50);
+				contenido.boundsInParentProperty();
+				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre() , panelContenido) ;
+				tps.add(i, tp);
+			}
+			AccordionMensajesEnv.getPanes().addAll(tps);
+			AccordionMensajesEnv.setLayoutY(60);
+			AccordionMensajesEnv.setLayoutX(5);
+			AccordionMensajesEnv.setMinHeight(100);
+			
+		}
+		else {
+			Label emptyEnv = new Label("No hay mensajes enviados.");
+			emptyEnv.setFont(new Font("Arial", 18));
+			emptyEnv.setLayoutY(60);
+			emptyEnv.setLayoutX(5);
+			anchorPaneEnviados.getChildren().add(emptyEnv);
 		}
 	}
 
@@ -99,8 +148,6 @@ public class ControladorPacienteMensajes implements Initializable{
 		
 			ControladorAvisos.setMensajeError("Mensaje Enviado.");
 			abrirVentanaAvisos();
-			Stage  CerrarRegistro= (Stage) btnEnviar.getScene().getWindow();
-			CerrarRegistro.close();
 		}
 		catch(Exception a) {
 			ControladorAvisos.setMensajeError("Error enviando el mensaje.");
