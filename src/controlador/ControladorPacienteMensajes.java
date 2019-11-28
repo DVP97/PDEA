@@ -74,6 +74,8 @@ public class ControladorPacienteMensajes implements Initializable{
 		
 	
 	private static Paciente pacienteActual = new Paciente();
+
+	private boolean add;
 	
 	
 	@Override
@@ -102,7 +104,6 @@ public class ControladorPacienteMensajes implements Initializable{
 			AccordionMensajesRec.setMinHeight(100);
 		}
 		else {
-			//ESTO TP FUNCIONA
 			Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
 			emptyRec.setFont(new Font("Arial", 18));
 			emptyRec.setLayoutY(60);
@@ -110,6 +111,9 @@ public class ControladorPacienteMensajes implements Initializable{
 			
 
 			anchorPaneRecibidos.getChildren().add(emptyRec);
+			AnchorPane.setTopAnchor(emptyRec, Double.valueOf(40));
+			
+			
 		}
 		if (numeroMensajesEnviados() != 0) {
 			
@@ -137,6 +141,8 @@ public class ControladorPacienteMensajes implements Initializable{
 			emptyEnv.setLayoutY(60);
 			emptyEnv.setLayoutX(5);
 			anchorPaneEnviados.getChildren().add(emptyEnv);
+			
+			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
 		}
 	}
 
