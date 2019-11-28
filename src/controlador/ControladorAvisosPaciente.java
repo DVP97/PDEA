@@ -44,7 +44,9 @@ public class ControladorAvisosPaciente implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
     
-    	campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre() +",");
+    	Paciente p = ControladorPacientepp.getPacienteActual();
+		campoPaciente.setText("Hola " +p.getNombre()+",");
+		
     }
     
     @FXML

@@ -76,7 +76,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                <children>
-                  <JFXButton fx:id="btnAvisos" buttonType="RAISED" contentDisplay="TOP" layoutX="-40.0" prefHeight="194.0" prefWidth="167.0" styleClass="btn" stylesheets="@application.css" text="Avisos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-40.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <JFXButton fx:id="btnAvisos" buttonType="RAISED" contentDisplay="TOP" layoutX="-40.0" onAction="#pressBtnAvisos" prefHeight="194.0" prefWidth="167.0" styleClass="btn" stylesheets="@application.css" text="Avisos" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-40.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
