@@ -102,7 +102,7 @@
                   </TabPane>
                 <AnchorPane maxHeight="200.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <TextArea fx:id="campoEscritura" prefHeight="99.0" prefWidth="313.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="30.0" />
+                        <TextArea fx:id="campoEscritura" prefHeight="99.0" prefWidth="313.0" wrapText="true" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="30.0" />
                         <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redactar:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                            <font>
                               <Font size="20.0" />
