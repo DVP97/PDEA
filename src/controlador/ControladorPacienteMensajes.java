@@ -145,21 +145,28 @@ public class ControladorPacienteMensajes implements Initializable{
 
 	@FXML
 	void pressBtnEnviar(ActionEvent event) {
-		try {
-			Paciente p = ControladorPacientepp.getPacienteActual();
-			String medPac = p.getMedico();
-			Mensaje msg = new Mensaje(p.getDni(), medPac, campoEscritura.getText());
-			System.out.println("El mensaje ha sido creado");
-			ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
-			mensajes= lectorJson.lectorJsonMensajes();
-			mensajes.add(msg);
-			escritorJson.escribirEnJsonMensajes(mensajes);
-		
-			ControladorAvisos.setMensajeError("Mensaje Enviado.");
-			abrirVentanaAvisos();
+		if(campoEscritura.getLength()>0){
+			
+			try {
+				Paciente p = ControladorPacientepp.getPacienteActual();
+				String medPac = p.getMedico();
+				Mensaje msg = new Mensaje(p.getDni(), medPac, campoEscritura.getText());
+				System.out.println("El mensaje ha sido creado");
+				ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
+				mensajes= lectorJson.lectorJsonMensajes();
+				mensajes.add(msg);
+				escritorJson.escribirEnJsonMensajes(mensajes);
+			
+				ControladorAvisos.setMensajeError("Mensaje Enviado.");
+				abrirVentanaAvisos();
+			}
+			catch(Exception a) {
+				ControladorAvisos.setMensajeError("Error enviando el mensaje.");
+				abrirVentanaAvisos();
+			}
 		}
-		catch(Exception a) {
-			ControladorAvisos.setMensajeError("Error enviando el mensaje.");
+		else{
+			ControladorAvisos.setMensajeError("No ha introducido texto alguno en el mensaje que intenta enviar.");
 			abrirVentanaAvisos();
 		}
 	}
