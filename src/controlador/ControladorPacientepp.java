@@ -36,7 +36,7 @@ public class ControladorPacientepp implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
-    //add controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahi).
+    
     	campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre() +",");
 	}
     
@@ -52,8 +52,8 @@ public class ControladorPacientepp implements Initializable {
     		MensajeriaPaciente.setMinHeight(525);
     		MensajeriaPaciente.setMinWidth(620);
     		
-    		Stage CambioVentanaEjs = (Stage) btnEjercicios.getScene().getWindow();
-    		CambioVentanaEjs.close();
+    		Stage CambioVentanaMensajes = (Stage) btnMensajes.getScene().getWindow();
+    		CambioVentanaMensajes.close();
         	}
         	catch(ControladorExcepciones r){
         		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Mensajeria para Pacientes.");

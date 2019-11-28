@@ -159,6 +159,17 @@ public class ControladorPacienteMensajes implements Initializable{
 			
 				ControladorAvisos.setMensajeError("Mensaje Enviado.");
 				abrirVentanaAvisos();
+				
+					
+				Label contenido = new Label(msg.getMensaje());
+				ScrollPane panelContenido = new ScrollPane(contenido);
+				contenido.boundsInParentProperty();
+				Medico med = lectorJson.getMedico(medPac);
+				TitledPane tp = new TitledPane("Para: " + med.getNombre() , panelContenido) ;
+								
+
+				AccordionMensajesEnv.getPanes().add(tp);
+				
 			}
 			catch(Exception a) {
 				ControladorAvisos.setMensajeError("Error enviando el mensaje.");
