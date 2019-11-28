@@ -81,7 +81,9 @@ public class ControladorPacienteMensajes implements Initializable{
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
 		
-		ArrayList<TitledPane> tps = new ArrayList<TitledPane>();
+		ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
+		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
+
 		
 		if (numeroMensajesRecibidos() != 0) {
 		
@@ -92,18 +94,21 @@ public class ControladorPacienteMensajes implements Initializable{
 				Label contenido = new Label(mensajeAct.getMensaje());
 				TitledPane tp = new TitledPane("De: " + medEmisor.getNombre() , contenido) ;
 						
-				tps.add(i, tp);
+				tpsr.add(i, tp);
 			}
-			AccordionMensajesRec.getPanes().addAll(tps);
+			AccordionMensajesRec.getPanes().addAll(tpsr);
 			AccordionMensajesRec.setLayoutY(60);
 			AccordionMensajesRec.setLayoutX(5);
 			AccordionMensajesRec.setMinHeight(100);
 		}
 		else {
+			//ESTO TP FUNCIONA
 			Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
 			emptyRec.setFont(new Font("Arial", 18));
 			emptyRec.setLayoutY(60);
 			emptyRec.setLayoutX(5);
+			
+
 			anchorPaneRecibidos.getChildren().add(emptyRec);
 		}
 		if (numeroMensajesEnviados() != 0) {
@@ -116,10 +121,11 @@ public class ControladorPacienteMensajes implements Initializable{
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				panelContenido.setMinHeight(50);
 				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre() , panelContenido) ;
-				tps.add(i, tp);
+				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre() , contenido) ;
+				tpse.add(i, tp);
 			}
-			AccordionMensajesEnv.getPanes().addAll(tps);
+			//PETA AQUI
+			AccordionMensajesEnv.getPanes().addAll(tpse);
 			AccordionMensajesEnv.setLayoutY(60);
 			AccordionMensajesEnv.setLayoutX(5);
 			AccordionMensajesEnv.setMinHeight(100);

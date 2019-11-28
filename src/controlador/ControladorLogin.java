@@ -5,15 +5,11 @@ import java.math.BigInteger;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
 import javafx.stage.Stage;
-import modelo.Cuidador;
-import modelo.Medico;
-import modelo.Paciente;
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -271,46 +267,30 @@ public class ControladorLogin implements Initializable{
 
 	// funciones para comprobar el tipo de usuario
 	public boolean esPaciente() {
-		ArrayList<Paciente> pacientes= lectorJson.lectorJsonPacientes();
-		for (int i=0; i< pacientes.size(); i++) {
-			Paciente p = pacientes.get(i);
-			String passwordPaciente = p.getContrasena();
-			String passwordEncriptada = getMd5(txtInputPassword.getText());
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && passwordPaciente.equals(passwordEncriptada) ) {
-				return true;
-			}
+		if(lectorJson.getPaciente(txtInputUsuario.getText().toUpperCase()) == null) {
+			return false;
+		}else {
+			return true;
 		}
-		return false;	
 	}
 	
 
 	public boolean esCuidador() {
-		ArrayList<Cuidador> cuidadores= lectorJson.lectorJsonCuidadores();
 
-		for (int i=0; i< cuidadores.size(); i++) {
-			Cuidador p = cuidadores.get(i);
-			String passwordCuidador = p.getContrasena();
-			String passwordEncriptada = getMd5(txtInputPassword.getText());
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && passwordCuidador.equals(passwordEncriptada) ){
-				return true;
-			}
+		if(lectorJson.getCuidador(txtInputUsuario.getText().toUpperCase()) == null) {
+			return false;
+		}else {
+			return true;
 		}
-		return false;	
 	}
 	
 	
 	public boolean esMedico() {
-		ArrayList<Medico> medicos= lectorJson.lectorJsonMedicos();
-
-		for (int i=0; i< medicos.size(); i++) {
-			Medico p = medicos.get(i);
-			String passwordMedico = p.getContrasena();
-			String passwordEncriptada = getMd5(txtInputPassword.getText());
-			if(p.getDni().equalsIgnoreCase(txtInputUsuario.getText()) && passwordMedico.equals(passwordEncriptada) ){
-				return true;
-			}
+		if(lectorJson.getMedico(txtInputUsuario.getText().toUpperCase()) == null) {
+			return false;
+		}else {
+			return true;
 		}
-		return false;	
 	}
 	
 
