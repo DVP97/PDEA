@@ -31,7 +31,7 @@ public class ControladorAvisosPaciente implements Initializable{
     private Label campoProximaCita;
     
     @FXML
-    private Label campoMensajeEjercicios;
+    private Label campoEjercicios;
     
     @FXML
     private JFXButton btnVolver;
@@ -43,7 +43,7 @@ public class ControladorAvisosPaciente implements Initializable{
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
-    //add controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahi).
+    
     	campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre() +",");
     }
     
