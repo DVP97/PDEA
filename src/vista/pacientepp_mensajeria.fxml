@@ -68,39 +68,39 @@
          <children>
             <SplitPane dividerPositions="0.5" layoutX="8.0" layoutY="27.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="388.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
-                  <TabPane>
+                  <TabPane minHeight="150.0">
                      <tabs>
                         <Tab fx:id="tabRecibidos" closable="false" text="Recibidos">
                            <content>
-                              <AnchorPane fx:id="anchorPaneRecibidos" minHeight="0.0" minWidth="0.0" prefHeight="148.0" prefWidth="422.0">
+                              <AnchorPane fx:id="anchorPaneRecibidos">
                                  <children>
                                     <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recibidos:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Text>
-                                    <Accordion fx:id="AccordionMensajesRec" maxWidth="100.0" prefWidth="900.0" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
+                                    <Accordion fx:id="AccordionMensajesRec" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
                                  </children>
                               </AnchorPane>
                            </content>
                         </Tab>
                         <Tab fx:id="tabEnviados" closable="false" text="Enviados">
                            <content>
-                              <AnchorPane fx:id="anchorPaneEnviados" minHeight="0.0" minWidth="0.0" prefHeight="148.0" prefWidth="422.0">
+                              <AnchorPane fx:id="anchorPaneEnviados">
                                  <children>
                                     <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enviados:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Text>
-                                    <Accordion fx:id="AccordionMensajesEnv" maxHeight="1000.0" maxWidth="100.0" prefWidth="900.0" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
+                                    <Accordion fx:id="AccordionMensajesEnv" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
                                  </children>
                               </AnchorPane>
                            </content>
                         </Tab>
                      </tabs>
                   </TabPane>
-                <AnchorPane maxHeight="300.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane maxHeight="200.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
                         <TextArea fx:id="campoEscritura" prefHeight="99.0" prefWidth="313.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="30.0" />
                         <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redactar:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">

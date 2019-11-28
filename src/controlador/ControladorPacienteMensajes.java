@@ -93,7 +93,6 @@ public class ControladorPacienteMensajes implements Initializable{
 				Medico medEmisor = lectorJson.getMedico(mensajeAct.getEmisor());
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
-				panelContenido.setMinHeight(100);
 				contenido.boundsInParentProperty();
 				TitledPane tp = new TitledPane("De: " + medEmisor.getNombre() , panelContenido) ;
 						
@@ -101,9 +100,7 @@ public class ControladorPacienteMensajes implements Initializable{
 			}
 			AccordionMensajesRec.setLayoutY(60);
 			AccordionMensajesRec.setLayoutX(5);
-			AccordionMensajesRec.setMinHeight(100);
 			AccordionMensajesRec.getPanes().addAll(tpsr);
-			
 			AnchorPane.setTopAnchor(AccordionMensajesRec, Double.valueOf(30));
 		}
 		else {
@@ -111,8 +108,6 @@ public class ControladorPacienteMensajes implements Initializable{
 			emptyRec.setFont(new Font("Arial", 18));
 			emptyRec.setLayoutY(60);
 			emptyRec.setLayoutX(5);
-			
-
 			anchorPaneRecibidos.getChildren().add(emptyRec);
 			AnchorPane.setTopAnchor(emptyRec, Double.valueOf(40));
 			
@@ -126,19 +121,15 @@ public class ControladorPacienteMensajes implements Initializable{
 				Medico medReceptor = lectorJson.getMedico(mensajeAct.getReceptor());
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
-				panelContenido.setMinHeight(50);
 				contenido.boundsInParentProperty();
 				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre() , panelContenido) ;
 				tpse.add(i, tp);
 			}
 			
-			AccordionMensajesEnv.getPanes().addAll(tpse);
+			
 			AccordionMensajesEnv.setLayoutY(60);
 			AccordionMensajesEnv.setLayoutX(5);
-			AccordionMensajesEnv.setMinHeight(100);
-			
-			AccordionMensajesEnv.getPanes().addAll(tpsr);
-			
+			AccordionMensajesEnv.getPanes().addAll(tpse);
 			AnchorPane.setTopAnchor(AccordionMensajesEnv, Double.valueOf(30));
 		}
 		else {
