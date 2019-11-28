@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -73,60 +72,28 @@
                      <tabs>
                         <Tab fx:id="tabRecibidos" closable="false" text="Recibidos">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="148.0" prefWidth="422.0">
+                              <AnchorPane fx:id="anchorPaneRecibidos" minHeight="0.0" minWidth="0.0" prefHeight="148.0" prefWidth="422.0">
                                  <children>
                                     <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recibidos:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Text>
-                                    <TitledPane fx:id="structMensajeRecib" animated="false" text="De: &lt;Nombre_Usuario&gt; " AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="30.0">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="200.0">
-                                             <children>
-                                                <ScrollPane layoutX="-63.0" layoutY="-86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <content>
-                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="282.0">
-                                                         <children>
-                                                            <Label fx:id="textoMensajeRecib" alignment="TOP_LEFT" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                                                         </children>
-                                                      </AnchorPane>
-                                                   </content>
-                                                </ScrollPane>
-                                             </children>
-                                          </AnchorPane>
-                                       </content>
-                                    </TitledPane>
+                                    <Accordion fx:id="AccordionMensajesRec" maxWidth="100.0" prefWidth="900.0" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
                                  </children>
                               </AnchorPane>
                            </content>
                         </Tab>
                         <Tab fx:id="tabEnviados" closable="false" text="Enviados">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="148.0" prefWidth="422.0">
+                              <AnchorPane fx:id="anchorPaneEnviados" minHeight="0.0" minWidth="0.0" prefHeight="148.0" prefWidth="422.0">
                                  <children>
                                     <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enviados:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                                        <font>
                                           <Font size="20.0" />
                                        </font>
                                     </Text>
-                                    <TitledPane fx:id="structMensajeEnv" animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="30.0">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="120.0" prefWidth="200.0">
-                                             <children>
-                                                <ScrollPane layoutX="-63.0" layoutY="-86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <content>
-                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="282.0">
-                                                         <children>
-                                                            <Label fx:id="textoMensajeEnv" alignment="TOP_LEFT" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                                                         </children>
-                                                      </AnchorPane>
-                                                   </content>
-                                                </ScrollPane>
-                                             </children>
-                                          </AnchorPane>
-                                       </content>
-                                    </TitledPane>
+                                    <Accordion fx:id="AccordionMensajesEnv" maxHeight="1000.0" maxWidth="100.0" prefWidth="900.0" AnchorPane.bottomAnchor="111.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
                                  </children>
                               </AnchorPane>
                            </content>
