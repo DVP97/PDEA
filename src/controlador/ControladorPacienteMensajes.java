@@ -74,8 +74,6 @@ public class ControladorPacienteMensajes implements Initializable{
 		
 	
 	private static Paciente pacienteActual = new Paciente();
-
-	private boolean add;
 	
 	
 	@Override
@@ -94,14 +92,19 @@ public class ControladorPacienteMensajes implements Initializable{
 				Mensaje mensajeAct = mensajesRec.get(i);
 				Medico medEmisor = lectorJson.getMedico(mensajeAct.getEmisor());
 				Label contenido = new Label(mensajeAct.getMensaje());
-				TitledPane tp = new TitledPane("De: " + medEmisor.getNombre() , contenido) ;
+				ScrollPane panelContenido = new ScrollPane(contenido);
+				panelContenido.setMinHeight(100);
+				contenido.boundsInParentProperty();
+				TitledPane tp = new TitledPane("De: " + medEmisor.getNombre() , panelContenido) ;
 						
 				tpsr.add(i, tp);
 			}
-			AccordionMensajesRec.getPanes().addAll(tpsr);
 			AccordionMensajesRec.setLayoutY(60);
 			AccordionMensajesRec.setLayoutX(5);
 			AccordionMensajesRec.setMinHeight(100);
+			AccordionMensajesRec.getPanes().addAll(tpsr);
+			
+			AnchorPane.setTopAnchor(AccordionMensajesRec, Double.valueOf(30));
 		}
 		else {
 			Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
@@ -125,15 +128,18 @@ public class ControladorPacienteMensajes implements Initializable{
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				panelContenido.setMinHeight(50);
 				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre() , contenido) ;
+				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre() , panelContenido) ;
 				tpse.add(i, tp);
 			}
-			//PETA AQUI
+			
 			AccordionMensajesEnv.getPanes().addAll(tpse);
 			AccordionMensajesEnv.setLayoutY(60);
 			AccordionMensajesEnv.setLayoutX(5);
 			AccordionMensajesEnv.setMinHeight(100);
 			
+			AccordionMensajesEnv.getPanes().addAll(tpsr);
+			
+			AnchorPane.setTopAnchor(AccordionMensajesEnv, Double.valueOf(30));
 		}
 		else {
 			Label emptyEnv = new Label("No hay mensajes enviados.");
