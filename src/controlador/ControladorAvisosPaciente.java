@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.Paciente;
@@ -39,11 +41,10 @@ public class ControladorAvisosPaciente implements Initializable{
     
     private static Paciente pacienteActual = new Paciente();
     
+    @Override
     public void initialize(URL location, ResourceBundle reosurces) {
-		Paciente p = ControladorPacientepp.getPacienteActual();
-
-		campoPaciente.setText("Hola " +p.getNombre()+",");
-		campoProximaCita.setText("");
+    //add controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahi).
+    	campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre() +",");
     }
     
     @FXML

@@ -61,24 +61,24 @@ public class ControladorPacientepp implements Initializable {
         	}
     }
     
-    @FXML  
+    @FXML
     void pressBtnAvisos(ActionEvent event) throws IOException {
     	try {
     		System.out.println("Cargando ventana de Avisos...");
-    		Parent VentanaAvisos = FXMLLoader.load(getClass().getResource("/vista/pacientepp_avisos.fxml"));
+    		Parent Avisos = FXMLLoader.load(getClass().getResource("/vista/pacientepp_avisos.fxml"));
     		Stage AvisosPaciente = new Stage();
     		AvisosPaciente.setTitle("Avisos Paciente");
-    		AvisosPaciente.setScene(new Scene(VentanaAvisos));
+    		AvisosPaciente.setScene(new Scene(Avisos));
     		AvisosPaciente.show();
     		AvisosPaciente.setMinHeight(525);
     		AvisosPaciente.setMinWidth(620);
     		
-    	}catch (ControladorExcepciones r) {
+    	}
+    	catch (ControladorExcepciones r) {
     		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Avisos para Pacientes.");
     		r.abrirVentanaAvisos();
     	}
-    	
-    }
+    	}
     
   //Getters y Setters
     public static Paciente getPacienteActual() {
