@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.control.Accordion?>
@@ -16,7 +17,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,13 +24,15 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorMedicopp">
    <children>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="597.0" prefWidth="728.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="campoMedico" layoutX="14.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio," AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <Label fx:id="campoMedico" layoutX="14.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="..." AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -145,62 +147,11 @@
                                           <Label layoutX="14.0" layoutY="33.0" text="Recibidos:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
                                           <ScrollPane layoutX="14.0" layoutY="66.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="35.0">
                                              <content>
-                                                <Accordion>
-                                                  <panes>
-                                                    <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
-                                                      <content>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <ScrollPane layoutX="-63.0" layoutY="-86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                    <content>
-                                                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                                                    </content>
-                                                                  </ScrollPane>
-                                                               </children>
-                                                            </AnchorPane>
-                                                      </content>
-                                                    </TitledPane>
-                                                    <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
-                                                      <content>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                     <content>
-                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                                                     </content>
-                                                                  </ScrollPane>
-                                                               </children>
-                                                            </AnchorPane>
-                                                      </content>
-                                                    </TitledPane>
-                                                    <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
-                                                      <content>
-                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                     <content>
-                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                                                     </content>
-                                                                  </ScrollPane>
-                                                               </children>
-                                                            </AnchorPane>
-                                                      </content>
-                                                    </TitledPane>
-                                                      <TitledPane animated="false" text="De: &lt;Nombre_Usuario&gt; | Asunto: &lt;Asunto_Mensaje&gt;">
-                                                         <content>
-                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                               <children>
-                                                                  <ScrollPane layoutX="-63.0" layoutY="-86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                                     <content>
-                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                                                     </content>
-                                                                  </ScrollPane>
-                                                               </children>
-                                                            </AnchorPane>
-                                                         </content>
-                                                      </TitledPane>
-                                                  </panes>
-                                                </Accordion>
+                                                <AnchorPane fx:id="anchorPaneRecibidos">
+                                                   <children>
+                                                      <Accordion fx:id="AccordionMensajesRec" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
+                                                   </children>
+                                                </AnchorPane>
                                              </content>
                                           </ScrollPane>
                                        </children>
@@ -208,8 +159,18 @@
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
                                           <Label layoutX="14.0" layoutY="14.0" text="Redactar:" />
-                                          <TextArea layoutX="14.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="40.0" />
-                                          <Button layoutX="86.0" layoutY="192.0" mnemonicParsing="false" text="Confirmar envío" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="14.0" />
+                                          <TextArea fx:id="campoRedactar" layoutX="14.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="40.0" />
+                                          <JFXButton fx:id="btnConfirmarEnvio" buttonType="RAISED" onAction="#pressBtnConfirmarEnvio" styleClass="btn" stylesheets="@application.css" text="Confirmar Envío" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="14.0">
+                                             <ripplerFill>
+                                                <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                                   <stops>
+                                                      <Stop color="#81f1c1" />
+                                                      <Stop color="#81f1c1" offset="0.007662835249042145" />
+                                                      <Stop color="#5d5d52" offset="1.0" />
+                                                   </stops>
+                                                </RadialGradient>
+                                             </ripplerFill>
+                                          </JFXButton>
                                           <GridPane layoutX="14.0" layoutY="133.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="130.0">
                                             <columnConstraints>
                                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -220,7 +181,7 @@
                                             </rowConstraints>
                                              <children>
                                                 <Label text="Enviar mensaje a:" />
-                                                <JFXComboBox prefHeight="25.0" prefWidth="104.0" GridPane.columnIndex="1" />
+                                                <JFXComboBox fx:id="comboBoxElegirDestinatario" prefHeight="25.0" prefWidth="104.0" GridPane.columnIndex="1" />
                                              </children>
                                           </GridPane>
                                        </children>
