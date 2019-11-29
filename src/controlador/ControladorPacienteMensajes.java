@@ -169,6 +169,7 @@ public class ControladorPacienteMensajes implements Initializable{
 								
 
 				AccordionMensajesEnv.getPanes().add(tp);
+				campoEscritura.clear();
 				
 			}
 			catch(Exception a) {
