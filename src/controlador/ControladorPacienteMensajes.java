@@ -85,7 +85,7 @@ public class ControladorPacienteMensajes implements Initializable{
 		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
 
 		
-		if (numeroMensajesRecibidos() != 0) {
+		if (numeroMensajesRecibidos() > 0) {
 		
 			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
 				ArrayList<Mensaje> mensajesRec  = lectorJson.getMensajesEnviadosA(p.getDni());
@@ -113,7 +113,7 @@ public class ControladorPacienteMensajes implements Initializable{
 			
 			
 		}
-		if (numeroMensajesEnviados() != 0) {
+		if (numeroMensajesEnviados() > 0) {
 			
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
 				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(p.getDni());
