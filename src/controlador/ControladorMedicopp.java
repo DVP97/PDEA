@@ -65,6 +65,12 @@ public class ControladorMedicopp implements Initializable {
 
     @FXML
     private Accordion AccordionMensajesRec;
+    
+    @FXML
+    private AnchorPane anchorPaneEnviados;
+    
+    @FXML
+    private Accordion AccordionMensajesEnv;
 
     @FXML
     private TextArea campoRedactar;
@@ -81,7 +87,7 @@ public class ControladorMedicopp implements Initializable {
    
     //Metodos
     
-    //adaptar el código para poder filtrar mensajes por usuario? o solo enviar a pacientes?
+    //adaptar el codigo para poder filtrar mensajes por usuarios?
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
@@ -121,7 +127,6 @@ public class ControladorMedicopp implements Initializable {
 			AnchorPane.setTopAnchor(emptyRec, Double.valueOf(40));
     	}
     	/*
-    	//falta por diseñar la pestaña de mensajes enviados
     	
     	if (numeroMensajesEnviados() > 0) {
 			//identificar primero tipo de usuario
@@ -181,34 +186,7 @@ public class ControladorMedicopp implements Initializable {
 	
 				AccordionMensajesEnv.getPanes().add(tp);
 				*/
-    			/*
-    			if(esPaciente()) {
-    				 
-    			}
-    			if(esCuidador()) {
-    				String pac = ControladorPacientepp.getPacienteActual().getDni();
-    				Mensaje msg = new Mensaje(getMedicoActual().getDni(), pac, campoRedactar.getText());
-    				ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
-    				mensajes= lectorJson.lectorJsonMensajes();
-    				mensajes.add(msg);
-    				escritorJson.escribirEnJsonMensajes(mensajes);
     			
-    			/*
-    			//adaptar codigo para agregar mensaje enviado a la bandeja de Enviados
-
-    			Medico m = ControladorMedicopp.getMedicoActual();
-    			
-    			Label contenido = new Label(msg.getMensaje());
-				ScrollPane panelContenido = new ScrollPane(contenido);
-				contenido.boundsInParentProperty();
-				Medico med = lectorJson.getMedico(medPac);
-				TitledPane tp = new TitledPane("Para: " + med.getNombre() , panelContenido) ;
-								
-
-				AccordionMensajesEnv.getPanes().add(tp);
-    			 
-    			}
-				*/
     			ControladorAvisos.setMensajeError("Mensaje Enviado.");
 				abrirVentanaAvisos();
 				
@@ -252,26 +230,7 @@ public class ControladorMedicopp implements Initializable {
 		Medico m = ControladorMedicopp.getMedicoActual();
 		return lectorJson.getMensajesEnviadosPor(m.getDni()).size();
 	}
-	//funciones para identificar usuario al que se manda el mensaje
-	//los datos se leen desde el buscador/comboBox de la pestaña mensajes
-	/*
-	public boolean esPaciente() {
-		if(lectorJson.getPaciente(txtInputUsuario.getText().toUpperCase()) == null) {
-			return false;
-		}else {
-			return true;
-		}
-	}
-	
 
-	public boolean esCuidador() {
-		if(lectorJson.getCuidador(txtInputUsuario.getText().toUpperCase()) == null) {
-			return false;
-		}else {
-			return true;
-		}
-	}
-	*/
     //Getters y Setters
 	public static Medico getMedicoActual() {
 		return medicoActual;
