@@ -21,6 +21,7 @@
  	-fx-text-fill: #ffffff;
  	-fx-font-weight: bold;
 	-fx-background-radius: 10px;
+	-fx-font: 125% sans-serif;
 }
 .textoCronometro{
 	-fx-text-fill: #ffffff;
