@@ -9,6 +9,7 @@ import modelo.Cuidador;
 import modelo.Medico;
 import modelo.Mensaje;
 import modelo.Paciente;
+import modelo.Ejercicio;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -70,6 +71,18 @@ public class lectorJson {
 		return mensajes;
 	}
 	
+	public static ArrayList<Ejercicio> lectorJsonEjercicios() {
+		ArrayList<Ejercicio> ejercicios = new ArrayList<Ejercicio>();
+		try {
+			FileReader fr = new FileReader("ejercicios.json");
+			Gson gson= new Gson();
+			Type tipoListaEjercicios = new TypeToken<ArrayList<Ejercicio>>(){}.getType();
+			ejercicios = gson.fromJson(fr, tipoListaEjercicios);
+		}catch (Exception e) {
+			System.out.println("Fallo en: " +e);
+		}
+		return ejercicios;
+	}
 	
 	//METODOS
 	public static Paciente getPaciente (String dni) {
@@ -139,5 +152,25 @@ public class lectorJson {
 		}
 		return mensajesRecibidos;
 	}
+	
+	public static ArrayList<Ejercicio> getEjercicios (Paciente p) {
+		//Array ids de los ejercicios de paciente
+		ArrayList<Integer> idsEjercicios = p.getEjercicios();
+		//Array donde estan ejercicios
+		ArrayList<Ejercicio> pac = lectorJsonEjercicios();
+		ArrayList<Ejercicio> ejerciciosDePaciente = new ArrayList<Ejercicio>();
+		for (int i = 0; i < idsEjercicios.size(); i++) {
+			for(int a=0; a< pac.size();a++) {
+				if (idsEjercicios.get(i).equals(pac.get(a).getId())){
+					ejerciciosDePaciente.add(pac.get(a));
+				}
+			}
+		  
+				   
+			
+		}
+	 return ejerciciosDePaciente;	
+	}
+	
 	
 }

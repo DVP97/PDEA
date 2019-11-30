@@ -34,7 +34,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <JFXButton fx:id="btnEjercicios" buttonType="RAISED" contentDisplay="TOP" layoutX="-1.0" layoutY="7.0" prefHeight="194.0" prefWidth="167.0" styleClass="btn" stylesheets="@application.css" text="Ejercicios" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-40.0" AnchorPane.topAnchor="0.0">
+                  <JFXButton fx:id="btnEjercicios" buttonType="RAISED" contentDisplay="TOP" layoutX="-1.0" layoutY="7.0" onAction="#pressBtnEjercicios" prefHeight="194.0" prefWidth="167.0" styleClass="btn" stylesheets="@application.css" text="Ejercicios" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-40.0" AnchorPane.topAnchor="0.0">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>

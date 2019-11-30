@@ -8,7 +8,7 @@
   {
     "id": 2,
     "nombre": "Paso tocado ",
-    "duracion": 20,
+    "duracion": 20, 
     "gif": "modelo/Basic-Step-Touch.gif"
   },
   {

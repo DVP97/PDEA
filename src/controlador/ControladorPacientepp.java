@@ -79,6 +79,27 @@ public class ControladorPacientepp implements Initializable {
     		r.abrirVentanaAvisos();
     	}
     	}
+    @FXML
+    void  pressBtnEjercicios (ActionEvent event) throws IOException {
+    	try {
+        	System.out.println("Cargando ventana de Ejercicios...");
+    		Parent Ejercicios = FXMLLoader.load(getClass().getResource("/vista/pacientepp_ejercicios.fxml"));
+    		Stage EjerciciosPaciente = new Stage();
+    		EjerciciosPaciente.setTitle("Ejercicios Paciente");
+    		EjerciciosPaciente.setScene(new Scene(Ejercicios));
+    		EjerciciosPaciente.show();
+    		EjerciciosPaciente.setMinHeight(425);
+    		EjerciciosPaciente.setMinWidth(520);
+    		
+			
+    		Stage CambioVentanaEjs = (Stage) btnEjercicios.getScene().getWindow();
+    		CambioVentanaEjs.close();
+        	}
+        	catch(ControladorExcepciones r){
+        		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Ejercicios para Pacientes.");
+        		r.abrirVentanaAvisos();
+        	}
+    }
     
   //Getters y Setters
     public static Paciente getPacienteActual() {
