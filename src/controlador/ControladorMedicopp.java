@@ -137,7 +137,9 @@ public class ControladorMedicopp implements Initializable {
 				Paciente pacienteReceptor = lectorJson.getPaciente(mensajeAct.getReceptor());
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
+				contenido.minHeight(60);
 				contenido.boundsInParentProperty();
+				contenido.wrapTextProperty();
 				TitledPane tp = new TitledPane("Para: " + pacienteReceptor.getNombre() + " " +pacienteReceptor.getApellidos() , panelContenido) ;
 				tpse.add(i, tp);
 			}
