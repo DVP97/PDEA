@@ -43,7 +43,7 @@
                </image>
             </ImageView>
             <Label layoutX="669.0" layoutY="557.0" styleClass="smallLabel" stylesheets="@application.css" text="Médico" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-            <JFXTabPane AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+            <JFXTabPane stylesheets="@application.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
                <tabs>
                   <Tab closable="false" text="Pacientes">
                      <content>
@@ -122,7 +122,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView layoutX="14.0" layoutY="24.0" prefHeight="369.0" prefWidth="690.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="24.0">
+                              <TableView layoutX="34.0" layoutY="14.0" prefHeight="369.0" prefWidth="690.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="14.0">
                                  <columns>
                                     <TableColumn prefWidth="194.0" text="Paciente" />
                                     <TableColumn prefWidth="250.0" text="Sensor" />
@@ -134,13 +134,13 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Mensajes">
+                  <Tab closable="false" text="Mensajes">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <JFXTabPane rotateGraphic="true" side="LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <JFXTabPane fx:id="JFXTabPaneMensajeria" rotateGraphic="true" side="LEFT" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                                  <tabs>
-                                    <Tab text="Bandeja de Entrada">
+                                    <Tab>
                                       <content>
                                         <AnchorPane>
                                              <children>
@@ -156,12 +156,15 @@
                                              </children>
                                           </AnchorPane>
                                       </content>
+                                       <graphic>
+                                          <Label fx:id="labelBandejaEntrada" styleClass="btn" stylesheets="@application.css" text="Recibidos" textAlignment="CENTER" wrapText="true" />
+                                       </graphic>
                                     </Tab>
-                                    <Tab text="Bandeja de Salida">
+                                    <Tab>
                                       <content>
                                         <AnchorPane prefWidth="675.0">
                                              <children>
-                                                <ScrollPane prefHeight="461.0" prefWidth="669.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-40.0" AnchorPane.topAnchor="0.0">
+                                                <ScrollPane prefHeight="461.0" prefWidth="669.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-60.0" AnchorPane.topAnchor="0.0">
                                                    <content>
                                                       <AnchorPane fx:id="anchorPaneEnviados">
                                                          <children>
@@ -173,10 +176,13 @@
                                              </children>
                                           </AnchorPane>
                                       </content>
+                                       <graphic>
+                                          <Label fx:id="labelBandejaSalida" styleClass="btn" stylesheets="@application.css" text="Enviados" textAlignment="CENTER" wrapText="true" />
+                                       </graphic>
                                     </Tab>
-                                    <Tab text="Redactar">
+                                    <Tab>
                                        <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                          <AnchorPane maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="691.0">
                                              <children>
                                                 <Label layoutX="14.0" layoutY="14.0" text="Redactar:" />
                                                 <TextArea fx:id="campoRedactar" layoutX="14.0" layoutY="31.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="40.0" />
@@ -207,6 +213,9 @@
                                              </children>
                                           </AnchorPane>
                                        </content>
+                                       <graphic>
+                                          <Label fx:id="labelRedactar" styleClass="btn" stylesheets="@application.css" text="Redactar" textAlignment="CENTER" wrapText="true" />
+                                       </graphic>
                                     </Tab>
                                  </tabs>
                               </JFXTabPane>

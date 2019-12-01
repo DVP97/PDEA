@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -22,6 +21,7 @@ import modelo.Mensaje;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTabPane;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -39,6 +39,15 @@ public class ControladorMedicopp implements Initializable {
     @FXML
     private Label campoMedico;
 
+    @FXML
+    private Label labelRedactar;
+    
+    @FXML
+    private Label labelBandejaEntrada;
+    
+    @FXML
+    private Label labelBandejaSalida;
+    
     @FXML
     private TextField campoBusqueda;
 
@@ -79,7 +88,11 @@ public class ControladorMedicopp implements Initializable {
     private JFXButton btnConfirmarEnvio;
 
     @FXML
+    private JFXTabPane JFXTabPaneMensajeria;
+    
+    @FXML
     private JFXComboBox<String> comboBoxElegirDestinatario;
+
 
     private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(getNombrePacientes());
     
@@ -91,7 +104,11 @@ public class ControladorMedicopp implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
-    	
+        JFXTabPaneMensajeria.setTabMinWidth(100);
+        JFXTabPaneMensajeria.setTabMinHeight(100);
+    	labelRedactar.setRotate(90);
+    	labelBandejaEntrada.setRotate(90);
+    	labelBandejaSalida.setRotate(90);
     	comboBoxElegirDestinatario.setItems(listaPacientesComboBox);
     	
     	Medico m = ControladorMedicopp.getMedicoActual();
