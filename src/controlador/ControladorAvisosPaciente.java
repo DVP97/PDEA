@@ -29,9 +29,7 @@ public class ControladorAvisosPaciente implements Initializable{
 
     @FXML
     private Label campoProximaCita;
-    
-    @FXML
-    private Label campoEjercicios;
+   
     
     @FXML
     private JFXButton btnVolver;
@@ -40,7 +38,7 @@ public class ControladorAvisosPaciente implements Initializable{
     private Label campoPaciente;
     
     @FXML
-    private Label campoCita;
+    private Label campoEjercicios;
     
     private static Paciente pacienteActual = new Paciente();
     
@@ -49,7 +47,7 @@ public class ControladorAvisosPaciente implements Initializable{
     
     	Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
-		//campoCita.setText("")
+		//campoEjercicios.setText("Hacer del 1 al 3");
 		
     }
     
