@@ -3,6 +3,7 @@ package controlador;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -243,8 +244,7 @@ public class ControladorMedicopp implements Initializable {
     @FXML
     void pressBtnResponder(ActionEvent event) {
     	
-    	
-    	
+    	JFXTabPaneMensajeria.getSelectionModel().select(2);    	
     }
 
     
@@ -311,6 +311,5 @@ public class ControladorMedicopp implements Initializable {
 		}
 		return null;
 	}
-	
 	
 }

@@ -43,7 +43,7 @@
                </image>
             </ImageView>
             <Label layoutX="669.0" layoutY="557.0" styleClass="smallLabel" stylesheets="@application.css" text="Médico" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-            <JFXTabPane stylesheets="@application.css" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+            <JFXTabPane layoutY="57.0" stylesheets="@application.css" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
                <tabs>
                   <Tab closable="false" text="Pacientes">
                      <content>
@@ -149,7 +149,15 @@
                                                       <AnchorPane fx:id="anchorPaneRecibidos" prefHeight="160.0" prefWidth="600.0">
                                                          <children>
                                                             <Accordion fx:id="AccordionMensajesRec" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
-                                                            <JFXButton fx:id="btnResponder" buttonType="RAISED" layoutX="531.0" layoutY="119.0" onAction="#pressBtnResponder" styleClass="btn" stylesheets="@application.css" text="Responder" />
+                                                            <JFXButton fx:id="btnResponder" buttonType="RAISED" layoutX="531.0" layoutY="119.0" onAction="#pressBtnResponder" styleClass="btn" stylesheets="@application.css" text="Responder">
+                                                               <ripplerFill>
+                                                                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                                                     <stops>
+                                                                        <Stop color="#81f1c1" />
+                                                                        <Stop color="#5d5d52" offset="1.0" />
+                                                                     </stops>
+                                                                  </RadialGradient>
+                                                               </ripplerFill></JFXButton>
                                                          </children>
                                                       </AnchorPane>
                                                    </content>
@@ -192,7 +200,6 @@
                                                       <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                                          <stops>
                                                             <Stop color="#81f1c1" />
-                                                            <Stop color="#81f1c1" offset="0.007662835249042145" />
                                                             <Stop color="#5d5d52" offset="1.0" />
                                                          </stops>
                                                       </RadialGradient>
