@@ -94,7 +94,7 @@ public class ControladorPacienteMensajes implements Initializable{
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("De: " + medEmisor.getNombre() , panelContenido) ;
+				TitledPane tp = new TitledPane("De: " + medEmisor.getNombre() + medEmisor.getApellidos() , panelContenido) ;
 						
 				tpsr.add(i, tp);
 			}
@@ -122,7 +122,7 @@ public class ControladorPacienteMensajes implements Initializable{
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre() , panelContenido) ;
+				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre()+ " "+ medReceptor.getApellidos(), panelContenido) ;
 				tpse.add(i, tp);
 			}
 			
@@ -165,7 +165,7 @@ public class ControladorPacienteMensajes implements Initializable{
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
 				Medico med = lectorJson.getMedico(medPac);
-				TitledPane tp = new TitledPane("Para: " + med.getNombre() , panelContenido) ;
+				TitledPane tp = new TitledPane("Para: " + med.getNombre() +" "+ med.getApellidos(), panelContenido) ;
 								
 
 				AccordionMensajesEnv.getPanes().add(tp);
