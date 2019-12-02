@@ -168,7 +168,7 @@ public class ControladorLogin implements Initializable{
 						Medicopp.setScene(new Scene(MedicoVentana));
 						Medicopp.show();
 						Medicopp.setMinHeight(600);
-						Medicopp.setMinWidth(740);
+						Medicopp.setMinWidth(800);
 						
 						System.out.println("Cerrando ventana de Login.");
 						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();

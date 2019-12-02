@@ -136,55 +136,48 @@
                   </Tab>
                   <Tab closable="false" text="Mensajes">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <AnchorPane prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <JFXTabPane fx:id="JFXTabPaneMensajeria" rotateGraphic="true" side="LEFT" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                                  <tabs>
-                                    <Tab>
-                                      <content>
-                                        <AnchorPane>
-                                             <children>
-                                                <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-40.0" AnchorPane.topAnchor="0.0">
-                                                   <content>
-                                                      <AnchorPane fx:id="anchorPaneRecibidos" prefHeight="160.0" prefWidth="600.0">
-                                                         <children>
-                                                            <Accordion fx:id="AccordionMensajesRec" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
-                                                            <JFXButton fx:id="btnResponder" buttonType="RAISED" layoutX="531.0" layoutY="119.0" onAction="#pressBtnResponder" styleClass="btn" stylesheets="@application.css" text="Responder">
-                                                               <ripplerFill>
-                                                                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                                                                     <stops>
-                                                                        <Stop color="#81f1c1" />
-                                                                        <Stop color="#5d5d52" offset="1.0" />
-                                                                     </stops>
-                                                                  </RadialGradient>
-                                                               </ripplerFill></JFXButton>
-                                                         </children>
-                                                      </AnchorPane>
-                                                   </content>
-                                                </ScrollPane>
-                                             </children>
-                                          </AnchorPane>
-                                      </content>
+                                    <Tab fx:id="tabRecibidos" closable="false">
+                                       <content>
+                                          <ScrollPane fitToWidth="true">
+                                             <content>
+                                                <AnchorPane fx:id="anchorPaneRecibidos">
+                                                   <children>
+                                                      <JFXButton fx:id="btnResponder" buttonType="RAISED" layoutX="598.0" layoutY="50.0" onAction="#pressBtnResponder" prefHeight="80.0" prefWidth="80.0" styleClass="btn" stylesheets="@application.css" text="Responder" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                                         <ripplerFill>
+                                                            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                                               <stops>
+                                                                  <Stop color="#81f1c1" />
+                                                                  <Stop color="#5d5d52" offset="1.0" />
+                                                               </stops>
+                                                            </RadialGradient>
+                                                         </ripplerFill>
+                                                      </JFXButton>
+                                                      <Accordion fx:id="AccordionMensajesRec" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </ScrollPane>
+                                       </content>
                                        <graphic>
                                           <Label fx:id="labelBandejaEntrada" styleClass="btn" stylesheets="@application.css" text="Recibidos" textAlignment="CENTER" wrapText="true" />
                                        </graphic>
                                     </Tab>
-                                    <Tab>
-                                      <content>
-                                        <AnchorPane prefWidth="675.0">
-                                             <children>
-                                                <ScrollPane prefHeight="461.0" prefWidth="669.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-60.0" AnchorPane.topAnchor="0.0">
-                                                   <content>
-                                                      <AnchorPane fx:id="anchorPaneEnviados">
-                                                         <children>
-                                                            <Accordion fx:id="AccordionMensajesEnv" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
-                                                         </children>
-                                                      </AnchorPane>
-                                                   </content>
-                                                </ScrollPane>
-                                             </children>
-                                          </AnchorPane>
-                                      </content>
+                                    <Tab fx:id="tabEnviados" closable="false">
+                                       <content>
+                                          <ScrollPane fitToWidth="true">
+                                             <content>
+                                                <AnchorPane fx:id="anchorPaneEnviados">
+                                                   <children>
+                                                      <Accordion fx:id="AccordionMensajesEnv" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </ScrollPane>
+                                       </content>
                                        <graphic>
                                           <Label fx:id="labelBandejaSalida" styleClass="btn" stylesheets="@application.css" text="Enviados" textAlignment="CENTER" wrapText="true" />
                                        </graphic>
