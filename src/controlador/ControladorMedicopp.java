@@ -213,33 +213,7 @@ public class ControladorMedicopp implements Initializable {
 			abrirVentanaAvisos();
 		}
     }
-    
-    public void enviarMensaje(String dniPac) {
-    	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText());
-		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
-		mensajes= lectorJson.lectorJsonMensajes();
-		mensajes.add(msg);
-		escritorJson.escribirEnJsonMensajes(mensajes);
-		Paciente pacienteReceptor = lectorJson.getPaciente(dniPac);
-	
-				
-		Label contenido = new Label(msg.getMensaje());
-		ScrollPane panelContenido = new ScrollPane(contenido);
-		contenido.boundsInParentProperty();
-	
-		TitledPane tp = new TitledPane("Para: " + pacienteReceptor.getNombre()+" "+ pacienteReceptor.getApellidos() , panelContenido) ;
-		tp.setId(dniPac);
-
-		AccordionMensajesEnv.getPanes().add(tp);
-		
-		
-		ControladorAvisos.setMensajeError("Mensaje Enviado.");
-		abrirVentanaAvisos();
-		
-		campoRedactar.clear();
-    }
-    
-    
+        
     @FXML
     void pressBtnResponder(ActionEvent event) {
     	
@@ -247,7 +221,6 @@ public class ControladorMedicopp implements Initializable {
     	
     }
 
-    
     public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
@@ -266,16 +239,6 @@ public class ControladorMedicopp implements Initializable {
 		}
 	}
     
-    public Integer numeroMensajesRecibidos() {
-		Medico m = ControladorMedicopp.getMedicoActual();
-		return lectorJson.getMensajesEnviadosA(m.getDni()).size();
-	}
-	
-	public Integer numeroMensajesEnviados() {
-		Medico m = ControladorMedicopp.getMedicoActual();
-		return lectorJson.getMensajesEnviadosPor(m.getDni()).size();
-	}
-
     //Getters y Setters
 	public static Medico getMedicoActual() {
 		return medicoActual;
@@ -312,5 +275,39 @@ public class ControladorMedicopp implements Initializable {
 		return null;
 	}
 	
+	public Integer numeroMensajesRecibidos() {
+		Medico m = ControladorMedicopp.getMedicoActual();
+		return lectorJson.getMensajesEnviadosA(m.getDni()).size();
+	}
+		
+	public Integer numeroMensajesEnviados() {
+		Medico m = ControladorMedicopp.getMedicoActual();
+		return lectorJson.getMensajesEnviadosPor(m.getDni()).size();
+	}
+
+	public void enviarMensaje(String dniPac) {
+    	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText());
+		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
+		mensajes= lectorJson.lectorJsonMensajes();
+		mensajes.add(msg);
+		escritorJson.escribirEnJsonMensajes(mensajes);
+		Paciente pacienteReceptor = lectorJson.getPaciente(dniPac);
 	
+				
+		Label contenido = new Label(msg.getMensaje());
+		ScrollPane panelContenido = new ScrollPane(contenido);
+		contenido.boundsInParentProperty();
+	
+		TitledPane tp = new TitledPane("Para: " + pacienteReceptor.getNombre()+" "+ pacienteReceptor.getApellidos() , panelContenido) ;
+		tp.setId(dniPac);
+
+		AccordionMensajesEnv.getPanes().add(tp);
+		
+		
+		ControladorAvisos.setMensajeError("Mensaje Enviado.");
+		abrirVentanaAvisos();
+		
+		campoRedactar.clear();
+    }
+
 }
