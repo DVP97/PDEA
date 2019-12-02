@@ -30,13 +30,13 @@ public class ControladorPacientepp implements Initializable {
     
     @FXML
     private Label campoPaciente;
-    
 
-    
     private static Paciente pacienteActual = new Paciente();
+    
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
+    
     	campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre() +",");
 	}
     
@@ -70,11 +70,9 @@ public class ControladorPacientepp implements Initializable {
     		AvisosPaciente.setTitle("Avisos Paciente");
     		AvisosPaciente.setScene(new Scene(Avisos));
     		AvisosPaciente.show();
-    		AvisosPaciente.setMinHeight(550);
-    		AvisosPaciente.setMinWidth(500);
+    		AvisosPaciente.setMinHeight(525);
+    		AvisosPaciente.setMinWidth(620);
     		
-    		Stage CambioVentanaAvisos = (Stage) btnAvisos.getScene().getWindow();
-    		CambioVentanaAvisos.close();
     	}
     	catch (ControladorExcepciones r) {
     		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Avisos para Pacientes.");

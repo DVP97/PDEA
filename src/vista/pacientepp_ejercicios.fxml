@@ -37,8 +37,8 @@
                      </image>
                   </ImageView>
                   <Label layoutX="69.0" layoutY="68.0" text="Ejercicios" />
-                  <Circle fill="#008f82" layoutX="412.0" layoutY="229.0" opacity="0.8" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
-                  <JFXButton fx:id="btnAnterior" buttonType="RAISED" layoutX="96.0" layoutY="334.0" onAction="#pressBtnAnterior" styleClass="btn" stylesheets="@application.css" text="Anterior">
+                  <Circle fill="#008f82" layoutX="412.0" layoutY="235.0" opacity="0.8" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
+                  <JFXButton fx:id="btnAnterior" buttonType="RAISED" layoutX="78.0" layoutY="334.0" onAction="#pressBtnAnterior" styleClass="btn" stylesheets="@application.css" text="Anterior">
                      <ripplerFill>
                         <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
                            <stops>
@@ -48,16 +48,16 @@
                         </RadialGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <AnchorPane layoutX="45.0" layoutY="139.0" prefHeight="191.0" prefWidth="284.0">
+                  <AnchorPane layoutX="49.0" layoutY="139.0" prefHeight="191.0" prefWidth="231.0">
                      <children>
-                        <HBox alignment="CENTER" layoutY="4.0" prefHeight="165.0" prefWidth="284.0">
+                        <HBox alignment="CENTER" layoutX="8.0" layoutY="4.0" prefHeight="184.0" prefWidth="218.0">
                            <children>
-                              <ImageView fx:id="pantallaEj" fitHeight="184.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="pantallaEj" fitHeight="184.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </HBox>
                      </children>
                   </AnchorPane>
-                  <JFXButton fx:id="btnSiguiente" buttonType="RAISED" layoutX="204.0" layoutY="334.0" onAction="#pressBtnSiguiente" styleClass="btn" stylesheets="@application.css" text="Siguiente">
+                  <JFXButton fx:id="btnSiguiente" buttonType="RAISED" layoutX="171.0" layoutY="334.0" onAction="#pressBtnSiguiente" styleClass="btn" stylesheets="@application.css" text="Siguiente">
                      <ripplerFill>
                         <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
                            <stops>
@@ -67,7 +67,7 @@
                         </RadialGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <JFXButton fx:id="btnComenzar" buttonType="RAISED" graphicTextGap="9.0" layoutX="372.0" layoutY="110.0" onAction="#pressBtnComenzar" styleClass="btn" stylesheets="@application.css" text="Comenzar" textOverrun="CLIP" underline="true">
+                  <JFXButton fx:id="btnComenzar" buttonType="RAISED" graphicTextGap="9.0" layoutX="366.0" layoutY="110.0" onAction="#pressBtnComenzar" styleClass="btn" stylesheets="@application.css" text="Comenzar" textOverrun="CLIP" underline="true">
                      <ripplerFill>
                         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                            <stops>
@@ -78,8 +78,8 @@
                         </RadialGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <Label fx:id="txtEjercicio" layoutX="104.0" layoutY="113.0" pickOnBounds="false" styleClass="textoEjercicio" stylesheets="@application.css" text=" EJERCICIO " textOverrun="CENTER_ELLIPSIS" />
-                  <Label fx:id="numeroEjercicio" layoutX="214.0" layoutY="113.0" styleClass="textoEjercicio" stylesheets="@application.css" text=" 1 " />
+                  <Label fx:id="txtEjercicio" layoutX="84.0" layoutY="113.0" pickOnBounds="false" styleClass="textoEjercicio" stylesheets="@application.css" text=" EJERCICIO " textOverrun="CENTER_ELLIPSIS" />
+                  <Label fx:id="numeroEjercicio" layoutX="193.0" layoutY="113.0" styleClass="textoEjercicio" stylesheets="@application.css" text=" 1 " />
                   <JFXButton fx:id="btnVolver" buttonType="RAISED" layoutX="379.0" layoutY="335.0" onAction="#pressBtnVolver" prefHeight="27.0" prefWidth="68.0" styleClass="btn" stylesheets="@application.css" text="Volver">
                      <ripplerFill>
                         <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
@@ -90,7 +90,7 @@
                         </RadialGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <Label fx:id="cronometro" alignment="CENTER" contentDisplay="CENTER" layoutX="351.0" layoutY="210.0" pickOnBounds="false" prefHeight="36.0" prefWidth="123.0" styleClass="textoCronometro" stylesheets="@application.css" text="..." textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" />
+                  <Label fx:id="cronometro" alignment="CENTER" contentDisplay="CENTER" layoutX="350.0" layoutY="214.0" pickOnBounds="false" prefHeight="36.0" prefWidth="123.0" styleClass="textoCronometro" stylesheets="@application.css" text="..." textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" />
                </children>
             </AnchorPane>
          </children>

@@ -97,8 +97,6 @@ public class lectorJson {
 		return null;
 	}
 	
-	
-	
 	public static Medico getMedico (String dni) {
 		Medico p = new Medico();
 		ArrayList<Medico> pac = lectorJsonMedicos();
