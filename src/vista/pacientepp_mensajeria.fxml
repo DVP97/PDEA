@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -69,7 +69,7 @@
          <children>
             <SplitPane dividerPositions="0.5" layoutX="8.0" layoutY="27.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="388.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
-                  <TabPane minHeight="150.0">
+                  <JFXTabPane styleClass="jfx-tab-pane" stylesheets="@application.css">
                      <tabs>
                         <Tab fx:id="tabRecibidos" closable="false" text="Recibidos">
                            <content>
@@ -108,8 +108,8 @@
                            </content>
                         </Tab>
                      </tabs>
-                  </TabPane>
-                <AnchorPane maxHeight="200.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                  </JFXTabPane>
+                <AnchorPane fx:id="anchorPaneEnviados" maxHeight="200.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
                         <TextArea fx:id="campoEscritura" prefHeight="99.0" prefWidth="313.0" wrapText="true" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="30.0" />
                         <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redactar:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">

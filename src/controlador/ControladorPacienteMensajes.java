@@ -85,7 +85,7 @@ public class ControladorPacienteMensajes implements Initializable{
 		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
 
 		
-		if (numeroMensajesRecibidos() != 0) {
+		if (numeroMensajesRecibidos() > 0) {
 		
 			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
 				ArrayList<Mensaje> mensajesRec  = lectorJson.getMensajesEnviadosA(p.getDni());
@@ -94,7 +94,7 @@ public class ControladorPacienteMensajes implements Initializable{
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("De: " + medEmisor.getNombre() , panelContenido) ;
+				TitledPane tp = new TitledPane("De: " + medEmisor.getNombre() + medEmisor.getApellidos() , panelContenido) ;
 						
 				tpsr.add(i, tp);
 			}
@@ -113,7 +113,7 @@ public class ControladorPacienteMensajes implements Initializable{
 			
 			
 		}
-		if (numeroMensajesEnviados() != 0) {
+		if (numeroMensajesEnviados() > 0) {
 			
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
 				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(p.getDni());
@@ -122,7 +122,7 @@ public class ControladorPacienteMensajes implements Initializable{
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre() , panelContenido) ;
+				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre()+ " "+ medReceptor.getApellidos(), panelContenido) ;
 				tpse.add(i, tp);
 			}
 			
@@ -165,7 +165,7 @@ public class ControladorPacienteMensajes implements Initializable{
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
 				Medico med = lectorJson.getMedico(medPac);
-				TitledPane tp = new TitledPane("Para: " + med.getNombre() , panelContenido) ;
+				TitledPane tp = new TitledPane("Para: " + med.getNombre() +" "+ med.getApellidos(), panelContenido) ;
 								
 
 				AccordionMensajesEnv.getPanes().add(tp);
