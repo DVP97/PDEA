@@ -10,6 +10,9 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.stage.Stage;
+import modelo.Cuidador;
+import modelo.Medico;
+import modelo.Paciente;
 import javafx.event.ActionEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -93,7 +96,6 @@ public class ControladorLogin implements Initializable{
 	
 	//Acciones ejecutadas al pulsar el Boton Aceptar
 	public void pressBtnAceptar() throws IOException {
-		
 		try {
 			
 			//comprobar tipo de usuario, usamos switch para optimizar programa
@@ -268,20 +270,31 @@ public class ControladorLogin implements Initializable{
 	// funciones para comprobar el tipo de usuario
 	public boolean esPaciente() {
 		if(lectorJson.getPaciente(txtInputUsuario.getText().toUpperCase()) == null) {
+			
 			return false;
 		}else {
-			return true;
+			Paciente p  = lectorJson.getPaciente(txtInputUsuario.getText().toUpperCase());
+			String contra = getMd5(txtInputPassword.getText());
+
+			if(p.getContrasena().equalsIgnoreCase(contra)) {
+				return true;
+			}
 		}
+		return false;
 	}
 	
 
 	public boolean esCuidador() {
-
 		if(lectorJson.getCuidador(txtInputUsuario.getText().toUpperCase()) == null) {
 			return false;
 		}else {
-			return true;
+			Cuidador c  = lectorJson.getCuidador(txtInputUsuario.getText().toUpperCase());
+			String contra = getMd5(txtInputPassword.getText());
+			if(c.getContrasena().equalsIgnoreCase(contra)) {
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	
@@ -289,8 +302,14 @@ public class ControladorLogin implements Initializable{
 		if(lectorJson.getMedico(txtInputUsuario.getText().toUpperCase()) == null) {
 			return false;
 		}else {
+			Medico m  = lectorJson.getMedico(txtInputUsuario.getText().toUpperCase());
+
+			String contra = getMd5(txtInputPassword.getText());
+		if(m.getContrasena().equalsIgnoreCase(contra)) {
 			return true;
 		}
+	}
+	return false;
 	}
 	
 

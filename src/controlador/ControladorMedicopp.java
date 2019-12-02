@@ -84,8 +84,13 @@ public class ControladorMedicopp implements Initializable {
     @FXML
     private TextArea campoRedactar;
 
+
     @FXML
     private JFXButton btnConfirmarEnvio;
+    
+    @FXML
+    private JFXButton btnResponder;
+
 
     @FXML
     private JFXTabPane JFXTabPaneMensajeria;
@@ -126,7 +131,7 @@ public class ControladorMedicopp implements Initializable {
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
 				TitledPane tp = new TitledPane("De: " +pacEmisor.getNombre() + " " + pacEmisor.getApellidos(), panelContenido) ;
-						
+				tp.setId(pacEmisor.getDni());	
 				tpsr.add(i, tp);
     		}
     		AccordionMensajesRec.setLayoutY(60);
@@ -158,6 +163,7 @@ public class ControladorMedicopp implements Initializable {
 				contenido.boundsInParentProperty();
 				contenido.wrapTextProperty();
 				TitledPane tp = new TitledPane("Para: " + pacienteReceptor.getNombre() + " " +pacienteReceptor.getApellidos() , panelContenido) ;
+				tp.setId(pacienteReceptor.getDni());
 				tpse.add(i, tp);
 			}
 			
@@ -189,29 +195,8 @@ public class ControladorMedicopp implements Initializable {
     			Integer indice = getIndiceComboBox(pac);
     			if (indice!= null) {
 	    			String dniPac = medicoActual.getPacientes().get(indice);
-					Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText());
-					ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
-					mensajes= lectorJson.lectorJsonMensajes();
-					mensajes.add(msg);
-					escritorJson.escribirEnJsonMensajes(mensajes);
-				
 					
-					//adaptar codigo para agregar mensaje enviado a la bandeja de Enviados
-					
-					Label contenido = new Label(msg.getMensaje());
-					ScrollPane panelContenido = new ScrollPane(contenido);
-					contenido.boundsInParentProperty();
-				
-					TitledPane tp = new TitledPane("Para: " + pac , panelContenido) ;
-					
-		
-					AccordionMensajesEnv.getPanes().add(tp);
-					
-	    			
-	    			ControladorAvisos.setMensajeError("Mensaje Enviado.");
-					abrirVentanaAvisos();
-					
-	    			campoRedactar.clear();
+	    			enviarMensaje(dniPac);
     			}else {
     				ControladorAvisos.setMensajeError("Por favor, seleccione un paciente.");
 					abrirVentanaAvisos();
@@ -228,6 +213,40 @@ public class ControladorMedicopp implements Initializable {
 			abrirVentanaAvisos();
 		}
     }
+    
+    public void enviarMensaje(String dniPac) {
+    	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText());
+		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
+		mensajes= lectorJson.lectorJsonMensajes();
+		mensajes.add(msg);
+		escritorJson.escribirEnJsonMensajes(mensajes);
+		Paciente pacienteReceptor = lectorJson.getPaciente(dniPac);
+	
+				
+		Label contenido = new Label(msg.getMensaje());
+		ScrollPane panelContenido = new ScrollPane(contenido);
+		contenido.boundsInParentProperty();
+	
+		TitledPane tp = new TitledPane("Para: " + pacienteReceptor.getNombre()+" "+ pacienteReceptor.getApellidos() , panelContenido) ;
+		tp.setId(dniPac);
+
+		AccordionMensajesEnv.getPanes().add(tp);
+		
+		
+		ControladorAvisos.setMensajeError("Mensaje Enviado.");
+		abrirVentanaAvisos();
+		
+		campoRedactar.clear();
+    }
+    
+    
+    @FXML
+    void pressBtnResponder(ActionEvent event) {
+    	
+    	
+    	
+    }
+
     
     public void abrirVentanaAvisos() {
 		try {
