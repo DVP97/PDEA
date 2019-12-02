@@ -73,6 +73,8 @@ public class ControladorPacientepp implements Initializable {
     		AvisosPaciente.setMinHeight(550);
     		AvisosPaciente.setMinWidth(500);
     		
+    		Stage CambioVentanaAvisos = (Stage) btnAvisos.getScene().getWindow();
+    		CambioVentanaAvisos.close();
     	}
     	catch (ControladorExcepciones r) {
     		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Avisos para Pacientes.");

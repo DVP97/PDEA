@@ -35,7 +35,7 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label layoutX="172.0" layoutY="323.0" prefHeight="26.0" prefWidth="222.0">
+            <Label fx:id="campoEjercicios" layoutX="172.0" layoutY="323.0" prefHeight="26.0" prefWidth="222.0">
                <font>
                   <Font size="16.0" />
                </font>
