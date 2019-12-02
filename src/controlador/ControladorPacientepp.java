@@ -70,8 +70,8 @@ public class ControladorPacientepp implements Initializable {
     		AvisosPaciente.setTitle("Avisos Paciente");
     		AvisosPaciente.setScene(new Scene(Avisos));
     		AvisosPaciente.show();
-    		AvisosPaciente.setMinHeight(525);
-    		AvisosPaciente.setMinWidth(620);
+    		AvisosPaciente.setMinHeight(550);
+    		AvisosPaciente.setMinWidth(500);
     		
     	}
     	catch (ControladorExcepciones r) {

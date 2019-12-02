@@ -39,6 +39,9 @@ public class ControladorAvisosPaciente implements Initializable{
     @FXML
     private Label campoPaciente;
     
+    @FXML
+    private Label campoCita;
+    
     private static Paciente pacienteActual = new Paciente();
     
     @Override
@@ -46,6 +49,7 @@ public class ControladorAvisosPaciente implements Initializable{
     
     	Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
+		//campoCita.setText("")
 		
     }
     
