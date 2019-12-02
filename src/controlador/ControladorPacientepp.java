@@ -30,13 +30,13 @@ public class ControladorPacientepp implements Initializable {
     
     @FXML
     private Label campoPaciente;
-
-    private static Paciente pacienteActual = new Paciente();
     
+
+    
+    private static Paciente pacienteActual = new Paciente();
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
-    
     	campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre() +",");
 	}
     
