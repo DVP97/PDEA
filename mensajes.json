@@ -70,5 +70,14 @@
     "contestado": false,
     "borrado": false,
     "fecha": "Dec 2, 2019 12:10:28 PM"
+  },
+  {
+    "emisor": "62544518C",
+    "receptor": "07447768T",
+    "mensaje": "sdfasdfasdf",
+    "leido": false,
+    "contestado": false,
+    "borrado": false,
+    "fecha": "Dec 2, 2019 1:23:38 PM"
   }
 ]

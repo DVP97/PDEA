@@ -3,7 +3,6 @@ package controlador;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -217,8 +216,20 @@ public class ControladorMedicopp implements Initializable {
 
     @FXML
     void pressBtnResponder(ActionEvent event) {
-
-    	JFXTabPaneMensajeria.getSelectionModel().select(2);
+    	TitledPane tp = getExpanded();
+    	if(tp!=null) {
+	    	String dni = tp.getId();
+	    	Paciente pac = lectorJson.getPaciente(dni);
+	    	
+	    	comboBoxElegirDestinatario.setValue(pac.getNombre()+ " "+ pac.getApellidos());
+	
+	    	JFXTabPaneMensajeria.getSelectionModel().select(2);
+    	
+    	}else {
+    		ControladorAvisos.setMensajeError("Por favor, seleccione un mensaje.");
+			abrirVentanaAvisos();
+    	}
+    	    	
     }
 
     public void abrirVentanaAvisos() {
@@ -310,4 +321,14 @@ public class ControladorMedicopp implements Initializable {
 		campoRedactar.clear();
     }
 
+	public TitledPane getExpanded () {
+    	ObservableList<TitledPane> panes = AccordionMensajesRec.getPanes();
+    	
+    	for (int i = 0 ; i < panes.size(); i++) {
+    		if(panes.get(i).isExpanded()) {
+    			return panes.get(i);
+    		}
+    	}
+		return null;
+    }
 }
