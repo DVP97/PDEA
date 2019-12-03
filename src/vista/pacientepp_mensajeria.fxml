@@ -22,7 +22,7 @@
    <top>
       <AnchorPane prefHeight="35.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="campoPaciente" styleClass="mainLabel" stylesheets="@application.css" text="Bienvenido SERGIO," AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <Label fx:id="campoPaciente" styleClass="mainLabel" stylesheets="@application.css" text="Bienvenido SERGIO," AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0">
                <font>
                   <Font size="20.0" />
                </font>

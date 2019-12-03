@@ -121,8 +121,8 @@ public class ControladorLogin implements Initializable{
 						Pacientepp.setTitle("Menu Principal Paciente");
 						Pacientepp.setScene(new Scene(PacienteVentana));
 						Pacientepp.show();
-						Pacientepp.setMinHeight(550);
-						Pacientepp.setMinWidth(500);
+						Pacientepp.setMinHeight(620);
+						Pacientepp.setMinWidth(600);
 
 						System.out.println("Cerrando ventana de Login.");
 						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
