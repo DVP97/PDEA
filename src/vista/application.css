@@ -26,6 +26,24 @@
  	-fx-font-weight: bold;
 	-fx-background-radius: 10px;
 }
+.btnComenzar{
+	-fx-background-color: #008f82;
+ 	-fx-text-fill: #ffffff;
+ 	-fx-font-weight: bold;
+	-fx-background-radius: 20px;
+	-fx-font:160% sans-serif;
+}
+.fondoEj{
+	-fx-background-color: #ffffff;
+ 
+}
+.btnCronometro{
+	-fx-background-color: #008f82;
+ 	-fx-text-fill: #ffffff;
+ 	-fx-font-weight: bold;
+	-fx-background-radius: 20px;
+	-fx-font:160% sans-serif;
+}
 
 .btnPaciente{
 	-fx-background-color: #008f82;
@@ -33,6 +51,7 @@
  	-fx-font:200% sans-serif;
  	-fx-font-weight: bold;
 	-fx-background-radius: 20px;
+	
 }
 
 .textoCronometro{

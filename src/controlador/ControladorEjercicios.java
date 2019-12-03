@@ -1,16 +1,11 @@
 package controlador;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -19,10 +14,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import modelo.Paciente;
@@ -53,6 +48,9 @@ public class ControladorEjercicios implements Initializable{
     
     @FXML
     private ImageView pantallaEj;
+    
+    @FXML
+    private AnchorPane anchorGrande;
     
     private ArrayList<Ejercicio> ejercicios;
     
@@ -89,6 +87,10 @@ public class ControladorEjercicios implements Initializable{
 
 		//Cada segundo actualiza el valor del intervalo
 		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+			if(interval<0) {
+				interval=0;
+				
+			}
 			cronometro.setText("00:"+interval); 
 			 this.interval= interval -1;
 	    }));
@@ -150,6 +152,14 @@ public class ControladorEjercicios implements Initializable{
 
 	void siguienteEjercicio() {
 		this.btnComenzar.setDisable(false);
+		if(interval!=0){
+			
+			ControladorAvisos.setMensajeError("Porfavor, acabe su ejercicio antes de pasar al siguiente.");
+			abrirVentanaAvisos();
+			
+			
+		} else {
+			
 		if (contador==ejercicios.size()-1) {
 			System.out.println("Está usted en el último ejercicio.");
 			ControladorAvisos.setMensajeError("Está usted en el último ejercicio, ¡ha terminado!");
@@ -165,6 +175,8 @@ public class ControladorEjercicios implements Initializable{
 		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
 	} 
 	}
+	}
+	
 	void ejercicioAnterior() {
 	
 		if (contador==0) {
