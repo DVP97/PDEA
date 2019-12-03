@@ -152,7 +152,7 @@ public class ControladorEjercicios implements Initializable{
 
 	void siguienteEjercicio() {
 		this.btnComenzar.setDisable(false);
-		if(interval!=0){
+		if(interval>0){
 			
 			ControladorAvisos.setMensajeError("Porfavor, acabe su ejercicio antes de pasar al siguiente.");
 			abrirVentanaAvisos();

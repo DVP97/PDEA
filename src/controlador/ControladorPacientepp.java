@@ -90,8 +90,8 @@ public class ControladorPacientepp implements Initializable {
     		EjerciciosPaciente.setTitle("Ejercicios Paciente");
     		EjerciciosPaciente.setScene(new Scene(Ejercicios));
     		EjerciciosPaciente.show();
-    		EjerciciosPaciente.setMinHeight(425);
-    		EjerciciosPaciente.setMinWidth(520);
+    		EjerciciosPaciente.setMinHeight(620);
+    		EjerciciosPaciente.setMinWidth(600);
     		
 			
     		Stage CambioVentanaEjs = (Stage) btnEjercicios.getScene().getWindow();
