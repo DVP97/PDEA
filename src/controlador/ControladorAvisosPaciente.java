@@ -47,7 +47,7 @@ public class ControladorAvisosPaciente implements Initializable{
     
     	Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
-		//campoEjercicios.setText("Hacer del 1 al 3");
+		
 		
     }
     
