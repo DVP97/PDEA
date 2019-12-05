@@ -84,13 +84,11 @@ public class ControladorMedicopp implements Initializable {
     @FXML
     private TextArea campoRedactar;
 
-
     @FXML
     private JFXButton btnConfirmarEnvio;
 
     @FXML
     private JFXButton btnResponder;
-
 
     @FXML
     private JFXTabPane JFXTabPaneMensajeria;
@@ -105,8 +103,7 @@ public class ControladorMedicopp implements Initializable {
 
     //Metodos
 
-    //adaptar el codigo para poder filtrar mensajes por usuarios?
-
+    //Por ahora así, en algun momento filtraremos por paciente ya que el medico accedera directamente a solo un paciente
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
         JFXTabPaneMensajeria.setTabMinWidth(100);

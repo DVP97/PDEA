@@ -21,10 +21,15 @@ public class lectorJson {
 	
 	public static ArrayList<Paciente> lectorJsonPacientes() {
 		try {
+			//guardas en una clase FileReader el nombre del json que quieres leer
 			FileReader fr = new FileReader("pacientes.json");
 			Gson gson= new Gson();
+			//Guardas el tipo de datos que se va a encontrar dentro del json
+			//en este caso un arraylist de Paciente
 			Type tipoListaPacientes = new TypeToken<ArrayList<Paciente>>(){}.getType();
+			//guardas con el fromJson en la variable que vas a devolver, los argumentos siempre son el FileReader y el tipo de datos que se va a encontrar
 			ArrayList<Paciente> pacientes = gson.fromJson(fr, tipoListaPacientes);
+			//devuelves el arraylist de pacientes
 			return pacientes;
 		}catch (Exception e) {
 			System.out.println("Fallo en: " +e);
@@ -32,6 +37,8 @@ public class lectorJson {
 		return null;
 	}
 
+	
+	//Lo mismo que la anterior
 	public static ArrayList<Medico> lectorJsonMedicos() {
 		try {
 			FileReader fr = new FileReader("medicos.json");
@@ -85,6 +92,8 @@ public class lectorJson {
 	}
 	
 	//METODOS
+	
+	//Buscas un paciente por su dni empleando la funcion leer pacientes anterior  y lo recorres comparando los dnis
 	public static Paciente getPaciente (String dni) {
 		Paciente p = new Paciente();
 		ArrayList<Paciente> pac = lectorJsonPacientes();
@@ -123,6 +132,8 @@ public class lectorJson {
 		return null;
 	}
 	
+	
+	// El dni que metes es el del emisor
 	public static ArrayList<Mensaje> getMensajesEnviadosPor (String dni) {
 		ArrayList<Mensaje> mensajesEnviados = new ArrayList<Mensaje>();
 		Mensaje m = new Mensaje();
@@ -139,6 +150,7 @@ public class lectorJson {
 	}
 	
 	
+	// El dni que metes es el del receptor
 
 	public static ArrayList<Mensaje> getMensajesEnviadosA (String dni) {
 		ArrayList<Mensaje> mensajesRecibidos = new ArrayList<Mensaje>();
@@ -155,6 +167,7 @@ public class lectorJson {
 		return mensajesRecibidos;
 	}
 	
+	//Devuelve los ejercicios correspondientes al paciente
 	public static ArrayList<Ejercicio> getEjercicios (Paciente p) {
 		//Array ids de los ejercicios de paciente
 		ArrayList<Integer> idsEjercicios = p.getEjercicios();
@@ -166,10 +179,7 @@ public class lectorJson {
 				if (idsEjercicios.get(i).equals(pac.get(a).getId())){
 					ejerciciosDePaciente.add(pac.get(a));
 				}
-			}
-		  
-				   
-			
+			}	
 		}
 	 return ejerciciosDePaciente;	
 	}
