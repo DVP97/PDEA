@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.Ejercicio;
 import modelo.Paciente;
 
 
@@ -28,7 +29,7 @@ public class ControladorAvisosPaciente implements Initializable{
     private ImageView LogoEWBAvisos;
 
     @FXML
-    private Label campoProximaCita;
+    private Label campoEjercicios;
    
     
     @FXML
@@ -38,7 +39,7 @@ public class ControladorAvisosPaciente implements Initializable{
     private Label campoPaciente;
     
     @FXML
-    private Label campoEjercicios;
+    private ArrayList<Ejercicio> ejercicios;
     
     private static Paciente pacienteActual = new Paciente();
     
@@ -47,7 +48,8 @@ public class ControladorAvisosPaciente implements Initializable{
     
     	Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
-		
+		this.ejercicios = lectorJson.getEjercicios(p);
+		campoEjercicios.setText("Le faltan "+ this.ejercicios.size()+" ejercicios.");
 		
     }
     
