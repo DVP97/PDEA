@@ -162,7 +162,7 @@ public class ControladorLogin implements Initializable{
 					try {
 						System.out.println("Cargando ventana principal de Medico...");
 						ControladorMedicopp.setMedicoActual(lectorJson.getMedico(txtInputUsuario.getText().toUpperCase()));
-						Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/vista/medicopp.fxml"));
+						Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/vista/medico_selector_paciente.fxml"));
 						Stage Medicopp = new Stage();
 						Medicopp.setTitle("Menu Principal Medico");
 						Medicopp.setScene(new Scene(MedicoVentana));
