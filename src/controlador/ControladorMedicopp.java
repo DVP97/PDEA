@@ -83,6 +83,9 @@ public class ControladorMedicopp implements Initializable {
 
     @FXML
     private TextArea campoRedactar;
+    
+    @FXML
+    private TextField campoAsunto;
 
     @FXML
     private JFXButton btnConfirmarEnvio;
@@ -294,7 +297,7 @@ public class ControladorMedicopp implements Initializable {
 	}
 
 	public void enviarMensaje(String dniPac) {
-    	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText());
+    	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText(), campoAsunto.getText());
 		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
 		mensajes= lectorJson.lectorJsonMensajes();
 		mensajes.add(msg);

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -37,7 +38,7 @@
       </AnchorPane>
    </top>
    <bottom>
-      <AnchorPane prefHeight="15.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="15.0" prefWidth="572.0" BorderPane.alignment="CENTER">
          <children>
             <Label text="Paciente" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
          </children>
@@ -111,7 +112,7 @@
                   </JFXTabPane>
                 <AnchorPane fx:id="anchorPaneEnviados" maxHeight="200.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <TextArea fx:id="campoEscritura" prefHeight="99.0" prefWidth="313.0" wrapText="true" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="30.0" />
+                        <TextArea fx:id="campoEscritura" layoutX="5.0" layoutY="46.0" prefHeight="99.0" prefWidth="313.0" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="46.0" />
                         <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redactar:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                            <font>
                               <Font size="20.0" />
@@ -126,6 +127,8 @@
                                  </stops>
                               </RadialGradient>
                            </ripplerFill></JFXButton>
+                        <JFXTextField fx:id="campoAsunto" layoutX="167.0" layoutY="1.0" />
+                        <Label layoutX="119.0" layoutY="6.0" styleClass="normalLabel" stylesheets="@application.css" text="Asunto:" />
                      </children>
                   </AnchorPane>
               </items>

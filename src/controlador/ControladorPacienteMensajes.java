@@ -17,12 +17,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Accordion;
 import javafx.scene.text.Font;
-import modelo.Medico;
 import modelo.Mensaje;
 import modelo.Paciente;
 
@@ -60,6 +60,9 @@ public class ControladorPacienteMensajes implements Initializable{
 	private TextArea campoEscritura;
 	
 	@FXML
+	private TextField campoAsunto;
+	
+	@FXML
     private Accordion AccordionMensajesRec;
 	
 	@FXML
@@ -90,11 +93,15 @@ public class ControladorPacienteMensajes implements Initializable{
 			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
 				ArrayList<Mensaje> mensajesRec  = lectorJson.getMensajesEnviadosA(p.getDni());
 				Mensaje mensajeAct = mensajesRec.get(i);
-				Medico medEmisor = lectorJson.getMedico(mensajeAct.getEmisor());
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("De: " + medEmisor.getNombre() + medEmisor.getApellidos() , panelContenido) ;
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append("Asunto: ");
+				//stringBuilder.append(mensajeAct.getAsunto());
+				//stringBuilder.append("\t\t");
+				//stringBuilder.append(mensajeAct.getFecha().toGMTString());
+				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;
 						
 				tpsr.add(i, tp);
 			}
@@ -118,11 +125,10 @@ public class ControladorPacienteMensajes implements Initializable{
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
 				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(p.getDni());
 				Mensaje mensajeAct = mensajesEnv.get(i);
-				Medico medReceptor = lectorJson.getMedico(mensajeAct.getReceptor());
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("Para: " + medReceptor.getNombre()+ " "+ medReceptor.getApellidos(), panelContenido) ;
+				TitledPane tp = new TitledPane("Asunto: " + mensajeAct.getAsunto(), panelContenido) ;
 				tpse.add(i, tp);
 			}
 			
@@ -150,7 +156,7 @@ public class ControladorPacienteMensajes implements Initializable{
 			try {
 				Paciente p = ControladorPacientepp.getPacienteActual();
 				String medPac = p.getMedico();
-				Mensaje msg = new Mensaje(p.getDni(), medPac, campoEscritura.getText());
+				Mensaje msg = new Mensaje(p.getDni(), medPac, campoEscritura.getText(), campoAsunto.getText());
 				System.out.println("El mensaje ha sido creado");
 				ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
 				mensajes= lectorJson.lectorJsonMensajes();
@@ -164,8 +170,7 @@ public class ControladorPacienteMensajes implements Initializable{
 				Label contenido = new Label(msg.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
-				Medico med = lectorJson.getMedico(medPac);
-				TitledPane tp = new TitledPane("Para: " + med.getNombre() +" "+ med.getApellidos(), panelContenido) ;
+				TitledPane tp = new TitledPane("Asunto: " + msg.getAsunto(), panelContenido) ;
 								
 
 				AccordionMensajesEnv.getPanes().add(tp);

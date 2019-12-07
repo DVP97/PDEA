@@ -6,7 +6,8 @@
     "leido": false,
     "contestado": false,
     "borrado": false,
-    "fecha": "Nov 26, 2019 6:18:21 PM"
+    "fecha": "Nov 26, 2019 6:18:21 PM",
+    "asunto": "Hola"
   },
   {
     "emisor": "07447768T",
@@ -15,7 +16,8 @@
     "leido": false,
     "contestado": false,
     "borrado": false,
-    "fecha": "Nov 26, 2019 6:18:21 PM"
+    "fecha": "Nov 26, 2019 6:18:21 PM",
+    "asunto": "Hola"
   },
   {
     "emisor": "07447768T",
@@ -24,7 +26,8 @@
     "leido": false,
     "contestado": false,
     "borrado": false,
-    "fecha": "Nov 27, 2019 1:31:22 PM"
+    "fecha": "Nov 27, 2019 1:31:22 PM",
+    "asunto": "Hola"
   },
   {
     "emisor": "07447768T",
@@ -33,7 +36,8 @@
     "leido": false,
     "contestado": false,
     "borrado": false,
-    "fecha": "Nov 27, 2019 1:54:15 PM"
+    "fecha": "Nov 27, 2019 1:54:15 PM",
+    "asunto": "Hola"
   },
   {
     "emisor": "62544518C",
@@ -42,7 +46,8 @@
     "leido": false,
     "contestado": false,
     "borrado": false,
-    "fecha": "Nov 30, 2019 7:55:22 PM"
+    "fecha": "Nov 30, 2019 7:55:22 PM",
+    "asunto": "Hola"
   },
   {
     "emisor": "62544518C",
@@ -51,7 +56,8 @@
     "leido": false,
     "contestado": false,
     "borrado": false,
-    "fecha": "Nov 30, 2019 10:40:05 PM"
+    "fecha": "Nov 30, 2019 10:40:05 PM",
+    "asunto": "Hola"
   },
   {
     "emisor": "62544518C",
@@ -60,6 +66,7 @@
     "leido": false,
     "contestado": false,
     "borrado": false,
-    "fecha": "Dec 1, 2019 12:02:33 AM"
+    "fecha": "Dec 1, 2019 12:02:33 AM",
+    "asunto": "Hola"
   }
 ]

@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Mensaje {
+	private String asunto;
 	private String emisor;
 	private String receptor;
 	private String mensaje;
@@ -12,7 +13,8 @@ public class Mensaje {
 	private boolean borrado;
 	private Date fecha;
 	
-	public Mensaje (String emisor, String receptor,  String mensaje) {
+	public Mensaje (String emisor, String receptor,  String mensaje, String asunto) {
+		this.asunto = asunto;
 		this.emisor =emisor;
 		this.receptor = receptor;
 		this.mensaje = mensaje;
@@ -23,6 +25,7 @@ public class Mensaje {
 	}
 	
 	public Mensaje () {
+		this.asunto = null;
 		this.emisor =null;
 		this.receptor = null; 
 		this.mensaje = null;
@@ -55,6 +58,9 @@ public class Mensaje {
 	public Date getFecha() {
 		return fecha;
 	}
+	public String getAsunto() {
+		return asunto;
+	}
 	
 	//SETTERS
 
@@ -79,4 +85,8 @@ public class Mensaje {
 	public void setFecha() {
 		this.fecha = Calendar.getInstance().getTime();;
 	}
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
+	}
+	
 }
