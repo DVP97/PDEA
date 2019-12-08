@@ -59,7 +59,6 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     	String pacienteBuscado = inputBuscarPaciente.getText();
     	System.out.println("Buscando "+pacienteBuscado);
     	
-    	try {
 	    	for(int i=0; i< medicoActual.getPacientes().size(); i++) {
 		    		
 		    	if(nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
@@ -68,14 +67,13 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 		    			
 		    		Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
 		    		CerrarSelectorPaciente.close();
+		    		return;
 		    	}
 	    	}
-    	}
-	    catch(ControladorExcepciones asdf) {
 	   		// imprimir mensaje de aviso en caso de no encontrar coincidencia alguna
 	    	ControladorAvisos.setMensajeError("No se ha encontrado el paciente introducido.");
 	       	abrirVentanaAvisos();
-	    }
+	    
     }
 
     @FXML
