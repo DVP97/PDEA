@@ -67,7 +67,7 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 	   		// imprimir mensaje de aviso en caso de no encontrar coincidencia alguna
 	    	ControladorAvisos.setMensajeError("No se ha encontrado el paciente introducido.");
 	       	abrirVentanaAvisos();
-
+		}
     }
 
     private Paciente coincidencia (String pacienteBuscado) {
