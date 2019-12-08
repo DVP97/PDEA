@@ -184,5 +184,16 @@ public class lectorJson {
 	 return ejerciciosDePaciente;	
 	}
 	
+	public static ArrayList<String> getNombresCompletosPacientesDe (Medico m){
+		ArrayList<String> nombresCompletos= new ArrayList<String>();
+		ArrayList<String> dnis = m.getPacientes();
+		for (int i = 0; i < dnis.size() ; i++) {
+			Paciente p = getPaciente(dnis.get(i));
+			String n = p.getNombre() + " " + p.getApellidos();
+			nombresCompletos.add(n);
+		}
+		return nombresCompletos;
+	}
+	
 	
 }

@@ -34,10 +34,8 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @FXML
     private JFXButton btnMenuGeneral;
     
-    private static Medico medicoActual = new Medico();
-    
-    private static ArrayList<String> nombresPacientes = getNombrePacientes();
-    
+    private static Medico medicoActual = ControladorMedicopp.getMedicoActual();
+        
     //Metodos
     
     @Override
@@ -55,37 +53,34 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @FXML
     void pressBtnBuscarPaciente(ActionEvent event) throws IOException {
     	
+        ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
+
     	//comparar el nombre introducido con los pacientes asignados al medico
     	String pacienteBuscado = inputBuscarPaciente.getText();
     	System.out.println("Buscando "+pacienteBuscado);
     	
-
-    	
-    	for(int i=0; i<ControladorMedicopp.getMedicoActual().getPacientes().size(); i++) {	
-    		try {
-	    		System.out.println(i);
-	    		System.out.println(nombresPacientes.get(i));
-	    		
-	    		if(nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
-	    			System.out.println("coincidencia encontrada.");
-	    			abrirSubmenuPaciente();
-	    			
-	    			Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
-	    			CerrarSelectorPaciente.close();
-	    		}
-	    	}
-    	
-	    	catch(ControladorExcepciones asdf) {
-	   			// imprimir mensaje de aviso en caso de no encontrar coincidencia alguna
-	       		ControladorAvisos.setMensajeError("No se ha encontrado el paciente introducido.");
-	       		abrirVentanaAvisos();
+    	try {
+	    	for(int i=0; i< medicoActual.getPacientes().size(); i++) {
+		    		
+		    	if(nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
+		    		System.out.println("coincidencia encontrada.");
+		    		abrirSubmenuPaciente();
+		    			
+		    		Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
+		    		CerrarSelectorPaciente.close();
+		    	}
 	    	}
     	}
+	    catch(ControladorExcepciones asdf) {
+	   		// imprimir mensaje de aviso en caso de no encontrar coincidencia alguna
+	    	ControladorAvisos.setMensajeError("No se ha encontrado el paciente introducido.");
+	       	abrirVentanaAvisos();
+	    }
     }
 
     @FXML
     void pressBtnMenuGeneral(ActionEvent event) throws IOException{
-    	//abre la ventana general de médico
+    	//abre la ventana general de mï¿½dico
     	try {
 			System.out.println("Cargando ventana principal de Medico...");
 			Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/vista/medicopp.fxml"));
@@ -157,18 +152,5 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 		medicoActual = MedicoActual;
 	}
 
-	public static ArrayList<String> getNombrePacientes (){
-		ArrayList<String> pacientes = new ArrayList<String>();
-		ArrayList<String> pacientesDnis = medicoActual.getPacientes();
-
-		for (int i = 0; i < pacientesDnis.size(); i++) {
-
-			String nombrePac = lectorJson.getPaciente(pacientesDnis.get(i)).getNombre();
-			String apellidosPac = lectorJson.getPaciente(pacientesDnis.get(i)).getApellidos();
-			String nombreCompleto = nombrePac + " " + apellidosPac;
-			pacientes.add(nombreCompleto);
-		}
-		return pacientes;
-	}
 
 }
