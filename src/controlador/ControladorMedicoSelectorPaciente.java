@@ -34,11 +34,11 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 
     @FXML
     private JFXButton btnMenuGeneral;
-    
+
     private static Medico medicoActual = ControladorMedicopp.getMedicoActual();
-        
+
     //Metodos
-    
+
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
     	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
@@ -48,26 +48,26 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @FXML
     void comprobarInput(KeyEvent event) {
     	//comparar el nombre introducido con los pacientes asignados al medico, para sugerir posibles coincidencias de forma dinamica
-    	
+
     }
 
     @FXML
     void pressBtnBuscarPaciente(ActionEvent event) throws IOException {
-    	
+
     	String pacienteBuscado = inputBuscarPaciente.getText();
     	System.out.println("Buscando "+pacienteBuscado);
-    	
+
     	if (coincidencia(pacienteBuscado)!= null) {
     		System.out.println("coincidencia encontrada.");
     		abrirSubmenuPaciente(coincidencia(pacienteBuscado));
-		    			
+
 		    Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
 		    CerrarSelectorPaciente.close();
 		}else {
 	   		// imprimir mensaje de aviso en caso de no encontrar coincidencia alguna
 	    	ControladorAvisos.setMensajeError("No se ha encontrado el paciente introducido.");
 	       	abrirVentanaAvisos();
-	    }
+
     }
 
     private Paciente coincidencia (String pacienteBuscado) {
@@ -92,18 +92,18 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 			Medicopp.show();
 			Medicopp.setMinHeight(600);
 			Medicopp.setMinWidth(800);
-			
+
 			Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
 			CerrarSelectorPaciente.close();
-			
+
 		}
-		
+
 		catch(ControladorExcepciones case3){
 			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
 			case3.abrirVentanaAvisos();
 		}
     }
-    
+
     public void abrirSubmenuPaciente(Paciente p) throws IOException{
     	try {
 			System.out.println("Cargando ventana principal de Medico...");
@@ -116,19 +116,19 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 			SubmenuPaciente.show();
 			SubmenuPaciente.setMinHeight(600);
 			SubmenuPaciente.setMinWidth(800);
-			
+
 			System.out.println("Cerrando ventana de Login.");
 			Stage CerrarVentanaLogin = (Stage) btnMenuGeneral.getScene().getWindow();
 			CerrarVentanaLogin.close();
-			
+
 		}
-		
+
 		catch(ControladorExcepciones case3){
 			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
 			case3.abrirVentanaAvisos();
 		}
     }
-    
+
     public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
@@ -146,7 +146,7 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 			System.out.println("Error");
 		}
 	}
-    
+
     //Getters y Setters
     public static Medico getMedicoActual() {
 		return medicoActual;
