@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import modelo.Paciente;
 
 public class ControladorMedicoSubmenuPaciente {
 
@@ -66,6 +67,7 @@ public class ControladorMedicoSubmenuPaciente {
     @FXML
     private Label labelRedactar;
 
+    private static Paciente pacienteActual;
     @FXML
     void pressBtnConfirmarEnvio(ActionEvent event) {
 
@@ -75,5 +77,12 @@ public class ControladorMedicoSubmenuPaciente {
     void pressBtnResponder(ActionEvent event) {
 
     }
+    
+    public Paciente getPacienteActual() {
+		return pacienteActual;
+	}
+    public static void setPacienteActual(Paciente p) {
+		pacienteActual = p;
+	}
 
 }

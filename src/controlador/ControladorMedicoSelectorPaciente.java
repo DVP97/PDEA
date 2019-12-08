@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import modelo.Medico;
+import modelo.Paciente;
 
 
 public class ControladorMedicoSelectorPaciente implements Initializable{
@@ -53,31 +54,32 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @FXML
     void pressBtnBuscarPaciente(ActionEvent event) throws IOException {
     	
-        ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
-
-    	//comparar el nombre introducido con los pacientes asignados al medico
     	String pacienteBuscado = inputBuscarPaciente.getText();
     	System.out.println("Buscando "+pacienteBuscado);
     	
-    	try {
-	    	for(int i=0; i< medicoActual.getPacientes().size(); i++) {
-		    		
-		    	if(nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
-		    		System.out.println("coincidencia encontrada.");
-		    		abrirSubmenuPaciente();
+    	if (coincidencia(pacienteBuscado)!= null) {
+    		System.out.println("coincidencia encontrada.");
+    		abrirSubmenuPaciente(coincidencia(pacienteBuscado));
 		    			
-		    		Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
-		    		CerrarSelectorPaciente.close();
-		    	}
-	    	}
-    	}
-	    catch(ControladorExcepciones asdf) {
+		    Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
+		    CerrarSelectorPaciente.close();
+		}else {
 	   		// imprimir mensaje de aviso en caso de no encontrar coincidencia alguna
 	    	ControladorAvisos.setMensajeError("No se ha encontrado el paciente introducido.");
 	       	abrirVentanaAvisos();
 	    }
     }
 
+    private Paciente coincidencia (String pacienteBuscado) {
+    	for(int i=0; i< medicoActual.getPacientes().size(); i++) {
+            ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
+	    	if(nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
+	    		Paciente p = lectorJson.getPaciente(medicoActual.getPacientes().get(i));
+	    		return p;
+	    	}
+    	}
+    	return null;
+    }
     @FXML
     void pressBtnMenuGeneral(ActionEvent event) throws IOException{
     	//abre la ventana general de m�dico
@@ -102,9 +104,11 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 		}
     }
     
-    public void abrirSubmenuPaciente() throws IOException{
+    public void abrirSubmenuPaciente(Paciente p) throws IOException{
     	try {
 			System.out.println("Cargando ventana principal de Medico...");
+			ControladorMedicoSubmenuPaciente.setPacienteActual(p);
+
 			Parent medicoSubmenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
 			Stage SubmenuPaciente = new Stage();
 			SubmenuPaciente.setTitle("Submenu Paciente elegido");
