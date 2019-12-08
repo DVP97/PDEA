@@ -2,6 +2,7 @@ package controlador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -33,29 +34,53 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @FXML
     private JFXButton btnMenuGeneral;
     
+    private static Medico medicoActual = new Medico();
+    
+    private static ArrayList<String> nombresPacientes = getNombrePacientes();
     
     //Metodos
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
-    	Medico m = ControladorMedicopp.getMedicoActual();
     	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
 
     }
 
     @FXML
     void comprobarInput(KeyEvent event) {
-    	//comparar el nombre introducido con los pacientes asignados al medico, para sugerir posibles coincidencias de forma dinamica 
+    	//comparar el nombre introducido con los pacientes asignados al medico, para sugerir posibles coincidencias de forma dinamica
+    	
     }
 
     @FXML
-    void pressBtnBuscarPaciente(ActionEvent event) {
-    	//comparar el nombre introducido con los pacientes asignados al medico
+    void pressBtnBuscarPaciente(ActionEvent event) throws IOException {
     	
-    	// imprimir mensaje de aviso en caso de no encontrar coincidencia alguna
+    	//comparar el nombre introducido con los pacientes asignados al medico
+    	String pacienteBuscado = inputBuscarPaciente.getText();
+    	System.out.println("Buscando "+pacienteBuscado);
+    	
 
-    		ControladorAvisos.setMensajeError("No se ha encontrado el paciente introducido.");
-    		abrirVentanaAvisos();
+    	
+    	for(int i=0; i<ControladorMedicopp.getMedicoActual().getPacientes().size(); i++) {	
+    		try {
+	    		System.out.println(i);
+	    		System.out.println(nombresPacientes.get(i));
+	    		
+	    		if(nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
+	    			System.out.println("coincidencia encontrada.");
+	    			abrirSubmenuPaciente();
+	    			
+	    			Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
+	    			CerrarSelectorPaciente.close();
+	    		}
+	    	}
+    	
+	    	catch(ControladorExcepciones asdf) {
+	   			// imprimir mensaje de aviso en caso de no encontrar coincidencia alguna
+	       		ControladorAvisos.setMensajeError("No se ha encontrado el paciente introducido.");
+	       		abrirVentanaAvisos();
+	    	}
+    	}
     }
 
     @FXML
@@ -70,6 +95,28 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 			Medicopp.show();
 			Medicopp.setMinHeight(600);
 			Medicopp.setMinWidth(800);
+			
+			Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
+			CerrarSelectorPaciente.close();
+			
+		}
+		
+		catch(ControladorExcepciones case3){
+			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
+			case3.abrirVentanaAvisos();
+		}
+    }
+    
+    public void abrirSubmenuPaciente() throws IOException{
+    	try {
+			System.out.println("Cargando ventana principal de Medico...");
+			Parent medicoSubmenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
+			Stage SubmenuPaciente = new Stage();
+			SubmenuPaciente.setTitle("Submenu Paciente elegido");
+			SubmenuPaciente.setScene(new Scene(medicoSubmenuPaciente));
+			SubmenuPaciente.show();
+			SubmenuPaciente.setMinHeight(600);
+			SubmenuPaciente.setMinWidth(800);
 			
 			System.out.println("Cerrando ventana de Login.");
 			Stage CerrarVentanaLogin = (Stage) btnMenuGeneral.getScene().getWindow();
@@ -100,4 +147,28 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 			System.out.println("Error");
 		}
 	}
+    
+    //Getters y Setters
+    public static Medico getMedicoActual() {
+		return medicoActual;
+	}
+
+	public static void setMedicoActual(Medico MedicoActual) {
+		medicoActual = MedicoActual;
+	}
+
+	public static ArrayList<String> getNombrePacientes (){
+		ArrayList<String> pacientes = new ArrayList<String>();
+		ArrayList<String> pacientesDnis = medicoActual.getPacientes();
+
+		for (int i = 0; i < pacientesDnis.size(); i++) {
+
+			String nombrePac = lectorJson.getPaciente(pacientesDnis.get(i)).getNombre();
+			String apellidosPac = lectorJson.getPaciente(pacientesDnis.get(i)).getApellidos();
+			String nombreCompleto = nombrePac + " " + apellidosPac;
+			pacientes.add(nombreCompleto);
+		}
+		return pacientes;
+	}
+
 }
