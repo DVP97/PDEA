@@ -1,5 +1,8 @@
 package controlador;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTabPane;
@@ -12,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import modelo.Medico;
 import modelo.Paciente;
 
 public class ControladorMedicoSubmenuPaciente {
@@ -68,6 +72,13 @@ public class ControladorMedicoSubmenuPaciente {
     private Label labelRedactar;
 
     private static Paciente pacienteActual;
+    
+    private static Medico medicoActual = ControladorMedicopp.getMedicoActual();
+    
+    public void initialize(URL location, ResourceBundle reosurces) {
+    	campoMedico.setText("Hola " + medicoActual.getNombre() +",");
+    }
+    
     @FXML
     void pressBtnConfirmarEnvio(ActionEvent event) {
 
@@ -84,5 +95,12 @@ public class ControladorMedicoSubmenuPaciente {
     public static void setPacienteActual(Paciente p) {
 		pacienteActual = p;
 	}
+    
+    public Medico getMedicoActual() {
+    	return medicoActual;
+    }
+    public static void setMedicoActual(Medico m) {
+    	medicoActual = m;
+    }
 
 }

@@ -108,7 +108,8 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     	try {
 			System.out.println("Cargando ventana principal de Medico...");
 			ControladorMedicoSubmenuPaciente.setPacienteActual(p);
-
+			ControladorMedicoSubmenuPaciente.setMedicoActual(medicoActual);
+			
 			Parent medicoSubmenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
 			Stage SubmenuPaciente = new Stage();
 			SubmenuPaciente.setTitle("Submenu Paciente elegido");
