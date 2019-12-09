@@ -164,10 +164,10 @@ public class ControladorLogin implements Initializable{
 						ControladorMedicopp.setMedicoActual(lectorJson.getMedico(txtInputUsuario.getText().toUpperCase()));
 						Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/vista/medico_selector_paciente.fxml"));
 						Stage Medicopp = new Stage();
-						Medicopp.setTitle("Menu Principal Medico");
+						Medicopp.setTitle("Menu Medico - Seleccion Paciente");
 						Medicopp.setScene(new Scene(MedicoVentana));
 						Medicopp.show();
-						Medicopp.setMinHeight(600);
+						Medicopp.setMinHeight(400);
 						Medicopp.setMinWidth(800);
 						
 						System.out.println("Cerrando ventana de Login.");
