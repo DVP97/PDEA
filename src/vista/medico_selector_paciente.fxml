@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -16,7 +16,6 @@
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
-
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="650.0" styleClass="background" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorMedicoSelectorPaciente">
    <top>
@@ -55,17 +54,16 @@
                   </Label>
                   <ButtonBar prefHeight="46.0" prefWidth="311.0" GridPane.columnIndex="1">
                     <buttons>
-                        <JFXTextField fx:id="inputBuscarPaciente" maxWidth="200.0" onKeyTyped="#comprobarInput" prefHeight="25.0" prefWidth="200.0" unFocusColor="#008f82">
+                        <JFXComboBox fx:id="inputBuscarPaciente" editable="true" onKeyReleased="#comprobarInput" prefHeight="25.0" prefWidth="273.0" unFocusColor="#008f82">
                            <focusColor>
-                              <LinearGradient endX="0.17142857142857149" endY="0.11904761904761899" startX="1.0" startY="0.7380952380952381">
+                              <LinearGradient endX="0.05714285714285716" endY="0.1523809523809524" startX="0.9" startY="0.9714285714285714">
                                  <stops>
                                     <Stop color="#81ebbb" />
-                                    <Stop color="#5c5c53" offset="0.9923371647509578" />
                                     <Stop color="#5c5c53" offset="1.0" />
                                  </stops>
                               </LinearGradient>
                            </focusColor>
-                        </JFXTextField>
+                        </JFXComboBox>
                         <JFXButton fx:id="btnBuscarPaciente" buttonType="RAISED" maxWidth="100.0" onAction="#pressBtnBuscarPaciente" prefHeight="25.0" prefWidth="20.0" styleClass="btn" stylesheets="@application.css" text="Buscar">
                            <ripplerFill>
                               <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
