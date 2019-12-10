@@ -61,6 +61,10 @@ public class Mensaje {
 	public String getAsunto() {
 		return asunto;
 	}
+	public String getDia() {
+		return ((Integer)fecha.getDate()).toString();
+		
+	}
 	
 	//SETTERS
 

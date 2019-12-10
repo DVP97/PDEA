@@ -87,76 +87,9 @@ public class ControladorPacienteMensajes implements Initializable{
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
 		
-		ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
-		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
-
+		setTitlePanesRecibidos();
+		setTitlePanesEnviados();
 		
-		if (numeroMensajesRecibidos() > 0) {
-		
-			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
-				ArrayList<Mensaje> mensajesRec  = lectorJson.getMensajesEnviadosA(p.getDni());
-				List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
-				listMensajesRec.addAll(mensajesRec);
-				Collections.sort(listMensajesRec, new sortByDate());
-				Mensaje mensajeAct = listMensajesRec.get(i);
-				
-				Label contenido = new Label(mensajeAct.getMensaje());
-				ScrollPane panelContenido = new ScrollPane(contenido);
-				contenido.boundsInParentProperty();
-				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append("Asunto: ");
-				//stringBuilder.append(mensajeAct.getAsunto());
-				//stringBuilder.append("\t\t");
-				//stringBuilder.append(mensajeAct.getFecha().toGMTString());
-				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;	
-				tpsr.add(i, tp);
-				
-			}
-			
-			AccordionMensajesRec.setLayoutY(60);
-			AccordionMensajesRec.setLayoutX(5);
-			AccordionMensajesRec.getPanes().addAll(tpsr);
-			AnchorPane.setTopAnchor(AccordionMensajesRec, Double.valueOf(30));
-		}
-		else {
-			Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
-			emptyRec.setFont(new Font("Arial", 18));
-			emptyRec.setLayoutY(60);
-			emptyRec.setLayoutX(5);
-			anchorPaneRecibidos.getChildren().add(emptyRec);
-			
-			AnchorPane.setTopAnchor(emptyRec, Double.valueOf(40));
-		}
-		if (numeroMensajesEnviados() > 0) {
-			
-			for (int i = 0; i < numeroMensajesEnviados(); i++) {
-				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(p.getDni());
-				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
-				listMensajesEnv.addAll(mensajesEnv);
-				Collections.sort(listMensajesEnv, new sortByDate());
-				Mensaje mensajeAct = listMensajesEnv.get(i);
-				
-				Label contenido = new Label(mensajeAct.getMensaje());
-				ScrollPane panelContenido = new ScrollPane(contenido);
-				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("Asunto: " + mensajeAct.getAsunto(), panelContenido) ;
-				tpse.add(i, tp);
-			}
-			
-			AccordionMensajesEnv.setLayoutY(60);
-			AccordionMensajesEnv.setLayoutX(5);
-			AccordionMensajesEnv.getPanes().addAll(tpse);
-			AnchorPane.setTopAnchor(AccordionMensajesEnv, Double.valueOf(30));
-		}
-		else {
-			Label emptyEnv = new Label("No hay mensajes enviados.");
-			emptyEnv.setFont(new Font("Arial", 18));
-			emptyEnv.setLayoutY(60);
-			emptyEnv.setLayoutX(5);
-			anchorPaneEnviados.getChildren().add(emptyEnv);
-			
-			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
-		}
 	}
 	
 	@FXML
@@ -176,17 +109,11 @@ public class ControladorPacienteMensajes implements Initializable{
 				ControladorAvisos.setMensajeError("Mensaje Enviado.");
 				abrirVentanaAvisos();
 				
-				List<Mensaje> listMensajes = new ArrayList<Mensaje>();
-				listMensajes.addAll(mensajes);
-				Collections.sort(listMensajes, new sortByDate());
+				AccordionMensajesEnv.getPanes().clear();
 				
-				Label contenido = new Label(msg.getMensaje());
-				ScrollPane panelContenido = new ScrollPane(contenido);
-				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("Asunto: " + msg.getAsunto(), panelContenido) ;
-								
-
-				AccordionMensajesEnv.getPanes().add(tp);
+				setTitlePanesEnviados();
+				
+				campoAsunto.clear();
 				campoEscritura.clear();
 				
 			}
@@ -249,7 +176,7 @@ public class ControladorPacienteMensajes implements Initializable{
 	public class sortByDate implements Comparator<Mensaje> {
 		 
 	    @Override
-	    public int compare(Mensaje m1, Mensaje m2) {
+	    public int compare(Mensaje m2, Mensaje m1) {
 	        return m1.getFecha().compareTo(m2.getFecha());
 	    }
 	}
@@ -271,4 +198,105 @@ public class ControladorPacienteMensajes implements Initializable{
 			System.out.println("Error");
 		}
 	}
+    
+    public void setTitlePanesEnviados() {
+		Paciente p = ControladorPacientepp.getPacienteActual();
+
+		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
+
+		if (numeroMensajesEnviados() > 0) {
+			
+			for (int i = 0; i < numeroMensajesEnviados(); i++) {
+				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(p.getDni());
+				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
+				listMensajesEnv.addAll(mensajesEnv);
+				Collections.sort(listMensajesEnv, new sortByDate());
+				Mensaje mensajeAct = listMensajesEnv.get(i);
+				
+				Label contenido = new Label(mensajeAct.getMensaje());
+				ScrollPane panelContenido = new ScrollPane(contenido);
+				contenido.boundsInParentProperty();
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append("Asunto: ");
+				String dia = ((Integer) mensajeAct.getFecha().getDate()).toString();
+				String mes = ((Integer) (mensajeAct.getFecha().getMonth()+1 )).toString();
+				String anho = ((Integer) mensajeAct.getFecha().getYear()).toString();
+				String hora = ((Integer) mensajeAct.getFecha().getHours()).toString();
+				String min = ((Integer) mensajeAct.getFecha().getMinutes()).toString();
+				String fecha = hora+ ":" + min + "\t" +dia + "/"+ mes + "/"+ anho ;
+				
+				stringBuilder.append(mensajeAct.getAsunto());
+
+				stringBuilder.append("\t\t\t\t\t");
+				stringBuilder.append(fecha);
+				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;
+				tpse.add(i, tp);
+			}
+			
+			AccordionMensajesEnv.setLayoutY(60);
+			AccordionMensajesEnv.setLayoutX(5);
+			AccordionMensajesEnv.getPanes().addAll(tpse);
+			AnchorPane.setTopAnchor(AccordionMensajesEnv, Double.valueOf(30));
+		}
+		else {
+			Label emptyEnv = new Label("No hay mensajes enviados.");
+			emptyEnv.setFont(new Font("Arial", 18));
+			emptyEnv.setLayoutY(60);
+			emptyEnv.setLayoutX(5);
+			anchorPaneEnviados.getChildren().add(emptyEnv);
+			
+			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
+		}
+    }
+    
+    public void setTitlePanesRecibidos() {
+		Paciente p = ControladorPacientepp.getPacienteActual();
+
+		ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
+
+    	if (numeroMensajesRecibidos() > 0) {
+    		
+			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
+				ArrayList<Mensaje> mensajesRec  = lectorJson.getMensajesEnviadosA(p.getDni());
+				List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
+				listMensajesRec.addAll(mensajesRec);
+				Collections.sort(listMensajesRec, new sortByDate());
+				Mensaje mensajeAct = listMensajesRec.get(i);
+				
+				Label contenido = new Label(mensajeAct.getMensaje());
+				ScrollPane panelContenido = new ScrollPane(contenido);
+				contenido.boundsInParentProperty();
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append("Asunto: ");
+				String dia = ((Integer) mensajeAct.getFecha().getDate()).toString();
+				String mes = ((Integer) (mensajeAct.getFecha().getMonth()+1 )).toString();
+				String anho = ((Integer) mensajeAct.getFecha().getYear()).toString();
+				String hora = ((Integer) mensajeAct.getFecha().getHours()).toString();
+				String min = ((Integer) mensajeAct.getFecha().getMinutes()).toString();
+				String fecha = hora+ ":" + min + "\t" +dia + "/"+ mes + "/"+ anho ;
+				
+				stringBuilder.append(mensajeAct.getAsunto());
+
+				stringBuilder.append("\t\t\t\t\t");
+				stringBuilder.append(fecha);
+				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;	
+				tpsr.add(i, tp);
+				
+			}
+			
+			AccordionMensajesRec.setLayoutY(60);
+			AccordionMensajesRec.setLayoutX(5);
+			AccordionMensajesRec.getPanes().addAll(tpsr);
+			AnchorPane.setTopAnchor(AccordionMensajesRec, Double.valueOf(30));
+		}
+		else {
+			Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
+			emptyRec.setFont(new Font("Arial", 18));
+			emptyRec.setLayoutY(60);
+			emptyRec.setLayoutX(5);
+			anchorPaneRecibidos.getChildren().add(emptyRec);
+			
+			AnchorPane.setTopAnchor(emptyRec, Double.valueOf(40));
+		}
+    }
 }
