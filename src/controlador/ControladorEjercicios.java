@@ -170,7 +170,7 @@ public class ControladorEjercicios implements Initializable{
 		cronometro.setText("00:"+interval); 
 		
 		
-		numeroEjercicio.setText(" "+(contador+1)+" de "+ this.ejercicios.size());
+		numeroEjercicio.setText(" "+(contador+1)+" DE "+ this.ejercicios.size() + " .");
 		
 		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
 	} 
