@@ -73,10 +73,11 @@ public class ControladorMedicoSubmenuPaciente {
 
     private static Paciente pacienteActual;
     
-    private static Medico medicoActual = ControladorMedicopp.getMedicoActual();
+    private static Medico medicoActual = new Medico();
     
     public void initialize(URL location, ResourceBundle reosurces) {
-    	campoMedico.setText("Hola " + medicoActual.getNombre() +",");
+    	Medico m = ControladorMedicopp.getMedicoActual();
+    	campoMedico.setText("Hola " + m.getNombre() +",");
     }
     
     @FXML

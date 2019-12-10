@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import modelo.Medico;
@@ -50,6 +51,17 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     public void initialize(URL location, ResourceBundle reosurces) {
     	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
     	inputBuscarPaciente.setItems(listaPacientesComboBox);
+    }
+    
+    public void pressEnter (KeyEvent event) throws IOException {
+    	if(event.getCode().equals(KeyCode.ENTER)) {
+			try {
+				this.pressBtnBuscar();
+			} catch (ControladorExcepciones e) {
+				ControladorAvisos.setMensajeError("El usuario seleccionado es incorrecto");
+				e.abrirVentanaAvisos();
+			}
+		}
     }
 
     @FXML
@@ -98,7 +110,15 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 
     @FXML
     void pressBtnBuscarPaciente(ActionEvent event) throws IOException {
-
+    	try {
+    		this.pressBtnBuscar();
+    	}catch(ControladorExcepciones e) {
+    		ControladorAvisos.setMensajeError("El usuario seleccionado no es correcto.");
+    		e.abrirVentanaAvisos();
+    	}
+    	
+    }
+    private void pressBtnBuscar() throws IOException {
     	String pacienteBuscado = inputBuscarPaciente.getValue();
 
     	if (coincidencia(pacienteBuscado)!= null) {
