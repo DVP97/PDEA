@@ -64,7 +64,7 @@
  	-fx-text-fill: #ffffff;
  	-fx-font: 150% sans-serif;
  	-fx-background-color: #008f82;
- 	-fx-background-radius: 2px;
+ 	-fx-background-radius: 10px;
 }
 .jfx-tab-pane .headers-region{
     -fx-background-color: #008f82;

@@ -68,8 +68,7 @@
                <children>
                   <AnchorPane layoutY="16.0" prefHeight="94.0" prefWidth="313.0">
                      <children>
-                        <Label fx:id="numeroEjercicio" contentDisplay="CENTER" layoutX="179.0" styleClass="textoEjercicio" stylesheets="@application.css" text=" 1 de 3 " textAlignment="CENTER" />
-                        <JFXButton fx:id="btnSiguiente" buttonType="RAISED" contentDisplay="CENTER" layoutX="220.0" layoutY="47.0" onAction="#pressBtnSiguiente" styleClass="btn" stylesheets="@application.css" text="Siguiente" textAlignment="CENTER">
+                        <JFXButton fx:id="btnSiguiente" buttonType="RAISED" contentDisplay="CENTER" layoutX="240.0" layoutY="47.0" onAction="#pressBtnSiguiente" styleClass="btn" stylesheets="@application.css" text="Siguiente" textAlignment="CENTER">
                            <ripplerFill>
                               <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
                                  <stops>
@@ -79,7 +78,7 @@
                               </RadialGradient>
                            </ripplerFill>
                         </JFXButton>
-                        <JFXButton fx:id="btnAnterior" buttonType="RAISED" contentDisplay="CENTER" layoutX="15.0" layoutY="47.0" onAction="#pressBtnAnterior" styleClass="btn" stylesheets="@application.css" text="Anterior" textAlignment="CENTER">
+                        <JFXButton fx:id="btnAnterior" buttonType="RAISED" contentDisplay="CENTER" layoutX="7.0" layoutY="47.0" onAction="#pressBtnAnterior" styleClass="btn" stylesheets="@application.css" text="Anterior" textAlignment="CENTER">
                            <ripplerFill>
                               <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
                                  <stops>
@@ -89,7 +88,8 @@
                               </RadialGradient>
                            </ripplerFill>
                         </JFXButton>
-                        <Label fx:id="txtEjercicio" contentDisplay="CENTER" layoutX="66.0" pickOnBounds="false" prefWidth="115.0" styleClass="textoEjercicio" stylesheets="@application.css" text=" EJERCICIO " textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+                        <Label fx:id="txtEjercicio" contentDisplay="CENTER" layoutX="64.0" pickOnBounds="false" prefHeight="22.0" prefWidth="138.0" styleClass="textoEjercicio" stylesheets="@application.css" text="  EJERCICIO   " textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+                        <Label fx:id="numeroEjercicio" contentDisplay="CENTER" layoutX="180.0" prefHeight="22.0" prefWidth="68.0" styleClass="textoEjercicio" stylesheets="@application.css" text="1 DE 3 " textAlignment="CENTER" />
                      </children>
                      <opaqueInsets>
                         <Insets />
