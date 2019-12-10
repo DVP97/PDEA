@@ -213,7 +213,7 @@
                                                    </rowConstraints>
                                                    <children>
                                                       <Label prefHeight="17.0" prefWidth="116.0" text="Enviar mensaje a:" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                                                      <JFXComboBox fx:id="comboBoxElegirDestinatario" editable="true" onKeyPressed="#pressEnter" onKeyReleased="#comprobarInput" prefHeight="25.0" prefWidth="273.0" unFocusColor="#008f82" GridPane.columnIndex="1">
+                                                      <JFXComboBox fx:id="comboBoxElegirDestinatario" editable="true"  prefHeight="25.0" prefWidth="273.0" unFocusColor="#008f82" GridPane.columnIndex="1">
                                                          <focusColor>
                                                             <LinearGradient endX="0.05714285714285716" endY="0.1523809523809524" startX="0.9" startY="0.9714285714285714">
                                                                <stops>
