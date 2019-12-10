@@ -2,6 +2,9 @@ package controlador;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -23,6 +26,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTabPane;
 
+import controlador.ControladorPacienteMensajes.sortByDate;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
@@ -124,8 +128,12 @@ public class ControladorMedicopp implements Initializable {
 
     	if(numeroMensajesRecibidos()>0) {
     		for(int i=0; i<numeroMensajesRecibidos(); i++) {
-    			ArrayList<Mensaje> mensajeRec = lectorJson.getMensajesEnviadosA(m.getDni());
-    			Mensaje mensajeAct = mensajeRec.get(i);
+    			ArrayList<Mensaje> mensajesRec = lectorJson.getMensajesEnviadosA(m.getDni());
+    			List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
+				listMensajesRec.addAll(mensajesRec);
+				Collections.sort(listMensajesRec, new sortByDate());
+    			Mensaje mensajeAct = listMensajesRec.get(i);
+    			
     			Paciente pacEmisor = lectorJson.getPaciente(mensajeAct.getEmisor());
     			Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
@@ -155,7 +163,11 @@ public class ControladorMedicopp implements Initializable {
 
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
 				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(m.getDni());
+				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
+				listMensajesEnv.addAll(mensajesEnv);
+				Collections.sort(listMensajesEnv, new sortByDate());
 				Mensaje mensajeAct = mensajesEnv.get(i);
+				
 				Paciente pacienteReceptor = lectorJson.getPaciente(mensajeAct.getReceptor());
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
@@ -232,6 +244,14 @@ public class ControladorMedicopp implements Initializable {
     	    	
     }
 
+	public class sortByDate implements Comparator<Mensaje> {
+		 
+	    @Override
+	    public int compare(Mensaje m1, Mensaje m2) {
+	        return m1.getFecha().compareTo(m2.getFecha());
+	    }
+	}
+	
     public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
@@ -299,11 +319,15 @@ public class ControladorMedicopp implements Initializable {
 	public void enviarMensaje(String dniPac) {
     	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText(), campoAsunto.getText());
 		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
+		
 		mensajes= lectorJson.lectorJsonMensajes();
 		mensajes.add(msg);
 		escritorJson.escribirEnJsonMensajes(mensajes);
 		Paciente pacienteReceptor = lectorJson.getPaciente(dniPac);
 
+		List<Mensaje> listMensajes = new ArrayList<Mensaje>();
+		listMensajes.addAll(mensajes);
+		Collections.sort(listMensajes, new sortByDate());
 
 		Label contenido = new Label(msg.getMensaje());
 		ScrollPane panelContenido = new ScrollPane(contenido);

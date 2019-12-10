@@ -12,7 +12,7 @@
   {
     "emisor": "07447768T",
     "receptor": "62544518C",
-    "mensaje": "Buenas",
+    "mensaje": "segundo",
     "leido": false,
     "contestado": false,
     "borrado": false,
@@ -22,11 +22,11 @@
   {
     "emisor": "07447768T",
     "receptor": "62544518C",
-    "mensaje": "probando",
+    "mensaje": "primero",
     "leido": false,
     "contestado": false,
     "borrado": false,
-    "fecha": "Nov 27, 2019 1:31:22 PM",
+    "fecha": "Sep 27, 2019 1:31:22 PM",
     "asunto": "Hola"
   },
   {

@@ -3,6 +3,9 @@ package controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -92,7 +95,11 @@ public class ControladorPacienteMensajes implements Initializable{
 		
 			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
 				ArrayList<Mensaje> mensajesRec  = lectorJson.getMensajesEnviadosA(p.getDni());
-				Mensaje mensajeAct = mensajesRec.get(i);
+				List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
+				listMensajesRec.addAll(mensajesRec);
+				Collections.sort(listMensajesRec, new sortByDate());
+				Mensaje mensajeAct = listMensajesRec.get(i);
+				
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
@@ -101,10 +108,11 @@ public class ControladorPacienteMensajes implements Initializable{
 				//stringBuilder.append(mensajeAct.getAsunto());
 				//stringBuilder.append("\t\t");
 				//stringBuilder.append(mensajeAct.getFecha().toGMTString());
-				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;
-						
+				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;	
 				tpsr.add(i, tp);
+				
 			}
+			
 			AccordionMensajesRec.setLayoutY(60);
 			AccordionMensajesRec.setLayoutX(5);
 			AccordionMensajesRec.getPanes().addAll(tpsr);
@@ -116,22 +124,24 @@ public class ControladorPacienteMensajes implements Initializable{
 			emptyRec.setLayoutY(60);
 			emptyRec.setLayoutX(5);
 			anchorPaneRecibidos.getChildren().add(emptyRec);
+			
 			AnchorPane.setTopAnchor(emptyRec, Double.valueOf(40));
-			
-			
 		}
 		if (numeroMensajesEnviados() > 0) {
 			
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
 				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(p.getDni());
-				Mensaje mensajeAct = mensajesEnv.get(i);
+				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
+				listMensajesEnv.addAll(mensajesEnv);
+				Collections.sort(listMensajesEnv, new sortByDate());
+				Mensaje mensajeAct = listMensajesEnv.get(i);
+				
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
 				TitledPane tp = new TitledPane("Asunto: " + mensajeAct.getAsunto(), panelContenido) ;
 				tpse.add(i, tp);
 			}
-			
 			
 			AccordionMensajesEnv.setLayoutY(60);
 			AccordionMensajesEnv.setLayoutX(5);
@@ -148,7 +158,7 @@ public class ControladorPacienteMensajes implements Initializable{
 			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
 		}
 	}
-
+	
 	@FXML
 	void pressBtnEnviar(ActionEvent event) {
 		if(campoEscritura.getLength()>0){
@@ -166,7 +176,10 @@ public class ControladorPacienteMensajes implements Initializable{
 				ControladorAvisos.setMensajeError("Mensaje Enviado.");
 				abrirVentanaAvisos();
 				
-					
+				List<Mensaje> listMensajes = new ArrayList<Mensaje>();
+				listMensajes.addAll(mensajes);
+				Collections.sort(listMensajes, new sortByDate());
+				
 				Label contenido = new Label(msg.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
@@ -186,9 +199,9 @@ public class ControladorPacienteMensajes implements Initializable{
 			ControladorAvisos.setMensajeError("No ha introducido texto alguno en el mensaje que intenta enviar.");
 			abrirVentanaAvisos();
 		}
-	}
-	
-    
+	}	
+
+	    
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
@@ -232,7 +245,15 @@ public class ControladorPacienteMensajes implements Initializable{
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		return lectorJson.getMensajesEnviadosPor(p.getDni()).size();
 	}
-	
+
+	public class sortByDate implements Comparator<Mensaje> {
+		 
+	    @Override
+	    public int compare(Mensaje m1, Mensaje m2) {
+	        return m1.getFecha().compareTo(m2.getFecha());
+	    }
+	}
+
     public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
