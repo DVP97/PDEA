@@ -71,12 +71,14 @@ public class ControladorMedicoSubmenuPaciente {
     @FXML
     private Label labelRedactar;
 
-    private static Paciente pacienteActual;
+    private static Paciente pacienteActual = new Paciente();
     
     private static Medico medicoActual = new Medico();
     
     public void initialize(URL location, ResourceBundle reosurces) {
-    	Medico m = ControladorMedicopp.getMedicoActual();
+    	System.out.println(medicoActual.getNombre());
+    	System.out.println(pacienteActual.getNombre());
+    	Medico m = ControladorMedicoSubmenuPaciente.getMedicoActual();
     	campoMedico.setText("Hola " + m.getNombre() +",");
     }
     
@@ -90,14 +92,14 @@ public class ControladorMedicoSubmenuPaciente {
 
     }
     
-    public Paciente getPacienteActual() {
+    public static Paciente getPacienteActual() {
 		return pacienteActual;
 	}
     public static void setPacienteActual(Paciente p) {
 		pacienteActual = p;
 	}
     
-    public Medico getMedicoActual() {
+    public static Medico getMedicoActual() {
     	return medicoActual;
     }
     public static void setMedicoActual(Medico m) {

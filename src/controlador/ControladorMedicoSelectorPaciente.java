@@ -122,11 +122,27 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     	String pacienteBuscado = inputBuscarPaciente.getValue();
 
     	if (coincidencia(pacienteBuscado)!= null) {
-    		System.out.println("coincidencia encontrada.");
-    		abrirSubmenuPaciente(coincidencia(pacienteBuscado));
-
-		    Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
-		    CerrarSelectorPaciente.close();
+    		try {
+	    		System.out.println("coincidencia encontrada.");
+	    		System.out.println("Cargando ventana principal de Medico...");
+	    		ControladorMedicoSubmenuPaciente.setMedicoActual(medicoActual);
+	    		ControladorMedicoSubmenuPaciente.setPacienteActual(coincidencia(pacienteBuscado));
+				Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
+				Stage subMenuPaciente = new Stage();
+				subMenuPaciente.setTitle("SubMenu Paciente Elegido");
+				subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
+				subMenuPaciente.show();
+				subMenuPaciente.setMinHeight(600);
+				subMenuPaciente.setMinWidth(800);
+				
+				
+				System.out.println("Cerrando ventana Selector...");
+				Stage CerrarSelectorPaciente = (Stage) btnMenuGeneral.getScene().getWindow();
+				CerrarSelectorPaciente.close();
+    		}catch(ControladorExcepciones case1) {
+    			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Submenu.");
+				case1.abrirVentanaAvisos();
+    		}
 		}
     	else {
 	   		// imprimir mensaje de aviso en caso de no encontrar coincidencia alguna
@@ -169,31 +185,6 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 		}
     }
 
-    public void abrirSubmenuPaciente(Paciente p) throws IOException{
-    	try {
-			System.out.println("Cargando ventana principal de Medico...");
-			ControladorMedicoSubmenuPaciente.setPacienteActual(p);
-			ControladorMedicoSubmenuPaciente.setMedicoActual(medicoActual);
-			
-			Parent medicoSubmenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
-			Stage SubmenuPaciente = new Stage();
-			SubmenuPaciente.setTitle("Submenu Paciente elegido");
-			SubmenuPaciente.setScene(new Scene(medicoSubmenuPaciente));
-			SubmenuPaciente.show();
-			SubmenuPaciente.setMinHeight(600);
-			SubmenuPaciente.setMinWidth(800);
-
-			System.out.println("Cerrando ventana de Login.");
-			Stage CerrarVentanaLogin = (Stage) btnMenuGeneral.getScene().getWindow();
-			CerrarVentanaLogin.close();
-
-		}
-
-		catch(ControladorExcepciones case3){
-			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
-			case3.abrirVentanaAvisos();
-		}
-    }
 
     public void abrirVentanaAvisos() {
 		try {
