@@ -23,37 +23,37 @@ import modelo.Paciente;
 
 public class ControladorAvisosPaciente implements Initializable{
 
-	
 
-    @FXML
-    private ImageView LogoEWBAvisos;
 
-    @FXML
-    private Label campoEjercicios;
-   
-    
-    @FXML
-    private JFXButton btnVolver;
-    
-    @FXML
-    private Label campoPaciente;
-    
-    @FXML
-    private ArrayList<Ejercicio> ejercicios;
-    
-    private static Paciente pacienteActual = new Paciente();
-    
-    @Override
-    public void initialize(URL location, ResourceBundle reosurces) {
-    
-    	Paciente p = ControladorPacientepp.getPacienteActual();
+	@FXML
+	private ImageView LogoEWBAvisos;
+
+	@FXML
+	private Label campoEjercicios;
+
+
+	@FXML
+	private JFXButton btnVolver;
+
+	@FXML
+	private Label campoPaciente;
+
+	@FXML
+	private ArrayList<Ejercicio> ejercicios;
+
+	private static Paciente pacienteActual = new Paciente();
+
+	@Override
+	public void initialize(URL location, ResourceBundle reosurces) {
+
+		Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
 		this.ejercicios = lectorJson.getEjercicios(p);
 		campoEjercicios.setText("Le faltan "+ this.ejercicios.size()+" ejercicios.");
-		
-    }
-    
-    @FXML
+
+	}
+
+	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
 			System.out.println("Cargando ventana principal de Paciente...");
@@ -69,24 +69,24 @@ public class ControladorAvisosPaciente implements Initializable{
 			Stage CerrarVentanaLogin = (Stage) btnVolver.getScene().getWindow();
 			CerrarVentanaLogin.close();
 		}	
-		
+
 		catch(ControladorExcepciones case1){
 			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
 			case1.abrirVentanaAvisos();
 		}
-    }
-  //GETTER
-  	public static Paciente getPacienteActual() {
-  		return pacienteActual;
-  	}
-  	 
-  	//SETTER
-  	public static void setPacienteActual(Paciente pacienteActual) {
-  		ControladorAvisosPaciente.pacienteActual = pacienteActual;
-  	}
+	}
+	//GETTER
+	public static Paciente getPacienteActual() {
+		return pacienteActual;
+	}
+
+	//SETTER
+	public static void setPacienteActual(Paciente pacienteActual) {
+		ControladorAvisosPaciente.pacienteActual = pacienteActual;
+	}
 }
 
 
-	
+
 
 
