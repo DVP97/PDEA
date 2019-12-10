@@ -138,7 +138,7 @@ public class ControladorMedicopp implements Initializable {
     			Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("De: " +pacEmisor.getNombre() + " " + pacEmisor.getApellidos(), panelContenido) ;
+				TitledPane tp = new TitledPane("Asunto: " + mensajeAct.getAsunto(), panelContenido) ;
 				tp.setId(pacEmisor.getDni());
 				tpsr.add(i, tp);
     		}
@@ -174,7 +174,7 @@ public class ControladorMedicopp implements Initializable {
 				contenido.minHeight(60);
 				contenido.boundsInParentProperty();
 				contenido.wrapTextProperty();
-				TitledPane tp = new TitledPane("Para: " + pacienteReceptor.getNombre() + " " +pacienteReceptor.getApellidos() , panelContenido) ;
+				TitledPane tp = new TitledPane("Asunto: " + mensajeAct.getAsunto(), panelContenido) ;
 				tp.setId(pacienteReceptor.getDni());
 				tpse.add(i, tp);
 			}
@@ -323,7 +323,6 @@ public class ControladorMedicopp implements Initializable {
 		mensajes= lectorJson.lectorJsonMensajes();
 		mensajes.add(msg);
 		escritorJson.escribirEnJsonMensajes(mensajes);
-		Paciente pacienteReceptor = lectorJson.getPaciente(dniPac);
 
 		List<Mensaje> listMensajes = new ArrayList<Mensaje>();
 		listMensajes.addAll(mensajes);
@@ -333,7 +332,7 @@ public class ControladorMedicopp implements Initializable {
 		ScrollPane panelContenido = new ScrollPane(contenido);
 		contenido.boundsInParentProperty();
 
-		TitledPane tp = new TitledPane("Para: " + pacienteReceptor.getNombre()+" "+ pacienteReceptor.getApellidos() , panelContenido) ;
+		TitledPane tp = new TitledPane("Asunto: " +  msg.getAsunto() , panelContenido) ;
 		tp.setId(dniPac);
 
 		AccordionMensajesEnv.getPanes().add(tp);

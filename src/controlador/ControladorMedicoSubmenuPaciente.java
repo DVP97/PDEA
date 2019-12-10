@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXTabPane;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import modelo.Medico;
 import modelo.Paciente;
 
-public class ControladorMedicoSubmenuPaciente {
+public class ControladorMedicoSubmenuPaciente implements Initializable {
 
     @FXML
     private Label campoMedico;
@@ -75,11 +76,11 @@ public class ControladorMedicoSubmenuPaciente {
     
     private static Medico medicoActual = new Medico();
     
+    @Override
     public void initialize(URL location, ResourceBundle reosurces) {
     	System.out.println(medicoActual.getNombre());
     	System.out.println(pacienteActual.getNombre());
-    	Medico m = ControladorMedicoSubmenuPaciente.getMedicoActual();
-    	campoMedico.setText("Hola " + m.getNombre() +",");
+    	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
     }
     
     @FXML
