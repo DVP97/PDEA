@@ -14,6 +14,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
@@ -80,7 +81,7 @@
                                        <children>
                                           <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recibidos:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                                              <font>
-                                                <Font size="20.0" />
+                                                <Font size="18.0" />
                                              </font>
                                           </Text>
                                           <Accordion fx:id="AccordionMensajesRec" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
@@ -98,7 +99,7 @@
                                        <children>
                                           <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enviados:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                                              <font>
-                                                <Font size="20.0" />
+                                                <Font size="18.0" />
                                              </font>
                                           </Text>
                                           <Accordion fx:id="AccordionMensajesEnv" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
@@ -112,10 +113,10 @@
                   </JFXTabPane>
                 <AnchorPane fx:id="anchorPaneEnviados" maxHeight="200.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <TextArea fx:id="campoEscritura" layoutX="5.0" layoutY="46.0" prefHeight="99.0" prefWidth="313.0" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="46.0" />
+                        <TextArea fx:id="campoEscritura" layoutX="5.0" layoutY="46.0" prefHeight="99.0" prefWidth="313.0" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="60.0" />
                         <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redactar:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="18.0" />
                            </font>
                         </Text>
                         <JFXButton fx:id="btnEnviar" buttonType="RAISED" layoutX="380.0" layoutY="22.0" onAction="#pressBtnEnviar" prefHeight="100.0" prefWidth="100.0" styleClass="btn" stylesheets="@application.css" text="Enviar" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
@@ -127,8 +128,17 @@
                                  </stops>
                               </RadialGradient>
                            </ripplerFill></JFXButton>
-                        <JFXTextField fx:id="campoAsunto" layoutX="167.0" layoutY="1.0" />
-                        <Label layoutX="119.0" layoutY="6.0" styleClass="normalLabel" stylesheets="@application.css" text="Asunto:" />
+                        <Label styleClass="textoEjercicio" stylesheets="@application.css" text=" Asunto: " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="30.0" />
+                        <JFXTextField fx:id="campoAsunto" prefHeight="25.0" prefWidth="159.0" unFocusColor="#008f82" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="25.0">
+                           <focusColor>
+                              <LinearGradient endX="0.06190476190476191" endY="0.12857142857142853" startX="0.8571428571428572" startY="0.9761904761904762">
+                                 <stops>
+                                    <Stop color="#81ebbb" />
+                                    <Stop color="#5c5c53" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </focusColor>
+                        </JFXTextField>
                      </children>
                   </AnchorPane>
               </items>
