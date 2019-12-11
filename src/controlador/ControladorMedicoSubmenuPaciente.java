@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTextField;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -83,6 +84,9 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 
     @FXML
     private Label labelRedactar;
+    
+    @FXML
+    private JFXTextField campoAsunto;
 
     private static Paciente pacienteActual = new Paciente();
     
@@ -100,7 +104,6 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     
     @FXML
     void pressBtnConfirmarEnvio(ActionEvent event) {
-    	//if(campoAsunto.getText().length()>0) {
         	
 	    	if(campoRedactar.getText().length()>0) {
 	
@@ -118,11 +121,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 				ControladorAvisos.setMensajeError("No ha introducido texto alguno en el mensaje que intenta enviar.");
 				abrirVentanaAvisos();
 			}
-    	//}
-    	//else{
-		//	ControladorAvisos.setMensajeError("No ha introducido asunto en el mensaje que intenta enviar.");
-		//	abrirVentanaAvisos();
-		//}
+
     }
 
     
@@ -146,7 +145,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     }
     
     private void enviarMensaje(String dniPac) {
-    	/*Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText(), campoAsunto.getText());
+    	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText(), campoAsunto.getText());
 		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
 		
 		mensajes= lectorJson.lectorJsonMensajes();
@@ -160,7 +159,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		
 		setTitledPanesEnviados();
 		campoRedactar.clear();
-		campoAsunto.clear();*/
+		campoAsunto.clear();
     }
     
     

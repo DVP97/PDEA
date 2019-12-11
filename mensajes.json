@@ -88,5 +88,15 @@
     "contestado": false,
     "borrado": false,
     "fecha": "Dec 10, 2019 6:22:51 PM"
+  },
+  {
+    "asunto": "Probando asunto submenu paciente",
+    "emisor": "62544518C",
+    "receptor": "07447768T",
+    "mensaje": "Hello World!",
+    "leido": false,
+    "contestado": false,
+    "borrado": false,
+    "fecha": "Dec 11, 2019 11:56:56 AM"
   }
 ]
