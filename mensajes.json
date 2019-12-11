@@ -80,16 +80,6 @@
     "fecha": "Dec 10, 2019 1:17:27 PM"
   },
   {
-    "asunto": "Tu puta madre",
-    "emisor": "07447768T",
-    "receptor": "62544518C",
-    "mensaje": "me cago en todo",
-    "leido": false,
-    "contestado": false,
-    "borrado": false,
-    "fecha": "Dec 10, 2019 6:20:23 PM"
-  },
-  {
     "asunto": "holi",
     "emisor": "07447768T",
     "receptor": "62544518C",
@@ -98,15 +88,5 @@
     "contestado": false,
     "borrado": false,
     "fecha": "Dec 10, 2019 6:22:51 PM"
-  },
-  {
-    "asunto": "gias",
-    "emisor": "07447768T",
-    "receptor": "62544518C",
-    "mensaje": "dfalsd",
-    "leido": false,
-    "contestado": false,
-    "borrado": false,
-    "fecha": "Dec 10, 2019 6:31:10 PM"
   }
 ]

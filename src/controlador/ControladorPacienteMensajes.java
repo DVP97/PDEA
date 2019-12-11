@@ -216,21 +216,17 @@ public class ControladorPacienteMensajes implements Initializable{
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
+				
+				//Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append("Asunto: ");
-				String dia = ((Integer) mensajeAct.getFecha().getDate()).toString();
-				String mes = ((Integer) (mensajeAct.getFecha().getMonth()+1 )).toString();
-				String anho = ((Integer) mensajeAct.getFecha().getYear()).toString();
-				String hora = ((Integer) mensajeAct.getFecha().getHours()).toString();
-				String min = ((Integer) mensajeAct.getFecha().getMinutes()).toString();
-				String fecha = hora+ ":" + min + "\t" +dia + "/"+ mes + "/"+ anho ;
-				
 				stringBuilder.append(mensajeAct.getAsunto());
-
-				stringBuilder.append("\t\t\t\t\t");
-				stringBuilder.append(fecha);
+				stringBuilder.append("\r");
+				stringBuilder.append(mensajeAct.getFechaString());
+				
 				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;
 				tpse.add(i, tp);
+				
 			}
 			
 			AccordionMensajesEnv.setLayoutY(60);
@@ -266,19 +262,14 @@ public class ControladorPacienteMensajes implements Initializable{
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
+				
+				//Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append("Asunto: ");
-				String dia = ((Integer) mensajeAct.getFecha().getDate()).toString();
-				String mes = ((Integer) (mensajeAct.getFecha().getMonth()+1 )).toString();
-				String anho = ((Integer) mensajeAct.getFecha().getYear()).toString();
-				String hora = ((Integer) mensajeAct.getFecha().getHours()).toString();
-				String min = ((Integer) mensajeAct.getFecha().getMinutes()).toString();
-				String fecha = hora+ ":" + min + "\t" +dia + "/"+ mes + "/"+ anho ;
-				
 				stringBuilder.append(mensajeAct.getAsunto());
-
-				stringBuilder.append("\t\t\t\t\t");
-				stringBuilder.append(fecha);
+				stringBuilder.append("\r");
+				stringBuilder.append(mensajeAct.getFechaString());
+				
 				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;	
 				tpsr.add(i, tp);
 				

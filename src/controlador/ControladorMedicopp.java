@@ -26,7 +26,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTabPane;
 
-import controlador.ControladorPacienteMensajes.sortByDate;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
@@ -119,82 +118,11 @@ public class ControladorMedicopp implements Initializable {
     	labelBandejaEntrada.setRotate(90);
     	labelBandejaSalida.setRotate(90);
     	comboBoxElegirDestinatario.setItems(listaPacientesComboBox);
-
-    	Medico m = ControladorMedicopp.getMedicoActual();
     	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
-
-    	ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
-    	ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
-
-    	if(numeroMensajesRecibidos()>0) {
-    		for(int i=0; i<numeroMensajesRecibidos(); i++) {
-    			ArrayList<Mensaje> mensajesRec = lectorJson.getMensajesEnviadosA(m.getDni());
-    			List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
-				listMensajesRec.addAll(mensajesRec);
-				Collections.sort(listMensajesRec, new sortByDate());
-    			Mensaje mensajeAct = listMensajesRec.get(i);
-    			
-    			Paciente pacEmisor = lectorJson.getPaciente(mensajeAct.getEmisor());
-    			Label contenido = new Label(mensajeAct.getMensaje());
-				ScrollPane panelContenido = new ScrollPane(contenido);
-				contenido.boundsInParentProperty();
-				TitledPane tp = new TitledPane("Asunto: " + mensajeAct.getAsunto(), panelContenido) ;
-				tp.setId(pacEmisor.getDni());
-				tpsr.add(i, tp);
-    		}
-    		AccordionMensajesRec.setLayoutY(60);
-			AccordionMensajesRec.setLayoutX(5);
-			AccordionMensajesRec.getPanes().addAll(tpsr);
-			AnchorPane.setTopAnchor(AccordionMensajesRec, Double.valueOf(30));
-
-    	}
-    	else {
-    		Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
-			emptyRec.setFont(new Font("Arial", 18));
-			emptyRec.setLayoutY(60);
-			emptyRec.setLayoutX(5);
-			anchorPaneRecibidos.getChildren().add(emptyRec);
-			AnchorPane.setTopAnchor(emptyRec, Double.valueOf(40));
-    	}
-
-
-    	if (numeroMensajesEnviados() > 0) {
-			//identificar primero tipo de usuario
-
-			for (int i = 0; i < numeroMensajesEnviados(); i++) {
-				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(m.getDni());
-				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
-				listMensajesEnv.addAll(mensajesEnv);
-				Collections.sort(listMensajesEnv, new sortByDate());
-				Mensaje mensajeAct = mensajesEnv.get(i);
-				
-				Paciente pacienteReceptor = lectorJson.getPaciente(mensajeAct.getReceptor());
-				Label contenido = new Label(mensajeAct.getMensaje());
-				ScrollPane panelContenido = new ScrollPane(contenido);
-				contenido.minHeight(60);
-				contenido.boundsInParentProperty();
-				contenido.wrapTextProperty();
-				TitledPane tp = new TitledPane("Asunto: " + mensajeAct.getAsunto(), panelContenido) ;
-				tp.setId(pacienteReceptor.getDni());
-				tpse.add(i, tp);
-			}
-
-
-			AccordionMensajesEnv.setLayoutY(60);
-			AccordionMensajesEnv.setLayoutX(5);
-			AccordionMensajesEnv.getPanes().addAll(tpse);
-			AnchorPane.setTopAnchor(AccordionMensajesEnv, Double.valueOf(30));
-		}
-		else {
-			Label emptyEnv = new Label("No hay mensajes enviados.");
-			emptyEnv.setFont(new Font("Arial", 18));
-			emptyEnv.setLayoutY(60);
-			emptyEnv.setLayoutX(5);
-			anchorPaneEnviados.getChildren().add(emptyEnv);
-
-			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
-		}
-
+    	
+    	setTitledPanesEnviados();
+    	setTitledPanesRecibidos();
+  	
 	}
 
     @FXML
@@ -247,7 +175,7 @@ public class ControladorMedicopp implements Initializable {
 	public class sortByDate implements Comparator<Mensaje> {
 		 
 	    @Override
-	    public int compare(Mensaje m1, Mensaje m2) {
+	    public int compare(Mensaje m2, Mensaje m1) {
 	        return m1.getFecha().compareTo(m2.getFecha());
 	    }
 	}
@@ -324,24 +252,14 @@ public class ControladorMedicopp implements Initializable {
 		mensajes.add(msg);
 		escritorJson.escribirEnJsonMensajes(mensajes);
 
-		List<Mensaje> listMensajes = new ArrayList<Mensaje>();
-		listMensajes.addAll(mensajes);
-		Collections.sort(listMensajes, new sortByDate());
-
-		Label contenido = new Label(msg.getMensaje());
-		ScrollPane panelContenido = new ScrollPane(contenido);
-		contenido.boundsInParentProperty();
-
-		TitledPane tp = new TitledPane("Asunto: " +  msg.getAsunto() , panelContenido) ;
-		tp.setId(dniPac);
-
-		AccordionMensajesEnv.getPanes().add(tp);
-
-
 		ControladorAvisos.setMensajeError("Mensaje Enviado.");
 		abrirVentanaAvisos();
 
+		AccordionMensajesEnv.getPanes().clear();
+		
+		setTitledPanesEnviados();
 		campoRedactar.clear();
+		campoAsunto.clear();
     }
 
 	public TitledPane getExpanded () {
@@ -354,4 +272,97 @@ public class ControladorMedicopp implements Initializable {
     	}
 		return null;
     }
+
+	public void setTitledPanesRecibidos() {
+    	ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
+
+		if(numeroMensajesRecibidos()>0) {
+    		for(int i=0; i<numeroMensajesRecibidos(); i++) {
+    			ArrayList<Mensaje> mensajesRec = lectorJson.getMensajesEnviadosA(ControladorMedicopp.getMedicoActual().getDni());
+    			List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
+				listMensajesRec.addAll(mensajesRec);
+				Collections.sort(listMensajesRec, new sortByDate());
+    			Mensaje mensajeAct = listMensajesRec.get(i);
+    			
+    			Paciente pacEmisor = lectorJson.getPaciente(mensajeAct.getEmisor());
+    			Label contenido = new Label(mensajeAct.getMensaje());
+				ScrollPane panelContenido = new ScrollPane(contenido);
+				contenido.boundsInParentProperty();
+				
+				//Label titled pane con asunto fecha y hora
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append("Asunto: ");
+				stringBuilder.append(mensajeAct.getAsunto());
+				stringBuilder.append("\r");
+				stringBuilder.append(mensajeAct.getFechaString());
+				
+				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;
+				tp.setId(pacEmisor.getDni());
+				tpsr.add(i, tp);
+    		}
+    		AccordionMensajesRec.setLayoutY(60);
+			AccordionMensajesRec.setLayoutX(5);
+			AccordionMensajesRec.getPanes().addAll(tpsr);
+			AnchorPane.setTopAnchor(AccordionMensajesRec, Double.valueOf(30));
+
+    	}
+    	else {
+    		Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
+			emptyRec.setFont(new Font("Arial", 18));
+			emptyRec.setLayoutY(60);
+			emptyRec.setLayoutX(5);
+			anchorPaneRecibidos.getChildren().add(emptyRec);
+			AnchorPane.setTopAnchor(emptyRec, Double.valueOf(40));
+    	}
+	}
+
+	public void setTitledPanesEnviados() {
+		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
+
+    	if (numeroMensajesEnviados() > 0) {
+			//identificar primero tipo de usuario
+
+			for (int i = 0; i < numeroMensajesEnviados(); i++) {
+				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(ControladorMedicopp.getMedicoActual().getDni());
+				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
+				listMensajesEnv.addAll(mensajesEnv);
+				Collections.sort(listMensajesEnv, new sortByDate());
+				Mensaje mensajeAct = mensajesEnv.get(i);
+				
+				Paciente pacienteReceptor = lectorJson.getPaciente(mensajeAct.getReceptor());
+				Label contenido = new Label(mensajeAct.getMensaje());
+				ScrollPane panelContenido = new ScrollPane(contenido);
+				contenido.minHeight(60);
+				contenido.boundsInParentProperty();
+				contenido.wrapTextProperty();
+				
+				//Label titled pane con asunto fecha y hora
+				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append("Asunto: ");
+				stringBuilder.append(mensajeAct.getAsunto());
+				stringBuilder.append("\r");
+				stringBuilder.append(mensajeAct.getFechaString());
+				
+				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;
+				tp.setId(pacienteReceptor.getDni());
+				tpse.add(i, tp);
+			}
+
+
+			AccordionMensajesEnv.setLayoutY(60);
+			AccordionMensajesEnv.setLayoutX(5);
+			AccordionMensajesEnv.getPanes().addAll(tpse);
+			AnchorPane.setTopAnchor(AccordionMensajesEnv, Double.valueOf(30));
+		}
+		else {
+			Label emptyEnv = new Label("No hay mensajes enviados.");
+			emptyEnv.setFont(new Font("Arial", 18));
+			emptyEnv.setLayoutY(60);
+			emptyEnv.setLayoutX(5);
+			anchorPaneEnviados.getChildren().add(emptyEnv);
+
+			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
+		}
+
+	}
 }
