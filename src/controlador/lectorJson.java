@@ -17,8 +17,6 @@ import com.google.gson.reflect.TypeToken;
 
 public class lectorJson {
 	
-	
-	
 	public static ArrayList<Paciente> lectorJsonPacientes() {
 		try {
 			//guardas en una clase FileReader el nombre del json que quieres leer
@@ -37,7 +35,6 @@ public class lectorJson {
 		return null;
 	}
 
-	
 	//Lo mismo que la anterior
 	public static ArrayList<Medico> lectorJsonMedicos() {
 		try {
@@ -106,8 +103,6 @@ public class lectorJson {
 		return null;
 	}
 	
-	
-	
 	public static Medico getMedico (String dni) {
 		Medico p = new Medico();
 		ArrayList<Medico> pac = lectorJsonMedicos();
@@ -132,7 +127,6 @@ public class lectorJson {
 		return null;
 	}
 	
-	
 	// El dni que metes es el del emisor
 	public static ArrayList<Mensaje> getMensajesEnviadosPor (String dni) {
 		ArrayList<Mensaje> mensajesEnviados = new ArrayList<Mensaje>();
@@ -149,9 +143,7 @@ public class lectorJson {
 		return mensajesEnviados;
 	}
 	
-	
 	// El dni que metes es el del receptor
-
 	public static ArrayList<Mensaje> getMensajesEnviadosA (String dni) {
 		ArrayList<Mensaje> mensajesRecibidos = new ArrayList<Mensaje>();
 		Mensaje m = new Mensaje();
@@ -165,6 +157,23 @@ public class lectorJson {
 			}
 		}
 		return mensajesRecibidos;
+	}
+	
+	public static ArrayList<Mensaje> getMensajesA(String dniPac, String dniMed){
+		ArrayList<Mensaje> mensajesA = new ArrayList<Mensaje>();
+		Mensaje m = new Mensaje();
+		ArrayList<Mensaje> mensajes = lectorJsonMensajes();
+		for (int i = 0; i <mensajes.size(); i++) {
+			m = mensajes.get(i);
+			if(!m.isBorrado()) {
+				if(m.getReceptor().equalsIgnoreCase(dniPac)) {
+					if(m.getEmisor().equalsIgnoreCase(dniMed)) {
+						mensajesA.add(m);
+					}
+				}
+			}
+		}
+		return mensajesA;
 	}
 	
 	//Devuelve los ejercicios correspondientes al paciente

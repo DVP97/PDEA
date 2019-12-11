@@ -127,29 +127,35 @@ public class ControladorMedicopp implements Initializable {
 
     @FXML
     void pressBtnConfirmarEnvio(ActionEvent event) {
-
-    	if(campoRedactar.getText().length()>0) {
-
-    		try {
-    			String pac = comboBoxElegirDestinatario.getValue();
-    			Integer indice = getIndiceComboBox(pac);
-    			if (indice!= null) {
-	    			String dniPac = medicoActual.getPacientes().get(indice);
-
-	    			enviarMensaje(dniPac);
-    			}else {
-    				ControladorAvisos.setMensajeError("Por favor, seleccione un paciente.");
+    	if(campoAsunto.getText().length()>0) {
+    	
+	    	if(campoRedactar.getText().length()>0) {
+	
+	    		try {
+	    			String pac = comboBoxElegirDestinatario.getValue();
+	    			Integer indice = getIndiceComboBox(pac);
+	    			if (indice!= null) {
+		    			String dniPac = medicoActual.getPacientes().get(indice);
+	
+		    			enviarMensaje(dniPac);
+	    			}else {
+	    				ControladorAvisos.setMensajeError("Por favor, seleccione un paciente.");
+						abrirVentanaAvisos();
+	
+	    			}
+	    		}
+	    		catch(Exception a) {
+	    			ControladorAvisos.setMensajeError("Error enviando el mensaje.");
 					abrirVentanaAvisos();
-
-    			}
-    		}
-    		catch(Exception a) {
-    			ControladorAvisos.setMensajeError("Error enviando el mensaje.");
+	    		}
+	    	}
+	    	else{
+				ControladorAvisos.setMensajeError("No ha introducido texto alguno en el mensaje que intenta enviar.");
 				abrirVentanaAvisos();
-    		}
+			}
     	}
     	else{
-			ControladorAvisos.setMensajeError("No ha introducido texto alguno en el mensaje que intenta enviar.");
+			ControladorAvisos.setMensajeError("No ha introducido asunto en el mensaje que intenta enviar.");
 			abrirVentanaAvisos();
 		}
     }
@@ -207,7 +213,7 @@ public class ControladorMedicopp implements Initializable {
 		medicoActual = MedicoActual;
 	}
 
-	public ArrayList<String> getNombrePacientes (){
+	private ArrayList<String> getNombrePacientes (){
 		ArrayList<String> pacientes = new ArrayList<String>();
 		ArrayList<String> pacientesDnis = medicoActual.getPacientes();
 
@@ -221,11 +227,7 @@ public class ControladorMedicopp implements Initializable {
 		return pacientes;
 	}
 
-	public ArrayList<String> getDnisPacientes (){
-		return medicoActual.getPacientes();
-	}
-
-	public Integer getIndiceComboBox(String pac) {
+	private Integer getIndiceComboBox(String pac) {
 		for (int i  = 0 ; i < getNombrePacientes().size(); i++) {
 			if (getNombrePacientes().get(i).equalsIgnoreCase(pac)) {
 				return i;
@@ -234,17 +236,17 @@ public class ControladorMedicopp implements Initializable {
 		return null;
 	}
 
-	public Integer numeroMensajesRecibidos() {
+	private Integer numeroMensajesRecibidos() {
 		Medico m = ControladorMedicopp.getMedicoActual();
 		return lectorJson.getMensajesEnviadosA(m.getDni()).size();
 	}
 
-	public Integer numeroMensajesEnviados() {
+	private Integer numeroMensajesEnviados() {
 		Medico m = ControladorMedicopp.getMedicoActual();
 		return lectorJson.getMensajesEnviadosPor(m.getDni()).size();
 	}
 
-	public void enviarMensaje(String dniPac) {
+	private void enviarMensaje(String dniPac) {
     	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText(), campoAsunto.getText());
 		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
 		
@@ -262,7 +264,7 @@ public class ControladorMedicopp implements Initializable {
 		campoAsunto.clear();
     }
 
-	public TitledPane getExpanded () {
+	private TitledPane getExpanded () {
     	ObservableList<TitledPane> panes = AccordionMensajesRec.getPanes();
     	
     	for (int i = 0 ; i < panes.size(); i++) {
@@ -273,7 +275,7 @@ public class ControladorMedicopp implements Initializable {
 		return null;
     }
 
-	public void setTitledPanesRecibidos() {
+	private void setTitledPanesRecibidos() {
     	ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
 
 		if(numeroMensajesRecibidos()>0) {
@@ -316,7 +318,7 @@ public class ControladorMedicopp implements Initializable {
     	}
 	}
 
-	public void setTitledPanesEnviados() {
+	private void setTitledPanesEnviados() {
 		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
 
     	if (numeroMensajesEnviados() > 0) {

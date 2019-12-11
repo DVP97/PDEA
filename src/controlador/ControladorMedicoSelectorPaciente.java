@@ -121,15 +121,16 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     private void pressBtnBuscar() throws IOException {
     	String pacienteBuscado = inputBuscarPaciente.getValue();
 
+    	Paciente p = coincidencia(pacienteBuscado);
     	if (coincidencia(pacienteBuscado)!= null) {
     		try {
 	    		System.out.println("coincidencia encontrada.");
 	    		System.out.println("Cargando ventana principal de Medico...");
 	    		ControladorMedicoSubmenuPaciente.setMedicoActual(medicoActual);
-	    		ControladorMedicoSubmenuPaciente.setPacienteActual(coincidencia(pacienteBuscado));
+	    		ControladorMedicoSubmenuPaciente.setPacienteActual(p);
 				Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
 				Stage subMenuPaciente = new Stage();
-				subMenuPaciente.setTitle("SubMenu Paciente Elegido");
+				subMenuPaciente.setTitle("Menu " +p.getNombre() + " " + p.getApellidos());
 				subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
 				subMenuPaciente.show();
 				subMenuPaciente.setMinHeight(600);
