@@ -17,6 +17,7 @@
    <children>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <ImageView fitHeight="64.0" fitWidth="66.0" layoutX="462.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="12.0">
          <image>
             <Image url="@../modelo/logo.png" />
@@ -75,6 +76,8 @@
       </Label>
       <Separator layoutX="21.0" layoutY="58.0" prefWidth="200.0" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="58.0" />
 =======
+=======
+>>>>>>> parent of 65d6e40... update_avisos
 =======
 >>>>>>> parent of 65d6e40... update_avisos
       <AnchorPane minHeight="500.0" minWidth="550.0" prefHeight="500.0" prefWidth="550.0" styleClass="background" stylesheets="@application.css">
@@ -137,6 +140,9 @@
          </VBox.margin>
       </AnchorPane>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 65d6e40... update_avisos
+=======
 >>>>>>> parent of 65d6e40... update_avisos
 =======
 >>>>>>> parent of 65d6e40... update_avisos
