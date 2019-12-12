@@ -22,7 +22,7 @@ public class Mensaje {
 		this.leido = false;
 		this.contestado = false;
 		this.borrado = false;
-		this.fecha = Calendar.getInstance().getTime();;
+		this.fecha = Calendar.getInstance().getTime();
 	}
 	
 	public Mensaje () {
