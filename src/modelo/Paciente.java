@@ -40,6 +40,11 @@ public final class Paciente extends Usuario{
 	public ArrayList<Integer> getEjercicios() {
 		return ejercicios;
 	}
+	
+	public String getNombreCompleto() {
+		String n = this.getNombre()+ " " + this.getApellidos();
+		return n;
+	}
 
 	
 	//SETTERS
