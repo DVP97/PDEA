@@ -33,41 +33,31 @@ import modelo.Ejercicio;
 import modelo.Medico;
 import modelo.Mensaje;
 import modelo.Paciente;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTabPane;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
-import javafx.fxml.FXML;
-import javafx.scene.control.Accordion;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
+
 
 
 
 public class ControladorMedicoSubmenuPaciente implements Initializable {
-		
-		@FXML
+	   @FXML
 	    private Label campoMedico;
 
 	    @FXML
-	    private JFXTextArea campoDniPac;
+	    private JFXTextField campoDniPac;
 
 	    @FXML
-	    private JFXTextArea campoNombrePac;
+	    private JFXTextField campoNombrePac;
 
 	    @FXML
-	    private JFXTextArea campoApellidosPac;
+	    private JFXTextField campoApellidosPac;
 
 	    @FXML
-	    private JFXTextArea campoFechaNacPac;
+	    private JFXTextField campoFechaNacPac;
 
 	    @FXML
-	    private JFXTextArea campoTlfPac;
+	    private JFXTextField campoTlfPac;
 
 	    @FXML
-	    private JFXTextArea campoCuidadoresPac;
+	    private JFXTextField campoCuidadoresPac;
 
 	    @FXML
 	    private JFXButton buttonEditar;
@@ -127,12 +117,22 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     
     private static Medico medicoActual = new Medico();
     
+    private static boolean editable = false;
+    
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
     	System.out.println(medicoActual.getNombre());
     	System.out.println(pacienteActual.getNombre());
     	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
+    	
     	setCamposDatos();
+    	
+    	campoNombrePac.setEditable(editable);
+    	campoApellidosPac.setEditable(editable);
+    	campoFechaNacPac.setEditable(editable);
+    	campoTlfPac.setEditable(editable);
+    	campoCuidadoresPac.setEditable(editable);
+    	
     	setTitledPanesEnviados();
     	setTitledPanesRecibidos();
     }
@@ -155,14 +155,40 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 				abrirVentanaAvisos();
 			}
     }
-
-    @FXML
-    void pressBtnConsultarSensores(ActionEvent event) {
-
-    }
-
+    
     @FXML
     void pressBtnEditar(ActionEvent event) {
+    	editable = !editable;
+    	//los campos pasan de ser no editables a editables y viceversa
+    	campoNombrePac.setEditable(editable);
+    	campoApellidosPac.setEditable(editable);
+    	campoFechaNacPac.setEditable(editable);
+    	campoTlfPac.setEditable(editable);
+    	campoCuidadoresPac.setEditable(editable);
+    	
+    	//el boton editar pasa a mostrar el texto "Confirmar cambios"
+    	if(editable==true) {
+    		buttonEditar.setText("Confirmar cambios");
+    	}
+    	else {
+    		buttonEditar.setText("Editar Datos Paciente");
+    	}
+    	
+    	//el resto de botones quedan deshabilitados hasta que se confirmen los datos
+    	buttonConsultarSensores.setDisable(editable);
+    	buttonCitarPac.setDisable(editable);
+    	buttonConsultarEjerciciosPac.setDisable(editable);
+    	
+    	//guardar los datos introducidos en los json
+    	//pacienteActual.setNombre(campoNombrePac.getText());
+    	//pacienteActual.setApellidos(campoApellidosPac.getText());
+    	//pacienteActual.setFecha_nacimiento(campoFechaNacPac.getText());
+    	//pacienteActual.setTelefono(campoTlfPac.getText());
+    	//pacienteActual.setCuidadores(campoCuidadoresPac.getText());
+    }
+    
+    @FXML
+    void pressBtnConsultarSensores(ActionEvent event) {
 
     }
     
@@ -200,10 +226,11 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	campoDniPac.setText(p.getDni());
     	campoNombrePac.setText(p.getNombre());
     	campoApellidosPac.setText(p.getApellidos());
-    	campoFechaNacPac.setText(p.getFecha_nacimiento().toString());
+    	campoFechaNacPac.setText(p.getFechaNacimientoString());
     	campoTlfPac.setText(p.getTelefono().toString());
     	campoCuidadoresPac.setText(p.getCuidadores().toString());
     }
+    
     
     private String getCampoCuidadores() {
     	Paciente p = pacienteActual;

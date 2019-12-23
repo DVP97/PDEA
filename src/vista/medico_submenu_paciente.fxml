@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTabPane?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Accordion?>
@@ -65,7 +64,7 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                  <children>
-                                    <JFXTextArea fx:id="campoDniPac" disable="true" editable="false" layoutY="32.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="160.0" promptText="txt" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <JFXTextField fx:id="campoDniPac" editable="false" layoutX="13.0" layoutY="23.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane GridPane.rowIndex="1">
@@ -95,27 +94,27 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <JFXTextArea fx:id="campoNombrePac" disable="true" editable="false" layoutY="32.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="160.0" promptText="txt" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <JFXTextField fx:id="campoNombrePac" editable="false" layoutX="23.0" layoutY="33.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <JFXTextArea fx:id="campoApellidosPac" disable="true" editable="false" layoutY="32.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="160.0" promptText="txt" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <JFXTextField fx:id="campoApellidosPac" editable="false" layoutX="10.0" layoutY="50.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
-                                    <JFXTextArea fx:id="campoFechaNacPac" disable="true" editable="false" layoutY="32.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="160.0" promptText="txt" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <JFXTextField fx:id="campoFechaNacPac" editable="false" layoutX="-10.0" layoutY="43.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
-                                    <JFXTextArea fx:id="campoTlfPac" disable="true" editable="false" layoutY="32.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="160.0" promptText="txt" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <JFXTextField fx:id="campoTlfPac" editable="false" layoutX="1.0" layoutY="53.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <children>
-                                    <JFXTextArea fx:id="campoCuidadoresPac" disable="true" editable="false" layoutY="32.0" minHeight="-Infinity" prefHeight="21.0" prefWidth="160.0" promptText="txt" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                    <JFXTextField fx:id="campoCuidadoresPac" editable="false" layoutX="20.0" layoutY="43.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                            </children>
