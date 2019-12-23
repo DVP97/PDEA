@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
+
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 
@@ -19,7 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
@@ -28,66 +28,101 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import modelo.Cuidador;
+import modelo.Ejercicio;
 import modelo.Medico;
 import modelo.Mensaje;
 import modelo.Paciente;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.Accordion;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
+
+
 
 public class ControladorMedicoSubmenuPaciente implements Initializable {
+		
+		@FXML
+	    private Label campoMedico;
 
-    @FXML
-    private Label campoMedico;
+	    @FXML
+	    private JFXTextArea campoDniPac;
 
-    @FXML
-    private Button btnEditar;
+	    @FXML
+	    private JFXTextArea campoNombrePac;
 
-    @FXML
-    private Button btnEjercicios;
+	    @FXML
+	    private JFXTextArea campoApellidosPac;
 
-    @FXML
-    private JFXTabPane JFXTabPaneMensajeria;
+	    @FXML
+	    private JFXTextArea campoFechaNacPac;
 
-    @FXML
-    private Tab tabRecibidos;
+	    @FXML
+	    private JFXTextArea campoTlfPac;
 
-    @FXML
-    private AnchorPane anchorPaneRecibidos;
+	    @FXML
+	    private JFXTextArea campoCuidadoresPac;
 
-    @FXML
-    private JFXButton btnResponder;
+	    @FXML
+	    private JFXButton buttonEditar;
 
-    @FXML
-    private Accordion AccordionMensajesRec;
+	    @FXML
+	    private JFXButton buttonConsultarSensores;
 
-    @FXML
-    private Label labelBandejaEntrada;
+	    @FXML
+	    private JFXButton buttonCitarPac;
 
-    @FXML
-    private Tab tabEnviados;
+	    @FXML
+	    private JFXButton buttonConsultarEjerciciosPac;
 
-    @FXML
-    private AnchorPane anchorPaneEnviados;
+	    @FXML
+	    private JFXTabPane JFXTabPaneMensajeria;
 
-    @FXML
-    private Accordion AccordionMensajesEnv;
+	    @FXML
+	    private Tab tabRecibidos;
 
-    @FXML
-    private Label labelBandejaSalida;
+	    @FXML
+	    private AnchorPane anchorPaneRecibidos;
 
-    @FXML
-    private TextArea campoRedactar;
+	    @FXML
+	    private JFXButton btnResponder;
 
-    @FXML
-    private JFXButton btnConfirmarEnvio;
+	    @FXML
+	    private Accordion AccordionMensajesRec;
 
-    @FXML
-    private JFXComboBox<?> comboBoxElegirDestinatario;
+	    @FXML
+	    private Label labelBandejaEntrada;
 
-    @FXML
-    private Label labelRedactar;
-    
-    @FXML
-    private JFXTextField campoAsunto;
+	    @FXML
+	    private Tab tabEnviados;
 
+	    @FXML
+	    private AnchorPane anchorPaneEnviados;
+
+	    @FXML
+	    private Accordion AccordionMensajesEnv;
+
+	    @FXML
+	    private Label labelBandejaSalida;
+
+	    @FXML
+	    private TextArea campoRedactar;
+
+	    @FXML
+	    private JFXButton btnConfirmarEnvio;
+
+	    @FXML
+	    private JFXTextField campoAsunto;
+
+	    @FXML
+	    private Label labelRedactar;
+	    
     private static Paciente pacienteActual = new Paciente();
     
     private static Medico medicoActual = new Medico();
@@ -97,7 +132,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	System.out.println(medicoActual.getNombre());
     	System.out.println(pacienteActual.getNombre());
     	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
-    	
+    	setCamposDatos();
     	setTitledPanesEnviados();
     	setTitledPanesRecibidos();
     }
@@ -121,11 +156,29 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			}
     }
 
+    @FXML
+    void pressBtnConsultarSensores(ActionEvent event) {
+
+    }
+
+    @FXML
+    void pressBtnEditar(ActionEvent event) {
+
+    }
     
     @FXML
     void pressBtnResponder(ActionEvent event) {
     	JFXTabPaneMensajeria.getSelectionModel().select(2);
     }
+    @FXML
+    void pressBtnCitarPac(ActionEvent event) {
+
+    }
+    @FXML
+    void pressBtnConsultarEjerciciosPac(ActionEvent event) {
+
+    }
+    
     
     public static Paciente getPacienteActual() {
 		return pacienteActual;
@@ -140,6 +193,32 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     public static void setMedicoActual(Medico m) {
     	medicoActual = m;
     }
+    
+  //DATOS
+    private void setCamposDatos() {
+    	Paciente p = pacienteActual;
+    	campoDniPac.setText(p.getDni());
+    	campoNombrePac.setText(p.getNombre());
+    	campoApellidosPac.setText(p.getApellidos());
+    	campoFechaNacPac.setText(p.getFecha_nacimiento().toString());
+    	campoTlfPac.setText(p.getTelefono().toString());
+    	campoCuidadoresPac.setText(p.getCuidadores().toString());
+    }
+    
+    private String getCampoCuidadores() {
+    	Paciente p = pacienteActual;
+    	StringBuilder stringBuilder = new StringBuilder();
+		Cuidador c = new Cuidador();
+    	for (int i = 0 ; i < (p.getCuidadores().size()-1); i++) {
+    		c = lectorJson.getCuidador(p.getCuidadores().get(i));
+    		stringBuilder.append(c.getNombre() + " " + c.getApellidos() + ", ");
+    	}
+		c = lectorJson.getCuidador(p.getCuidadores().get(p.getCuidadores().size()));
+    	stringBuilder.append(c.getNombre() + " " + c.getApellidos());
+    
+    	return stringBuilder.toString();
+    }
+
     
     private void enviarMensaje(String dniPac) {
     	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText(), campoAsunto.getText());
@@ -158,7 +237,6 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		campoRedactar.clear();
 		campoAsunto.clear();
     }
-    
     
     public void setTitledPanesRecibidos() {
     	ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
