@@ -29,7 +29,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.Cuidador;
-import modelo.Ejercicio;
 import modelo.Medico;
 import modelo.Mensaje;
 import modelo.Paciente;
@@ -228,7 +227,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	campoApellidosPac.setText(p.getApellidos());
     	campoFechaNacPac.setText(p.getFechaNacimientoString());
     	campoTlfPac.setText(p.getTelefono().toString());
-    	campoCuidadoresPac.setText(p.getCuidadores().toString());
+    	campoCuidadoresPac.setText(getCampoCuidadores());
     }
     
     
@@ -236,14 +235,25 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	Paciente p = pacienteActual;
     	StringBuilder stringBuilder = new StringBuilder();
 		Cuidador c = new Cuidador();
-    	for (int i = 0 ; i < (p.getCuidadores().size()-1); i++) {
-    		c = lectorJson.getCuidador(p.getCuidadores().get(i));
-    		stringBuilder.append(c.getNombre() + " " + c.getApellidos() + ", ");
-    	}
-		c = lectorJson.getCuidador(p.getCuidadores().get(p.getCuidadores().size()));
-    	stringBuilder.append(c.getNombre() + " " + c.getApellidos());
-    
-    	return stringBuilder.toString();
+		int i = 0 ;
+		if (p.getCuidadores().size()==1) {
+			c = lectorJson.getCuidador(p.getCuidadores().get(0));
+	    	stringBuilder.append(c.getNombre() + " " + c.getApellidos());
+	    	return stringBuilder.toString();
+		}else if (p.getCuidadores().size()==0){
+			stringBuilder.append("Este paciente no tiene cuidadores.");
+			return stringBuilder.toString();
+		}
+		else {
+		
+	    	for (i = 0 ; i < (p.getCuidadores().size()-1); i++) {
+	    		c = lectorJson.getCuidador(p.getCuidadores().get(i));
+	    		stringBuilder.append(c.getNombre() + " " + c.getApellidos() + ", ");
+	    	}
+	    	c = lectorJson.getCuidador(p.getCuidadores().get(i));
+	    	stringBuilder.append(c.getNombre() + " " + c.getApellidos());
+	    	return stringBuilder.toString();
+		}
     }
 
     
