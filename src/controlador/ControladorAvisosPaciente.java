@@ -21,25 +21,16 @@ import modelo.Paciente;
 
 
 public class ControladorAvisosPaciente implements Initializable{
-
-
-
 	@FXML
-	private ImageView LogoEWBAvisos;
-
-	@FXML
-	private Label campoEjercicios;
-
-
+	private ArrayList<Ejercicio> ejercicios;
 	@FXML
 	private JFXButton btnVolver;
-
+	@FXML
+	private Label campoEjercicios;
 	@FXML
 	private Label campoPaciente;
 
-	@FXML
-	private ArrayList<Ejercicio> ejercicios;
-
+	
 	private static Paciente pacienteActual = new Paciente();
 
 	@Override
@@ -74,6 +65,8 @@ public class ControladorAvisosPaciente implements Initializable{
 			case1.abrirVentanaAvisos();
 		}
 	}
+	
+	
 	//GETTER
 	public static Paciente getPacienteActual() {
 		return pacienteActual;
