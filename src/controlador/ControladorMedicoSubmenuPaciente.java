@@ -2,10 +2,14 @@ package controlador;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -117,6 +121,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     private static Medico medicoActual = new Medico();
     
     private static boolean editable = false;
+
+	private Date calend;
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
@@ -156,6 +162,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     }
     
     @FXML
+    @SuppressWarnings("deprecation")
     void pressBtnEditar(ActionEvent event) {
     	editable = !editable;
     	//los campos pasan de ser no editables a editables y viceversa
@@ -179,11 +186,46 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	buttonConsultarEjerciciosPac.setDisable(editable);
     	
     	//guardar los datos introducidos en los json
-    	//pacienteActual.setNombre(campoNombrePac.getText());
-    	//pacienteActual.setApellidos(campoApellidosPac.getText());
-    	//pacienteActual.setFecha_nacimiento(campoFechaNacPac.getText());
-    	//pacienteActual.setTelefono(campoTlfPac.getText());
-    	//pacienteActual.setCuidadores(campoCuidadoresPac.getText());
+    	Paciente p = pacienteActual;
+    	//campo Nombre
+    	p.setNombre(campoNombrePac.getText());
+    	//campo Apellidos
+    	p.setApellidos(campoApellidosPac.getText());
+    	//campo Fecha de Nacimiento
+    	String FechaNacNew[] = campoFechaNacPac.getText().split("/");
+    	List<String> Fecha = Arrays.asList(FechaNacNew);
+    	int dia  = Integer.parseInt(Fecha.get(0));
+    	int mes  = Integer.parseInt(Fecha.get(1));
+    	int anho = Integer.parseInt(Fecha.get(2));
+    	Date calend= new Date(anho, mes, dia);
+    	p.setFecha_nacimiento(calend);
+    	//campo telefono
+    	int TlfPacNew = Integer.parseInt(campoTlfPac.getText());
+    	p.setTelefono(TlfPacNew);
+    	//campo cuidadores
+    	String CuidadoresNew[] = campoCuidadoresPac.getText().split(",");
+    	List<String> CuidadoresPac = Arrays.asList(CuidadoresNew);
+    	ArrayList<String> asdf = new ArrayList<>();
+    	asdf.addAll(CuidadoresPac);
+    	p.setCuidadores(asdf);
+    	
+    	ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+		pacientes = lectorJson.lectorJsonPacientes();
+		//iterar el json de pacientes comparando el dni hasta que haya una coincidencia y reemplazar los datos
+		for(int i=0; i<pacientes.size();i++) {
+			if(pacientes.get(i).getDni().equals(campoDniPac.getText())) {
+				//reemplazar paciente "i" por paciente "p"
+				pacientes.get(i).setNombre(p.getNombre());
+				pacientes.get(i).setApellidos(p.getApellidos());
+				pacientes.get(i).setFecha_nacimiento(p.getFecha_nacimiento());
+				pacientes.get(i).setTelefono(p.getTelefono());
+				pacientes.get(i).setCuidadores(p.getCuidadores());
+				
+				escritorJson.escribirEnJsonPacientes(pacientes);
+				break;
+			}
+		}
+	
     }
     
     @FXML

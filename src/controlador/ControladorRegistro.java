@@ -72,11 +72,7 @@ public class ControladorRegistro implements Initializable {
     @FXML
     void pulsarBtnAceptar_reg(ActionEvent event) {
     try {
-	    	textoDNI.getText();
-	    	textoNombre.getText();
-	    	textoApellidos.getText();
-	
-	    	
+
 	    	//Comprobacion de que coinciden las contrase�as
 	    	String pswrd =textoContrasena.getText();
 	    	String pswrdSecond =textoContrasena2.getText();
@@ -97,12 +93,9 @@ public class ControladorRegistro implements Initializable {
 			if (comboRol.getValue().equals ("Medico")) {
 				roltype=3;
 			}
-	
 			if (roltype==0) {
 				abrirVentanaAvisos();
 			}
-	
-	
 	
 			else {
 				System.out.println("Usuario seleccionado: " +comboRol.getValue());
@@ -117,7 +110,6 @@ public class ControladorRegistro implements Initializable {
 		    			 a.printStackTrace();
 		    		}
 		    	}
-	
 	
 				else {
 					
