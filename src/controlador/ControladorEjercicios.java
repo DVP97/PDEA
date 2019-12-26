@@ -58,6 +58,8 @@ public class ControladorEjercicios implements Initializable{
     
     private Integer interval=0;
     
+    private  String[] hacerEjercicios; 
+    
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -71,7 +73,10 @@ public class ControladorEjercicios implements Initializable{
 		this.interval = this.ejercicios.get(contador).getDuracion();
 		numeroEjercicio.setText(" "+(contador+1)+" de "+ this.ejercicios.size());
 		
-		
+		hacerEjercicios = new String [this.ejercicios.size()];
+		for(int i=0; i < hacerEjercicios.length; i++) {
+			hacerEjercicios[i]=ejercicios.get(i).getNombre();
+		}
 	}
 	
 	
@@ -80,6 +85,11 @@ public class ControladorEjercicios implements Initializable{
     void pressBtnComenzar(ActionEvent event) {
 		this.btnComenzar.setDisable(true);
 		empezarContador(this.ejercicios.get(contador).getDuracion()+1);   
+		for(int i=0; i < hacerEjercicios.length; i++) {
+			if (hacerEjercicios[i].equals(ejercicios.get(contador).getNombre())){
+				hacerEjercicios[i]="ok";
+			}
+		}
 	}
 	
 	
@@ -103,6 +113,7 @@ public class ControladorEjercicios implements Initializable{
 		 }
 	    //Acaba y pasa al siguiente ejercicio
 	    timeline.setOnFinished(e -> siguienteEjercicio());
+	    System.out.println("Está terminado");
 	    	
 	}
 	
@@ -128,6 +139,13 @@ public class ControladorEjercicios implements Initializable{
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
+			boolean hechos = true;
+			for(int i=0; i<hacerEjercicios.length; i++) {
+				if (!hacerEjercicios[i].equals("ok")) {
+					hechos = false;
+				}
+			}
+		    System.out.println(hechos);
 			System.out.println("Cargando ventana principal de Paciente...");
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 			Stage Pacientepp = new Stage();
@@ -212,4 +230,5 @@ public class ControladorEjercicios implements Initializable{
 			System.out.println("Error");
 		}
 	}
+    
 }
