@@ -26,30 +26,37 @@ import modelo.Ejercicio;
 public class ControladorEjercicios implements Initializable{
 	
 	@FXML
-    private AnchorPane anchorGrande;
-	@FXML
     private JFXButton btnAnterior;
+	
 	@FXML
     private JFXButton btnComenzar;
+	
 	@FXML
     private JFXButton btnSiguiente;
+	
 	@FXML
 	private JFXButton btnVolver;
+	
 	@FXML
 	private Label cronometro;
+	
 	@FXML
 	private Label numeroEjercicio;
+
     @FXML
     private Label nombrePaciente;
+    
     @FXML
     private ImageView pantallaEj;
     
+    @FXML
+    private AnchorPane anchorGrande;
     
     private ArrayList<Ejercicio> ejercicios;
-    private Integer contador=0;
-    private Integer interval=0;
     
-    private  String[] hacerEjercicios; 
+    private Integer contador=0;
+    
+    private Integer interval=0;
     
     
 	@Override
@@ -64,10 +71,7 @@ public class ControladorEjercicios implements Initializable{
 		this.interval = this.ejercicios.get(contador).getDuracion();
 		numeroEjercicio.setText(" "+(contador+1)+" de "+ this.ejercicios.size());
 		
-		hacerEjercicios = new String [this.ejercicios.size()];
-		for(int i=0; i < hacerEjercicios.length; i++) {
-			hacerEjercicios[i]=ejercicios.get(i).getNombre();
-		}
+		
 	}
 	
 	
@@ -76,14 +80,8 @@ public class ControladorEjercicios implements Initializable{
     void pressBtnComenzar(ActionEvent event) {
 		this.btnComenzar.setDisable(true);
 		empezarContador(this.ejercicios.get(contador).getDuracion()+1);   
-		for(int i=0; i < hacerEjercicios.length; i++) {
-			if (hacerEjercicios[i].equals(ejercicios.get(contador).getNombre())){
-				hacerEjercicios[i]="ok";
-			}
-		}
 	}
 	
-<<<<<<< HEAD
 	
 	void empezarContador(Integer duracion) {
 
@@ -105,12 +103,9 @@ public class ControladorEjercicios implements Initializable{
 		 }
 	    //Acaba y pasa al siguiente ejercicio
 	    timeline.setOnFinished(e -> siguienteEjercicio());
-	    System.out.println("Está terminado");
 	    	
 	}
 	
-=======
->>>>>>> db5de1802cf50a8e7a2ab35b270d80a1976d1ac7
 		
 	//Botón anterior
 	//------------------------------------------------
@@ -133,13 +128,6 @@ public class ControladorEjercicios implements Initializable{
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
-			boolean hechos = true;
-			for(int i=0; i<hacerEjercicios.length; i++) {
-				if (!hacerEjercicios[i].equals("ok")) {
-					hechos = false;
-				}
-			}
-		    System.out.println(hechos);
 			System.out.println("Cargando ventana principal de Paciente...");
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 			Stage Pacientepp = new Stage();
@@ -161,30 +149,7 @@ public class ControladorEjercicios implements Initializable{
 	}
 
 
-	//METODOS
-	void empezarContador(Integer duracion) {
 
-		//Cada segundo actualiza el valor del intervalo
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
-			if(interval<0) {
-				interval=0;
-				
-			}
-			cronometro.setText("00:"+interval); 
-			 this.interval= interval -1;
-	    }));
-		//Numero de veces que se ejecuta la funcion
-	    timeline.setCycleCount(duracion+1);
-	    //Empieza
-	    timeline.play();
-	    if(!this.btnComenzar.isDisable()) {
-			 timeline.stop();
-		 }
-	    //Acaba y pasa al siguiente ejercicio
-	    timeline.setOnFinished(e -> siguienteEjercicio());
-	    	
-	}
-	
 	void siguienteEjercicio() {
 		this.btnComenzar.setDisable(false);
 		if(interval>0){
@@ -247,5 +212,4 @@ public class ControladorEjercicios implements Initializable{
 			System.out.println("Error");
 		}
 	}
-    
 }
