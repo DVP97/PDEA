@@ -90,9 +90,14 @@ public class ControladorEjercicios implements Initializable{
 			if(interval<0) {
 				interval=0;
 				
-			}
+			}if (interval <10) {
+				cronometro.setText("00:0"+interval); 
+
+			}else {
 			cronometro.setText("00:"+interval); 
+			}
 			 this.interval= interval -1;
+			 
 	    }));
 		//Numero de veces que se ejecuta la funcion
 	    timeline.setCycleCount(duracion+1);
