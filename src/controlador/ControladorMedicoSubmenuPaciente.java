@@ -106,9 +106,11 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     void pressBtnConfirmarEnvio(ActionEvent event) {
         	
 	    	if(campoRedactar.getText().length()>0) {
+	
 	    		try {
 	    			String pac = pacienteActual.getDni();
 		    		enviarMensaje(pac);
+	    			
 	    		}
 	    		catch(Exception a) {
 	    			ControladorAvisos.setMensajeError("Error enviando el mensaje.");
@@ -119,12 +121,13 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 				ControladorAvisos.setMensajeError("No ha introducido texto alguno en el mensaje que intenta enviar.");
 				abrirVentanaAvisos();
 			}
+
     }
 
     
     @FXML
     void pressBtnResponder(ActionEvent event) {
-    	JFXTabPaneMensajeria.getSelectionModel().select(2);
+    	enviarMensaje(pacienteActual.getDni());
     }
     
     public static Paciente getPacienteActual() {
