@@ -1,7 +1,9 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public final class Paciente extends Usuario{
 	private Date fecha_nacimiento;
@@ -27,6 +29,21 @@ public final class Paciente extends Usuario{
 	}
 	
 	//GETTERS
+	@SuppressWarnings("deprecation")
+	public String getFechaNacimientoString() {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+		cal.setTime(fecha_nacimiento);
+		String dia = ((Integer) fecha_nacimiento.getDate()).toString();
+		int m = fecha_nacimiento.getMonth() +1;
+		String mes = ((Integer) m).toString();
+		int year =  cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		
+		String f = dia + "/"+ mes + "/"+ anho ;
+		return f;
+		
+	}
 	public Date getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}

@@ -18,7 +18,10 @@ public final class Cuidador extends Usuario{
 	public ArrayList<String> getPacientes(){
 		return pacientes;
 	}
-	
+	public String getNombreCompleto() {
+		String nombreCompleto =getNombre() + " " + getApellidos();
+		return nombreCompleto;
+	}
 	//SETTERS
 	public void setPacientes(ArrayList<String> pacientes) {
 		this.pacientes = pacientes;

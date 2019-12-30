@@ -2,13 +2,17 @@ package controlador;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
+
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 
@@ -19,7 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
@@ -28,75 +32,110 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import modelo.Cuidador;
 import modelo.Medico;
 import modelo.Mensaje;
 import modelo.Paciente;
 
+
+
+
 public class ControladorMedicoSubmenuPaciente implements Initializable {
+	   @FXML
+	    private Label campoMedico;
 
-    @FXML
-    private Label campoMedico;
+	    @FXML
+	    private JFXTextField campoDniPac;
 
-    @FXML
-    private Button btnEditar;
+	    @FXML
+	    private JFXTextField campoNombrePac;
 
-    @FXML
-    private Button btnEjercicios;
+	    @FXML
+	    private JFXTextField campoApellidosPac;
 
-    @FXML
-    private JFXTabPane JFXTabPaneMensajeria;
+	    @FXML
+	    private JFXTextField campoFechaNacPac;
 
-    @FXML
-    private Tab tabRecibidos;
+	    @FXML
+	    private JFXTextField campoTlfPac;
 
-    @FXML
-    private AnchorPane anchorPaneRecibidos;
+	    @FXML
+	    private JFXTextField campoCuidadoresPac;
 
-    @FXML
-    private JFXButton btnResponder;
+	    @FXML
+	    private JFXButton buttonEditar;
 
-    @FXML
-    private Accordion AccordionMensajesRec;
+	    @FXML
+	    private JFXButton buttonConsultarSensores;
 
-    @FXML
-    private Label labelBandejaEntrada;
+	    @FXML
+	    private JFXButton buttonCitarPac;
 
-    @FXML
-    private Tab tabEnviados;
+	    @FXML
+	    private JFXButton buttonConsultarEjerciciosPac;
 
-    @FXML
-    private AnchorPane anchorPaneEnviados;
+	    @FXML
+	    private JFXTabPane JFXTabPaneMensajeria;
 
-    @FXML
-    private Accordion AccordionMensajesEnv;
+	    @FXML
+	    private Tab tabRecibidos;
 
-    @FXML
-    private Label labelBandejaSalida;
+	    @FXML
+	    private AnchorPane anchorPaneRecibidos;
 
-    @FXML
-    private TextArea campoRedactar;
+	    @FXML
+	    private JFXButton btnResponder;
 
-    @FXML
-    private JFXButton btnConfirmarEnvio;
+	    @FXML
+	    private Accordion AccordionMensajesRec;
 
-    @FXML
-    private JFXComboBox<?> comboBoxElegirDestinatario;
+	    @FXML
+	    private Label labelBandejaEntrada;
 
-    @FXML
-    private Label labelRedactar;
-    
-    @FXML
-    private JFXTextField campoAsunto;
+	    @FXML
+	    private Tab tabEnviados;
 
+	    @FXML
+	    private AnchorPane anchorPaneEnviados;
+
+	    @FXML
+	    private Accordion AccordionMensajesEnv;
+
+	    @FXML
+	    private Label labelBandejaSalida;
+
+	    @FXML
+	    private TextArea campoRedactar;
+
+	    @FXML
+	    private JFXButton btnConfirmarEnvio;
+
+	    @FXML
+	    private JFXTextField campoAsunto;
+
+	    @FXML
+	    private Label labelRedactar;
+	    
     private static Paciente pacienteActual = new Paciente();
     
     private static Medico medicoActual = new Medico();
+    
+    private static boolean editable = false;
+
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
     	System.out.println(medicoActual.getNombre());
     	System.out.println(pacienteActual.getNombre());
     	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
+    	
+    	setCamposDatos();
+    	
+    	campoNombrePac.setEditable(editable);
+    	campoApellidosPac.setEditable(editable);
+    	campoFechaNacPac.setEditable(editable);
+    	campoTlfPac.setEditable(editable);
+    	campoCuidadoresPac.setEditable(editable);
     	
     	setTitledPanesEnviados();
     	setTitledPanesRecibidos();
@@ -120,12 +159,105 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 				abrirVentanaAvisos();
 			}
     }
+    
+    @FXML
+    @SuppressWarnings("deprecation")
+    void pressBtnEditar(ActionEvent event) {
+    	editable = !editable;
+    	//los campos pasan de ser no editables a editables y viceversa
+    	campoNombrePac.setEditable(editable);
+    	campoApellidosPac.setEditable(editable);
+    	campoFechaNacPac.setEditable(editable);
+    	campoTlfPac.setEditable(editable);
+    	campoCuidadoresPac.setEditable(editable);
+    	
+    	//el boton editar pasa a mostrar el texto "Confirmar cambios"
+    	if(editable==true) {
+    		buttonEditar.setText("Confirmar cambios");
+    	}
+    	else {
+    		buttonEditar.setText("Editar Datos Paciente");
+    	}
+    	
+    	//el resto de botones quedan deshabilitados hasta que se confirmen los datos
+    	buttonConsultarSensores.setDisable(editable);
+    	buttonCitarPac.setDisable(editable);
+    	buttonConsultarEjerciciosPac.setDisable(editable);
+    	
+    	//guardar los datos introducidos en los json
+    	Paciente p = pacienteActual;
+    	//campo Nombre
+    	p.setNombre(campoNombrePac.getText());
+    	//campo Apellidos
+    	p.setApellidos(campoApellidosPac.getText());
+    	//campo Fecha de Nacimiento
+    	String FechaNacNew[] = campoFechaNacPac.getText().split("/");
+    	List<String> Fecha = Arrays.asList(FechaNacNew);
+    	int dia  = Integer.parseInt(Fecha.get(0));
+    	int mes  = Integer.parseInt(Fecha.get(1));
+    	int anho = Integer.parseInt(Fecha.get(2));
+    	Date calend= new Date(anho, mes, dia);
+    	p.setFecha_nacimiento(calend);
+    	//campo telefono
+    	int TlfPacNew = Integer.parseInt(campoTlfPac.getText());
+    	p.setTelefono(TlfPacNew);
+    	//campo cuidadores
+    	String CuidadoresNew[] = campoCuidadoresPac.getText().split(",");
+    	List<String> CuidadoresPac = Arrays.asList(CuidadoresNew);
+    	
+    	ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
+		cuidadores = lectorJson.lectorJsonCuidadores();
+		
+		ArrayList<String> asdf = new ArrayList<>();
+		//comprobar que el nombre coincide con un cuidadore existente
+    	for(int i=0; i<CuidadoresPac.size(); i++) {
+    		String cuidadorComparado = CuidadoresPac.get(i);
+    		for(int a=0; a<cuidadores.size(); a++) {
+				if(cuidadorComparado.equalsIgnoreCase(cuidadores.get(a).getNombreCompleto())) {
+					cuidadorComparado = cuidadores.get(a).getDni();
+					asdf.add(cuidadorComparado);
+				}
+    		}
+    	}
+    	p.setCuidadores(asdf);
+    	
+    	ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
+		pacientes = lectorJson.lectorJsonPacientes();
+		//iterar el json de pacientes comparando el dni hasta que haya una coincidencia y reemplazar los datos
+		for(int i=0; i<pacientes.size();i++) {
+			if(pacientes.get(i).getDni().equals(campoDniPac.getText())) {
+				//reemplazar paciente "i" por paciente "p"
+				pacientes.get(i).setNombre(p.getNombre());
+				pacientes.get(i).setApellidos(p.getApellidos());
+				pacientes.get(i).setFecha_nacimiento(p.getFecha_nacimiento());
+				pacientes.get(i).setTelefono(p.getTelefono());
+				pacientes.get(i).setCuidadores(p.getCuidadores());
+				
+				escritorJson.escribirEnJsonPacientes(pacientes);
+				break;
+			}
+		}
+	
+    }
+    
+    @FXML
+    void pressBtnConsultarSensores(ActionEvent event) {
 
+    }
     
     @FXML
     void pressBtnResponder(ActionEvent event) {
     	JFXTabPaneMensajeria.getSelectionModel().select(2);
     }
+    @FXML
+    void pressBtnCitarPac(ActionEvent event) {
+
+    }
+    @FXML
+    void pressBtnConsultarEjerciciosPac(ActionEvent event) {
+
+    }
+    
     
     public static Paciente getPacienteActual() {
 		return pacienteActual;
@@ -140,6 +272,44 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     public static void setMedicoActual(Medico m) {
     	medicoActual = m;
     }
+    
+  //DATOS
+    private void setCamposDatos() {
+    	Paciente p = pacienteActual;
+    	campoDniPac.setText(p.getDni());
+    	campoNombrePac.setText(p.getNombre());
+    	campoApellidosPac.setText(p.getApellidos());
+    	campoFechaNacPac.setText(p.getFechaNacimientoString());
+    	campoTlfPac.setText(p.getTelefono().toString());
+    	campoCuidadoresPac.setText(getCampoCuidadores());
+    }
+    
+    
+    private String getCampoCuidadores() {
+    	Paciente p = pacienteActual;
+    	StringBuilder stringBuilder = new StringBuilder();
+		Cuidador c = new Cuidador();
+		int i = 0 ;
+		if (p.getCuidadores().size()==1) {
+			c = lectorJson.getCuidador(p.getCuidadores().get(0));
+	    	stringBuilder.append(c.getNombre() + " " + c.getApellidos());
+	    	return stringBuilder.toString();
+		}else if (p.getCuidadores().size()==0){
+			stringBuilder.append("Este paciente no tiene cuidadores.");
+			return stringBuilder.toString();
+		}
+		else {
+		
+	    	for (i = 0 ; i < (p.getCuidadores().size()-1); i++) {
+	    		c = lectorJson.getCuidador(p.getCuidadores().get(i));
+	    		stringBuilder.append(c.getNombre() + " " + c.getApellidos() + ", ");
+	    	}
+	    	c = lectorJson.getCuidador(p.getCuidadores().get(i));
+	    	stringBuilder.append(c.getNombre() + " " + c.getApellidos());
+	    	return stringBuilder.toString();
+		}
+    }
+
     
     private void enviarMensaje(String dniPac) {
     	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText(), campoAsunto.getText());
@@ -158,7 +328,6 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		campoRedactar.clear();
 		campoAsunto.clear();
     }
-    
     
     public void setTitledPanesRecibidos() {
     	ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
