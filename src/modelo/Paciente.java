@@ -8,11 +8,11 @@ import java.util.TimeZone;
 public final class Paciente extends Usuario{
 	private Date fecha_nacimiento;
 	private ArrayList<Integer> ejercicios;
-	ArrayList<String> cuidadores; 
+	ArrayList<String> cuidadores;
 	String medico;
 	private Date prox_cita;
 
-	
+
 	public Paciente(String dni, String nombre, String apellidos, Integer telefono, String contrasena, Date fecha_nacimiento, ArrayList<String> cuidadores, String medico, ArrayList<Integer> ejercicios) {
 		super(dni, nombre, apellidos, telefono, contrasena);
 		this.fecha_nacimiento= fecha_nacimiento;
@@ -20,9 +20,9 @@ public final class Paciente extends Usuario{
 		this.medico = medico;
 		this.ejercicios = ejercicios;
 		this.prox_cita = null;
-		
+
 	}
-	
+
 	public Paciente () {
 		super();
 		this.fecha_nacimiento= null;
@@ -31,9 +31,7 @@ public final class Paciente extends Usuario{
 		this.ejercicios = new ArrayList<Integer>();
 		this.prox_cita = null;
 	}
-	
-	
-	
+
 	//GETTERS
 	@SuppressWarnings("deprecation")
 	public String getFechaNacimientoString() {
@@ -45,12 +43,12 @@ public final class Paciente extends Usuario{
 		String mes = ((Integer) m).toString();
 		int year =  cal.get(Calendar.YEAR);
 		String anho = ((Integer) year).toString();
-		
+
 		String f = dia + "/"+ mes + "/"+ anho ;
 		return f;
-		
+
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	public String getProxCitaString() {
 		// Choose time zone in which you want to interpret your Date
@@ -65,9 +63,9 @@ public final class Paciente extends Usuario{
 		String min = ((Integer) prox_cita.getMinutes()).toString();
 		String f = hora+ ":" + min + "\t-\t" +dia + "/"+ mes + "/"+ anho ;
 		return f;
-		
+
 	}
-	
+
 	public Date getProx_cita() {
 		return prox_cita;
 	}
@@ -84,13 +82,8 @@ public final class Paciente extends Usuario{
 	public ArrayList<Integer> getEjercicios() {
 		return ejercicios;
 	}
-	
-	public String getNombreCompleto() {
-		String n = this.getNombre()+ " " + this.getApellidos();
-		return n;
-	}
 
-	
+
 	//SETTERS
 	public void setFecha_nacimiento(Date fecha_nacimiento) {
 		this.fecha_nacimiento= fecha_nacimiento;
@@ -99,22 +92,21 @@ public final class Paciente extends Usuario{
 	public void setCuidadores (ArrayList<String> cuidadores) {
 		this.cuidadores = cuidadores;
 	}
-	
+
 	public void setMedico (String medico) {
 		this.medico = medico;
 	}
-	
+
 	public void setEjercicios(ArrayList<Integer> ejercicios) {
 		this.ejercicios = ejercicios;
 	}
-	
+
 	public void setProx_cita(Date prox_cita) {
 		this.prox_cita = prox_cita;
 	}
-	
+
 	//METODOS
 
 
-		
-}
 
+}

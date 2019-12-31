@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.Ejercicio;
@@ -21,16 +22,25 @@ import modelo.Paciente;
 
 
 public class ControladorAvisosPaciente implements Initializable{
+
+
+
 	@FXML
-	private ArrayList<Ejercicio> ejercicios;
-	@FXML
-	private JFXButton btnVolver;
+	private ImageView LogoEWBAvisos;
+
 	@FXML
 	private Label campoEjercicios;
+
+
+	@FXML
+	private JFXButton btnVolver;
+
 	@FXML
 	private Label campoPaciente;
 
-	
+	@FXML
+	private ArrayList<Ejercicio> ejercicios;
+
 	private static Paciente pacienteActual = new Paciente();
 
 	@Override
@@ -65,8 +75,6 @@ public class ControladorAvisosPaciente implements Initializable{
 			case1.abrirVentanaAvisos();
 		}
 	}
-	
-	
 	//GETTER
 	public static Paciente getPacienteActual() {
 		return pacienteActual;

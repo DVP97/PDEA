@@ -26,27 +26,36 @@ import modelo.Ejercicio;
 public class ControladorEjercicios implements Initializable{
 	
 	@FXML
-    private AnchorPane anchorGrande;
-	@FXML
     private JFXButton btnAnterior;
+	
 	@FXML
     private JFXButton btnComenzar;
+	
 	@FXML
     private JFXButton btnSiguiente;
+	
 	@FXML
 	private JFXButton btnVolver;
+	
 	@FXML
 	private Label cronometro;
+	
 	@FXML
 	private Label numeroEjercicio;
+
     @FXML
     private Label nombrePaciente;
+    
     @FXML
     private ImageView pantallaEj;
     
+    @FXML
+    private AnchorPane anchorGrande;
     
     private ArrayList<Ejercicio> ejercicios;
+    
     private Integer contador=0;
+    
     private Integer interval=0;
     
     
@@ -71,6 +80,30 @@ public class ControladorEjercicios implements Initializable{
     void pressBtnComenzar(ActionEvent event) {
 		this.btnComenzar.setDisable(true);
 		empezarContador(this.ejercicios.get(contador).getDuracion()+1);   
+	}
+	
+	
+	void empezarContador(Integer duracion) {
+
+		//Cada segundo actualiza el valor del intervalo
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
+			if(interval<0) {
+				interval=0;
+				
+			}
+			cronometro.setText("00:"+interval); 
+			 this.interval= interval -1;
+	    }));
+		//Numero de veces que se ejecuta la funcion
+	    timeline.setCycleCount(duracion+1);
+	    //Empieza
+	    timeline.play();
+	    if(!this.btnComenzar.isDisable()) {
+			 timeline.stop();
+		 }
+	    //Acaba y pasa al siguiente ejercicio
+	    timeline.setOnFinished(e -> siguienteEjercicio());
+	    	
 	}
 	
 		
@@ -116,30 +149,7 @@ public class ControladorEjercicios implements Initializable{
 	}
 
 
-	//METODOS
-	void empezarContador(Integer duracion) {
 
-		//Cada segundo actualiza el valor del intervalo
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
-			if(interval<0) {
-				interval=0;
-				
-			}
-			cronometro.setText("00:"+interval); 
-			 this.interval= interval -1;
-	    }));
-		//Numero de veces que se ejecuta la funcion
-	    timeline.setCycleCount(duracion+1);
-	    //Empieza
-	    timeline.play();
-	    if(!this.btnComenzar.isDisable()) {
-			 timeline.stop();
-		 }
-	    //Acaba y pasa al siguiente ejercicio
-	    timeline.setOnFinished(e -> siguienteEjercicio());
-	    	
-	}
-	
 	void siguienteEjercicio() {
 		this.btnComenzar.setDisable(false);
 		if(interval>0){
