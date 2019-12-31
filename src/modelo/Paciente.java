@@ -10,6 +10,8 @@ public final class Paciente extends Usuario{
 	private ArrayList<Integer> ejercicios;
 	ArrayList<String> cuidadores; 
 	String medico;
+	private Date prox_cita;
+
 	
 	public Paciente(String dni, String nombre, String apellidos, Integer telefono, String contrasena, Date fecha_nacimiento, ArrayList<String> cuidadores, String medico, ArrayList<Integer> ejercicios) {
 		super(dni, nombre, apellidos, telefono, contrasena);
@@ -17,6 +19,7 @@ public final class Paciente extends Usuario{
 		this.cuidadores = cuidadores;
 		this.medico = medico;
 		this.ejercicios = ejercicios;
+		this.prox_cita = null;
 		
 	}
 	
@@ -26,6 +29,7 @@ public final class Paciente extends Usuario{
 		this.medico = null;
 		this.cuidadores = new ArrayList<String>();
 		this.ejercicios = new ArrayList<Integer>();
+		this.prox_cita = null;
 	}
 	
 	
@@ -47,6 +51,26 @@ public final class Paciente extends Usuario{
 		
 	}
 	
+	@SuppressWarnings("deprecation")
+	public String getProxCitaString() {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+		cal.setTime(prox_cita);
+		String dia = ((Integer) prox_cita.getDate()).toString();
+		int m = prox_cita.getMonth() +1;
+		String mes = ((Integer) m).toString();
+		int year =  cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		String hora = ((Integer) prox_cita.getHours()).toString();
+		String min = ((Integer) prox_cita.getMinutes()).toString();
+		String f = hora+ ":" + min + "\t-\t" +dia + "/"+ mes + "/"+ anho ;
+		return f;
+		
+	}
+	
+	public Date getProx_cita() {
+		return prox_cita;
+	}
 	public Date getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
@@ -83,6 +107,11 @@ public final class Paciente extends Usuario{
 	public void setEjercicios(ArrayList<Integer> ejercicios) {
 		this.ejercicios = ejercicios;
 	}
+	
+	public void setProx_cita(Date prox_cita) {
+		this.prox_cita = prox_cita;
+	}
+	
 	//METODOS
 
 
