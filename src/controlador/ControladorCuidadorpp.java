@@ -13,32 +13,36 @@ import javafx.scene.control.ComboBox;
 
 
 public class ControladorCuidadorpp implements Initializable {
-	@FXML
-    private Button btnAvisos;
-    @FXML
-    private Button btnEjercicios;
-    @FXML
-    private Button btnDatos;
-	@FXML
-	private ComboBox<?> comboPacientes;
-	@FXML
-	private Label campoCuidador;
-	    
-	private static  Cuidador cuidadorActual = new Cuidador();
-	    
-	@Override
-	public void initialize(URL location, ResourceBundle reosurces) {
-    	//add controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahi).
-		campoCuidador.setText("Hola " +ControladorCuidadorpp.getCuidadorActual().getNombre()+",");
-	}
-	    
-	//GETTERS
-	public static Cuidador getCuidadorActual() {
-		return cuidadorActual;
-	}
 
-	//SETTERS
-	public static void setCuidadorActual(Cuidador CuidadorActual) {
-		cuidadorActual = CuidadorActual;
-	}
+	 	@FXML
+	    private ComboBox<?> comboPacientes;
+
+	    @FXML
+	    private Button btnAvisos;
+
+	    @FXML
+	    private Button btnEjercicios;
+
+	    @FXML
+	    private Button btnDatos;
+	    
+	    @FXML
+	    private Label campoCuidador;
+	    
+	    private static  Cuidador cuidadorActual = new Cuidador();
+	    
+	    @Override
+	    public void initialize(URL location, ResourceBundle reosurces) {
+	    	//add controlador para tomar solo el nombre(comprobar si cada caracter es un espacio y cuando lo sea cortar el string ahi).
+	    	campoCuidador.setText("Hola " +ControladorCuidadorpp.getCuidadorActual().getNombre()+",");
+		}
+	    
+	    //Getters y Setters
+		public static Cuidador getCuidadorActual() {
+			return cuidadorActual;
+		}
+
+		public static void setCuidadorActual(Cuidador CuidadorActual) {
+			cuidadorActual = CuidadorActual;
+		}
 }
