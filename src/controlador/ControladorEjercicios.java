@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -23,24 +24,34 @@ import javafx.util.Duration;
 import modelo.Paciente;
 import modelo.Ejercicio;
 
+
+
 public class ControladorEjercicios implements Initializable{
 	
 	@FXML
     private AnchorPane anchorGrande;
+	
 	@FXML
     private JFXButton btnAnterior;
+	
 	@FXML
     private JFXButton btnComenzar;
+	
 	@FXML
     private JFXButton btnSiguiente;
+	
 	@FXML
 	private JFXButton btnVolver;
+	
 	@FXML
 	private Label cronometro;
+	
 	@FXML
 	private Label numeroEjercicio;
+	
     @FXML
     private Label nombrePaciente;
+    
     @FXML
     private ImageView pantallaEj;
     
@@ -48,7 +59,10 @@ public class ControladorEjercicios implements Initializable{
     private ArrayList<Ejercicio> ejercicios;
     private Integer contador=0;
     private Integer interval=0;
+    private  String[] hacerEjercicios; 
+
     
+  //Metodos
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -62,19 +76,31 @@ public class ControladorEjercicios implements Initializable{
 		this.interval = this.ejercicios.get(contador).getDuracion();
 		numeroEjercicio.setText(" "+(contador+1)+" de "+ this.ejercicios.size());
 		
+		//String hacerEjercicios con tamaño array de ejercicios
+		hacerEjercicios = new String [this.ejercicios.size()];
+ 		for(int i=0; i < hacerEjercicios.length; i++) {
+ 			hacerEjercicios[i]=ejercicios.get(i).getNombre();
+ 		}
+		
 		
 	}
 	
 	
-	// FunciÃ³n asociada al boton de comenzar. Inicia la cuenta atrÃ¡s del cronÃ³metro.
+	// Función asociada al boton de comenzar. Inicia la cuenta atrás del cronómetro.
 	@FXML
     void pressBtnComenzar(ActionEvent event) {
 		this.btnComenzar.setDisable(true);
-		empezarContador(this.ejercicios.get(contador).getDuracion()+1);   
+		empezarContador(this.ejercicios.get(contador).getDuracion()+1);
+		
+		for(int i=0; i < hacerEjercicios.length; i++) {
+ 			if (hacerEjercicios[i].equals(ejercicios.get(contador).getNombre())){
+ 				hacerEjercicios[i]="ok";
+ 			}
+ 		}
 	}
 	
 		
-	//BotÃ³n anterior
+	//Botón anterior
 	//------------------------------------------------
 	@FXML
 	void pressBtnAnterior(ActionEvent event) {
@@ -82,7 +108,7 @@ public class ControladorEjercicios implements Initializable{
 	}
 
 
-    //BotÃ³n siguiente
+    //Botón siguiente
 	//------------------------------------------------
 	@FXML
 	void pressBtnSiguiente(ActionEvent event) {
@@ -90,11 +116,20 @@ public class ControladorEjercicios implements Initializable{
 	} 
 
 	
-	//BotÃ³n volver
+	//Botón volver
 	//------------------------------------------------
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
+				boolean hechos = true;
+	 			for(int i=0; i<hacerEjercicios.length; i++) {
+	 				if (!hacerEjercicios[i].equals("ok")) {
+	 					hechos = false;
+	 				}
+	 			}
+	 			
+	 		    System.out.println(hechos);
+		
 			System.out.println("Cargando ventana principal de Paciente...");
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 			Stage Pacientepp = new Stage();
@@ -125,8 +160,14 @@ public class ControladorEjercicios implements Initializable{
 				interval=0;
 				
 			}
-			cronometro.setText("00:"+interval); 
-			 this.interval= interval -1;
+			if (interval <10) {
+			cronometro.setText("00:0"+interval); 
+
+			}
+			else {
+				cronometro.setText("00:"+interval); 
+			}
+			this.interval= interval -1;
 	    }));
 		//Numero de veces que se ejecuta la funcion
 	    timeline.setCycleCount(duracion+1);
@@ -137,6 +178,7 @@ public class ControladorEjercicios implements Initializable{
 		 }
 	    //Acaba y pasa al siguiente ejercicio
 	    timeline.setOnFinished(e -> siguienteEjercicio());
+	    System.out.println("Está terminado");
 	    	
 	}
 	
@@ -151,8 +193,8 @@ public class ControladorEjercicios implements Initializable{
 		} else {
 			
 		if (contador==ejercicios.size()-1) {
-			System.out.println("EstÃ¡ usted en el Ãºltimo ejercicio.");
-			ControladorAvisos.setMensajeError("EstÃ¡ usted en el Ãºltimo ejercicio, Â¡ha terminado!");
+			System.out.println("Está usted en el último ejercicio.");
+			ControladorAvisos.setMensajeError("Está usted en el último ejercicio, ¡ha terminado!");
 			abrirVentanaAvisos();
 		} else {
 		this.contador = contador+1;
@@ -170,8 +212,8 @@ public class ControladorEjercicios implements Initializable{
 	void ejercicioAnterior() {
 	
 		if (contador==0) {
-			System.out.println("EstÃ¡ usted en el primer ejercicio");
-			ControladorAvisos.setMensajeError("EstÃ¡ usted en el primer ejercicio.");
+			System.out.println("Está usted en el primer ejercicio");
+			ControladorAvisos.setMensajeError("Está usted en el primer ejercicio.");
 			abrirVentanaAvisos();
 		} else {
 		

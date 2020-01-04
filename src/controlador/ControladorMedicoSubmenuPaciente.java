@@ -229,9 +229,11 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		for(int i=0; i<pacientes.size();i++) {
 			if(pacientes.get(i).getDni().equals(campoDniPac.getText())) {
 				//reemplazar paciente "i" por paciente "p"
+				pacientes.get(i).setFecha_nacimiento(p.getFecha_nacimiento());
+				pacientes.get(i).setDni(p.getDni());
 				pacientes.get(i).setNombre(p.getNombre());
 				pacientes.get(i).setApellidos(p.getApellidos());
-				pacientes.get(i).setFecha_nacimiento(p.getFecha_nacimiento());
+				
 				pacientes.get(i).setTelefono(p.getTelefono());
 				pacientes.get(i).setCuidadores(p.getCuidadores());
 				
