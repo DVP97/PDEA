@@ -1,14 +1,15 @@
 package controlador;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -108,9 +109,6 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 
 	    @FXML
 	    private JFXButton btnConfirmarEnvio;
-	    
-	    @FXML
-	    private JFXButton buttonVolver;
 
 	    @FXML
 	    private JFXTextField campoAsunto;
@@ -124,6 +122,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     
     private static boolean editable = false;
 
+	private Date calend;
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
@@ -206,21 +205,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	//campo cuidadores
     	String CuidadoresNew[] = campoCuidadoresPac.getText().split(",");
     	List<String> CuidadoresPac = Arrays.asList(CuidadoresNew);
-    	
-    	ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
-		cuidadores = lectorJson.lectorJsonCuidadores();
-		
-		ArrayList<String> asdf = new ArrayList<>();
-		//comprobar que el nombre coincide con un cuidadore existente
-    	for(int i=0; i<CuidadoresPac.size(); i++) {
-    		String cuidadorComparado = CuidadoresPac.get(i);
-    		for(int a=0; a<cuidadores.size(); a++) {
-				if(cuidadorComparado.equalsIgnoreCase(cuidadores.get(a).getNombreCompleto())) {
-					cuidadorComparado = cuidadores.get(a).getDni();
-					asdf.add(cuidadorComparado);
-				}
-    		}
-    	}
+    	ArrayList<String> asdf = new ArrayList<>();
+    	asdf.addAll(CuidadoresPac);
     	p.setCuidadores(asdf);
     	
     	ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
@@ -260,27 +246,6 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 
     }
     
-	@FXML
-	void pressBtnVolver(ActionEvent event) throws IOException {
-		try {
-			System.out.println("Cargando submenu paciente...");
-			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/medico_selector_paciente.fxml"));
-			Stage Pacientepp = new Stage();
-			Pacientepp.setTitle("Menu Medico - Seleccion Paciente");
-			Pacientepp.setScene(new Scene(PacienteVentana));
-			Pacientepp.show();
-			Pacientepp.setMinHeight(400);
-			Pacientepp.setMinWidth(800);
-
-			Stage CerrarVentanaLogin = (Stage) buttonVolver.getScene().getWindow();
-			CerrarVentanaLogin.close();
-		}	
-			
-		catch(ControladorExcepciones case1){
-			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
-			case1.abrirVentanaAvisos();
-		}
-	}
     
     public static Paciente getPacienteActual() {
 		return pacienteActual;

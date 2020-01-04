@@ -21,7 +21,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.ImageView;
@@ -36,37 +35,32 @@ public class ControladorLogin implements Initializable{
 
     @FXML
     private BorderPane BorderPaneGlobal;
-    
+    @FXML
+	private GridPane gridPanelLogin;
+    @FXML
+	private ImageView logo;
 	@FXML
-	private Button myButton;
-	
+	private JFXButton buttonAceptar;
+	@FXML
+	private JFXButton buttonCancelar;
+    @FXML
+    private JFXButton buttonRegistrar;
+    @FXML
+    private  JFXPasswordField txtInputPassword;
+    @FXML
+    private JFXTextField txtInputUsuario;
 	@FXML
 	private Label txtBienvenida;
-	
 	@FXML
 	private Separator separatorTop;
 	
-	@FXML
-	private ImageView logo;
+		
+	@Override
+	public void initialize(URL location, ResourceBundle reosurces) {
+		
+	}
 	
-	@FXML
-	private GridPane gridPanelLogin;
-	
-	@FXML
-    private JFXTextField txtInputUsuario;
-	
-	@FXML
-    private  JFXPasswordField txtInputPassword;
-	
-	@FXML
-	private JFXButton buttonAceptar;
-	
-	@FXML
-	private JFXButton buttonCancelar;
-	
-    @FXML
-    private JFXButton buttonRegistrar;
-    
+    //BOTONES
     @FXML
     void pressBtnRegistrar(ActionEvent event)  {
     	try {
@@ -85,16 +79,38 @@ public class ControladorLogin implements Initializable{
 		
     	}
     }
-		
 
-	@Override
-	public void initialize(URL location, ResourceBundle reosurces) {
+	public void btnAceptarActionPerformed(ActionEvent event) throws IOException {
+		try {
+			this.pressBtnAceptar();
+		} catch (ControladorExcepciones e) {
+			ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
+			e.abrirVentanaAvisos();
+		}
+	}
+	
+	
+	public void pressBtnCancelar(ActionEvent event) {
+		System.out.println("Saliendo de la aplicacion. Hasta pronto.");
+		System.exit(0);
+	}	
+	
+	
+	//PRESS ENTER
+	public void textoClavePressed(KeyEvent event) throws IOException{
+		if(event.getCode().equals(KeyCode.ENTER)) {
+			try {
+				this.pressBtnAceptar();
+			} catch (ControladorExcepciones e) {
+				ControladorAvisos.setMensajeError("Datos incorrectos.");
+				e.abrirVentanaAvisos();
+			}
+		}
 		
 	}
 	
 	
-	
-	//Acciones ejecutadas al pulsar el Boton Aceptar
+	//METODOS
 	public void pressBtnAceptar() throws IOException {
 		try {
 			
@@ -203,39 +219,7 @@ public class ControladorLogin implements Initializable{
 		
 	}
 	
-	public void btnAceptarActionPerformed(ActionEvent event) throws IOException {
-		try {
-			this.pressBtnAceptar();
-		} catch (ControladorExcepciones e) {
-			ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
-			e.abrirVentanaAvisos();
-		}
-	}
-	
-	public void textoClavePressed(KeyEvent event) throws IOException{
-		if(event.getCode().equals(KeyCode.ENTER)) {
-			try {
-				this.pressBtnAceptar();
-			} catch (ControladorExcepciones e) {
-				ControladorAvisos.setMensajeError("Datos incorrectos.");
-				e.abrirVentanaAvisos();
-			}
-		}
-		
-	}
-	
-	//----------------------------------------------
-	
-	
-	// Acciones ejecutadas al pulsar el Boton Cancelar
-	public void pressBtnCancelar(ActionEvent event) {
-		System.out.println("Saliendo de la aplicacion. Hasta pronto.");
-		System.exit(0);
-	}	
-	//------------------------------------------------
-	
-	
-	// Funciones donde se comprueba que los datos introducidos son correctos
+	// Funcion donde se comprueba que los datos introducidos son correctos
 	public boolean comprobarInputUser() {		
 		// capturar texto  del TextField de usuario y convierte a mayus.
 		String inputUsuario = txtInputUsuario.getText().toUpperCase();
@@ -265,7 +249,6 @@ public class ControladorLogin implements Initializable{
 		}
 		return true;
 	}
-	//------------------------------------------------------
 
 	// funciones para comprobar el tipo de usuario
 	public boolean esPaciente() {
@@ -283,7 +266,6 @@ public class ControladorLogin implements Initializable{
 		return false;
 	}
 	
-
 	public boolean esCuidador() {
 		if(lectorJson.getCuidador(txtInputUsuario.getText().toUpperCase()) == null) {
 			return false;
@@ -296,7 +278,6 @@ public class ControladorLogin implements Initializable{
 		}
 		return false;
 	}
-	
 	
 	public boolean esMedico() {
 		if(lectorJson.getMedico(txtInputUsuario.getText().toUpperCase()) == null) {
@@ -313,11 +294,8 @@ public class ControladorLogin implements Initializable{
 	}
 	
 
-	
-	
 	//funcion hash recibe contrasena y devuelve contrasena encriptado
-	public static String getMd5(String input) 
-    { 
+	public static String getMd5(String input) { 
         try { 
   
             // Static getInstance method is called with hashing MD5 
@@ -344,8 +322,6 @@ public class ControladorLogin implements Initializable{
             throw new RuntimeException(e); 
         } 
     } 
-	//-----------------------------------------
         
-	//-----------------------------------------
 	
 }
