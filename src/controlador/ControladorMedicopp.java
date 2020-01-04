@@ -1,5 +1,6 @@
 package controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +42,7 @@ public class ControladorMedicopp implements Initializable {
 
     @FXML
     private Label campoMedico;
-
+    
     @FXML
     private Label labelRedactar;
 
@@ -95,7 +96,10 @@ public class ControladorMedicopp implements Initializable {
 
     @FXML
     private JFXButton btnResponder;
-
+    
+    @FXML
+    private JFXButton buttonVolver;
+    
     @FXML
     private JFXTabPane JFXTabPaneMensajeria;
 
@@ -109,7 +113,7 @@ public class ControladorMedicopp implements Initializable {
 
     //Metodos
 
-    //Por ahora asÃ­, en algun momento filtraremos por paciente ya que el medico accedera directamente a solo un paciente
+    //Por ahora así, en algun momento filtraremos por paciente ya que el medico accedera directamente a solo un paciente
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
         JFXTabPaneMensajeria.setTabMinWidth(100);
@@ -177,7 +181,29 @@ public class ControladorMedicopp implements Initializable {
     	}
     	    	
     }
+    
+    @FXML
+	void pressBtnVolver(ActionEvent event) throws IOException {
+		try {
+			System.out.println("Cargando submenu paciente...");
+			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/medico_selector_paciente.fxml"));
+			Stage Pacientepp = new Stage();
+			Pacientepp.setTitle("Menu Medico - Seleccion Paciente");
+			Pacientepp.setScene(new Scene(PacienteVentana));
+			Pacientepp.show();
+			Pacientepp.setMinHeight(400);
+			Pacientepp.setMinWidth(800);
 
+			Stage CerrarVentanaLogin = (Stage) buttonVolver.getScene().getWindow();
+			CerrarVentanaLogin.close();
+		}	
+			
+		catch(ControladorExcepciones case1){
+			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
+			case1.abrirVentanaAvisos();
+		}
+	}
+    
 	public class sortByDate implements Comparator<Mensaje> {
 		 
 	    @Override
@@ -293,13 +319,9 @@ public class ControladorMedicopp implements Initializable {
 				
 				//Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append("De: ");
-				Paciente p = lectorJson.getPaciente(mensajeAct.getEmisor());
-				stringBuilder.append(p.getNombreCompleto());
-				stringBuilder.append("\r");
-				stringBuilder.append("\tAsunto: ");
+				stringBuilder.append("Asunto: ");
 				stringBuilder.append(mensajeAct.getAsunto());
-				stringBuilder.append("\r\t");
+				stringBuilder.append("\r");
 				stringBuilder.append(mensajeAct.getFechaString());
 				
 				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;
@@ -344,13 +366,9 @@ public class ControladorMedicopp implements Initializable {
 				
 				//Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append("Para: ");
-				Paciente p = lectorJson.getPaciente(mensajeAct.getReceptor());
-				stringBuilder.append(p.getNombreCompleto());
-				stringBuilder.append("\r");
-				stringBuilder.append("\tAsunto: ");
+				stringBuilder.append("Asunto: ");
 				stringBuilder.append(mensajeAct.getAsunto());
-				stringBuilder.append("\r\t");
+				stringBuilder.append("\r");
 				stringBuilder.append(mensajeAct.getFechaString());
 				
 				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;
