@@ -1,3 +1,5 @@
 /.settings/
-/modelo/
+/application/
 /controlador/
+/modelo/
+/vista/
