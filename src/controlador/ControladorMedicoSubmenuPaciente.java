@@ -245,8 +245,26 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     }
     
     @FXML
-    void pressBtnConsultarSensores(ActionEvent event) {
+    void pressBtnConsultarSensores(ActionEvent event) throws IOException {
+    	try {
+			
+			Parent SensoresPaciente = FXMLLoader.load(getClass().getResource("/vista/medicopp_sensores_paciente.fxml"));
+			Stage MenuSensoresPaciente = new Stage();
+			MenuSensoresPaciente.setTitle("Menu Sensores Paciente");
+			MenuSensoresPaciente.setScene(new Scene(SensoresPaciente));
+			MenuSensoresPaciente.show();
+			MenuSensoresPaciente.setMinHeight(620);
+			MenuSensoresPaciente.setMinWidth(600);
 
+			System.out.println("Cerrando ventana de Login.");
+			Stage CerrarVentanaLogin = (Stage) buttonConsultarSensores.getScene().getWindow();
+			CerrarVentanaLogin.close();
+		}	
+		
+		catch(ControladorExcepciones case1){
+			ControladorAvisos.setMensajeError("No se pudo abrir el menu de sensores de Paciente.");
+			case1.abrirVentanaAvisos();
+		}
     }
     
     @FXML
@@ -265,7 +283,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
-			System.out.println("Cargando submenu paciente...");
+			System.out.println("Cargando selector paciente...");
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/medico_selector_paciente.fxml"));
 			Stage Pacientepp = new Stage();
 			Pacientepp.setTitle("Menu Medico - Seleccion Paciente");
@@ -274,12 +292,12 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			Pacientepp.setMinHeight(400);
 			Pacientepp.setMinWidth(800);
 
-			Stage CerrarVentanaLogin = (Stage) buttonVolver.getScene().getWindow();
-			CerrarVentanaLogin.close();
+			Stage CerrarSubmenuPaciente = (Stage) buttonVolver.getScene().getWindow();
+			CerrarSubmenuPaciente.close();
 		}	
 			
 		catch(ControladorExcepciones case1){
-			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
+			ControladorAvisos.setMensajeError("No se pudo abrir el submenu de Paciente.");
 			case1.abrirVentanaAvisos();
 		}
 	}

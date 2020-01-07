@@ -48,7 +48,7 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     //Metodos
 
     @Override
-    public void initialize(URL location, ResourceBundle reosurces) {
+    public void initialize(URL location, ResourceBundle resources) {
     	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
     	inputBuscarPaciente.setItems(listaPacientesComboBox);
     }
@@ -125,7 +125,6 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     	if (coincidencia(pacienteBuscado)!= null) {
     		try {
 	    		System.out.println("coincidencia encontrada.");
-	    		System.out.println("Cargando ventana principal de Medico...");
 	    		ControladorMedicoSubmenuPaciente.setMedicoActual(medicoActual);
 	    		ControladorMedicoSubmenuPaciente.setPacienteActual(p);
 				Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
