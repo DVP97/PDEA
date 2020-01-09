@@ -10,6 +10,7 @@ public final class Paciente extends Usuario{
 	private ArrayList<Integer> ejercicios;
 	ArrayList<String> cuidadores; 
 	String medico;
+	boolean ejerciciosHechos;
 	
 	public Paciente(String dni, String nombre, String apellidos, Integer telefono, String contrasena, Date fecha_nacimiento, ArrayList<String> cuidadores, String medico, ArrayList<Integer> ejercicios) {
 		super(dni, nombre, apellidos, telefono, contrasena);
@@ -17,6 +18,7 @@ public final class Paciente extends Usuario{
 		this.cuidadores = cuidadores;
 		this.medico = medico;
 		this.ejercicios = ejercicios;
+		this.ejerciciosHechos = false;
 		
 	}
 	
@@ -26,6 +28,7 @@ public final class Paciente extends Usuario{
 		this.medico = null;
 		this.cuidadores = new ArrayList<String>();
 		this.ejercicios = new ArrayList<Integer>();
+		this.ejerciciosHechos=false;
 	}
 	
 	
@@ -65,7 +68,9 @@ public final class Paciente extends Usuario{
 		String n = this.getNombre()+ " " + this.getApellidos();
 		return n;
 	}
-
+	public boolean isEjerciciosHechos() {
+		return ejerciciosHechos;
+	}
 	
 	//SETTERS
 	public void setFecha_nacimiento(Date fecha_nacimiento) {
@@ -83,6 +88,12 @@ public final class Paciente extends Usuario{
 	public void setEjercicios(ArrayList<Integer> ejercicios) {
 		this.ejercicios = ejercicios;
 	}
+	
+	public void setEjerciciosHechos(boolean ejerciciosHechos) {
+		this.ejerciciosHechos = ejerciciosHechos;
+	}
+	
+	
 	//METODOS
 
 

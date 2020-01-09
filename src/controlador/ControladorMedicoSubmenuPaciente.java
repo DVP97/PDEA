@@ -203,6 +203,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	//campo telefono
     	int TlfPacNew = Integer.parseInt(campoTlfPac.getText());
     	p.setTelefono(TlfPacNew);
+    	
+    	
     	//campo cuidadores
     	String CuidadoresNew[] = campoCuidadoresPac.getText().split(",");
     	List<String> CuidadoresPac = Arrays.asList(CuidadoresNew);
@@ -223,24 +225,9 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	}
     	p.setCuidadores(asdf);
     	
-    	ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-		pacientes = lectorJson.lectorJsonPacientes();
-		//iterar el json de pacientes comparando el dni hasta que haya una coincidencia y reemplazar los datos
-		for(int i=0; i<pacientes.size();i++) {
-			if(pacientes.get(i).getDni().equals(campoDniPac.getText())) {
-				//reemplazar paciente "i" por paciente "p"
-				pacientes.get(i).setFecha_nacimiento(p.getFecha_nacimiento());
-				pacientes.get(i).setDni(p.getDni());
-				pacientes.get(i).setNombre(p.getNombre());
-				pacientes.get(i).setApellidos(p.getApellidos());
-				
-				pacientes.get(i).setTelefono(p.getTelefono());
-				pacientes.get(i).setCuidadores(p.getCuidadores());
-				
-				escritorJson.escribirEnJsonPacientes(pacientes);
-				break;
-			}
-		}
+    	escritorJson.modificarPaciente(p);
+		
+		
 	
     }
     

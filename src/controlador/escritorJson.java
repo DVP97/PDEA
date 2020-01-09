@@ -56,6 +56,22 @@ public class escritorJson {
 		}
 	}
 
+	public static void modificarPaciente (Paciente paciente) {
+		ArrayList<Paciente> pacientes = lectorJson.lectorJsonPacientes();
+		for (int i = 0 ; i < pacientes.size(); i++) {
+			Paciente pac = pacientes.get(i);
+			if (pac.getDni().equalsIgnoreCase(paciente.getDni())) {
+				pac.setApellidos(paciente.getApellidos());
+				pac.setContrasena(paciente.getContrasena());
+				pac.setCuidadores(paciente.getCuidadores());
+				pac.setEjercicios(paciente.getEjercicios());
+				pac.setFecha_nacimiento(paciente.getFecha_nacimiento());
+				pac.setNombre(paciente.getNombre());
+				pac.setTelefono(paciente.getTelefono());
+			}
+		}
+		escribirEnJsonPacientes(pacientes);
+	}
 
 	
 	
