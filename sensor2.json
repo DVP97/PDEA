@@ -1,0 +1,528 @@
+[
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Oct 28, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [81,84,95,83,89],
+    "fecha": "Oct 28, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Oct 28, 2019 6:18:21 PM"
+  },
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Oct 29, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [81,84,95,83,89],
+    "fecha": "Oct 29, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Oct 29, 2019 6:18:21 PM"
+  },
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Oct 30, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [81,84,95,83,89],
+    "fecha": "Oct 30, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Oct 30, 2019 6:18:21 PM"
+  }
+  ,
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Oct 31, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [81,84,95,83,89],
+    "fecha": "Oct 31, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Oct 31, 2019 6:18:21 PM"
+  },
+  ,
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 1, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 1, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 1, 2019 6:18:21 PM"
+  }
+  ,,
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 2, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 2, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 2, 2019 6:18:21 PM"
+  },
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 3, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 3, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 3, 2019 6:18:21 PM"
+  },
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 4, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 4, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 4, 2019 6:18:21 PM"
+  },
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 5, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 5, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 5, 2019 6:18:21 PM"
+  },
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 6, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 6, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 6, 2019 6:18:21 PM"
+  },
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 7, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 7, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 7, 2019 6:18:21 PM"
+  },
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 8, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 8, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 8, 2019 6:18:21 PM"
+  },
+  {
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 9, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 9, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 9, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 10, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 10, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 10, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 11, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 11, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 11, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 12, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos":[82,87,93,86,86],
+    "fecha": "Nov 12, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 12, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 13, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 13, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 13, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 14, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 14, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 14, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 15, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 15, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 15, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 16, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 16, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 16, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 17, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 17, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 17, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 18, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 18, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 18, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 19, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 19, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 19, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 20, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 20, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 20, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 21, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 21, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 21, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 22, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 22, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 22, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 23, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 23, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 23, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 24, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 24, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 24, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 25, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 25, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 25, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 26, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 26, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 26, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 27, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 28, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 28, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 29, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 29, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 29, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Nov 30, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Nov 30, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Nov 30, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 5,
+    "datosMedicos": [87,82,96,83,85],
+    "fecha": "Dec 1, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 6,
+    "datosMedicos": [82,87,93,86,86],
+    "fecha": "Dec 1, 2019 6:18:21 PM"
+  },{
+    "dni": "39042568E",
+    "ejercicio": 7,
+    "datosMedicos": [82,85,92,84,87],
+    "fecha": "Dec 1, 2019 6:18:21 PM"
+  }
+]
