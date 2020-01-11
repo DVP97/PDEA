@@ -67,7 +67,7 @@
          <children>
             <JFXTabPane prefHeight="335.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <tabs>
-                  <Tab text="Sensor 1">
+                  <Tab text="Saturación O2">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -83,7 +83,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Sensor 2">
+                  <Tab text="Tensión">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
@@ -99,7 +99,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Sensor 3">
+                  <Tab text="Frecuencia">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
