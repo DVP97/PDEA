@@ -19,6 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.input.KeyEvent;
 import modelo.Medico;
 import modelo.Paciente;
 import modelo.Mensaje;
@@ -26,6 +27,7 @@ import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTreeTableView;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -106,14 +108,15 @@ public class ControladorMedicopp implements Initializable {
     @FXML
     private JFXComboBox<String> comboBoxElegirDestinatario;
 
-
+    @FXML
+    private JFXTreeTableView<?> tableCitas;
+    
     private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(getNombrePacientes());
 
     private static Medico medicoActual = new Medico();
 
     //Metodos
 
-    //Por ahora así, en algun momento filtraremos por paciente ya que el medico accedera directamente a solo un paciente
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
         JFXTabPaneMensajeria.setTabMinWidth(100);
@@ -128,7 +131,12 @@ public class ControladorMedicopp implements Initializable {
     	setTitledPanesRecibidos();
   	
 	}
+    
+    @FXML
+    void pressBtnCrearCita(ActionEvent event) {
 
+    }
+    
     @FXML
     void pressBtnConfirmarEnvio(ActionEvent event) {
     	if(campoAsunto.getText().length()>0) {
@@ -203,6 +211,16 @@ public class ControladorMedicopp implements Initializable {
 			case1.abrirVentanaAvisos();
 		}
 	}
+    
+    @FXML
+    void comprobarInput(KeyEvent event) {
+
+    }
+    
+    @FXML
+    void pressEnter(KeyEvent event) {
+
+    }
     
 	public class sortByDate implements Comparator<Mensaje> {
 		 
