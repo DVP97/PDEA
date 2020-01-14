@@ -127,6 +127,18 @@ public class lectorJson {
 		return null;
 	}
 	
+	public static Ejercicio getEjercicio(Integer id) {
+		Ejercicio e = new Ejercicio();
+		ArrayList<Ejercicio> pac = lectorJsonEjercicios();
+		for (int i = 0; i< pac.size(); i++) {
+			e = pac.get(i);
+			if (e.getId().equals(id)) {
+				return e;
+			}
+		}
+		return null;
+	}
+	
 	// El dni que metes es el del emisor
 	public static ArrayList<Mensaje> getMensajesEnviadosPor (String dni) {
 		ArrayList<Mensaje> mensajesEnviados = new ArrayList<Mensaje>();
