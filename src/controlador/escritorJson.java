@@ -68,6 +68,7 @@ public class escritorJson {
 				pac.setFecha_nacimiento(paciente.getFecha_nacimiento());
 				pac.setNombre(paciente.getNombre());
 				pac.setTelefono(paciente.getTelefono());
+				pac.setEjerciciosHechos(paciente.isEjerciciosHechos());
 			}
 		}
 		escribirEnJsonPacientes(pacientes);

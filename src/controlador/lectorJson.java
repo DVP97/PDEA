@@ -10,6 +10,10 @@ import modelo.Medico;
 import modelo.Mensaje;
 import modelo.Paciente;
 import modelo.Ejercicio;
+import modelo.Cita;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -88,9 +92,26 @@ public class lectorJson {
 		return ejercicios;
 	}
 	
+	
+	public static ArrayList<Cita> lectorJsonCitas() {
+		ArrayList<Cita> citas = new ArrayList <Cita>();
+		
+		try {
+			FileReader fr = new FileReader("citas.json");
+			Gson gson= new Gson();
+			Type tipoListaCitas = new TypeToken<ArrayList<Cita>>(){}.getType();
+			citas = gson.fromJson(fr, tipoListaCitas);
+			//System.out.println("Fallo en: " );
+		}catch (Exception e) {
+			System.out.println("Fallo en: " +e);
+		}
+		return citas;
+		
+	}
+	
 	//METODOS
 	
-	//Buscas un paciente por su dni empleando la funcion leer pacientes anterior  y lo recorres comparando los dnis
+	//Buscas un paciente por su dni empleando la funcion leer pacientes anterior y lo recorres comparando los dnis
 	public static Paciente getPaciente (String dni) {
 		Paciente p = new Paciente();
 		ArrayList<Paciente> pac = lectorJsonPacientes();
@@ -102,6 +123,7 @@ public class lectorJson {
 		}
 		return null;
 	}
+	
 	
 	public static Medico getMedico (String dni) {
 		Medico p = new Medico();
@@ -130,12 +152,24 @@ public class lectorJson {
 	public static Ejercicio getEjercicio(Integer id) {
 		Ejercicio e = new Ejercicio();
 		ArrayList<Ejercicio> pac = lectorJsonEjercicios();
-		for (int i = 0; i< pac.size(); i++) {
+		for (int i = 0; i < pac.size(); i++) {
 			e = pac.get(i);
 			if (e.getId().equals(id)) {
 				return e;
 			}
 		}
+		return null;
+	}
+	//
+	public static Cita getCita (String dni){
+		Cita c = new Cita();
+		ArrayList<Cita> pac = lectorJsonCitas();
+		for (int i = 0; i < pac.size() ; i++) {
+			c = pac.get(i);
+			if (c.getDni().equals(dni)) {
+				return c;
+		    }
+	    }
 		return null;
 	}
 	
@@ -192,7 +226,7 @@ public class lectorJson {
 	public static ArrayList<Ejercicio> getEjercicios (Paciente p) {
 		//Array ids de los ejercicios de paciente
 		ArrayList<Integer> idsEjercicios = p.getEjercicios();
-		//Array donde estan ejercicios
+		//Array donde estan ejercicios a secas
 		ArrayList<Ejercicio> pac = lectorJsonEjercicios();
 		ArrayList<Ejercicio> ejerciciosDePaciente = new ArrayList<Ejercicio>();
 		for (int i = 0; i < idsEjercicios.size(); i++) {
@@ -205,6 +239,7 @@ public class lectorJson {
 	 return ejerciciosDePaciente;	
 	}
 	
+	
 	public static ArrayList<String> getNombresCompletosPacientesDe (Medico m){
 		ArrayList<String> nombresCompletos= new ArrayList<String>();
 		ArrayList<String> dnis = m.getPacientes();
@@ -215,6 +250,11 @@ public class lectorJson {
 		}
 		return nombresCompletos;
 	}
+	
+
+		
+		
+	
 	
 	
 }

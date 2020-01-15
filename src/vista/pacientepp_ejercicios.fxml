@@ -54,7 +54,7 @@
             <RowConstraints maxHeight="195.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <JFXButton fx:id="btnVolver" buttonType="RAISED" onAction="#pressBtnVolver" prefHeight="27.0" prefWidth="125.0" styleClass="btn" stylesheets="@application.css" text="Volver" GridPane.rowIndex="2">
+            <JFXButton fx:id="btnVolver" buttonType="RAISED" onAction="#pressBtnVolver" prefHeight="27.0" prefWidth="112.0" styleClass="btn" stylesheets="@application.css" text="Volver" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <ripplerFill>
                   <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
                      <stops>
@@ -63,6 +63,9 @@
                      </stops>
                   </RadialGradient>
                </ripplerFill>
+               <GridPane.margin>
+                  <Insets left="120.0" right="50.0" />
+               </GridPane.margin>
             </JFXButton>
             <Group nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1">
                <children>
@@ -89,7 +92,7 @@
                            </ripplerFill>
                         </JFXButton>
                         <Label fx:id="txtEjercicio" contentDisplay="CENTER" layoutX="64.0" pickOnBounds="false" prefHeight="22.0" prefWidth="138.0" styleClass="textoEjercicio" stylesheets="@application.css" text="  EJERCICIO   " textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
-                        <Label fx:id="numeroEjercicio" contentDisplay="CENTER" layoutX="180.0" prefHeight="22.0" prefWidth="68.0" styleClass="textoEjercicio" stylesheets="@application.css" text="1 DE 3 " textAlignment="CENTER" />
+                        <Label fx:id="numeroEjercicio" contentDisplay="CENTER" layoutX="180.0" prefHeight="22.0" prefWidth="84.0" styleClass="textoEjercicio" stylesheets="@application.css" text="1 DE 3 " textAlignment="CENTER" />
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -101,11 +104,7 @@
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <ImageView fx:id="pantallaEj" fitHeight="462.0" fitWidth="311.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../modelo/Reverse-Disco-Step.gif" />
-                           </image>
-                        </ImageView>
+                        <ImageView fx:id="pantallaEj" fitHeight="436.0" fitWidth="311.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </HBox>
                </children>

@@ -16,7 +16,7 @@ public class Mensaje {
 	
 	public Mensaje (String emisor, String receptor,  String mensaje, String asunto) {
 		this.asunto = asunto;
-		this.emisor =emisor;
+		this.emisor = emisor;
 		this.receptor = receptor;
 		this.mensaje = mensaje;
 		this.leido = false;
@@ -27,7 +27,7 @@ public class Mensaje {
 	
 	public Mensaje () {
 		this.asunto = null;
-		this.emisor =null;
+		this.emisor = null;
 		this.receptor = null; 
 		this.mensaje = null;
 		this.leido = false;
@@ -87,6 +87,7 @@ public class Mensaje {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
+	
 	public void setReceptor(String receptor) {
 		this.receptor = receptor;
 	}
