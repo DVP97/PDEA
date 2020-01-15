@@ -59,7 +59,8 @@ public class ControladorEjercicios implements Initializable{
     private ArrayList<Ejercicio> ejercicios;
     private Integer contador=0;
     private Integer interval=0;
-    private  String[] hacerEjercicios; 
+    private  String[] hacerEjercicios;
+    private Paciente p = ControladorPacientepp.getPacienteActual();
 
     
   //Metodos
@@ -67,7 +68,7 @@ public class ControladorEjercicios implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		Paciente p = ControladorPacientepp.getPacienteActual();
+		//Paciente p = ControladorPacientepp.getPacienteActual();
 		nombrePaciente.setText("Hola " +p.getNombre() +",");
 		
 		this.ejercicios = lectorJson.getEjercicios(p);
@@ -82,7 +83,7 @@ public class ControladorEjercicios implements Initializable{
  		for(int i=0; i < hacerEjercicios.length; i++) {
  			hacerEjercicios[i]=ejercicios.get(i).getNombre();
  		}
-		
+ 		
 		
 	}
 	
@@ -130,7 +131,7 @@ public class ControladorEjercicios implements Initializable{
 	 			}
 	 			
 	 		    System.out.println(hechos);
-	 		    //escritorJson.modificarPaciente(p);
+	 		    escritorJson.modificarPaciente(p);
 		
 			System.out.println("Cargando ventana principal de Paciente...");
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));

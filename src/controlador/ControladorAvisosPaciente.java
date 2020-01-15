@@ -52,9 +52,10 @@ public class ControladorAvisosPaciente implements Initializable{
 		
 
 	
-		this.ejercicios = lectorJson.getEjercicios(p);
+		/* Pasar a Controlador Ejercicios cuidador
+		 this.ejercicios = lectorJson.getEjercicios(p);
 		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
-		//this.fecha_cita = lectorJson.getCita(fecha_cita);
+	    */
 		//Muestra el valor del booleano
 		
         hechos = p.isEjerciciosHechos();
@@ -71,20 +72,18 @@ public class ControladorAvisosPaciente implements Initializable{
 		fecha_cita = lectorJson.getCita(p.getDni());
 		campoFecha.setText(fecha_cita.getFecha().toString());
 		
-	
-
 
 	}
 	
 
-    @FXML
+   /* @FXML
     void pressBtnAnterior(ActionEvent event) {
     	ejercicioAnterior();
     }
     @FXML
     void pressBtnNext(ActionEvent event) {
     	siguienteEjercicio();
-    }
+    }*/
 
 	//Botón volver
 	@FXML
@@ -109,7 +108,7 @@ public class ControladorAvisosPaciente implements Initializable{
 			case1.abrirVentanaAvisos();
 		}
 	}
-	
+	/*
 	void siguienteEjercicio() {
 		
 	
@@ -135,7 +134,7 @@ public class ControladorAvisosPaciente implements Initializable{
 			this.contador = contador-1;
 		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
 	}
-	}
+	}*/
 	
     public void abrirVentanaAvisos() {
 		try {

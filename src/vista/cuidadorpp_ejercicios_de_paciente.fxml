@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import javafx.scene.control.Accordion?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,6 +10,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -42,7 +40,6 @@
               </rowConstraints>
                <children>
                   <Label styleClass="normalLabel" stylesheets="@application.css" text="Paciente:" />
-                  <JFXComboBox fx:id="comboPaciente" prefHeight="27.0" prefWidth="188.0" stylesheets="@application.css" GridPane.columnIndex="1" />
                </children>
             </GridPane>
             <Label layoutX="418.0" layoutY="462.0" styleClass="smallLabel" stylesheets="@application.css" text="Cuidador" />
@@ -51,56 +48,43 @@
                   <Image url="@../modelo/exercise.png" />
                </image>
             </ImageView>
-            <Accordion layoutX="78.0" layoutY="176.0">
-              <panes>
-                <TitledPane animated="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="126.0" prefWidth="300.0" text="Ejercicio 1">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="126.0" prefWidth="300.0">
-                           <children>
-                              <TableView prefHeight="200.0" prefWidth="300.0">
-                                <columns>
-                                  <TableColumn fx:id="columnaNombre1" prefWidth="93.0" text="Nombre" />
-                                  <TableColumn fx:id="columnaLink1" prefWidth="92.0" text="Link" />
-                                    <TableColumn fx:id="columnaDuracion1" prefWidth="114.0" text="Duración" />
-                                </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </TitledPane>
-                <TitledPane animated="false" prefHeight="126.0" prefWidth="300.0" text="Ejercicio 2">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="50.0" prefWidth="200.0">
-                           <children>
-                              <TableView prefHeight="200.0" prefWidth="300.0">
-                                 <columns>
-                                    <TableColumn fx:id="columnaNombre2" prefWidth="93.0" text="Nombre" />
-                                    <TableColumn fx:id="columnaLink2" prefWidth="92.0" text="Link" />
-                                    <TableColumn fx:id="columnaDuracion2" prefWidth="114.0" text="Duración" />
-                                 </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </TitledPane>
-                <TitledPane animated="false" prefHeight="126.0" prefWidth="300.0" text="Ejercicio 3">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="50.0" prefWidth="200.0">
-                           <children>
-                              <TableView prefHeight="200.0" prefWidth="300.0">
-                                 <columns>
-                                    <TableColumn fx:id="columnaNombre3" prefWidth="93.0" text="Nombre" />
-                                    <TableColumn fx:id="columnaLink3" prefWidth="92.0" text="Link" />
-                                    <TableColumn fx:id="columnaLik3" prefWidth="114.0" text="Duración" />
-                                 </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </TitledPane>
-              </panes>
-            </Accordion>
             <Text layoutX="78.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ejercicios:" />
+            <ImageView fx:id="pantallaEj" fitHeight="252.0" fitWidth="216.0" layoutX="166.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../modelo/Seated-Leg-Extensions.gif" />
+               </image>
+            </ImageView>
+            <Label fx:id="campoHechos" layoutX="143.0" layoutY="129.0" prefHeight="26.0" prefWidth="314.0" text="Hechos" textAlignment="CENTER" />
+            <JFXButton fx:id="btnAnterior" buttonType="RAISED" contentDisplay="CENTER" layoutX="76.0" layoutY="282.0" onAction="#pressBtnAnterior" styleClass="btn" stylesheets="@application.css" text="Anterior" textAlignment="CENTER">
+               <ripplerFill>
+                  <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#81f1c1" />
+                        <Stop color="#5d5d52" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+            </JFXButton>
+            <JFXButton fx:id="btnNext" buttonType="RAISED" contentDisplay="CENTER" layoutX="345.0" layoutY="282.0" onAction="#pressBtnNext" styleClass="btn" stylesheets="@application.css" text="Siguiente" textAlignment="CENTER">
+               <ripplerFill>
+                  <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#81f1c1" />
+                        <Stop color="#5d5d52" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+            </JFXButton>
+            <JFXButton fx:id="btnVolver" buttonType="RAISED" layoutX="189.0" layoutY="445.0" onAction="#pressBtnVolver" prefHeight="40.0" prefWidth="122.0" styleClass="btn" stylesheets="@application.css" text="Volver">
+               <ripplerFill>
+                  <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#81f1c1" />
+                        <Stop color="#5d5d52" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>
