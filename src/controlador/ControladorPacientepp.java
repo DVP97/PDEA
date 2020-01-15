@@ -68,7 +68,7 @@ public class ControladorPacientepp implements Initializable {
     		AvisosPaciente.setTitle("Avisos Paciente");
     		AvisosPaciente.setScene(new Scene(Avisos));
     		AvisosPaciente.show();
-    		AvisosPaciente.setMinHeight(600);
+    		AvisosPaciente.setMinHeight(350);
     		AvisosPaciente.setMinWidth(600);
     		
     		Stage CambioVentanaAvisos = (Stage) btnAvisos.getScene().getWindow();

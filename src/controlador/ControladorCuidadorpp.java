@@ -44,7 +44,7 @@ public class ControladorCuidadorpp implements Initializable {
 	 void pressBtnEjercicios(ActionEvent event) throws IOException {
 		try {
 			System.out.println("Cargando Rutina ejercicios pacientes...");
-			Parent CuidadorEjercicios = FXMLLoader.load(getClass().getResource("/vista/cuidador_ejercicios_paciente.fxml"));
+			Parent CuidadorEjercicios = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp_ejercicios_paciente.fxml"));
 			Stage CuidadorRutinaPaciente = new Stage();
 			CuidadorRutinaPaciente.setTitle("Menu Cuidador - Ejercicios del Paciente");
 			CuidadorRutinaPaciente.setScene(new Scene(CuidadorEjercicios));
@@ -64,10 +64,25 @@ public class ControladorCuidadorpp implements Initializable {
 
 
     @FXML
-    void pressBtnAvisos(ActionEvent event) {
-
+    void pressBtnAvisos(ActionEvent event) throws IOException {
+    	try {
+    		System.out.println("Cargando ventana de Avisos...");
+    		Parent Avisos = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp_avisos_de_paciente.fxml"));
+    		Stage AvisosPaciente = new Stage();
+    		AvisosPaciente.setTitle("Avisos Cuidador - Avisos del Paciente");
+    		AvisosPaciente.setScene(new Scene(Avisos));
+    		AvisosPaciente.show();
+    		AvisosPaciente.setMinHeight(600);
+    		AvisosPaciente.setMinWidth(600);
+    		
+    		Stage CambioVentanaAvisos = (Stage) btnAvisos.getScene().getWindow();
+    		CambioVentanaAvisos.close();
+    	}
+    	catch (ControladorExcepciones r) {
+    		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Avisos para Cuidador.");
+    		r.abrirVentanaAvisos();
+    	}
     }
-    
 	// GETTERS
 	public static Cuidador getCuidadorActual() {
 		return cuidadorActual;
