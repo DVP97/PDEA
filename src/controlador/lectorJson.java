@@ -92,6 +92,7 @@ public class lectorJson {
 		return ejercicios;
 	}
 	
+
 	
 	public static ArrayList<Cita> lectorJsonCitas() {
 		ArrayList<Cita> citas = new ArrayList <Cita>();
@@ -110,6 +111,7 @@ public class lectorJson {
 	}
 	
 	//METODOS
+
 	
 	//Buscas un paciente por su dni empleando la funcion leer pacientes anterior y lo recorres comparando los dnis
 	public static Paciente getPaciente (String dni) {

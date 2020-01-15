@@ -50,6 +50,7 @@ public class ControladorAvisosPaciente implements Initializable{
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
 		
+
 	
 		this.ejercicios = lectorJson.getEjercicios(p);
 		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
@@ -71,6 +72,8 @@ public class ControladorAvisosPaciente implements Initializable{
 		campoFecha.setText(fecha_cita.getFecha().toString());
 		
 	
+
+
 	}
 	
 
