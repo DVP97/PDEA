@@ -38,9 +38,7 @@ public class ControladorAvisosPaciente implements Initializable{
 
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
-		this.ejercicios = lectorJson.getEjercicios(p);
-		campoEjercicios.setText("Le faltan "+ this.ejercicios.size()+" ejercicios.");
-
+		
 	}
 
 	@FXML

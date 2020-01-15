@@ -88,7 +88,8 @@ public class lectorJson {
 		return ejercicios;
 	}
 	
-	//METODOS
+
+	
 	
 	//Buscas un paciente por su dni empleando la funcion leer pacientes anterior  y lo recorres comparando los dnis
 	public static Paciente getPaciente (String dni) {
