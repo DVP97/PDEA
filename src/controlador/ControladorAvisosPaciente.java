@@ -2,7 +2,6 @@ package controlador;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -14,11 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import modelo.Cita;
-import modelo.Ejercicio;
 import modelo.Paciente;
 
 
@@ -29,8 +25,6 @@ public class ControladorAvisosPaciente implements Initializable{
     @FXML
     private JFXButton btnNext;
 	@FXML
-	private ImageView pantallaEj;
-	@FXML
 	private JFXButton btnVolver;
 	@FXML
 	private Label campoHechos;
@@ -38,9 +32,7 @@ public class ControladorAvisosPaciente implements Initializable{
 	private Label campoFecha;
 	@FXML
 	private Label campoPaciente;
-	
-	private ArrayList<Ejercicio> ejercicios;
-	private Integer contador=0;
+
 	private Cita fecha_cita;
 	private boolean hechos;
 
@@ -50,12 +42,6 @@ public class ControladorAvisosPaciente implements Initializable{
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " +p.getNombre()+",");
 		
-
-	
-		/* Pasar a Controlador Ejercicios cuidador
-		 this.ejercicios = lectorJson.getEjercicios(p);
-		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
-	    */
 		//Muestra el valor del booleano
 		
         hechos = p.isEjerciciosHechos();
@@ -75,15 +61,6 @@ public class ControladorAvisosPaciente implements Initializable{
 
 	}
 	
-
-   /* @FXML
-    void pressBtnAnterior(ActionEvent event) {
-    	ejercicioAnterior();
-    }
-    @FXML
-    void pressBtnNext(ActionEvent event) {
-    	siguienteEjercicio();
-    }*/
 
 	//Botón volver
 	@FXML
@@ -108,33 +85,8 @@ public class ControladorAvisosPaciente implements Initializable{
 			case1.abrirVentanaAvisos();
 		}
 	}
-	/*
-	void siguienteEjercicio() {
-		
 	
-		if (contador==ejercicios.size()-1) {
-			System.out.println("Este es en el último ejercicio.");
-			ControladorAvisos.setMensajeError("Este es en el último ejercicio");
-			abrirVentanaAvisos();
-		} else {
-			
-		this.contador = contador+1;
-	
-		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
-	} 
-	}
-	
-	void ejercicioAnterior() {
-		
-		if (contador==0) {
-			System.out.println("Primer ejercicio");
-			ControladorAvisos.setMensajeError("Primer ejercicio.");
-			abrirVentanaAvisos();
-		} else {
-			this.contador = contador-1;
-		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
-	}
-	}*/
+
 	
     public void abrirVentanaAvisos() {
 		try {
