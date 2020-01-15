@@ -31,8 +31,6 @@ public class ControladorCuidadorpp implements Initializable {
     @FXML
     private JFXButton btnAvisos;
 
-    @FXML
-    private JFXButton btnDatos;
 
 	private static Cuidador cuidadorActual = new Cuidador();
 
@@ -64,6 +62,12 @@ public class ControladorCuidadorpp implements Initializable {
 		}
 	}
 
+
+    @FXML
+    void pressBtnAvisos(ActionEvent event) {
+
+    }
+    
 	// GETTERS
 	public static Cuidador getCuidadorActual() {
 		return cuidadorActual;
