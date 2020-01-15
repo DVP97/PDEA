@@ -263,8 +263,24 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 
     }
     @FXML
-    void pressBtnConsultarEjerciciosPac(ActionEvent event) {
+    void pressBtnConsultarEjerciciosPac(ActionEvent event) throws IOException {
+    	try {
+			Parent ConsultarEjerciciospaciente = FXMLLoader.load(getClass().getResource("/vista/medicopp_ejercicios_paciente.fxml"));
+			Stage MenuEjercicios = new Stage();
+			MenuEjercicios.setTitle("Menu Medico - Consultar Ejercicios Paciente");
+			MenuEjercicios.setScene(new Scene(ConsultarEjerciciospaciente));
+			MenuEjercicios.show();
+			MenuEjercicios.setMinHeight(400);
+			MenuEjercicios.setMinWidth(800);
 
+			Stage CerrarSubmenuPaciente = (Stage) buttonVolver.getScene().getWindow();
+			CerrarSubmenuPaciente.close();
+		}	
+			
+		catch(ControladorExcepciones case1){
+			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de ejercicios");
+			case1.abrirVentanaAvisos();
+		}
     }
     
 	@FXML
