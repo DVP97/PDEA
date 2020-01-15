@@ -59,7 +59,7 @@
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="388.0" prefWidth="728.0">
                            <children>
-                              <GridPane layoutX="443.0" layoutY="29.0" prefHeight="344.0" prefWidth="254.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="0.0">
+                              <GridPane layoutX="443.0" layoutY="29.0" prefHeight="344.0" prefWidth="254.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="60.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="83.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="288.0" minWidth="10.0" prefWidth="171.0" />
@@ -99,6 +99,11 @@
                                  </ripplerFill>
                               </JFXButton>
                               <JFXTreeTableView fx:id="tableCitas" layoutX="332.0" layoutY="13.0" prefHeight="400.0" prefWidth="371.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="330.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="14.0" />
+                              <Label fx:id="campoMedico1" layoutX="31.0" layoutY="36.0" styleClass="mainLabel" stylesheets="@application.css" text="Crear nueva cita:" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>

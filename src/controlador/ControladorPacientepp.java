@@ -30,9 +30,7 @@ public class ControladorPacientepp implements Initializable {
     
     @FXML
     private Label campoPaciente;
-    
-
-    
+        
     private static Paciente pacienteActual = new Paciente();
     
     @Override
@@ -80,7 +78,8 @@ public class ControladorPacientepp implements Initializable {
     		ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Avisos para Pacientes.");
     		r.abrirVentanaAvisos();
     	}
-    	}
+    }
+    
     @FXML
     void  pressBtnEjercicios (ActionEvent event) throws IOException {
     	try {
