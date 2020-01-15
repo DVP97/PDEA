@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import modelo.Cuidador;
 import modelo.Ejercicio;
 import modelo.Paciente;
 
@@ -37,7 +38,7 @@ import javafx.scene.image.ImageView;
 	    private JFXButton btnVolver;
 	    
 		@FXML
-		private Label campoPaciente;
+		private Label campoCuidador;
 		
 	    
 	    private ArrayList<Ejercicio> ejercicios;
@@ -46,12 +47,12 @@ import javafx.scene.image.ImageView;
 		
 	    
 	    public void initialize(URL location, ResourceBundle reosurces) {
+	    	
+	    	Cuidador c = ControladorCuidadorpp.getCuidadorActual();
+			campoCuidador.setText("Hola " +c.getNombre()+",");
 			
+			//Aquí falta la chica del desplegable
 			Paciente p = ControladorPacientepp.getPacienteActual();
-			campoPaciente.setText("Hola " +p.getNombre()+",");
-			
-			//Muestra el valor del booleano
-			
 	        hechos = p.isEjerciciosHechos();
 
 			

@@ -131,6 +131,7 @@ public class ControladorEjercicios implements Initializable{
 	 			}
 	 			
 	 		    System.out.println(hechos);
+	 		    p.setEjerciciosHechos(hechos);
 	 		    escritorJson.modificarPaciente(p);
 		
 			System.out.println("Cargando ventana principal de Paciente...");

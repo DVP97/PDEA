@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -12,14 +13,16 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="325.0" prefWidth="478.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControladorCuidadorAvisos">
    <children>
       <AnchorPane prefHeight="325.0" prefWidth="600.0">
          <children>
-            <Label layoutX="19.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio,">
+            <Label fx:id="campoCuidador" layoutX="19.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio,">
                <font>
                   <Font size="20.0" />
                </font>
@@ -35,7 +38,11 @@
               </rowConstraints>
                <children>
                   <Label styleClass="normalLabel" stylesheets="@application.css" text="Paciente:" />
-                  <JFXComboBox fx:id="campoPacientes" prefHeight="27.0" prefWidth="181.0" GridPane.columnIndex="1" />
+                  <Label fx:id="campoPaciente" prefHeight="16.0" prefWidth="150.0" styleClass="normalLabel" stylesheets="@application.css" text="Pepito ">
+                     <GridPane.margin>
+                        <Insets left="60.0" />
+                     </GridPane.margin>
+                  </Label>
                </children>
             </GridPane>
             <Label layoutX="412.0" layoutY="294.0" styleClass="smallLabel" stylesheets="@application.css" text="Cuidador" />
@@ -56,6 +63,16 @@
                   <Image url="@../modelo/logo.png" />
                </image>
             </ImageView>
+            <JFXButton fx:id="btnVolver" buttonType="RAISED" layoutX="14.0" layoutY="274.0" onAction="#pressBtnVolver" prefHeight="40.0" prefWidth="70.0" styleClass="btn" stylesheets="@application.css" text="Volver">
+               <ripplerFill>
+                  <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#81f1c1" />
+                        <Stop color="#5d5d52" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

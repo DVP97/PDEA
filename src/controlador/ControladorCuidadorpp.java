@@ -37,20 +37,21 @@ public class ControladorCuidadorpp implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 
-		campoCuidador.setText("Hola " + ControladorCuidadorpp.getCuidadorActual().getNombre() + ",");
+    	Cuidador c = ControladorCuidadorpp.getCuidadorActual();
+		campoCuidador.setText("Hola " +c.getNombre()+",");
 	}
 
 	@FXML
 	 void pressBtnEjercicios(ActionEvent event) throws IOException {
 		try {
 			System.out.println("Cargando Rutina ejercicios pacientes...");
-			Parent CuidadorEjercicios = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp_ejercicios_paciente.fxml"));
+			Parent CuidadorEjercicios = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp_ejercicios_de_paciente.fxml"));
 			Stage CuidadorRutinaPaciente = new Stage();
 			CuidadorRutinaPaciente.setTitle("Menu Cuidador - Ejercicios del Paciente");
 			CuidadorRutinaPaciente.setScene(new Scene(CuidadorEjercicios));
 			CuidadorRutinaPaciente.show();
 			CuidadorRutinaPaciente.setMinHeight(400);
-			CuidadorRutinaPaciente.setMinWidth(800);
+			CuidadorRutinaPaciente.setMinWidth(400);
 
 			Stage CerrarVentanaCuidador = (Stage) btnEjercicios.getScene().getWindow();
 			CerrarVentanaCuidador.close();
@@ -69,10 +70,10 @@ public class ControladorCuidadorpp implements Initializable {
     		System.out.println("Cargando ventana de Avisos...");
     		Parent Avisos = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp_avisos_de_paciente.fxml"));
     		Stage AvisosPaciente = new Stage();
-    		AvisosPaciente.setTitle("Avisos Cuidador - Avisos del Paciente");
+    		AvisosPaciente.setTitle("Menu Cuidador - Avisos del Paciente");
     		AvisosPaciente.setScene(new Scene(Avisos));
     		AvisosPaciente.show();
-    		AvisosPaciente.setMinHeight(600);
+    		AvisosPaciente.setMinHeight(325);
     		AvisosPaciente.setMinWidth(600);
     		
     		Stage CambioVentanaAvisos = (Stage) btnAvisos.getScene().getWindow();
