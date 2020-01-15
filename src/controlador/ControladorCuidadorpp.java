@@ -44,13 +44,13 @@ public class ControladorCuidadorpp implements Initializable {
 	 void pressBtnEjercicios(ActionEvent event) throws IOException {
 		try {
 			System.out.println("Cargando Rutina ejercicios pacientes...");
-			Parent CuidadorEjercicios = FXMLLoader.load(getClass().getResource("/vista/cuidador_ejercicios_paciente.fxml"));
+			Parent CuidadorEjercicios = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp_ejercicios_de_paciente.fxml"));
 			Stage CuidadorRutinaPaciente = new Stage();
 			CuidadorRutinaPaciente.setTitle("Menu Cuidador - Ejercicios del Paciente");
 			CuidadorRutinaPaciente.setScene(new Scene(CuidadorEjercicios));
 			CuidadorRutinaPaciente.show();
 			CuidadorRutinaPaciente.setMinHeight(400);
-			CuidadorRutinaPaciente.setMinWidth(800);
+			CuidadorRutinaPaciente.setMinWidth(600);
 
 			Stage CerrarVentanaCuidador = (Stage) btnEjercicios.getScene().getWindow();
 			CerrarVentanaCuidador.close();

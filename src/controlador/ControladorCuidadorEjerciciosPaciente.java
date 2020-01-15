@@ -10,20 +10,36 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class ControladorCuidadorEjerciciosPaciente {
+	   @FXML
+	    private ImageView pantallaEj;
 
-    @FXML
-    private JFXComboBox<?> comboPaciente;
+	    @FXML
+	    private Label campoHechos;
 
-    @FXML
-    private TitledPane btnEditar1;
+	    @FXML
+	    private JFXButton btnAnterior;
 
-    @FXML
-    private JFXButton buttonVolver;
+	    @FXML
+	    private JFXButton btnNext;
 
+	    @FXML
+	    private JFXButton btnVolver;
+
+	    @FXML
+	    void pressBtnAnterior(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void pressBtnNext(ActionEvent event) {
+
+	    }
     @FXML
     void pressBtnVolver(ActionEvent event) throws IOException {
     	try {
@@ -36,7 +52,7 @@ public class ControladorCuidadorEjerciciosPaciente {
 			Cuidadorpp.setMinHeight(400);
 			Cuidadorpp.setMinWidth(800);
 
-			Stage CerrarEjercicios = (Stage) buttonVolver.getScene().getWindow();
+			Stage CerrarEjercicios = (Stage) btnVolver.getScene().getWindow();
 			CerrarEjercicios.close();
 		}	
 			
