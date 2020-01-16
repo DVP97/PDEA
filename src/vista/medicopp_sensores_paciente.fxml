@@ -43,7 +43,7 @@
       </AnchorPane>
    </bottom>
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
             <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paciente:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="25.0" />
             <Text fx:id="campoPaciente" layoutX="61.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Nombre Paciente&gt;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="25.0" />
@@ -67,16 +67,16 @@
          <children>
             <JFXTabPane prefHeight="335.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <tabs>
-                  <Tab text="Saturación O2">
+                  <Tab text="Frecuencia">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <LineChart layoutX="-14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
+                              <LineChart fx:id="LineChartFrec" layoutX="-14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-14.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <xAxis>
-                                    <CategoryAxis side="BOTTOM" />
+                                    <CategoryAxis fx:id="LineChartFrec_X" side="BOTTOM" />
                                  </xAxis>
                                  <yAxis>
-                                    <NumberAxis side="LEFT" />
+                                    <NumberAxis fx:id="LineChartFrec_Y" side="LEFT" />
                                  </yAxis>
                               </LineChart>
                            </children>
@@ -87,28 +87,28 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <LineChart layoutX="-100.0" layoutY="-100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <LineChart fx:id="LineChartTension" layoutX="-100.0" layoutY="-100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <xAxis>
-                                    <CategoryAxis side="BOTTOM" />
+                                    <CategoryAxis fx:id="LineChartTension_X" side="BOTTOM" />
                                  </xAxis>
                                  <yAxis>
-                                    <NumberAxis side="LEFT" />
+                                    <NumberAxis fx:id="LineChartTension_Y" side="LEFT" />
                                  </yAxis>
                               </LineChart>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
-                  <Tab text="Frecuencia">
+                  <Tab text="Saturación O2">
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <LineChart layoutX="-100.0" layoutY="-100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <LineChart fx:id="LineChartSatur" layoutX="-100.0" layoutY="-100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <xAxis>
-                                    <CategoryAxis side="BOTTOM" />
+                                    <CategoryAxis fx:id="LineChartSatur_X" side="BOTTOM" />
                                  </xAxis>
                                  <yAxis>
-                                    <NumberAxis side="LEFT" />
+                                    <NumberAxis fx:id="LineChartSatur_Y" side="LEFT" />
                                  </yAxis>
                               </LineChart>
                            </children>
