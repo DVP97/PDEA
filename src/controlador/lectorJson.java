@@ -164,49 +164,43 @@ public class lectorJson {
 
 	//Buscas un paciente por su dni empleando la funcion leer pacientes anterior y lo recorres comparando los dnis
 	
-	public static datoSensor1 getSensor1 (String dni) {
-		datoSensor1 s1 = new datoSensor1();
+	public static ArrayList<Integer> getSensor1FrecuenciaAntes (String dni) {
+		ArrayList<Integer> s1 = new ArrayList<Integer>();
+		datoSensor1 d = new datoSensor1();
 		ArrayList<datoSensor1> datosS1pac = lectorJsonSensor1();
 		for (int i = 0; i< datosS1pac.size(); i++) {
-			s1 = datosS1pac.get(i);
-			if (s1.getDni().equalsIgnoreCase(dni)) {
-				return s1;
+			d= datosS1pac.get(i);	
+			if(d.getDni().equalsIgnoreCase(dni)) {
+				s1.add(d.getFrecuenciaAntes());
 			}
 		}
-		return null;
-	}
-	/*
-	public static ArrayList<Integer> getFrecAntesS1 (datoSensor1 s){
-		ArrayList<Integer> dataS1= new ArrayList<Integer>();
-		
-		for (int i = 0; i < dataS1.size() ; i++) {
-			dataS1.add(index, element);
-		}
-		return dataS1;
-	}
-	*/
-	public static datoSensor2 getSensor2 (String dni) {
-		datoSensor2 s2 = new datoSensor2();
-		ArrayList<datoSensor2> datosS2pac = lectorJsonSensor2();
-		for (int i = 0; i< datosS2pac.size(); i++) {
-			s2 = datosS2pac.get(i);
-			if (s2.getDni().equalsIgnoreCase(dni)) {
-				return s2;
-			}
-		}
-		return null;
+		return s1;
 	}
 	
-	public static datoSensor3 getSensor3 (String dni) {
-		datoSensor3 s3 = new datoSensor3();
-		ArrayList<datoSensor3> datosS3pac = lectorJsonSensor3();
-		for (int i = 0; i< datosS3pac.size(); i++) {
-			s3 = datosS3pac.get(i);
-			if (s3.getDni().equalsIgnoreCase(dni)) {
-				return s3;
+	public static ArrayList<Integer> getSensor1FrecuenciaDespues (String dni) {
+		ArrayList<Integer> s1 = new ArrayList<Integer>();
+		datoSensor1 d = new datoSensor1();
+		ArrayList<datoSensor1> datosS1pac = lectorJsonSensor1();
+		for (int i = 0; i< datosS1pac.size(); i++) {
+			d= datosS1pac.get(i);	
+			if(d.getDni().equalsIgnoreCase(dni)) {
+				s1.add(d.getFrecuenciaDespues());
 			}
 		}
-		return null;
+		return s1;
+	}
+	
+	public static ArrayList<String> getFechaSensor1 (String dni) {
+		ArrayList<String> s1 = new ArrayList<String>();
+		datoSensor1 d = new datoSensor1();
+		ArrayList<datoSensor1> datosS1pac = lectorJsonSensor1();
+		for (int i = 0; i< datosS1pac.size(); i++) {
+			d= datosS1pac.get(i);	
+			if(d.getDni().equalsIgnoreCase(dni)) {
+				s1.add(d.getFechaString());
+			}
+		}
+		return s1;
 	}
 	
 	public static Paciente getPaciente (String dni) {

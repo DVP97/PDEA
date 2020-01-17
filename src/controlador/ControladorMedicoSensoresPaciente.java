@@ -18,9 +18,13 @@ import javafx.scene.Scene;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import jdk.nashorn.internal.runtime.regexp.joni.constants.AnchorType;
+import javafx.scene.chart.XYChart.Series;
 import modelo.Medico;
 import modelo.Paciente;
 import modelo.datoSensor1;
@@ -29,74 +33,39 @@ import modelo.datoSensor3;
 
 public class ControladorMedicoSensoresPaciente implements Initializable {
 
-    @FXML
-    private Label campoMedico;
+	 @FXML
+	 private Label campoMedico;
 
-    @FXML
-    private Text campoPaciente;
-
-    @FXML
-    private JFXButton buttonVolver;
-    
-    @FXML
-    private LineChart<?, ?> LineChartFrec;
-
-    @FXML
-    private CategoryAxis LineChartFrec_X;
-
-    @FXML
-    private NumberAxis LineChartFrec_Y;
-
-    @FXML
-    private LineChart<?, ?> LineChartTension;
-
-    @FXML
-    private CategoryAxis LineChartTension_X;
-
-    @FXML
-    private NumberAxis LineChartTension_Y;
-
-    @FXML
-    private LineChart<?, ?> LineChartSatur;
-
-    @FXML
-    private CategoryAxis LineChartSatur_X;
-
-    @FXML
-    private NumberAxis LineChartSatur_Y;
+	 @FXML
+	 private Text campoPaciente;
+	
+	@FXML
+	private JFXButton buttonVolver;
+	
+	@FXML
+	private AnchorPane AnchorPaneFrecuencia;
+	
+	@FXML
+	private AnchorPane anchorPaneTension;
+	
+	@FXML
+	private AnchorPane AnchorPaneSaturacion;
     
     private static Paciente pacienteActual = new Paciente();
     
     private static Medico medicoActual = new Medico();
     
-    private static datoSensor1 sensor1Actual = new datoSensor1();
-    
-    
-    private static datoSensor2 sensor2Actual = new datoSensor2();
-    
-    private static datoSensor3 sensor3Actual = new datoSensor3();
-    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	System.out.println(medicoActual.getNombre());
-    	System.out.println(pacienteActual.getNombre());
-    	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
-    	campoPaciente.setText(ControladorMedicoSubmenuPaciente.getPacienteActual().getNombreCompleto());
+    	medicoActual = ControladorMedicopp.getMedicoActual();
+    	pacienteActual = ControladorMedicoSubmenuPaciente.getPacienteActual();
+    	campoMedico.setText("Hola " +medicoActual.getNombre()+",");
+    	campoPaciente.setText(pacienteActual.getNombreCompleto());
     	
-    	sensor1Actual = lectorJson.getSensor1(ControladorMedicoSubmenuPaciente.getPacienteActual().getDni());
-        
-    	/*
-        ArrayList<Integer> dataS1 = sensor1Actual.getFrecuenciaAntes();
-       
-        ObservableList<Integer> selectedDataS1 = FXCollections.observableArrayList(dataS1);
-       */
+    	InicializarGráficaFrecuencia();
     	
-    	sensor2Actual = lectorJson.getSensor2(ControladorMedicoSubmenuPaciente.getPacienteActual().getDni());
-    	sensor3Actual = lectorJson.getSensor3(ControladorMedicoSubmenuPaciente.getPacienteActual().getDni());
-    	
-    	LineChartFrec.getData();
     }
-    
+  
     @FXML
     void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
@@ -119,4 +88,33 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
 		}
 	}
 
+    void InicializarGráficaFrecuencia(){
+    	
+    	ArrayList<Integer> arrayListFrecAntes = lectorJson.getSensor1FrecuenciaAntes(pacienteActual.getDni());
+    	ArrayList<Integer> arrayListFrecDespues = lectorJson.getSensor1FrecuenciaDespues(pacienteActual.getDni());
+    	ArrayList<String> arrayListFechas = lectorJson.getFechaSensor1(pacienteActual.getDni());
+    	
+    	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas));
+    	NumberAxis yAxis = new NumberAxis(0,100,1);
+    	
+    	LineChart<String,Number> Frecuencias = new LineChart(xAxis,yAxis);
+
+    	Frecuencias.setTitle(" Frecuencia cardiaca");
+    	XYChart.Series series = new XYChart.Series<>();
+    	for(int i =0; i<arrayListFrecAntes.size();i++) {
+    		series.getData().add(new XYChart.Data<>(arrayListFechas.get(i),arrayListFrecAntes.get(i)));
+    	}
+    	XYChart.Series series2 = new XYChart.Series<>();
+    	for(int i =0; i<arrayListFrecDespues.size();i++) {
+    		series2.getData().add(new XYChart.Data<>(arrayListFechas.get(i),arrayListFrecDespues.get(i)));
+    	}
+    	Frecuencias.getData().addAll(series,series2);
+    	
+    	AnchorPaneFrecuencia.getChildren().add(Frecuencias);
+    	AnchorPaneFrecuencia.setTopAnchor(Frecuencias, 0.0);
+    	AnchorPaneFrecuencia.setBottomAnchor(Frecuencias, -100.0);
+    	AnchorPaneFrecuencia.setLeftAnchor(Frecuencias, 0.0);
+    	AnchorPaneFrecuencia.setRightAnchor(Frecuencias, 0.0);
+    }
+    
 }
