@@ -5,7 +5,7 @@
     "diastoleAntes": 78,
     "sistoleDespues": 89,
     "diastoleDespues": 72,
-    "fecha": "Oct 28, 2019 6:18:21 PM"
+    "fecha": "Oct 27, 2019 6:18:21 PM"
   },
   {
     "dni": "39042568E",
@@ -13,11 +13,11 @@
     "diastoleAntes": 78,
     "sistoleDespues": 89,
     "diastoleDespues": 72,
-    "fecha": "Oct 29, 2019 6:18:21 PM"
+    "fecha": "Oct 28, 2019 6:18:21 PM"
   }
   ,{
     "dni": "39042568E",
-    "sistoleAntes": 100,
+    "sistoleAntes":100,
     "diastoleAntes": 78,
     "sistoleDespues": 89,
     "diastoleDespues": 72,

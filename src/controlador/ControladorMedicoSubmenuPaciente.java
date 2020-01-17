@@ -240,8 +240,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			MenuSensoresPaciente.setTitle("Menu Sensores Paciente");
 			MenuSensoresPaciente.setScene(new Scene(SensoresPaciente));
 			MenuSensoresPaciente.show();
-			MenuSensoresPaciente.setMinHeight(620);
-			MenuSensoresPaciente.setMinWidth(600);
+			MenuSensoresPaciente.setMinHeight(850);
+			MenuSensoresPaciente.setMinWidth(1250);
 
 			System.out.println("Cerrando ventana de Login.");
 			Stage CerrarVentanaLogin = (Stage) buttonConsultarSensores.getScene().getWindow();
