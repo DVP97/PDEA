@@ -10,11 +10,11 @@ import controlador.lectorJson;
 public class datoSensor2 {
 	private String dni;
 	private Integer ejercicio;
-	private ArrayList<Integer> datosMedicos;
+	private Integer datosMedicos;
 	private Date fecha;
 	
 	
-	public datoSensor2(String dni, Integer ejercicio, ArrayList<Integer> datosMedicos) {
+	public datoSensor2(String dni, Integer ejercicio, Integer datosMedicos) {
 		this.datosMedicos = datosMedicos;
 		this.dni=dni;
 		this.ejercicio = ejercicio;
@@ -24,11 +24,11 @@ public class datoSensor2 {
 	public datoSensor2() {
 		this.dni = null;
 		this.ejercicio = null;
-		this.datosMedicos = new ArrayList<Integer>();
+		this.datosMedicos = null;
 		this.fecha = Calendar.getInstance().getTime();
 	}
 	//GETTERS
-	public ArrayList<Integer> getDatosMedicos() {
+	public Integer getDatosMedicos() {
 		return datosMedicos;
 	}
 	public String getDni() {
@@ -62,7 +62,7 @@ public class datoSensor2 {
 	}
 	
 	//SETTERS
-	public void setDatosMedicos(ArrayList<Integer> datosMedicos) {
+	public void setDatosMedicos(Integer datosMedicos) {
 		this.datosMedicos = datosMedicos;
 	}
 	public void setEjercicio(Integer ejercicio) {

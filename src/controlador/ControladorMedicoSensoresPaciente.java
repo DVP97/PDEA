@@ -64,6 +64,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	
     	InicializarGraficaFrecuencia();
     	InicializarGraficasTension();
+  //  	InicializarGráficaSaturacion();
     }
   
     @FXML
@@ -166,7 +167,6 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	anchorPaneTension.setLeftAnchor(Sistoles, 0.0);
     	anchorPaneTension.setRightAnchor(Sistoles, 0.0);
     	
-    	//anchorPaneTension.setTopAnchor(Diastoles, 500.0);
     	anchorPaneTension.setBottomAnchor(Diastoles, -100.0);
     	anchorPaneTension.setLeftAnchor(Diastoles, 0.0);
     	anchorPaneTension.setRightAnchor(Diastoles, 0.0);
@@ -176,12 +176,14 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     void InicializarGráficaSaturacion(){
     	
     	ArrayList<Integer> arrayListDatosMedicos = lectorJson.getDatosSensor2(pacienteActual.getDni());
-    	ArrayList<Integer> arrayListFrecDespues = lectorJson.getSensor1FrecuenciaDespues(pacienteActual.getDni());
-    	ArrayList<String> arrayListFechas = lectorJson.getFechaSensor1(pacienteActual.getDni());
+    	
+    	//System.out.println(arrayListDatosMedicos);
+    	
+    	ArrayList<String> arrayListFechas = lectorJson.getFechaSensor2(pacienteActual.getDni());
     	
     	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas));
     	NumberAxis yAxis = new NumberAxis(0,100,1);
-    	
+ 	
     	LineChart<String,Number> Frecuencias = new LineChart(xAxis,yAxis);
 
     	Frecuencias.setTitle(" Frecuencia cardiaca");
@@ -200,6 +202,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	AnchorPaneSaturacion.setBottomAnchor(Frecuencias, -100.0);
     	AnchorPaneSaturacion.setLeftAnchor(Frecuencias, 0.0);
     	AnchorPaneSaturacion.setRightAnchor(Frecuencias, 0.0);
+    	
     }
     */
 }

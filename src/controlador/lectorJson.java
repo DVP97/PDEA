@@ -223,8 +223,10 @@ public class lectorJson {
 		ArrayList<datoSensor2> datosS2pac = lectorJsonSensor2();
 		for (int i = 0; i< datosS2pac.size(); i++) {
 			d= datosS2pac.get(i);	
+			System.out.println(d.getDni());
 			if(d.getDni().equalsIgnoreCase(dni)) {
-				s1.addAll(d.getDatosMedicos());
+				s1.add(d.getDatosMedicos().intValue());
+				System.out.println(d.getDatosMedicos().intValue());
 			}
 		}
 		return s1;
