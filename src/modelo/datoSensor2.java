@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import controlador.lectorJson;
 
 public class datoSensor2 {
 	private String dni;

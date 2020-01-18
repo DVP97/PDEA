@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -20,73 +21,69 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-	public class ControladorCuidadorEjerciciosPaciente {
+public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 
-	    @FXML
-	    private ImageView pantallaEj;
+	@FXML
+	private ImageView pantallaEj;
 
-	    @FXML
-	    private Label campoHechos;
+	@FXML
+	private Label campoHechos;
 
-	    @FXML
-	    private JFXButton btnAnterior;
+	@FXML
+	private JFXButton btnAnterior;
 
-	    @FXML
-	    private JFXButton btnNext;
+	@FXML
+	private JFXButton btnNext;
 
-	    @FXML
-	    private JFXButton btnVolver;
-	    
-		@FXML
-		private Label campoCuidador;
-		
-	    
-	    private ArrayList<Ejercicio> ejercicios;
-		private Integer contador=0;
-		private boolean hechos;
-		
-	    
-	    public void initialize(URL location, ResourceBundle reosurces) {
-	    	
-	    	Cuidador c = ControladorCuidadorpp.getCuidadorActual();
-			campoCuidador.setText("Hola " +c.getNombre()+",");
-			
-			//Aquí falta la chica del desplegable
-			Paciente p = ControladorPacientepp.getPacienteActual();
-	        hechos = p.isEjerciciosHechos();
+	@FXML
+	private JFXButton btnVolver;
 
-			
-			if (hechos) {
-				
-				campoHechos.setText("Ejercicios acabados.");
-				
-			} else {
-				campoHechos.setText("Ejercicios no acabados.");
-			}
+	@FXML
+	private Label campoCuidador;
 
-			
-			this.ejercicios = lectorJson.getEjercicios(p);
-			pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
-		    
-			
-
-		}
-	  
-
-	    @FXML
-	    void pressBtnAnterior(ActionEvent event) {
-	    	ejercicioAnterior();
-	    }
-
-	    @FXML
-	    void pressBtnNext(ActionEvent event) {
-	    	siguienteEjercicio();
-	    }
+	private ArrayList<Ejercicio> ejercicios;
+	private Integer contador = 0;
+	private boolean hechos;
+    private static Paciente pacienteElegido = new Paciente();
 
 	
-    @FXML
-    void pressBtnVolver(ActionEvent event) throws IOException {
-    	try {
+	@Override
+	public void initialize(URL location, ResourceBundle reosurces) {
+
+		Cuidador c = ControladorCuidadorpp.getCuidadorActual();
+		campoCuidador.setText("Hola " + c.getNombre() + ",");
+
+		// Aquí falta la chica del desplegable
+		Paciente p = ControladorPacientepp.getPacienteActual();
+		hechos = p.isEjerciciosHechos();
+
+		if (hechos) {
+
+			campoHechos.setText("Ejercicios acabados.");
+
+		} else {
+			campoHechos.setText("Ejercicios no acabados.");
+		}
+
+		this.ejercicios = lectorJson.getEjercicios(p);
+		// pantallaEj.setImage(new
+		// Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
+
+	}
+
+	@FXML
+	void pressBtnAnterior(ActionEvent event) {
+		ejercicioAnterior();
+	}
+
+	@FXML
+	void pressBtnNext(ActionEvent event) {
+		siguienteEjercicio();
+	}
+
+	@FXML
+	void pressBtnVolver(ActionEvent event) throws IOException {
+		try {
 
 			Parent CuidadorVentana = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp.fxml"));
 			Stage Cuidadorpp = new Stage();
@@ -98,46 +95,46 @@ import javafx.scene.image.ImageView;
 
 			Stage CerrarEjercicios = (Stage) btnVolver.getScene().getWindow();
 			CerrarEjercicios.close();
-		}	
-			
-		catch(ControladorExcepciones case1){
+		}
+
+		catch (ControladorExcepciones case1) {
 			ControladorAvisos.setMensajeError("No se pudo abrir el menu de cuidador.");
 			case1.abrirVentanaAvisos();
 		}
-    }
-    
-    //MÉTODOS
-    
+	}
+
+	// MÉTODOS
+
 	void siguienteEjercicio() {
-		
-		
-		if (contador==ejercicios.size()-1) {
+
+		if (contador == ejercicios.size() - 1) {
 			System.out.println("Este es en el último ejercicio.");
 			ControladorAvisos.setMensajeError("Este es en el último ejercicio");
 			abrirVentanaAvisos();
 		} else {
-			
-		this.contador = contador+1;
-	
-		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
-	} 
+
+			this.contador = contador + 1;
+
+			pantallaEj.setImage(new Image(
+					this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
+		}
 	}
-	
+
 	void ejercicioAnterior() {
-		
-		if (contador==0) {
+
+		if (contador == 0) {
 			System.out.println("Primer ejercicio");
 			ControladorAvisos.setMensajeError("Primer ejercicio.");
 			abrirVentanaAvisos();
 		} else {
-			this.contador = contador-1;
-			pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
-	
+			this.contador = contador - 1;
+			pantallaEj.setImage(new Image(
+					this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
+
 		}
 	}
-	
-    
-    public void abrirVentanaAvisos() {
+
+	public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
 			Stage VentanaAvisos = new Stage();
@@ -149,10 +146,18 @@ import javafx.scene.image.ImageView;
 			VentanaAvisos.setMaxHeight(200);
 			VentanaAvisos.setMaxWidth(600);
 
-		}
-		catch(Exception a) {
+		} catch (Exception a) {
 			System.out.println("Error");
 		}
-
-    }
+	}
+	
+	//GETTERS
+    public static Paciente getPacienteElegido() {
+		return pacienteElegido;
+	}
+    
+    //SETTERS
+    public static void setPacienteElegido(Paciente PacienteElegido) {
+		pacienteElegido = PacienteElegido;
+	}
 }

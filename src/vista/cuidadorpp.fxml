@@ -39,7 +39,7 @@
          </rowConstraints>
          <children>
             <Label styleClass="normalLabel" stylesheets="@application.css" text="Paciente:" />
-            <JFXComboBox fx:id="comboPaciente" prefHeight="27.0" prefWidth="198.0" GridPane.columnIndex="1" />
+            <JFXComboBox fx:id="comboPaciente" onKeyReleased="#comprobarInput" prefHeight="27.0" prefWidth="198.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Label layoutX="408.0" layoutY="291.0" styleClass="smallLabel" stylesheets="@application.css" text="Cuidador" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />

@@ -1,14 +1,15 @@
 package controlador;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -18,7 +19,7 @@ import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Paciente;
 
-public class ControladorCuidadorAvisos {
+public class ControladorCuidadorAvisos implements Initializable{
 
     @FXML
     private JFXComboBox<?> campoPacientes;
@@ -35,21 +36,23 @@ public class ControladorCuidadorAvisos {
 	private Label campoPaciente;
     @FXML
     private JFXButton btnVolver;
+    
     private Cita fecha_cita;
    
+    private static Paciente pacienteElegido = new Paciente();
     
+    
+    @Override
     public void initialize(URL location, ResourceBundle reosurces) {
     	
     	Cuidador c = ControladorCuidadorpp.getCuidadorActual();
 		campoCuidador.setText("Hola " +c.getNombre()+",");
 
-		Paciente p = ControladorPacientepp.getPacienteActual();
-		campoPaciente.setText(p.getNombreCompleto());
+		campoPaciente.setText(pacienteElegido.getNombreCompleto());
 	
 		//Recoge fecha de la cita
-		fecha_cita = lectorJson.getCita(p.getDni());
+		fecha_cita = lectorJson.getCita(pacienteElegido.getDni());
 		
-    
     }	
 
 	
@@ -92,4 +95,14 @@ public class ControladorCuidadorAvisos {
 			System.out.println("Error");
 		}
     }
+    
+    //GETTERS
+    public static Paciente getPacienteElegido() {
+		return pacienteElegido;
+	}
+    
+    //SETTERS
+    public static void setPacienteElegido(Paciente PacienteElegido) {
+		pacienteElegido = PacienteElegido;
+	}
 }

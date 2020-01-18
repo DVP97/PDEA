@@ -435,6 +435,17 @@ public class lectorJson {
 		return nombresCompletos;
 	}
 	
+	public static ArrayList<String> getNombresCompletosPacientesDeCuidador (Cuidador c){
+		ArrayList<String> nombresCompletos= new ArrayList<String>();
+		ArrayList<String> dnis = c.getPacientes();
+		for (int i = 0; i < dnis.size() ; i++) {
+			Paciente p = getPaciente(dnis.get(i));
+			String n = p.getNombre() + " " + p.getApellidos();
+			nombresCompletos.add(n);
+		}
+		return nombresCompletos;
+	}
+	
 
 		
 		
