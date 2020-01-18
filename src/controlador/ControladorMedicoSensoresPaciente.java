@@ -64,7 +64,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	
     	InicializarGraficaFrecuencia();
     	InicializarGraficasTension();
-    	//InicializarGraficaSaturacion();
+    	InicializarGraficaSaturacion();
     }
   
     @FXML
@@ -178,7 +178,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     }
  
 
-   /* void InicializarGraficaSaturacion(){
+     void InicializarGraficaSaturacion(){
     	
     	ArrayList<Integer> arrayListDatosMedicos = lectorJson.getDatosSensor2(pacienteActual.getDni());
     	
@@ -191,16 +191,13 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
  	
     	LineChart<String,Number> Frecuencias = new LineChart(xAxis,yAxis);
 
-    	Frecuencias.setTitle(" Frecuencia cardiaca");
+    	Frecuencias.setTitle(" Saturacion O2");
     	XYChart.Series series = new XYChart.Series<>();
-    	for(int i =0; i<arrayListFrecAntes.size();i++) {
-    		series.getData().add(new XYChart.Data<>(arrayListFechas.get(i),arrayListFrecAntes.get(i)));
+    	for(int i =0; i<arrayListDatosMedicos.size();i++) {
+    		series.getData().add(new XYChart.Data<>(arrayListFechas.get(i),arrayListDatosMedicos.get(i)));
     	}
-    	XYChart.Series series2 = new XYChart.Series<>();
-    	for(int i =0; i<arrayListFrecDespues.size();i++) {
-    		series2.getData().add(new XYChart.Data<>(arrayListFechas.get(i),arrayListFrecDespues.get(i)));
-    	}
-    	Frecuencias.getData().addAll(series,series2);
+    	
+    	Frecuencias.getData().add(series);
     	
     	AnchorPaneSaturacion.getChildren().add(Frecuencias);
     	AnchorPaneSaturacion.setTopAnchor(Frecuencias, 0.0);
@@ -208,6 +205,6 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	AnchorPaneSaturacion.setLeftAnchor(Frecuencias, 0.0);
     	AnchorPaneSaturacion.setRightAnchor(Frecuencias, 0.0);
     	
-    }*/
+    }
     
 }
