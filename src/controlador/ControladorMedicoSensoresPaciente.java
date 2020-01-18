@@ -64,7 +64,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	
     	InicializarGraficaFrecuencia();
     	InicializarGraficasTension();
-  //  	InicializarGráficaSaturacion();
+    	//InicializarGraficaSaturacion();
     }
   
     @FXML
@@ -116,6 +116,11 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	AnchorPaneFrecuencia.setBottomAnchor(Frecuencias, -100.0);
     	AnchorPaneFrecuencia.setLeftAnchor(Frecuencias, 0.0);
     	AnchorPaneFrecuencia.setRightAnchor(Frecuencias, 0.0);
+    	
+    	ArrayList<Integer> prueba = lectorJson.getDatosSensor2(pacienteActual.getDni());
+    	for (int  i = 0 ; i < prueba.size(); i++) {
+    		System.out.println("Dato " +i+ ":" + prueba.get(i));
+    	}
     }
 
     void InicializarGraficasTension(){
@@ -172,8 +177,8 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	anchorPaneTension.setRightAnchor(Diastoles, 0.0);
     }
  
-/*
-    void InicializarGráficaSaturacion(){
+
+   /* void InicializarGraficaSaturacion(){
     	
     	ArrayList<Integer> arrayListDatosMedicos = lectorJson.getDatosSensor2(pacienteActual.getDni());
     	
@@ -203,6 +208,6 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	AnchorPaneSaturacion.setLeftAnchor(Frecuencias, 0.0);
     	AnchorPaneSaturacion.setRightAnchor(Frecuencias, 0.0);
     	
-    }
-    */
+    }*/
+    
 }

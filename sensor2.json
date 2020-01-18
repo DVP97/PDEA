@@ -1,223 +1,73 @@
 [
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 87,
-    "fecha": "Oct 28, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 84,
-    "fecha": "Oct 28, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 85,
     "fecha": "Oct 28, 2019 6:18:21 PM"
   },
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 87,
-    "fecha": "Oct 29, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 82,
-    "fecha": "Oct 29, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 85,
     "fecha": "Oct 29, 2019 6:18:21 PM"
   },
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos":85,
     "fecha": "Oct 30, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 82,
-    "fecha": "Oct 30, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 81,
-    "fecha": "Oct 30, 2019 6:18:21 PM"
   }
   ,
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 89,
     "fecha": "Oct 31, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 82,
-    "fecha": "Oct 31, 2019 6:18:21 PM"
   }
   ,
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 81,
     "fecha": "Nov 1, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 86,
-    "fecha": "Nov 1, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 87,
-    "fecha": "Nov 1, 2019 6:18:21 PM"
-  }
-  ,,
+  },
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 85,
-    "fecha": "Nov 2, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 86,
-    "fecha": "Nov 2, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 87,
     "fecha": "Nov 2, 2019 6:18:21 PM"
   },
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 85,
-    "fecha": "Nov 3, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 86,
-    "fecha": "Nov 3, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 87,
     "fecha": "Nov 3, 2019 6:18:21 PM"
   },
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 85,
-    "fecha": "Nov 4, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 86,
-    "fecha": "Nov 4, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 87,
     "fecha": "Nov 4, 2019 6:18:21 PM"
   },
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 85,
-    "fecha": "Nov 5, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 86,
-    "fecha": "Nov 5, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 87,
     "fecha": "Nov 5, 2019 6:18:21 PM"
   },
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 85,
-    "fecha": "Nov 6, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 86,
-    "fecha": "Nov 6, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 87,
     "fecha": "Nov 6, 2019 6:18:21 PM"
   },
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 85,
-    "fecha": "Nov 7, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 86,
-    "fecha": "Nov 7, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 87,
     "fecha": "Nov 7, 2019 6:18:21 PM"
   },
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 85,
-    "fecha": "Nov 8, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 86,
-    "fecha": "Nov 8, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 87,
     "fecha": "Nov 8, 2019 6:18:21 PM"
   },
   {
     "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 85,
     "fecha": "Nov 9, 2019 6:18:21 PM"
   },{
     "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 86,
-    "fecha": "Nov 9, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 87,
-    "fecha": "Nov 9, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 5,
     "datosMedicos": 85,
-    "fecha": "Nov 10, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 6,
-    "datosMedicos": 86,
-    "fecha": "Nov 10, 2019 6:18:21 PM"
-  },{
-    "dni": "39042568E",
-    "ejercicio": 7,
-    "datosMedicos": 87,
     "fecha": "Nov 10, 2019 6:18:21 PM"
   }
 ]

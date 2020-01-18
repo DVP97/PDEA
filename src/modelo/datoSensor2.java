@@ -1,6 +1,5 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -9,21 +8,18 @@ import controlador.lectorJson;
 
 public class datoSensor2 {
 	private String dni;
-	private Integer ejercicio;
 	private Integer datosMedicos;
 	private Date fecha;
 	
 	
-	public datoSensor2(String dni, Integer ejercicio, Integer datosMedicos) {
+	public datoSensor2(String dni, Integer datosMedicos) {
 		this.datosMedicos = datosMedicos;
 		this.dni=dni;
-		this.ejercicio = ejercicio;
 		this.fecha =  Calendar.getInstance().getTime();
 	}
 	
 	public datoSensor2() {
 		this.dni = null;
-		this.ejercicio = null;
 		this.datosMedicos = null;
 		this.fecha = Calendar.getInstance().getTime();
 	}
@@ -34,13 +30,8 @@ public class datoSensor2 {
 	public String getDni() {
 		return dni;
 	}
-	public Integer getidEjercicio() {
-		return ejercicio;
-	}
-	public Ejercicio getEjercicio() {
-		Ejercicio e = lectorJson.getEjercicio(this.ejercicio);
-		return e;
-	}
+
+
 	public Date getFecha() {
 		return fecha;
 	}
@@ -65,9 +56,7 @@ public class datoSensor2 {
 	public void setDatosMedicos(Integer datosMedicos) {
 		this.datosMedicos = datosMedicos;
 	}
-	public void setEjercicio(Integer ejercicio) {
-		this.ejercicio = ejercicio;
-	}
+
 	public void setDni(String dni) {
 		this.dni = dni;
 	}

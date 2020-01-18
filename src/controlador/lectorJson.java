@@ -14,9 +14,7 @@ import modelo.datoSensor2;
 import modelo.datoSensor3;
 import modelo.Ejercicio;
 import modelo.Cita;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
+
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -94,8 +92,6 @@ public class lectorJson {
 		}
 		return ejercicios;
 	}
-	
-
 	
 	public static ArrayList<Cita> lectorJsonCitas() {
 		ArrayList<Cita> citas = new ArrayList <Cita>();
@@ -204,6 +200,7 @@ public class lectorJson {
 		return s1;
 	}
 	//getters para variables de sensor2
+	
 	public static ArrayList<String> getFechaSensor2 (String dni) {
 		ArrayList<String> s1 = new ArrayList<String>();
 		datoSensor2 d = new datoSensor2();
@@ -225,12 +222,13 @@ public class lectorJson {
 			d= datosS2pac.get(i);	
 			System.out.println(d.getDni());
 			if(d.getDni().equalsIgnoreCase(dni)) {
-				s1.add(d.getDatosMedicos().intValue());
+				s1.add(d.getDatosMedicos());
 				System.out.println(d.getDatosMedicos().intValue());
 			}
 		}
 		return s1;
 	}
+	
 	//getters para variables de sensor3
 	public static ArrayList<String> getFechaSensor3 (String dni) {
 		ArrayList<String> s1 = new ArrayList<String>();
