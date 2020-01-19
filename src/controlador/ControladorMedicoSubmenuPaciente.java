@@ -11,9 +11,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
-
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,6 +32,7 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Medico;
 import modelo.Mensaje;
@@ -118,6 +120,12 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 	    @FXML
 	    private Label labelRedactar;
 	    
+	    @FXML
+	    private JFXTextField fechaCita;
+
+	    @FXML
+	    private JFXTextField notaCita;
+	    
     private static Paciente pacienteActual = new Paciente();
     
     private static Medico medicoActual = new Medico();
@@ -141,7 +149,13 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	
     	setTitledPanesEnviados();
     	setTitledPanesRecibidos();
+    	
+    	Cita proximaCita = lectorJson.getCita(pacienteActual.getDni());
+    	System.out.println(proximaCita.getFecha().toString());
+    	//fechaCita.setText(proximaCita.getFecha().toString());
+    	notaCita.setText(proximaCita.getNota());
     }
+    
     
     @FXML
     void pressBtnConfirmarEnvio(ActionEvent event) {
@@ -304,7 +318,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			case1.abrirVentanaAvisos();
 		}
 	}
-    
+
     public static Paciente getPacienteActual() {
 		return pacienteActual;
 	}

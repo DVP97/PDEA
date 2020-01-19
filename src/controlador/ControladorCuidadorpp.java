@@ -50,7 +50,7 @@ public class ControladorCuidadorpp implements Initializable {
 		Cuidador c = ControladorCuidadorpp.getCuidadorActual();
 		campoCuidador.setText("Hola " + c.getNombre() + ",");
 		comboPaciente.setItems(listaPacientesComboBox);
-
+		comboPaciente.arm();
 	}
 
 	@FXML
@@ -115,6 +115,7 @@ public class ControladorCuidadorpp implements Initializable {
 
 	@FXML
 	void comprobarInput(KeyEvent event) throws Exception {
+		comboPaciente.arm();
 		// comparar el nombre introducido con los pacientes asignados al medico, para
 		// sugerir posibles coincidencias de forma dinamica
 

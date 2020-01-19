@@ -146,6 +146,8 @@ public class ControladorMedicopp implements Initializable {
     	
     	setTitledPanesEnviados();
     	setTitledPanesRecibidos();
+    	
+    	inputBuscarPaciente.setItems(listaPacientesComboBox);
   	
 	}
     
