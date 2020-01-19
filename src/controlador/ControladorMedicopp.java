@@ -441,6 +441,10 @@ public class ControladorMedicopp implements Initializable {
 				
 				//Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append("De: ");
+				Paciente p = lectorJson.getPaciente(mensajeAct.getEmisor());
+				stringBuilder.append(p.getNombreCompleto());
+				stringBuilder.append("\r");
 				stringBuilder.append("Asunto: ");
 				stringBuilder.append(mensajeAct.getAsunto());
 				stringBuilder.append("\r");
@@ -488,6 +492,10 @@ public class ControladorMedicopp implements Initializable {
 				
 				//Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
+				stringBuilder.append("A: ");
+				Paciente p = lectorJson.getPaciente(mensajeAct.getReceptor());
+				stringBuilder.append(p.getNombreCompleto());
+				stringBuilder.append("\r");
 				stringBuilder.append("Asunto: ");
 				stringBuilder.append(mensajeAct.getAsunto());
 				stringBuilder.append("\r");
