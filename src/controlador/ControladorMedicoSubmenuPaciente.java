@@ -548,7 +548,9 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			table.setLayoutX(5);
 			table.setLayoutY(60);
 			table.setItems(avisos);
-			AnchorPane.setTopAnchor(table, Double.valueOf(30));
+			table.getColumns().addAll(columnaConcepto,columnaSensor);
+			anchorPaneAvisos.getChildren().add(table);
+			anchorPaneAvisos.setTopAnchor(table, 0.0);
 
 			
 		}else {

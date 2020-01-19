@@ -72,6 +72,7 @@ public class ControladorCuidadorAvisos implements Initializable {
 			columnaConcepto.setMinWidth(600);
 			columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("concepto"));
 
+
 			table.setLayoutX(5);
 			table.setLayoutY(60);
 			table.setItems(avisos);
