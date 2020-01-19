@@ -33,8 +33,6 @@ public class ControladorCuidadorAvisos implements Initializable {
 	@FXML
 	private JFXComboBox<?> campoPacientes;
 
-	@FXML
-	private TableView<Aviso> table;
 
 	@FXML
 	private Label campoCuidador;
@@ -61,6 +59,7 @@ public class ControladorCuidadorAvisos implements Initializable {
 		fecha_cita = lectorJson.getCita(pacienteElegido.getDni());
 
 		if (avisos.size() > 0) {
+			TableView<Aviso> table = new TableView<>();
 			// Primera columna
 			TableColumn<Aviso, String> columnaSensor = new TableColumn<>("Sensor");
 			columnaSensor.setMinWidth(200);
@@ -81,7 +80,7 @@ public class ControladorCuidadorAvisos implements Initializable {
 		}else {
 			Label tableEmpty = new Label ("Todos los datos proporcionados por los sensores estan bien.");
 			
-			tableEmpty.setFont(new Font("Arial", 18));
+			tableEmpty.setFont(new Font("Arial", 10));
 			tableEmpty.setLayoutY(60);
 			tableEmpty.setLayoutX(5);
 			//anchorPaneAvisos.getChildren().add(tableEmpty);

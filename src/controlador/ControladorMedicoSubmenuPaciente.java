@@ -14,6 +14,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,11 +27,15 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import modelo.Aviso;
 import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Medico;
@@ -119,16 +125,21 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 	    private Label labelRedactar;
 	    
 	    @FXML
-	    private JFXTextField fechaCita;
+	    private JFXTextField fc;
 
 	    @FXML
 	    private JFXTextField notaCita;
+	    
+	    @FXML
+	    private AnchorPane anchorPaneAvisos;
 	    
     private static Paciente pacienteActual = new Paciente();
     
     private static Medico medicoActual = new Medico();
     
     private static boolean editable = false;
+    
+    private ObservableList<Aviso> avisos = getAvisos();
 
     
     @Override
@@ -148,10 +159,13 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	setTitledPanesEnviados();
     	setTitledPanesRecibidos();
     	
+    	setAvisos();
+    	
     	Cita proximaCita = lectorJson.getCita(pacienteActual.getDni());
-    	System.out.println(proximaCita.getFecha().toString());
-    	fechaCita.setText(proximaCita.getFechaString());
+    	System.out.println(proximaCita.getFechaString());
     	notaCita.setText(proximaCita.getNota());
+    	fc.setText(proximaCita.getFechaString());
+
     }
     
     
@@ -515,4 +529,47 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			System.out.println("Error");
 		}
 	}
+    
+    private void setAvisos() {
+    	if (avisos.size() > 0) {
+			// Primera columna
+			TableColumn<Aviso, String> columnaSensor = new TableColumn<>("Sensor");
+			columnaSensor.setMinWidth(200);
+			columnaSensor.setCellValueFactory(new PropertyValueFactory<>("nombreSensor"));
+
+			// Segunda columna
+			TableColumn<Aviso, String> columnaConcepto = new TableColumn<>("Concepto");
+			columnaConcepto.setMinWidth(600);
+			columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+
+			TableView<Aviso> table;
+
+			table = new TableView<>();
+			table.setLayoutX(5);
+			table.setLayoutY(60);
+			table.setItems(avisos);
+			AnchorPane.setTopAnchor(table, Double.valueOf(30));
+
+			
+		}else {
+			Label tableEmpty = new Label ("Todos los datos proporcionados por los sensores estan bien.");
+			
+			tableEmpty.setFont(new Font("Arial", 10));
+			tableEmpty.setLayoutY(60);
+			tableEmpty.setLayoutX(5);
+			//anchorPaneAvisos.getChildren().add(tableEmpty);
+
+			AnchorPane.setTopAnchor(tableEmpty, Double.valueOf(40));
+		}
+    }
+    
+    public ObservableList<Aviso> getAvisos() {
+		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
+		avisos.addAll(lectorJson.crearAvisosSensor1(pacienteActual.getDni()));
+		avisos.addAll(lectorJson.crearAvisosSensor2(pacienteActual.getDni()));
+		avisos.addAll(lectorJson.crearAvisosSensor3(pacienteActual.getDni()));
+
+		return avisos;
+	}
+
 }

@@ -51,7 +51,7 @@ public class Cita {
 			String anho = ((Integer) year).toString();
 			String hora = ((Integer) fecha_cita.getHours()).toString();
 			String min = ((Integer) fecha_cita.getMinutes()).toString();
-			String f = hora+ ":" + min + "\t-\t" +dia + "/"+ mes + "/"+ anho ;
+			String f = hora+ ":" + min + "  -  " +dia + "/"+ mes + "/"+ anho ;
 			return f;
 			
 		}
