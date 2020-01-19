@@ -14,7 +14,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import modelo.Aviso;
 import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Paciente;
@@ -24,11 +26,9 @@ public class ControladorCuidadorAvisos implements Initializable{
     @FXML
     private JFXComboBox<?> campoPacientes;
 
-    @FXML
-    private TableColumn<?, ?> columnaFecha;
 
     @FXML
-    private TableColumn<?, ?> columnaConcepto;
+    private TableView<Aviso> table;
     
 	@FXML
 	private Label campoCuidador;
