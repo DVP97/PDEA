@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Medico;
 import modelo.Mensaje;
@@ -51,6 +52,15 @@ public class escritorJson {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try (FileWriter writer = new FileWriter ("mensajes.json")){
 			gson.toJson(mensajes, writer);
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void escribirEnJsonCitas(ArrayList<Cita> citas) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		try (FileWriter writer = new FileWriter ("citas.json")){
+			gson.toJson(citas, writer);
 		}catch (IOException e) {
 			e.printStackTrace();
 		}

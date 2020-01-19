@@ -3,8 +3,10 @@ package controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -20,14 +22,18 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.KeyEvent;
+import modelo.Cita;
 import modelo.Medico;
 import modelo.Paciente;
 import modelo.Mensaje;
 import javafx.fxml.Initializable;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTabPane;
+import com.jfoenix.controls.JFXTimePicker;
 import com.jfoenix.controls.JFXTreeTableView;
+import com.sun.corba.se.spi.orbutil.fsm.Input;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -41,7 +47,15 @@ import javafx.stage.Stage;
 
 public class ControladorMedicopp implements Initializable {
 
+    @FXML
+    private JFXDatePicker campoFecha;
 
+    @FXML
+    private JFXTimePicker campoHora;
+    
+    @FXML
+    private JFXComboBox<String> inputBuscarPaciente;
+	
     @FXML
     private Label campoMedico;
     
@@ -92,6 +106,9 @@ public class ControladorMedicopp implements Initializable {
     
     @FXML
     private TextField campoAsunto;
+    
+    @FXML
+    private TextField notaCita;
 
     @FXML
     private JFXButton btnConfirmarEnvio;
@@ -133,8 +150,104 @@ public class ControladorMedicopp implements Initializable {
 	}
     
     @FXML
+    @SuppressWarnings("deprecation")
     void pressBtnCrearCita(ActionEvent event) {
+    ArrayList<Cita> addCita = lectorJson.lectorJsonCitas();
+    Cita nCita = new Cita();
+    
+    String pacienteBuscado = inputBuscarPaciente.getValue();
+	Paciente p = coincidencia(pacienteBuscado);
+	//asociar mediante dni del paciente
+    nCita.setDni(p.getDni());	 
+    //fecha de la cita
+    String FechaN[] = campoFecha.getValue().toString().split("-");
+	List<String> Fecha = Arrays.asList(FechaN);
+	int dia  = Integer.parseInt(Fecha.get(0));
+	int mes  = Integer.parseInt(Fecha.get(1));
+	int anho = Integer.parseInt(Fecha.get(2));
 
+	//hora de la cita
+	String HoraN[] = campoHora.getValue().toString().split(":");
+	List<String> HoraCita = Arrays.asList(HoraN);
+	int hora = Integer.parseInt(HoraCita.get(0));
+	int mins = Integer.parseInt(HoraCita.get(1));
+	
+	//guardar dia y hora de la cita en un Date
+	Date calend= new Date(anho, mes, dia, hora, mins);
+	nCita.setFecha(calend);
+	
+	//aniadir comentario del medico
+	nCita.setNota(notaCita.getText());
+	
+	//aniadir nCita al Arraylist
+	addCita.add(nCita);
+	
+	//escribir en el json de citas el Arraylist modificado
+	escritorJson.escribirEnJsonCitas(addCita);
+	
+	//aviso al usuario de que se ha creado la cita correctamente
+	ControladorAvisos.setMensajeError("Se ha añadido correctamente una nueva cita.");
+	abrirVentanaAvisos();
+	//limpiar los campos del tab de Citas
+	inputBuscarPaciente.setValue(null);
+	notaCita.clear();
+	campoFecha.setValue(null);
+	campoHora.setValue(null);
+    }
+    
+    @FXML
+    void comprobarInput(KeyEvent event) throws Exception{
+    	//comparar el nombre introducido con los pacientes asignados al medico, para sugerir posibles coincidencias de forma dinamica
+    	
+    	ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
+        ArrayList<String> sugerencias = new ArrayList<String>();
+        
+        boolean sugerenciasEncontradas;
+        if(inputBuscarPaciente.getValue()!=null) {
+	    	for(int i=0; i< medicoActual.getPacientes().size(); i++) {
+	    		//bucle que va comparando el input con el nombre de cada paciente
+	    		int longitud=0;
+    		
+	    		for(int a=0; a<inputBuscarPaciente.getValue().length(); a++) {
+	    			//bucle que va comparando los char del input con los char del nombre de paciente
+		            if(inputBuscarPaciente.getValue().toLowerCase().charAt(a)==nombresPacientes.get(i).toLowerCase().charAt(a)) {
+		            	longitud++;
+			    	}
+		            else {
+		            	break;
+		            }
+	            }
+	            if(longitud==inputBuscarPaciente.getValue().length() ) {
+	            	//add nombre en posicion i a un nuevo arraylist que se pasa al comboBox con la observableList listaSugerencias
+		        	sugerencias.add(nombresPacientes.get(i));
+	            	sugerenciasEncontradas=true;
+		        }
+	    	}
+	
+	    	if(sugerenciasEncontradas=true){
+	    		inputBuscarPaciente.getItems().clear();
+		    	ObservableList<String> listaSugerencias = FXCollections.observableArrayList(sugerencias);
+		    	inputBuscarPaciente.setItems(listaSugerencias);
+	    	}
+        }
+    	else {
+    		//por defecto se muestra la lista entera de pacientes
+    		ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
+    		inputBuscarPaciente.setItems(listaPacientesComboBox);
+    	}
+    	inputBuscarPaciente.autosize();
+    	inputBuscarPaciente.show();
+    }
+    
+    private Paciente coincidencia (String pacienteBuscado) {
+    	for(int i=0; i< medicoActual.getPacientes().size(); i++) {
+            ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
+	    	if(nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
+	    		Paciente p = lectorJson.getPaciente(medicoActual.getPacientes().get(i));
+	    		return p;
+	    	}
+    	}
+    	return null;
     }
     
     @FXML
@@ -211,16 +324,6 @@ public class ControladorMedicopp implements Initializable {
 			case1.abrirVentanaAvisos();
 		}
 	}
-    
-    @FXML
-    void comprobarInput(KeyEvent event) {
-
-    }
-    
-    @FXML
-    void pressEnter(KeyEvent event) {
-
-    }
     
 	public class sortByDate implements Comparator<Mensaje> {
 		 

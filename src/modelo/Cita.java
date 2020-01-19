@@ -11,6 +11,7 @@ public class Cita {
 		private Date fecha_cita;
 		private String nota;
 		private String dni;
+		 
 		
 		public Cita(String dni, Date fecha_cita, String nota) {
 			this.dni = dni;
@@ -39,7 +40,7 @@ public class Cita {
 		
 	//SETTERS
 		
-		public void setFecha() {
+		public void setFecha(Date calend) {
 			this.fecha_cita = Calendar.getInstance().getTime();
 		}
 		public void setDni(String dni) {
