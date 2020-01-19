@@ -13,6 +13,7 @@ import modelo.datoSensor1;
 import modelo.datoSensor2;
 import modelo.datoSensor3;
 import modelo.Ejercicio;
+import modelo.Aviso;
 import modelo.Cita;
 
 
@@ -156,12 +157,111 @@ public class lectorJson {
 		return datosS3;
 		
 	}
+	
+	public static ArrayList<Aviso> crearAvisosSensor1(String dni){
+		ArrayList<Aviso> avisos = new ArrayList<Aviso>();
+		ArrayList<datoSensor1> sensor1 = getDatosSensor1De(dni);
+		for (int i =0 ; i<sensor1.size();i++) {
+			datoSensor1 s1 = sensor1.get(i);
+			int a = s1.getFrecuenciaAntes().compareTo(60);
+			int b = s1.getFrecuenciaAntes().compareTo(100);
+			int c = s1.getFrecuenciaDespues().compareTo(80);
+			int d = s1.getFrecuenciaDespues().compareTo(136);
+			if(a<0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La frecuencia cardiaca antes de hacer el ejercicio es demasiado baja.");
+				aviso.setDatoSensor(s1);
+				avisos.add(aviso);
+			}if(b>0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La frecuencia cardiaca antes de hacer el ejercicio es demasiado alta.");
+				aviso.setDatoSensor(s1);
+				avisos.add(aviso);
+			}if(c<0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La frecuencia cardiaca despues de hacer el ejercicio es demasiado baja.");
+				aviso.setDatoSensor(s1);
+				avisos.add(aviso);
+			}
+			if(d<0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La frecuencia cardiaca despues de hacer el ejercicio es demasiado alta.");
+				aviso.setDatoSensor(s1);
+				avisos.add(aviso);
+			}
+		}
+		return avisos;
+	}
+	
+	public static ArrayList<Aviso> crearAvisosSensor2(String dni){
+		ArrayList<Aviso> avisos = new ArrayList<Aviso>();
+		ArrayList<datoSensor2> sensor2 = getDatosSensor2De(dni);
+		for (int i =0 ; i<sensor2.size();i++) {
+			datoSensor2 s2 = sensor2.get(i);
+			int a = s2.getDatosMedicos().compareTo(90);
+			if(a<0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La saturacion de oxigeno en sangre es demasiado baja.");
+				aviso.setDatoSensor(s2);
+				avisos.add(aviso);
+			}
+		}
+		return avisos;
+	}
+	
+	public static ArrayList<Aviso> crearAvisosSensor3(String dni){
+		ArrayList<Aviso> avisos = new ArrayList<Aviso>();
+		ArrayList<datoSensor3> sensor3 = getDatosSensor3De(dni);
+		for (int i =0 ; i<sensor3.size();i++) {
+			datoSensor3 s3 = sensor3.get(i);
+			int a = s3.getSistoleAntes().compareTo(180);
+			int b = s3.getDiastoleAntes().compareTo(110);
+			int c = s3.getSistoleDespues().compareTo(180);
+			int d = s3.getDiastoleDespues().compareTo(110);
+			if(a>0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La sistole antes de hacer el ejercicio es demasiado alta.");
+				aviso.setDatoSensor(s3);
+				avisos.add(aviso);
+			}if(b>0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La diastole antes de hacer el ejercicio es demasiado alta.");
+				aviso.setDatoSensor(s3);
+				avisos.add(aviso);
+			}if(c>0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La sistole despues de hacer el ejercicio es demasiado alta.");
+				aviso.setDatoSensor(s3);
+				avisos.add(aviso);
+			}
+			if(d<0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La diastole despues de hacer el ejercicio es demasiado alta.");
+				aviso.setDatoSensor(s3);
+				avisos.add(aviso);
+			}
+		}
+		return avisos;
+	}
 	//METODOS
 
 	//Buscas un paciente por su dni empleando la funcion leer pacientes anterior y lo recorres comparando los dnis
 
-	//getters para variables de sensor2	
-	public static ArrayList<Integer> getSensor1FrecuenciaAntes (String dni) {
+	//getters para variables de sensor2 1
+	public static ArrayList<datoSensor1> getDatosSensor1De(String dni){
+		ArrayList<datoSensor1> s1 = new ArrayList<datoSensor1>();
+		datoSensor1 d = new datoSensor1();
+		ArrayList<datoSensor1> datosS1pac = lectorJsonSensor1();
+		for (int i = 0; i< datosS1pac.size(); i++) {
+			d= datosS1pac.get(i);	
+			if(d.getDni().equalsIgnoreCase(dni)) {
+				s1.add(d);
+			}
+		}
+		return s1;
+	}
+	
+ 	public static ArrayList<Integer> getSensor1FrecuenciaAntes (String dni) {
 		ArrayList<Integer> s1 = new ArrayList<Integer>();
 		datoSensor1 d = new datoSensor1();
 		ArrayList<datoSensor1> datosS1pac = lectorJsonSensor1();
@@ -200,6 +300,19 @@ public class lectorJson {
 		return s1;
 	}
 	//getters para variables de sensor2
+	public static ArrayList<datoSensor2> getDatosSensor2De(String dni){
+		ArrayList<datoSensor2> s2 = new ArrayList<datoSensor2>();
+		datoSensor2 d = new datoSensor2();
+		ArrayList<datoSensor2> datosS2pac = lectorJsonSensor2();
+		for (int i = 0; i< datosS2pac.size(); i++) {
+			d= datosS2pac.get(i);	
+			if(d.getDni().equalsIgnoreCase(dni)) {
+				s2.add(d);
+			}
+		}
+		return s2;
+	}
+	
 	
 	public static ArrayList<String> getFechaSensor2 (String dni) {
 		ArrayList<String> s1 = new ArrayList<String>();
@@ -230,6 +343,19 @@ public class lectorJson {
 	}
 	
 	//getters para variables de sensor3
+	public static ArrayList<datoSensor3> getDatosSensor3De(String dni){
+		ArrayList<datoSensor3> s3 = new ArrayList<datoSensor3>();
+		datoSensor3 d = new datoSensor3();
+		ArrayList<datoSensor3> datosS3pac = lectorJsonSensor3();
+		for (int i = 0; i< datosS3pac.size(); i++) {
+			d= datosS3pac.get(i);	
+			if(d.getDni().equalsIgnoreCase(dni)) {
+				s3.add(d);
+			}
+		}
+		return s3;
+	}
+	
 	public static ArrayList<String> getFechaSensor3 (String dni) {
 		ArrayList<String> s1 = new ArrayList<String>();
 		datoSensor3 d = new datoSensor3();
@@ -308,7 +434,7 @@ public class lectorJson {
 		return null;
 	}
 	
-	
+	//Otros
 	public static Medico getMedico (String dni) {
 		Medico p = new Medico();
 		ArrayList<Medico> pac = lectorJsonMedicos();
