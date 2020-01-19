@@ -2,10 +2,14 @@ package controlador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,51 +19,80 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.Aviso;
 import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Paciente;
 
-public class ControladorCuidadorAvisos implements Initializable{
+public class ControladorCuidadorAvisos implements Initializable {
 
-    @FXML
-    private JFXComboBox<?> campoPacientes;
+	@FXML
+	private JFXComboBox<?> campoPacientes;
 
+	@FXML
+	private TableView<Aviso> table;
 
-    @FXML
-    private TableView<Aviso> table;
-    
 	@FXML
 	private Label campoCuidador;
 	@FXML
 	private Label campoPaciente;
-    @FXML
-    private JFXButton btnVolver;
-    
-    private Cita fecha_cita;
-   
-    private static Paciente pacienteElegido = new Paciente();
-    
-    
-    @Override
-    public void initialize(URL location, ResourceBundle reosurces) {
-    	
-    	Cuidador c = ControladorCuidadorpp.getCuidadorActual();
-		campoCuidador.setText("Hola " +c.getNombre()+",");
+	@FXML
+	private JFXButton btnVolver;
+
+	private Cita fecha_cita;
+
+	private static Paciente pacienteElegido = new Paciente();
+
+	private ObservableList<Aviso> avisos = getAvisos();
+
+	@Override
+	public void initialize(URL location, ResourceBundle reosurces) {
+
+		Cuidador c = ControladorCuidadorpp.getCuidadorActual();
+		campoCuidador.setText("Hola " + c.getNombre() + ",");
 
 		campoPaciente.setText(pacienteElegido.getNombreCompleto());
-	
-		//Recoge fecha de la cita
+
+		// Recoge fecha de la cita
 		fecha_cita = lectorJson.getCita(pacienteElegido.getDni());
-		
-    }	
 
-	
+		if (avisos.size() > 0) {
+			// Primera columna
+			TableColumn<Aviso, String> columnaSensor = new TableColumn<>("Sensor");
+			columnaSensor.setMinWidth(200);
+			columnaSensor.setCellValueFactory(new PropertyValueFactory<>("nombreSensor"));
 
-    @FXML
-    void pressBtnVolver(ActionEvent event)  throws IOException {
-    	try {
+			// Segunda columna
+			TableColumn<Aviso, String> columnaConcepto = new TableColumn<>("Concepto");
+			columnaConcepto.setMinWidth(600);
+			columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+
+			table = new TableView<>();
+			table.setLayoutX(5);
+			table.setLayoutY(60);
+			table.setItems(avisos);
+			AnchorPane.setTopAnchor(table, Double.valueOf(30));
+
+			
+		}else {
+			Label tableEmpty = new Label ("Todos los datos proporcionados por los sensores estan bien.");
+			
+			tableEmpty.setFont(new Font("Arial", 18));
+			tableEmpty.setLayoutY(60);
+			tableEmpty.setLayoutX(5);
+			//anchorPaneAvisos.getChildren().add(tableEmpty);
+
+			AnchorPane.setTopAnchor(tableEmpty, Double.valueOf(40));
+		}
+	}
+
+	@FXML
+	void pressBtnVolver(ActionEvent event) throws IOException {
+		try {
 
 			Parent CuidadorVentana = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp.fxml"));
 			Stage Cuidadorpp = new Stage();
@@ -71,14 +104,15 @@ public class ControladorCuidadorAvisos implements Initializable{
 
 			Stage CerrarEjercicios = (Stage) btnVolver.getScene().getWindow();
 			CerrarEjercicios.close();
-		}	
-			
-		catch(ControladorExcepciones case1){
+		}
+
+		catch (ControladorExcepciones case1) {
 			ControladorAvisos.setMensajeError("No se pudo abrir el menu de cuidador.");
 			case1.abrirVentanaAvisos();
 		}
-    }
-    public void abrirVentanaAvisos() {
+	}
+
+	public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
 			Stage VentanaAvisos = new Stage();
@@ -90,19 +124,27 @@ public class ControladorCuidadorAvisos implements Initializable{
 			VentanaAvisos.setMaxHeight(200);
 			VentanaAvisos.setMaxWidth(600);
 
-		}
-		catch(Exception a) {
+		} catch (Exception a) {
 			System.out.println("Error");
 		}
-    }
-    
-    //GETTERS
-    public static Paciente getPacienteElegido() {
+	}
+
+	// GETTERS
+	public static Paciente getPacienteElegido() {
 		return pacienteElegido;
 	}
-    
-    //SETTERS
-    public static void setPacienteElegido(Paciente PacienteElegido) {
+
+	public ObservableList<Aviso> getAvisos() {
+		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
+		avisos.addAll(lectorJson.crearAvisosSensor1(pacienteElegido.getDni()));
+		avisos.addAll(lectorJson.crearAvisosSensor2(pacienteElegido.getDni()));
+		avisos.addAll(lectorJson.crearAvisosSensor3(pacienteElegido.getDni()));
+
+		return avisos;
+	}
+
+	// SETTERS
+	public static void setPacienteElegido(Paciente PacienteElegido) {
 		pacienteElegido = PacienteElegido;
 	}
 }

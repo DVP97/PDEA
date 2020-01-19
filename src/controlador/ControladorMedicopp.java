@@ -33,7 +33,6 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTimePicker;
 import com.jfoenix.controls.JFXTreeTableView;
-import com.sun.corba.se.spi.orbutil.fsm.Input;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -188,7 +187,7 @@ public class ControladorMedicopp implements Initializable {
 	escritorJson.escribirEnJsonCitas(addCita);
 	
 	//aviso al usuario de que se ha creado la cita correctamente
-	ControladorAvisos.setMensajeError("Se ha añadido correctamente una nueva cita.");
+	ControladorAvisos.setMensajeError("Se ha aï¿½adido correctamente una nueva cita.");
 	abrirVentanaAvisos();
 	//limpiar los campos del tab de Citas
 	inputBuscarPaciente.setValue(null);

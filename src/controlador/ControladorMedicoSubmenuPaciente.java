@@ -11,10 +11,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTimePicker;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -152,7 +150,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	
     	Cita proximaCita = lectorJson.getCita(pacienteActual.getDni());
     	System.out.println(proximaCita.getFecha().toString());
-    	//fechaCita.setText(proximaCita.getFecha().toString());
+    	fechaCita.setText(proximaCita.getFechaString());
     	notaCita.setText(proximaCita.getNota());
     }
     

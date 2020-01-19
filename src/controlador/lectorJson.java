@@ -171,22 +171,29 @@ public class lectorJson {
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La frecuencia cardiaca antes de hacer el ejercicio es demasiado baja.");
 				aviso.setDatoSensor(s1);
+				aviso.setNombreSensor("Sensor 1");
 				avisos.add(aviso);
 			}if(b>0) {
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La frecuencia cardiaca antes de hacer el ejercicio es demasiado alta.");
 				aviso.setDatoSensor(s1);
+				aviso.setNombreSensor("Sensor 1");
+
 				avisos.add(aviso);
 			}if(c<0) {
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La frecuencia cardiaca despues de hacer el ejercicio es demasiado baja.");
 				aviso.setDatoSensor(s1);
+				aviso.setNombreSensor("Sensor 1");
+
 				avisos.add(aviso);
 			}
 			if(d<0) {
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La frecuencia cardiaca despues de hacer el ejercicio es demasiado alta.");
 				aviso.setDatoSensor(s1);
+				aviso.setNombreSensor("Sensor 1");
+
 				avisos.add(aviso);
 			}
 		}
@@ -203,6 +210,8 @@ public class lectorJson {
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La saturacion de oxigeno en sangre es demasiado baja.");
 				aviso.setDatoSensor(s2);
+				aviso.setNombreSensor("Sensor 2");
+
 				avisos.add(aviso);
 			}
 		}
@@ -222,22 +231,30 @@ public class lectorJson {
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La sistole antes de hacer el ejercicio es demasiado alta.");
 				aviso.setDatoSensor(s3);
+				aviso.setNombreSensor("Sensor 3");
+
 				avisos.add(aviso);
 			}if(b>0) {
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La diastole antes de hacer el ejercicio es demasiado alta.");
 				aviso.setDatoSensor(s3);
+				aviso.setNombreSensor("Sensor 3");
+
 				avisos.add(aviso);
 			}if(c>0) {
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La sistole despues de hacer el ejercicio es demasiado alta.");
 				aviso.setDatoSensor(s3);
+				aviso.setNombreSensor("Sensor 3");
+
 				avisos.add(aviso);
 			}
 			if(d<0) {
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La diastole despues de hacer el ejercicio es demasiado alta.");
 				aviso.setDatoSensor(s3);
+				aviso.setNombreSensor("Sensor 3");
+
 				avisos.add(aviso);
 			}
 		}
