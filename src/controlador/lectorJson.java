@@ -163,9 +163,9 @@ public class lectorJson {
 		ArrayList<datoSensor1> sensor1 = getDatosSensor1De(dni);
 		for (int i =0 ; i<sensor1.size();i++) {
 			datoSensor1 s1 = sensor1.get(i);
-			int a = s1.getFrecuenciaAntes().compareTo(60);
+			int a = s1.getFrecuenciaAntes().compareTo(50);
 			int b = s1.getFrecuenciaAntes().compareTo(100);
-			int c = s1.getFrecuenciaDespues().compareTo(80);
+			int c = s1.getFrecuenciaDespues().compareTo(75);
 			int d = s1.getFrecuenciaDespues().compareTo(136);
 			if(a<0) {
 				Aviso aviso = new Aviso();
@@ -205,7 +205,7 @@ public class lectorJson {
 		ArrayList<datoSensor2> sensor2 = getDatosSensor2De(dni);
 		for (int i =0 ; i<sensor2.size();i++) {
 			datoSensor2 s2 = sensor2.get(i);
-			int a = s2.getDatosMedicos().compareTo(90);
+			int a = s2.getDatosMedicos().compareTo(85);
 			if(a<0) {
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La saturacion de oxigeno en sangre es demasiado baja.");

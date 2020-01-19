@@ -237,7 +237,7 @@
     "sistoleAntes": 90,
     "diastoleAntes": 68,
     "sistoleDespues": 79,
-    "diastoleDespues": 62,
+    "diastoleDespues": 115,
     "fecha": "Nov 28, 2019 6:18:21 PM"
   },{
     "dni": "39042568E",
@@ -257,7 +257,7 @@
     "dni": "39042568E",
     "sistoleAntes": 90,
     "diastoleAntes": 68,
-    "sistoleDespues": 79,
+    "sistoleDespues": 184,
     "diastoleDespues": 62,
     "fecha": "Dec 1, 2019 6:18:21 PM"
   }
