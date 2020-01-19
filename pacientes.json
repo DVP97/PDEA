@@ -1,13 +1,14 @@
 [
   {
-    "fecha_nacimiento": "May 23, 3854 12:00:00 AM",
+    "fecha_nacimiento": "Apr 23, 1954 12:00:00 AM",
     "ejercicios": [
       5,
       6,
       7
     ],
     "cuidadores": [
-      "60314786T"
+      "60314786T",
+      "31612316N"
     ],
     "medico": "62544518C",
     "ejerciciosHechos": false,
