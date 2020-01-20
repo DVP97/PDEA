@@ -40,6 +40,9 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 
 	@FXML
 	private Label campoCuidador;
+	
+	@FXML
+	private Label campoPaciente;
 
 	private ArrayList<Ejercicio> ejercicios;
 	private Integer contador = 0;
@@ -52,6 +55,7 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 
 		Cuidador c = ControladorCuidadorpp.getCuidadorActual();
 		campoCuidador.setText("Hola " + c.getNombre() + ",");
+		campoPaciente.setText(pacienteElegido.getNombreCompleto());
 
 		// Aquí falta la chica del desplegable
 		Paciente p = ControladorPacientepp.getPacienteActual();
