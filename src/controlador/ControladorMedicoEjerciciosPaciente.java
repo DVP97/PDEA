@@ -62,7 +62,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	private static Paciente pacienteActual = new Paciente();
 
-	private ArrayList<String> nombresEjercicios = getNombresEjercicios();
+	private ArrayList<String> nombresEjercicios = getTodosNombres();
 
 	private ObservableList<String> listaEjerciciosComboBox = FXCollections.observableArrayList(nombresEjercicios);
 
@@ -121,8 +121,8 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	@FXML
 	void pressBtnAnadir(ActionEvent event) {
-		try {
-			String ejercicio = comboPaciente.getValue();
+		
+			String ejercicio = comboPaciente.getValue().toString();
 			Integer indice = getIndiceComboBox(ejercicio);
 
 			if (indice != null) {
@@ -134,10 +134,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 				ControladorAvisos.setMensajeError("Por favor, seleccione un ejercicio.");
 				abrirVentanaAvisos();
 			}
-		} catch (Exception a) {
-			ControladorAvisos.setMensajeError("Error anadiendo el ejercicio.");
-			abrirVentanaAvisos();
-		}
+		
 	}
 
 	private void addEjercicio(Integer id) {
@@ -203,7 +200,16 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 		}
 		return nombres;
 	}
-
+	private ArrayList<String> getTodosNombres(){
+		ArrayList<Ejercicio> ejercicios = lectorJson.lectorJsonEjercicios();
+		ArrayList<String> nombres = new ArrayList<String>();
+		for (int i = 0 ; i < ejercicios.size(); i++) {
+			nombres.add(ejercicios.get(i).getNombre());
+		}
+		return nombres; 
+		
+	}
+	
 	private void setTitlePanesEjercicios() {
 		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
 
