@@ -53,6 +53,9 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	@FXML
 	private AnchorPane anchorPaneEjercicios;
+	
+	@FXML
+	private Label campoMedico;
 
 	@FXML
 	private Accordion accordionEjercicios;
@@ -68,6 +71,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 		pacienteActual = ControladorMedicoSubmenuPaciente.getPacienteActual();
 		comboPaciente.setItems(listaEjerciciosComboBox);
 		setTitlePanesEjercicios();
+		campoMedico.setText("Hola "+ControladorMedicoSelectorPaciente.getMedicoActual().getNombre() + ",");
 	}
 
 	private TitledPane getExpanded() {
@@ -126,7 +130,6 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 				addEjercicio(idEj);
 
-				
 			} else {
 				ControladorAvisos.setMensajeError("Por favor, seleccione un ejercicio.");
 				abrirVentanaAvisos();
@@ -136,16 +139,16 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 			abrirVentanaAvisos();
 		}
 	}
-	
-	private void addEjercicio (Integer id) {
+
+	private void addEjercicio(Integer id) {
 		Ejercicio ej = lectorJson.getEjercicio(id);
 		ArrayList<Integer> ejercicios = pacienteActual.getEjercicios();
-		
+
 		ejercicios.add(ej.getId());
 		escritorJson.modificarPaciente(pacienteActual);
 		accordionEjercicios.getPanes().clear();
 		setTitlePanesEjercicios();
-		
+
 	}
 
 	@FXML
@@ -217,7 +220,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append("Ejercicio ");
-				stringBuilder.append(i + 1);
+				stringBuilder.append(ejercicioActual.getId());
 
 				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido);
 				tp.setId(ejercicioActual.getId().toString());
