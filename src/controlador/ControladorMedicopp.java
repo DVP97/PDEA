@@ -37,7 +37,6 @@ import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTimePicker;
 
-import controlador.ControladorMedicoSubmenuPaciente.sortByDateC;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
