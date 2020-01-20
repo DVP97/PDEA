@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
@@ -13,61 +18,78 @@
 
 <AnchorPane maxHeight="350.0" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="600.0" styleClass="background" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorAvisosPaciente">
    <children>
-      <Label fx:id="campoPaciente" layoutX="25.0" layoutY="17.0" text="Hola Sergio,">
+      <Label fx:id="campoPaciente" layoutX="25.0" layoutY="17.0" text="Hola Sergio," AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
       <Separator layoutX="25.0" layoutY="38.0" prefHeight="18.0" prefWidth="189.0" />
-      <Label layoutX="519.0" layoutY="308.0" text="Paciente">
+      <Label layoutX="519.0" layoutY="308.0" text="Paciente" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fitHeight="64.0" fitWidth="66.0" layoutX="499.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="64.0" fitWidth="66.0" layoutX="499.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
          <image>
             <Image url="@../modelo/logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="92.0" layoutY="70.0" text="Avisos">
+      <Label layoutX="92.0" layoutY="70.0" text="Avisos" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="campoHechos" layoutX="176.0" layoutY="205.0" prefHeight="26.0" prefWidth="314.0" text="Hechos" textAlignment="CENTER">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <Label fx:id="campoFecha" layoutX="179.0" layoutY="142.0" prefHeight="29.0" prefWidth="361.0" text="24 de enero de 2020   09:30">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="51.0" fitWidth="50.0" layoutX="25.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+      <GridPane layoutX="51.0" layoutY="107.41796875" prefHeight="350.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Group GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <children>
+                  <Label fx:id="campoHechos" layoutX="150.0" layoutY="80.0" prefHeight="26.0" prefWidth="314.0" text="Hechos" textAlignment="CENTER">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="campoFecha" layoutX="158.0" layoutY="26.0" prefHeight="29.0" prefWidth="361.0" text="24 de enero de 2020   09:30">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="24.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Próxima cita:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="26.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ejercicios:">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <JFXButton fx:id="btnVolver" buttonType="RAISED" layoutX="26.0" layoutY="137.0" onAction="#pressBtnVolver" prefHeight="40.0" prefWidth="122.0" styleClass="btn" stylesheets="@application.css" text="Volver">
+                     <ripplerFill>
+                        <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#81f1c1" />
+                              <Stop color="#5d5d52" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </ripplerFill>
+                  </JFXButton>
+               </children>
+               <GridPane.margin>
+                  <Insets top="60.0" />
+               </GridPane.margin>
+            </Group>
+         </children>
+      </GridPane>
+      <ImageView fitHeight="51.0" fitWidth="50.0" layoutX="25.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="57.0">
          <image>
             <Image url="@../modelo/avisos.png" />
          </image>
       </ImageView>
-      <Text layoutX="42.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Próxima cita:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="55.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ejercicios:">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Text>
-      <JFXButton fx:id="btnVolver" buttonType="RAISED" layoutX="238.0" layoutY="268.0" onAction="#pressBtnVolver" prefHeight="40.0" prefWidth="122.0" styleClass="btn" stylesheets="@application.css" text="Volver">
-         <ripplerFill>
-            <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
-               <stops>
-                  <Stop color="#81f1c1" />
-                  <Stop color="#5d5d52" offset="1.0" />
-               </stops>
-            </RadialGradient>
-         </ripplerFill>
-      </JFXButton>
    </children>
 </AnchorPane>

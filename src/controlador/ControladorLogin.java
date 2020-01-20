@@ -71,7 +71,7 @@ public class ControladorLogin implements Initializable{
 		Registro.setTitle("Registro de Nuevo Usuario");
 		Registro.setScene(new Scene(NuevoRegistro));
 		Registro.show();
-		Registro.setMinHeight(350);
+		Registro.setMinHeight(400);
 		Registro.setMinWidth(500);
     	}
     	catch(Exception r){
