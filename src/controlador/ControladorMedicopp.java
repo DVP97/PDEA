@@ -528,44 +528,54 @@ public class ControladorMedicopp implements Initializable {
 	}
 
 	private void setAvisos() {
-		ArrayList<String> pacientes = medicoActual.getPacientes();
-		for(int i = 0; i< pacientes.size(); i++) {
-			ObservableList<Aviso> avisos = getAvisos(pacientes.get(i));
-			Paciente p = lectorJson.getPaciente(pacientes.get(i));
-			if(avisos.size()>0) {
-				Label tit = new Label("Avisos de "+ p.getNombreCompleto() + ":");
-				tit.setFont(new Font("Arial", 18));
-				anchorPaneAvisos.getChildren().add(tit);
-				
-				// Primera columna
-				TableColumn<Aviso, String> columnaSensor = new TableColumn<>("Sensor");
-				columnaSensor.setMinWidth(200);
-				columnaSensor.setCellValueFactory(new PropertyValueFactory<>("nombreSensor"));
+		ObservableList<Aviso> avisos = getAvisos();
+		if (avisos.size() > 0) {
+			// Primera columna
+			TableColumn<Aviso, String> columnaSensor = new TableColumn<>("Sensor");
+			columnaSensor.setMinWidth(100);
+			columnaSensor.setCellValueFactory(new PropertyValueFactory<>("nombreSensor"));
 
-				// Segunda columna
-				TableColumn<Aviso, String> columnaConcepto = new TableColumn<>("Concepto");
-				columnaConcepto.setMinWidth(600);
-				columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("concepto"));
+			// Segunda columna
+			TableColumn<Aviso, String> columnaConcepto = new TableColumn<>("Concepto");
+			columnaConcepto.setMinWidth(480);
+			columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("concepto"));
 
-				TableView<Aviso> table;
+			// Tercera columna
+			TableColumn<Aviso, String> columnaNombrePaciente = new TableColumn<>("Paciente");
+			columnaNombrePaciente.setMinWidth(200);
+			columnaNombrePaciente.setCellValueFactory(new PropertyValueFactory<>("nombrePaciente"));
 
-				table = new TableView<>();
-				//table.setLayoutX(5);
-				//table.setLayoutY(60);
-				table.setItems(avisos);
-				table.getColumns().addAll(columnaConcepto,columnaSensor);
-				anchorPaneAvisos.getChildren().add(table);
-//				anchorPaneAvisos.setTopAnchor(table, 0.0);
-			}
+			TableView<Aviso> table;
+
+			table = new TableView<>();
+			table.setLayoutX(5);
+			table.setLayoutY(60);
+			table.setItems(avisos);
+			table.getColumns().addAll(columnaNombrePaciente, columnaConcepto, columnaSensor);
+			anchorPaneAvisos.getChildren().add(table);
+			anchorPaneAvisos.setTopAnchor(table, 0.0);
+
+		} else {
+			Label tableEmpty = new Label("Todos los datos proporcionados por los sensores estan bien.");
+
+			tableEmpty.setFont(new Font("Arial", 10));
+			tableEmpty.setLayoutY(60);
+			tableEmpty.setLayoutX(5);
+			// anchorPaneAvisos.getChildren().add(tableEmpty);
+
+			AnchorPane.setTopAnchor(tableEmpty, Double.valueOf(40));
 		}
 	}
 
-	public ObservableList<Aviso> getAvisos(String dni) {
+	public ObservableList<Aviso> getAvisos() {
 		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
-		avisos.addAll(lectorJson.crearAvisosSensor1(dni));
-		avisos.addAll(lectorJson.crearAvisosSensor2(dni));
-		avisos.addAll(lectorJson.crearAvisosSensor3(dni));
+		ArrayList<String> pacientes = medicoActual.getPacientes();
 
+		for (int i = 0; i < pacientes.size(); i++) {
+			avisos.addAll(lectorJson.crearAvisosSensor1(pacientes.get(i)));
+			avisos.addAll(lectorJson.crearAvisosSensor2(pacientes.get(i)));
+			avisos.addAll(lectorJson.crearAvisosSensor3(pacientes.get(i)));
+		}
 		return avisos;
 	}
 }
