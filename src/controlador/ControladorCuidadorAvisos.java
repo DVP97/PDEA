@@ -5,13 +5,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
-import controlador.ControladorAvisosPaciente.sortByDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,7 +37,7 @@ public class ControladorCuidadorAvisos implements Initializable {
 
 	@FXML
 	private AnchorPane anchorPaneAvisos;
-	
+
 	@FXML
 	private Label campoCuidador;
 	@FXML
@@ -63,8 +61,10 @@ public class ControladorCuidadorAvisos implements Initializable {
 
 		// Recoge fecha de la cita
 		fecha_cita = seleccionarSiguienteCita(pacienteElegido);
-
-	if (avisos.size() > 0) {
+		//campoCita.setText(fecha_cita.getFechaString());
+		
+		
+		if (avisos.size() > 0) {
 			TableView<Aviso> table = new TableView<>();
 			// Primera columna
 			TableColumn<Aviso, String> columnaSensor = new TableColumn<>("Sensor");
@@ -76,25 +76,23 @@ public class ControladorCuidadorAvisos implements Initializable {
 			columnaConcepto.setMinWidth(600);
 			columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("concepto"));
 
-
 			table.setLayoutX(5);
 			table.setLayoutY(60);
 			table.setItems(avisos);
-			table.getColumns().addAll(columnaConcepto,columnaSensor);
+			table.getColumns().addAll(columnaConcepto, columnaSensor);
 			anchorPaneAvisos.getChildren().add(table);
 			anchorPaneAvisos.setTopAnchor(table, 0.0);
-		
-		}
-		else {
-			Label tableEmpty = new Label ("Todos los datos proporcionados por los sensores estan bien.");
-			
-			tableEmpty.setFont(new Font("Arial", 10));
+
+		} else {
+			Label tableEmpty = new Label("Todos los datos proporcionados por los sensores estan bien.");
+
+			tableEmpty.setFont(new Font("Arial", 15));
 			tableEmpty.setLayoutY(60);
 			tableEmpty.setLayoutX(5);
 			anchorPaneAvisos.getChildren().add(tableEmpty);
-		
+
 		}
-		
+
 	}
 
 	@FXML
@@ -154,16 +152,17 @@ public class ControladorCuidadorAvisos implements Initializable {
 	public static void setPacienteElegido(Paciente PacienteElegido) {
 		pacienteElegido = PacienteElegido;
 	}
-	public class sortByDate implements Comparator<Cita>{
+
+	public class sortByDate implements Comparator<Cita> {
 		@Override
-		public int compare (Cita c1, Cita c2) {
+		public int compare(Cita c1, Cita c2) {
 			return c1.getFecha().compareTo(c2.getFecha());
 		}
 	}
-	
+
 	public Cita seleccionarSiguienteCita(Paciente p) {
 		ArrayList<Cita> citas = lectorJson.getCitasPaciente(p.getDni());
 		Collections.sort(citas, new sortByDate());
-		return citas.get(citas.size());
+		return citas.get(0);
 	}
 }

@@ -75,6 +75,7 @@ public class controladorCitarPaciente implements Initializable{
 		Paciente p = pacienteActual;
 		// asociar mediante dni del paciente
 		nCita.setDni(p.getDni());
+		nCita.setNombrePaciente();
 		// fecha de la cita
 		String FechaN[] = campoFecha.getValue().toString().split("-");
 		List<String> Fecha = Arrays.asList(FechaN);
@@ -91,6 +92,7 @@ public class controladorCitarPaciente implements Initializable{
 		// guardar dia y hora de la cita en un Date
 		Date calend = new Date(anho, mes, dia, hora, mins);
 		nCita.setFecha(calend);
+		nCita.setFechaString();
 
 		// aniadir comentario del medico
 		nCita.setNota(notaCita.getText());
