@@ -65,6 +65,7 @@ public class controladorCitarPaciente implements Initializable{
 		pacienteActual = ControladorMedicoSubmenuPaciente.getPacienteActual();
 		System.out.println(pacienteActual.getNombreCompleto());
 		nombrePaciente.setText(pacienteActual.getNombreCompleto());
+		campoMedico.setText("Hola " + medicoActual.getNombre());
 	}
 
     @FXML

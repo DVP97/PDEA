@@ -83,7 +83,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	private Integer getIndiceComboBox(String ej) {
 		for (int i = 0; i < getNombresEjercicios().size(); i++) {
-			if (getNombresEjercicios().get(i).equalsIgnoreCase(pac)) {
+			if (getNombresEjercicios().get(i).equalsIgnoreCase(ej)) {
 				return i;
 			}
 		}
