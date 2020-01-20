@@ -1,6 +1,5 @@
 package controlador;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,116 +23,107 @@ import javafx.util.Duration;
 import modelo.Paciente;
 import modelo.Ejercicio;
 
+public class ControladorEjercicios implements Initializable {
 
+	@FXML
+	private AnchorPane anchorGrande;
 
-public class ControladorEjercicios implements Initializable{
-	
 	@FXML
-    private AnchorPane anchorGrande;
-	
+	private JFXButton btnAnterior;
+
 	@FXML
-    private JFXButton btnAnterior;
-	
+	private JFXButton btnComenzar;
+
 	@FXML
-    private JFXButton btnComenzar;
-	
-	@FXML
-    private JFXButton btnSiguiente;
-	
+	private JFXButton btnSiguiente;
+
 	@FXML
 	private JFXButton btnVolver;
-	
+
 	@FXML
 	private Label cronometro;
-	
+
 	@FXML
 	private Label numeroEjercicio;
-	
-    @FXML
-    private Label nombrePaciente;
-    
-    @FXML
-    private ImageView pantallaEj;
-    
-    
-    private ArrayList<Ejercicio> ejercicios;
-    private Integer contador=0;
-    private Integer interval=0;
-    private  String[] hacerEjercicios;
-    private Paciente p = ControladorPacientepp.getPacienteActual();
 
-    
-  //Metodos
-    
+	@FXML
+	private Label nombrePaciente;
+
+	@FXML
+	private ImageView pantallaEj;
+
+	private ArrayList<Ejercicio> ejercicios;
+	private Integer contador = 0;
+	private Integer interval = 0;
+	private String[] hacerEjercicios;
+	private Paciente p = ControladorPacientepp.getPacienteActual();
+
+	// Metodos
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		//Paciente p = ControladorPacientepp.getPacienteActual();
-		nombrePaciente.setText("Hola " +p.getNombre() +",");
-		
-		this.ejercicios = lectorJson.getEjercicios(p);
-		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
 
-		
+		// Paciente p = ControladorPacientepp.getPacienteActual();
+		nombrePaciente.setText("Hola " + p.getNombre() + ",");
+
+		this.ejercicios = lectorJson.getEjercicios(p);
+		pantallaEj.setImage(
+				new Image(this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
+
 		this.interval = this.ejercicios.get(contador).getDuracion();
-		numeroEjercicio.setText(" "+(contador+1)+" de "+ this.ejercicios.size());
-		
-		//String hacerEjercicios con tama�o array de ejercicios
-		hacerEjercicios = new String [this.ejercicios.size()];
- 		for(int i=0; i < hacerEjercicios.length; i++) {
- 			hacerEjercicios[i]=ejercicios.get(i).getNombre();
- 		}
- 		
-		
+		numeroEjercicio.setText(" " + (contador + 1) + " de " + this.ejercicios.size());
+
+		// String hacerEjercicios con tama�o array de ejercicios
+		hacerEjercicios = new String[this.ejercicios.size()];
+		for (int i = 0; i < hacerEjercicios.length; i++) {
+			hacerEjercicios[i] = ejercicios.get(i).getNombre();
+		}
+
 	}
-	
-	
+
 	// Funci�n asociada al boton de comenzar. Inicia la cuenta atr�s del cron�metro.
 	@FXML
-    void pressBtnComenzar(ActionEvent event) {
+	void pressBtnComenzar(ActionEvent event) {
 		this.btnComenzar.setDisable(true);
-		empezarContador(this.ejercicios.get(contador).getDuracion()+1);
-		
-		for(int i=0; i < hacerEjercicios.length; i++) {
- 			if (hacerEjercicios[i].equals(ejercicios.get(contador).getNombre())){
- 				hacerEjercicios[i]="ok";
- 			}
- 		}
+		empezarContador(this.ejercicios.get(contador).getDuracion() + 1);
+
+		for (int i = 0; i < hacerEjercicios.length; i++) {
+			if (hacerEjercicios[i].equals(ejercicios.get(contador).getNombre())) {
+				hacerEjercicios[i] = "ok";
+			}
+		}
 	}
-	
-		
-	//Bot�n anterior
-	//------------------------------------------------
+
+	// Bot�n anterior
+	// ------------------------------------------------
 	@FXML
 	void pressBtnAnterior(ActionEvent event) {
 		ejercicioAnterior();
 	}
 
-
-    //Bot�n siguiente
-	//------------------------------------------------
+	// Bot�n siguiente
+	// ------------------------------------------------
 	@FXML
 	void pressBtnSiguiente(ActionEvent event) {
-		siguienteEjercicio();	
-	} 
+		siguienteEjercicio();
+	}
 
-	
-	//Bot�n volver
-	//------------------------------------------------
+	// Bot�n volver
+	// ------------------------------------------------
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
-				boolean hechos = true;
-	 			for(int i=0; i<hacerEjercicios.length; i++) {
-	 				if (!hacerEjercicios[i].equals("ok")) {
-	 					hechos = false;
-	 				}
-	 			}
-	 			
-	 		    System.out.println(hechos);
-	 		    p.setEjerciciosHechos(hechos);
-	 		    escritorJson.modificarPaciente(p);
-		
+			boolean hechos = true;
+			for (int i = 0; i < hacerEjercicios.length; i++) {
+				if (!hacerEjercicios[i].equals("ok")) {
+					hechos = false;
+				}
+			}
+
+			System.out.println(hechos);
+			p.setEjerciciosHechos(hechos);
+			escritorJson.modificarPaciente(p);
+
 			System.out.println("Cargando ventana principal de Paciente...");
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 			Stage Pacientepp = new Stage();
@@ -146,92 +136,90 @@ public class ControladorEjercicios implements Initializable{
 			System.out.println("Cerrando ventana de Login.");
 			Stage CerrarVentanaLogin = (Stage) btnVolver.getScene().getWindow();
 			CerrarVentanaLogin.close();
-		}	
-			
-		catch(ControladorExcepciones case1){
+		}
+
+		catch (ControladorExcepciones case1) {
 			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
 			case1.abrirVentanaAvisos();
 		}
 	}
 
-
-	//METODOS
+	// METODOS
 	void empezarContador(Integer duracion) {
 
-		//Cada segundo actualiza el valor del intervalo
+		// Cada segundo actualiza el valor del intervalo
 		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), ev -> {
-			if(interval<0) {
-				interval=0;
-				
-			}
-			if (interval <10) {
-			cronometro.setText("00:0"+interval); 
+			if (interval < 0) {
+				interval = 0;
 
 			}
-			else {
-				cronometro.setText("00:"+interval); 
+			if (interval < 10) {
+				cronometro.setText("00:0" + interval);
+
+			} else {
+				cronometro.setText("00:" + interval);
 			}
-			this.interval= interval -1;
-	    }));
-		//Numero de veces que se ejecuta la funcion
-	    timeline.setCycleCount(duracion+1);
-	    //Empieza
-	    timeline.play();
-	    if(!this.btnComenzar.isDisable()) {
-			 timeline.stop();
-		 }
-	    //Acaba y pasa al siguiente ejercicio
-	    timeline.setOnFinished(e -> siguienteEjercicio());
-	    System.out.println("Está terminado");
-	    	
+			this.interval = interval - 1;
+		}));
+		// Numero de veces que se ejecuta la funcion
+		timeline.setCycleCount(duracion + 1);
+		// Empieza
+		timeline.play();
+		if (!this.btnComenzar.isDisable()) {
+			timeline.stop();
+		}
+		// Acaba y pasa al siguiente ejercicio
+		timeline.setOnFinished(e -> siguienteEjercicio());
+		System.out.println("Está terminado");
+
 	}
-	
+
 	void siguienteEjercicio() {
 		this.btnComenzar.setDisable(false);
-		if(interval>0){
-			
+		if (interval > 0) {
+
 			ControladorAvisos.setMensajeError("Porfavor, acabe su ejercicio antes de pasar al siguiente.");
 			abrirVentanaAvisos();
-			
-			
+
 		} else {
-			
-		if (contador==ejercicios.size()-1) {
-			System.out.println("Está usted en el último ejercicio");
-			ControladorAvisos.setMensajeError("Está usted en el último ejercicio, ¡ha terminado!");
-			abrirVentanaAvisos();
-		} else {
-		this.contador = contador+1;
-		this.interval = this.ejercicios.get(contador).getDuracion();
-		cronometro.setText("00:"+interval); 
-		
-		
-		numeroEjercicio.setText(" "+(contador+1)+" DE "+ this.ejercicios.size() + " ");
-		
-		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
-	} 
+
+			if (contador == ejercicios.size() - 1) {
+				System.out.println("Está usted en el último ejercicio");
+				ControladorAvisos.setMensajeError("Está usted en el último ejercicio, ¡ha terminado!");
+				abrirVentanaAvisos();
+			} else {
+				this.contador = contador + 1;
+				this.interval = this.ejercicios.get(contador).getDuracion();
+				cronometro.setText("00:" + interval);
+
+				numeroEjercicio.setText(" " + (contador + 1) + " DE " + this.ejercicios.size() + " ");
+
+				pantallaEj.setImage(new Image(
+						this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
+			}
+		}
 	}
-	}
-	
+
 	void ejercicioAnterior() {
-	
-		if (contador==0) {
+
+		if (contador == 0) {
 			System.out.println("Está usted en el primer ejercicio");
 			ControladorAvisos.setMensajeError("Está usted en el primer ejercicio.");
 			abrirVentanaAvisos();
 		} else {
-		
-		cronometro.setText("00:"+interval); 
-		
-		this.contador = contador-1;
-		this.interval = this.ejercicios.get(contador).getDuracion();
-		numeroEjercicio.setText(" "+(contador+1)+" de "+ this.ejercicios.size());
-		
-		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
+
+			cronometro.setText("00:" + interval);
+
+			this.contador = contador - 1;
+			this.interval = this.ejercicios.get(contador).getDuracion();
+			numeroEjercicio.setText(" " + (contador + 1) + " de " + this.ejercicios.size());
+
+			pantallaEj.setImage(new Image(
+					this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
+		}
 	}
-	}
-	
-    public void abrirVentanaAvisos() {
+
+	public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
 			Stage VentanaAvisos = new Stage();
@@ -243,8 +231,7 @@ public class ControladorEjercicios implements Initializable{
 			VentanaAvisos.setMaxHeight(200);
 			VentanaAvisos.setMaxWidth(600);
 
-		}
-		catch(Exception a) {
+		} catch (Exception a) {
 			System.out.println("Error");
 		}
 	}

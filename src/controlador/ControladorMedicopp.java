@@ -31,6 +31,8 @@ import modelo.Medico;
 import modelo.Paciente;
 import modelo.Mensaje;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -559,19 +561,25 @@ public class ControladorMedicopp implements Initializable {
 			table.setLayoutX(5);
 			table.setLayoutY(60);
 			table.setItems(avisos);
-			table.getColumns().addAll(columnaNombrePaciente, columnaConcepto, columnaSensor);
+			table.getColumns().addAll(columnaConcepto,columnaSensor);
 			anchorPaneAvisos.getChildren().add(table);
-			anchorPaneAvisos.setTopAnchor(table, 0.0);
+			anchorPaneAvisos.setLeftAnchor(table, 10.0);
+			anchorPaneAvisos.setRightAnchor(table, 10.0);
+			anchorPaneAvisos.setTopAnchor(table, 10.0);
+			anchorPaneAvisos.setBottomAnchor(table, 80.0);
 
 		} else {
-			Label tableEmpty = new Label("Todos los datos proporcionados por los sensores estan bien.");
+			Label tableEmpty = new Label ("Todos los datos proporcionados por los sensores estan bien.");
 
-			tableEmpty.setFont(new Font("Arial", 10));
-			tableEmpty.setLayoutY(60);
-			tableEmpty.setLayoutX(5);
-			// anchorPaneAvisos.getChildren().add(tableEmpty);
 
-			AnchorPane.setTopAnchor(tableEmpty, Double.valueOf(40));
+			tableEmpty.setFont(new Font("Arial", 15));
+
+			anchorPaneAvisos.getChildren().add(tableEmpty);
+			anchorPaneAvisos.setLeftAnchor(tableEmpty, 0.0);
+			anchorPaneAvisos.setRightAnchor(tableEmpty, 0.0);
+			anchorPaneAvisos.setTopAnchor(tableEmpty, 0.0);
+			anchorPaneAvisos.setBottomAnchor(tableEmpty, 80.0);
+			tableEmpty.setAlignment(Pos.CENTER);
 		}
 	}
 
@@ -625,7 +633,11 @@ public class ControladorMedicopp implements Initializable {
 			t.setItems(citas);
 			t.getColumns().addAll(columnaNombrePaciente, columnaConcepto);
 			anchorPaneCitas.getChildren().add(t);
-			anchorPaneCitas.setTopAnchor(t, 0.0);
+			anchorPaneCitas.setLeftAnchor(t, 10.0);
+			anchorPaneCitas.setRightAnchor(t, 10.0);
+			anchorPaneCitas.setTopAnchor(t, 10.0);
+			anchorPaneCitas.setBottomAnchor(t, 80.0);
+			
 
 		} else {
 			Label tableEmpty = new Label("Todos los datos proporcionados por los sensores estan bien.");
