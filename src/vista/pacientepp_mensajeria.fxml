@@ -111,7 +111,7 @@
                         </Tab>
                      </tabs>
                   </JFXTabPane>
-                <AnchorPane fx:id="anchorPaneEnviados" maxHeight="200.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane maxHeight="200.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
                         <TextArea fx:id="campoEscritura" layoutX="5.0" layoutY="46.0" prefHeight="99.0" prefWidth="313.0" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="161.0" AnchorPane.topAnchor="60.0" />
                         <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Redactar:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
