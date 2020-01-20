@@ -68,8 +68,8 @@ public class ControladorCuidadorpp implements Initializable {
 				CuidadorRutinaPaciente.setTitle("Menu Cuidador - Ejercicios de " + pacienteElegido.getNombre());
 				CuidadorRutinaPaciente.setScene(new Scene(CuidadorEjercicios));
 				CuidadorRutinaPaciente.show();
-				CuidadorRutinaPaciente.setMinHeight(400);
-				CuidadorRutinaPaciente.setMinWidth(400);
+				CuidadorRutinaPaciente.setMinHeight(600);
+				CuidadorRutinaPaciente.setMinWidth(800);
 
 				Stage CerrarVentanaCuidador = (Stage) btnEjercicios.getScene().getWindow();
 				CerrarVentanaCuidador.close();
@@ -101,8 +101,8 @@ public class ControladorCuidadorpp implements Initializable {
 				AvisosPaciente.setTitle("Menu Cuidador - Avisos de " + pacienteElegido.getNombre());
 				AvisosPaciente.setScene(new Scene(Avisos));
 				AvisosPaciente.show();
-				AvisosPaciente.setMinHeight(325);
-				AvisosPaciente.setMinWidth(600);
+				AvisosPaciente.setMinHeight(800);
+				AvisosPaciente.setMinWidth(1200);
 
 				Stage CambioVentanaAvisos = (Stage) btnAvisos.getScene().getWindow();
 				CambioVentanaAvisos.close();

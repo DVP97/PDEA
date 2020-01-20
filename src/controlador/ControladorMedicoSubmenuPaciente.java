@@ -21,6 +21,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
@@ -546,18 +547,24 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			table.setItems(avisos);
 			table.getColumns().addAll(columnaConcepto,columnaSensor);
 			anchorPaneAvisos.getChildren().add(table);
+			anchorPaneAvisos.setLeftAnchor(table, 0.0);
+			anchorPaneAvisos.setRightAnchor(table, 0.0);
 			anchorPaneAvisos.setTopAnchor(table, 0.0);
+			anchorPaneAvisos.setBottomAnchor(table, 80.0);
 
 			
 		}else {
 			Label tableEmpty = new Label ("Todos los datos proporcionados por los sensores estan bien.");
-			
-			tableEmpty.setFont(new Font("Arial", 10));
-			tableEmpty.setLayoutY(60);
-			tableEmpty.setLayoutX(5);
-			//anchorPaneAvisos.getChildren().add(tableEmpty);
 
-			AnchorPane.setTopAnchor(tableEmpty, Double.valueOf(40));
+
+			tableEmpty.setFont(new Font("Arial", 15));
+
+			anchorPaneAvisos.getChildren().add(tableEmpty);
+			anchorPaneAvisos.setLeftAnchor(tableEmpty, 0.0);
+			anchorPaneAvisos.setRightAnchor(tableEmpty, 0.0);
+			anchorPaneAvisos.setTopAnchor(tableEmpty, 0.0);
+			anchorPaneAvisos.setBottomAnchor(tableEmpty, 80.0);
+			tableEmpty.setAlignment(Pos.CENTER);
 		}
     }
     

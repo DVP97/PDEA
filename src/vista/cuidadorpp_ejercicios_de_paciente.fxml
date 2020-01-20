@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
@@ -9,83 +10,97 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorCuidadorEjerciciosPaciente">
+<AnchorPane prefHeight="480.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorCuidadorEjerciciosPaciente">
    <children>
-      <AnchorPane prefHeight="325.0" prefWidth="600.0">
+      <Label fx:id="campoCuidador" layoutX="19.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio,">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Separator layoutX="19.0" layoutY="48.0" prefHeight="5.0" prefWidth="151.0" />
+      <ImageView fitHeight="54.0" fitWidth="67.0" layoutX="439.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <image>
+            <Image url="@../modelo/logo.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnVolver" buttonType="RAISED" onAction="#pressBtnVolver" prefHeight="40.0" prefWidth="122.0" styleClass="btn" stylesheets="@application.css" text="Volver" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
+         <ripplerFill>
+            <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#81f1c1" />
+                  <Stop color="#5d5d52" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <GridPane layoutX="19.0" layoutY="67.0" prefHeight="26.0" prefWidth="419.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="61.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="358.0" minWidth="10.0" prefWidth="358.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Label fx:id="campoCuidador" layoutX="19.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio,">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Separator layoutX="19.0" layoutY="48.0" prefHeight="5.0" prefWidth="151.0" />
-            <ImageView fitHeight="54.0" fitWidth="67.0" layoutX="429.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../modelo/logo.png" />
-               </image>
-            </ImageView>
-            <GridPane layoutX="19.0" layoutY="67.0" prefHeight="26.0" prefWidth="340.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label styleClass="normalLabel" stylesheets="@application.css" text="Paciente:" />
-               </children>
-            </GridPane>
-            <Label layoutX="418.0" layoutY="462.0" styleClass="smallLabel" stylesheets="@application.css" text="Cuidador" />
-            <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="19.0" layoutY="111.0">
-               <image>
-                  <Image url="@../modelo/exercise.png" />
-               </image>
-            </ImageView>
-            <Text layoutX="78.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ejercicios:" />
-            <ImageView fx:id="pantallaEj" fitHeight="252.0" fitWidth="216.0" layoutX="166.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../modelo/Seated-Leg-Extensions.gif" />
-               </image>
-            </ImageView>
-            <Label fx:id="campoHechos" layoutX="143.0" layoutY="129.0" prefHeight="26.0" prefWidth="314.0" text="Hechos" textAlignment="CENTER" />
-            <JFXButton fx:id="btnAnterior" buttonType="RAISED" contentDisplay="CENTER" layoutX="76.0" layoutY="282.0" onAction="#pressBtnAnterior" styleClass="btn" stylesheets="@application.css" text="Anterior" textAlignment="CENTER">
-               <ripplerFill>
-                  <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
-                     <stops>
-                        <Stop color="#81f1c1" />
-                        <Stop color="#5d5d52" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </ripplerFill>
-            </JFXButton>
-            <JFXButton fx:id="btnNext" buttonType="RAISED" contentDisplay="CENTER" layoutX="345.0" layoutY="282.0" onAction="#pressBtnNext" styleClass="btn" stylesheets="@application.css" text="Siguiente" textAlignment="CENTER">
-               <ripplerFill>
-                  <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
-                     <stops>
-                        <Stop color="#81f1c1" />
-                        <Stop color="#5d5d52" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </ripplerFill>
-            </JFXButton>
-            <JFXButton fx:id="btnVolver" buttonType="RAISED" layoutX="189.0" layoutY="445.0" onAction="#pressBtnVolver" prefHeight="40.0" prefWidth="122.0" styleClass="btn" stylesheets="@application.css" text="Volver">
-               <ripplerFill>
-                  <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
-                     <stops>
-                        <Stop color="#81f1c1" />
-                        <Stop color="#5d5d52" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </ripplerFill>
-            </JFXButton>
+            <Label styleClass="normalLabel" stylesheets="@application.css" text="Paciente:" />
+            <Label fx:id="campoPaciente" prefHeight="16.0" prefWidth="321.0" styleClass="normalLabel" stylesheets="@application.css" text="Chiquito De La Calzada" GridPane.columnIndex="1" />
          </children>
-      </AnchorPane>
+      </GridPane>
+      <Label layoutX="418.0" layoutY="462.0" styleClass="smallLabel" stylesheets="@application.css" text="Cuidador" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="19.0" layoutY="111.0">
+         <image>
+            <Image url="@../modelo/exercise.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="78.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ejercicios:" />
+      <Label fx:id="campoHechos" layoutX="143.0" layoutY="125.0" prefHeight="26.0" prefWidth="314.0" text="Hechos" textAlignment="CENTER" />
+      <GridPane layoutX="149.0" layoutY="94.0" prefHeight="480.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Group GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <children>
+                  <JFXButton fx:id="btnNext" buttonType="RAISED" contentDisplay="CENTER" layoutX="304.0" layoutY="227.0" onAction="#pressBtnNext" styleClass="btn" stylesheets="@application.css" text="Siguiente" textAlignment="CENTER">
+                     <ripplerFill>
+                        <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#81f1c1" />
+                              <Stop color="#5d5d52" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <ImageView fx:id="pantallaEj" fitHeight="252.0" fitWidth="216.0" layoutX="101.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../modelo/Seated-Leg-Extensions.gif" />
+                     </image>
+                  </ImageView>
+                  <JFXButton fx:id="btnAnterior" buttonType="RAISED" contentDisplay="CENTER" layoutY="227.0" onAction="#pressBtnAnterior" styleClass="btn" stylesheets="@application.css" text="Anterior" textAlignment="CENTER">
+                     <ripplerFill>
+                        <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#81f1c1" />
+                              <Stop color="#5d5d52" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </ripplerFill>
+                  </JFXButton>
+               </children>
+            </Group>
+         </children>
+      </GridPane>
    </children>
-</VBox>
+</AnchorPane>
