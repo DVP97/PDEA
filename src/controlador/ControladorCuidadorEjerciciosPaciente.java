@@ -60,6 +60,7 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 		// Aquí falta la chica del desplegable
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		hechos = p.isEjerciciosHechos();
+		
 
 		if (hechos) {
 
@@ -69,9 +70,8 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 			campoHechos.setText("Ejercicios no acabados.");
 		}
 
-		this.ejercicios = lectorJson.getEjercicios(p);
-		// pantallaEj.setImage(new
-		// Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
+		this.ejercicios = lectorJson.getEjercicios(pacienteElegido);
+		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
 
 	}
 
