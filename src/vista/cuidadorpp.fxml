@@ -29,17 +29,17 @@
             <Image url="@../modelo/logo.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="19.0" layoutY="67.0" prefHeight="26.0" prefWidth="260.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="75.0">
+      <GridPane layoutX="19.0" layoutY="67.0" prefHeight="26.0" prefWidth="338.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="75.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="60.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="249.0" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="63.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="10.0" prefWidth="275.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label styleClass="normalLabel" stylesheets="@application.css" text="Paciente:" />
-            <JFXComboBox fx:id="comboPaciente" onKeyReleased="#comprobarInput" prefHeight="27.0" prefWidth="198.0" GridPane.columnIndex="1" />
+            <JFXComboBox fx:id="comboPaciente" onKeyReleased="#comprobarInput" prefHeight="28.0" prefWidth="275.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Label layoutX="408.0" layoutY="291.0" styleClass="smallLabel" stylesheets="@application.css" text="Cuidador" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />

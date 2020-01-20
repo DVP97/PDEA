@@ -42,6 +42,10 @@ public class ControladorCuidadorAvisos implements Initializable {
 	private Label campoCuidador;
 	@FXML
 	private Label campoPaciente;
+
+    @FXML
+    private Label citaAvisos;
+    
 	@FXML
 	private JFXButton btnVolver;
 
@@ -59,9 +63,10 @@ public class ControladorCuidadorAvisos implements Initializable {
 
 		campoPaciente.setText(pacienteElegido.getNombreCompleto());
 
-		// Recoge fecha de la cita
+		
 		fecha_cita = seleccionarSiguienteCita(pacienteElegido);
-		//campoCita.setText(fecha_cita.getFechaString());
+		// Recoge fecha de la cita
+		citaAvisos.setText(fecha_cita.getFechaString());
 		
 		
 		if (avisos.size() > 0) {
