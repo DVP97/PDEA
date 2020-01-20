@@ -197,7 +197,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	campoApellidosPac.setEditable(editable);
     	campoFechaNacPac.setEditable(editable);
     	campoTlfPac.setEditable(editable);
-    	campoCuidadoresPac.setEditable(editable);
+    	
     	
     	//el boton editar pasa a mostrar el texto "Confirmar cambios"
     	if(editable==true) {
@@ -229,32 +229,10 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	//campo telefono
     	int TlfPacNew = Integer.parseInt(campoTlfPac.getText());
     	p.setTelefono(TlfPacNew);
+
+    	p.setCuidadores(pacienteActual.getCuidadores());
     	
-    	
-    	//campo cuidadores
-    	String CuidadoresNew[] = campoCuidadoresPac.getText().split(",");
-    	List<String> CuidadoresPac = Arrays.asList(CuidadoresNew);
-    	
-    	ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
-		cuidadores = lectorJson.lectorJsonCuidadores();
-		
-		ArrayList<String> asdf = new ArrayList<>();
-		//comprobar que el nombre coincide con un cuidadore existente
-    	for(int i=0; i<CuidadoresPac.size(); i++) {
-    		String cuidadorComparado = CuidadoresPac.get(i);
-    		for(int a=0; a<cuidadores.size(); a++) {
-				if(cuidadorComparado.equalsIgnoreCase(cuidadores.get(a).getNombreCompleto())) {
-					cuidadorComparado = cuidadores.get(a).getDni();
-					asdf.add(cuidadorComparado);
-				}
-    		}
-    	}
-    	p.setCuidadores(asdf);
-    	
-    	escritorJson.modificarPaciente(p);
-		
-		
-	
+    	escritorJson.modificarPaciente(p);	
     }
     
     @FXML
@@ -285,8 +263,25 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	JFXTabPaneMensajeria.getSelectionModel().select(2);
     }
     @FXML
-    void pressBtnCitarPac(ActionEvent event) {
+    void pressBtnCitarPac(ActionEvent event) throws IOException {
+    	try {
+			System.out.println("Cargando selector paciente...");
+			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/citarPaciente.fxml"));
+			Stage Pacientepp = new Stage();
+			Pacientepp.setTitle("Nueva Cita -"+pacienteActual.getNombreCompleto());
+			Pacientepp.setScene(new Scene(PacienteVentana));
+			Pacientepp.show();
+			Pacientepp.setMinHeight(600);
+			Pacientepp.setMinWidth(450);
+			Pacientepp.setMaxHeight(600);
+			Pacientepp.setMaxWidth(450);
 
+		}	
+			
+		catch(ControladorExcepciones case1){
+			ControladorAvisos.setMensajeError("No se pudo abrir el submenu de Paciente.");
+			case1.abrirVentanaAvisos();
+		}
     }
     @FXML
     void pressBtnConsultarEjerciciosPac(ActionEvent event) throws IOException {
