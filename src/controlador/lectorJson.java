@@ -585,6 +585,7 @@ public class lectorJson {
 	}
 	
 	
+	
 	public static ArrayList<String> getNombresCompletosPacientesDe (Medico m){
 		ArrayList<String> nombresCompletos= new ArrayList<String>();
 		ArrayList<String> dnis = m.getPacientes();
