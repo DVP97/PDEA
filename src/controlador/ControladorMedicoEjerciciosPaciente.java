@@ -86,8 +86,8 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 	}
 
 	private Integer getIndiceComboBox(String ej) {
-		for (int i = 0; i < getNombresEjercicios().size(); i++) {
-			if (getNombresEjercicios().get(i).equalsIgnoreCase(ej)) {
+		for (int i = 0; i < getTodosNombres().size(); i++) {
+			if (getTodosNombres().get(i).equalsIgnoreCase(ej)) {
 				return i;
 			}
 		}
@@ -99,8 +99,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 		try {
 			System.out.println("Cargando submenu paciente...");
-			Parent medicoSubMenuPaciente = FXMLLoader
-					.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
+			Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
 			Stage subMenuPaciente = new Stage();
 			subMenuPaciente.setTitle("Menu " + pacienteActual.getNombreCompleto());
 			subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
@@ -126,9 +125,8 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 			Integer indice = getIndiceComboBox(ejercicio);
 
 			if (indice != null) {
-				Integer idEj = pacienteActual.getEjercicios().get(indice);
-
-				addEjercicio(idEj);
+				
+				addEjercicio(indice+1);
 
 			} else {
 				ControladorAvisos.setMensajeError("Por favor, seleccione un ejercicio.");
