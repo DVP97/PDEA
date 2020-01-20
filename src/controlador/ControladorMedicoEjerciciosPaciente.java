@@ -71,7 +71,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable{
     	setTitlePanesEjercicios();
     }
     
-    /*private TitledPane getExpanded() {
+    private TitledPane getExpanded() {
 		ObservableList<TitledPane> panes = accordionEjercicios.getPanes();
 
 		for (int i = 0; i < panes.size(); i++) {
@@ -80,7 +80,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable{
 			}
 		}
 		return null;
-	}*/
+	}
     
     /*private Integer getIndiceComboBox(String pac) {
 		for (int i = 0; i < getNombresEjercicios().size(); i++) {
@@ -90,30 +90,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable{
 		}
 		return null;
 	}*/
-    
-   /* @FXML
-    void pressBtnEliminar(ActionEvent event) {
-    	TitledPane tp = getExpanded();
-    	if (tp!= null) {
-    		Integer id = Integer.parseInt(tp.getId());
-    		Ejercicio ejercicio = lectorJson.getEjercicio(id);
-    		
-    		ArrayList<Ejercicio> ejPac = lectorJson.getEjercicios(pacienteActual);
-    		ArrayList<Integer> devuelvo = new ArrayList<Integer>();
-
-    		for (int i = 0 ; i < ejPac.size(); i++) {
-    			if (ejPac.get(i).getId() != ejercicio.getId()) {
-    				devuelvo.add(ejPac.get(i).getId());
-    			}
-    		}
-    		pacienteActual.setEjercicios(devuelvo);
-    		
-    		
-    	}else {
-    		ControladorAvisos.setMensajeError("Por favor, seleccione un mensaje.");
-			abrirVentanaAvisos();
-    	}
-    }*/
+   
     
     @FXML
     void pressBtnVolver(ActionEvent event) throws IOException {
@@ -138,8 +115,40 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable{
 		}
 		
 	}
+
+    @FXML
+    void pressBtnAnadir(ActionEvent event) {
+
+    }
+
+    @FXML
+    void pressBtnEliminar(ActionEvent event) {
+    	
+    	TitledPane tp = getExpanded();
+    	
+    	if (tp!= null) {
+    		Integer id = Integer.parseInt(tp.getId());
+    		Ejercicio ejercicio = lectorJson.getEjercicio(id);
+    		
+    		ArrayList<Ejercicio> ejPac = lectorJson.getEjercicios(pacienteActual);
+    		ArrayList<Integer> devuelvo = new ArrayList<Integer>();
+
+    		for (int i = 0 ; i < ejPac.size(); i++) {
+    			if (ejPac.get(i).getId() != ejercicio.getId()) {
+    				devuelvo.add(ejPac.get(i).getId());
+    			}
+    		}
+    		pacienteActual.setEjercicios(devuelvo);
+    		
+    		
+    	}else {
+    		ControladorAvisos.setMensajeError("Por favor, seleccione un mensaje.");
+			abrirVentanaAvisos();
+    	}
+
+    }
     
-    /*public void abrirVentanaAvisos() {
+    public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
 			Stage VentanaAvisos = new Stage();
@@ -154,7 +163,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable{
 		} catch (Exception a) {
 			System.out.println("Error");
 		}
-	}*/
+	}
     
     private ArrayList<String> getNombresEjercicios(){
     	ArrayList<Ejercicio> ejercicios = lectorJson.getEjercicios(pacienteActual);
@@ -186,7 +195,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable{
 				
 				
 				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;
-				//tp.setId(ejercicioActual.getId().toString());
+				tp.setId(ejercicioActual.getId().toString());
 				tpse.add(i, tp);
     		}
     		

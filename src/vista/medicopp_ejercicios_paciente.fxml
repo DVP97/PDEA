@@ -29,7 +29,7 @@
             <Image url="@../modelo/logo.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="80.0" layoutY="126.0" prefHeight="26.0" prefWidth="340.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="130.0">
+      <GridPane layoutX="80.0" layoutY="126.0" prefHeight="26.0" prefWidth="427.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="130.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -39,7 +39,7 @@
          </rowConstraints>
          <children>
             <Label styleClass="normalLabel" stylesheets="@application.css" text="Seleccionar ejercicio a añadir:" />
-            <JFXComboBox fx:id="comboPaciente" prefHeight="27.0" prefWidth="182.0" GridPane.columnIndex="1" />
+            <JFXComboBox fx:id="comboPaciente" prefHeight="28.0" prefWidth="225.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Label layoutX="418.0" layoutY="462.0" styleClass="smallLabel" stylesheets="@application.css" text="Médico" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
@@ -62,9 +62,9 @@
       <AnchorPane fx:id="anchorPaneEjercicios" layoutX="27.0" layoutY="188.0" prefHeight="252.0" prefWidth="659.0">
          <children>
             <Accordion fx:id="accordionEjercicios" layoutX="229.0" layoutY="86.0" prefHeight="252.0" prefWidth="479.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="0.0" />
-            <JFXButton fx:id="btnEliminarEjercicio" buttonType="RAISED" layoutX="555.0" layoutY="74.0" prefHeight="104.0" prefWidth="90.0" styleClass="btn" stylesheets="@application.css" text="Eliminar" />
+            <JFXButton fx:id="btnEliminarEjercicio" buttonType="RAISED" layoutX="555.0" layoutY="74.0" onAction="#pressBtnEliminar" prefHeight="104.0" prefWidth="90.0" styleClass="btn" stylesheets="@application.css" text="Eliminar" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="btnAnadirEjercicio" buttonType="RAISED" layoutX="486.0" layoutY="121.0" prefHeight="45.0" prefWidth="124.0" styleClass="btn" stylesheets="@application.css" text="Añadir" />
+      <JFXButton fx:id="btnAnadirEjercicio" buttonType="RAISED" layoutX="519.0" layoutY="121.0" onAction="#pressBtnAnadir" prefHeight="45.0" prefWidth="124.0" styleClass="btn" stylesheets="@application.css" text="Añadir" />
    </children>
 </AnchorPane>
