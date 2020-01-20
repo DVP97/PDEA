@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import controlador.lectorJson;
+
 
 
 public class Cita {
@@ -12,12 +14,16 @@ public class Cita {
 		private Date fecha_cita;
 		private String nota;
 		private String dni;
+		private String nombrePaciente;
+		private String fechaString;
 		 
 		
 		public Cita(String dni, Date fecha_cita, String nota) {
 			this.dni = dni;
 			this.fecha_cita = fecha_cita;
 			this.nota = nota;
+			this.nombrePaciente = lectorJson.getPaciente(dni).getNombreCompleto();
+			this.fechaString = getFechaString();
 			
 		}
 		
@@ -25,6 +31,8 @@ public class Cita {
 			this.dni = null;
 			this.fecha_cita = new Date();;
 			this.nota = null;
+			this.nombrePaciente = null;
+			this.fechaString = null;
 		}
 		
 	//GETTERS
@@ -37,6 +45,9 @@ public class Cita {
 		}
 		public String getNota() {
 			return nota;
+		}
+		public String getNombrePaciente() {
+			return nombrePaciente;
 		}
 		
 		@SuppressWarnings("deprecation")
@@ -66,5 +77,14 @@ public class Cita {
 		public void setNota(String nota) {
 			this.nota = nota;
 		}
-
+		public void setNombrePaciente() {
+			this.nombrePaciente = lectorJson.getPaciente(dni).getNombreCompleto();
+		}
+		public void setNombrePaciente(String nombre) {
+			this.nombrePaciente = nombre;
+		}
+		public void setFechaString () {
+			this.fechaString = getFechaString();
+		}
+	
 }

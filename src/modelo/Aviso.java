@@ -46,6 +46,5 @@ public class Aviso {
 	}
 	public void setNombrePaciente() {
 		this.nombrePaciente = lectorJson.getPaciente(datoSensor.getDni()).getNombreCompleto();
-		
 	}
 }

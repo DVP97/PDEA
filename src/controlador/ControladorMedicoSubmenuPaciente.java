@@ -14,6 +14,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 
+import controlador.ControladorAvisosPaciente.sortByDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -161,7 +162,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	
     	setAvisos();
     	
-    	Cita proximaCita = lectorJson.getCita(pacienteActual.getDni());
+    	Cita proximaCita = seleccionarSiguienteCita(pacienteActual);
     	System.out.println(proximaCita.getFechaString());
     	notaCita.setText(proximaCita.getNota());
     	fc.setText(proximaCita.getFechaString());
@@ -567,6 +568,19 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		avisos.addAll(lectorJson.crearAvisosSensor3(pacienteActual.getDni()));
 
 		return avisos;
+	}
+    
+    public class sortByDateC implements Comparator<Cita>{
+		@Override
+		public int compare (Cita c1, Cita c2) {
+			return c1.getFecha().compareTo(c2.getFecha());
+		}
+	}
+	
+	public Cita seleccionarSiguienteCita(Paciente p) {
+		ArrayList<Cita> citas = lectorJson.getCitasPaciente(p.getDni());
+		Collections.sort(citas, new sortByDateC());
+		return citas.get(0);
 	}
 
 }

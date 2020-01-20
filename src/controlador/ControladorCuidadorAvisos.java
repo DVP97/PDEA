@@ -2,12 +2,16 @@ package controlador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
+import controlador.ControladorAvisosPaciente.sortByDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,7 +62,7 @@ public class ControladorCuidadorAvisos implements Initializable {
 		campoPaciente.setText(pacienteElegido.getNombreCompleto());
 
 		// Recoge fecha de la cita
-		fecha_cita = lectorJson.getCita(pacienteElegido.getDni());
+		fecha_cita = seleccionarSiguienteCita(pacienteElegido);
 
 	if (avisos.size() > 0) {
 			TableView<Aviso> table = new TableView<>();
@@ -149,5 +153,17 @@ public class ControladorCuidadorAvisos implements Initializable {
 	// SETTERS
 	public static void setPacienteElegido(Paciente PacienteElegido) {
 		pacienteElegido = PacienteElegido;
+	}
+	public class sortByDate implements Comparator<Cita>{
+		@Override
+		public int compare (Cita c1, Cita c2) {
+			return c1.getFecha().compareTo(c2.getFecha());
+		}
+	}
+	
+	public Cita seleccionarSiguienteCita(Paciente p) {
+		ArrayList<Cita> citas = lectorJson.getCitasPaciente(p.getDni());
+		Collections.sort(citas, new sortByDate());
+		return citas.get(citas.size());
 	}
 }

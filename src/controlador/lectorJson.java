@@ -505,16 +505,17 @@ public class lectorJson {
 		return null;
 	}
 	//
-	public static Cita getCita (String dni){
+	public static ArrayList<Cita> getCitasPaciente(String dni){
+		ArrayList<Cita> citas = new ArrayList<Cita>();
 		Cita c = new Cita();
-		ArrayList<Cita> pac = lectorJsonCitas();
-		for (int i = 0; i < pac.size() ; i++) {
-			c = pac.get(i);
+		ArrayList<Cita> citasGeneral = lectorJsonCitas();
+		for (int i = 0 ; i < citasGeneral.size() ; i++) {
+			c = citasGeneral.get(i);
 			if (c.getDni().equals(dni)) {
-				return c;
+				citas.add(c);
 		    }
-	    }
-		return null;
+		}
+		return citas;		
 	}
 	
 	// El dni que metes es el del emisor

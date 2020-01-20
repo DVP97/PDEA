@@ -36,8 +36,8 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTimePicker;
-import com.jfoenix.controls.JFXTreeTableView;
 
+import controlador.ControladorMedicoSubmenuPaciente.sortByDateC;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Accordion;
@@ -103,6 +103,9 @@ public class ControladorMedicopp implements Initializable {
 	private AnchorPane anchorPaneAvisos;
 
 	@FXML
+	private AnchorPane anchorPaneCitas;
+	
+	@FXML
 	private Accordion AccordionMensajesEnv;
 
 	@FXML
@@ -129,8 +132,6 @@ public class ControladorMedicopp implements Initializable {
 	@FXML
 	private JFXComboBox<String> comboBoxElegirDestinatario;
 
-	@FXML
-	private JFXTreeTableView<?> tableCitas;
 
 	private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(getNombrePacientes());
 
@@ -149,6 +150,8 @@ public class ControladorMedicopp implements Initializable {
 		campoMedico.setText("Hola " + ControladorMedicopp.getMedicoActual().getNombre() + ",");
 
 		setAvisos();
+		setCitas();
+		
 		setTitledPanesEnviados();
 		setTitledPanesRecibidos();
 
@@ -166,6 +169,7 @@ public class ControladorMedicopp implements Initializable {
 		Paciente p = coincidencia(pacienteBuscado);
 		// asociar mediante dni del paciente
 		nCita.setDni(p.getDni());
+		nCita.setNombrePaciente();
 		// fecha de la cita
 		String FechaN[] = campoFecha.getValue().toString().split("-");
 		List<String> Fecha = Arrays.asList(FechaN);
@@ -185,6 +189,7 @@ public class ControladorMedicopp implements Initializable {
 
 		// aniadir comentario del medico
 		nCita.setNota(notaCita.getText());
+		nCita.setFechaString();
 
 		// aniadir nCita al Arraylist
 		addCita.add(nCita);
@@ -200,6 +205,10 @@ public class ControladorMedicopp implements Initializable {
 		notaCita.clear();
 		campoFecha.setValue(null);
 		campoHora.setValue(null);
+		
+		anchorPaneCitas.getChildren().clear();
+		
+		setCitas();
 	}
 
 	@FXML
@@ -577,5 +586,57 @@ public class ControladorMedicopp implements Initializable {
 			avisos.addAll(lectorJson.crearAvisosSensor3(pacientes.get(i)));
 		}
 		return avisos;
+	}
+	public ObservableList<Cita> getCitas() {
+		ObservableList<Cita> citas = FXCollections.observableArrayList();
+		ArrayList<String> pacientes = medicoActual.getPacientes();
+
+		for (int i = 0; i < pacientes.size(); i++) {
+			citas.addAll(lectorJson.getCitasPaciente(pacientes.get(i)));
+			Collections.sort(citas, new sortByDateC());
+
+		}
+		return citas;
+	}
+	  public class sortByDateC implements Comparator<Cita>{
+			@Override
+			public int compare (Cita c1, Cita c2) {
+				return c1.getFecha().compareTo(c2.getFecha());
+			}
+		}
+	
+	public void setCitas() {
+		ObservableList<Cita> citas = getCitas();
+		if (citas.size() > 0) {
+			// Primera columna
+			TableColumn<Cita, String> columnaNombrePaciente = new TableColumn<>("Paciente");
+			columnaNombrePaciente.setMinWidth(200);
+			columnaNombrePaciente.setCellValueFactory(new PropertyValueFactory<>("nombrePaciente"));
+
+			// Segunda columna
+			TableColumn<Cita, String> columnaConcepto = new TableColumn<>("Fecha");
+			columnaConcepto.setMinWidth(200);
+			columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("fechaString"));
+
+			TableView<Cita> t;
+
+			t = new TableView<>();
+			t.setLayoutX(5);
+			t.setLayoutY(60);
+			t.setItems(citas);
+			t.getColumns().addAll(columnaNombrePaciente, columnaConcepto);
+			anchorPaneCitas.getChildren().add(t);
+			anchorPaneCitas.setTopAnchor(t, 0.0);
+
+		} else {
+			Label tableEmpty = new Label("Todos los datos proporcionados por los sensores estan bien.");
+
+			tableEmpty.setFont(new Font("Arial", 10));
+			tableEmpty.setLayoutY(60);
+			tableEmpty.setLayoutX(5);
+			// anchorPaneAvisos.getChildren().add(tableEmpty);
+
+			AnchorPane.setTopAnchor(tableEmpty, Double.valueOf(40));
+		}
 	}
 }
