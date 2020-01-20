@@ -2,6 +2,8 @@
 package controlador;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -9,12 +11,14 @@ import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TitledPane;
 import javafx.stage.Stage;
+import modelo.Paciente;
 
-public class ControladorMedicoEjerciciosPaciente {
+public class ControladorMedicoEjerciciosPaciente implements Initializable{
 
     @FXML
     private JFXComboBox<?> comboPaciente;
@@ -30,7 +34,14 @@ public class ControladorMedicoEjerciciosPaciente {
 
     @FXML
     private JFXButton buttonVolver;
-
+    
+    private static Paciente pacienteActual = new Paciente();
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+    	pacienteActual = ControladorMedicoSubmenuPaciente.getPacienteActual();
+    }
+    
     @FXML
     void pressBtnVolver(ActionEvent event) throws IOException {
 		
@@ -38,7 +49,7 @@ public class ControladorMedicoEjerciciosPaciente {
 			System.out.println("Cargando submenu paciente...");
 			Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
 			Stage subMenuPaciente = new Stage();
-			subMenuPaciente.setTitle("Menu Medico - Seleccion Paciente");
+			subMenuPaciente.setTitle("Menu " +pacienteActual.getNombreCompleto());
 			subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
 			subMenuPaciente.show();
 			subMenuPaciente.setMinHeight(600);

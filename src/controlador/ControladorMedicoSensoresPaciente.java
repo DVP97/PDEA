@@ -73,7 +73,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
 			System.out.println("Cargando submenu paciente...");
 			Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
 			Stage subMenuPaciente = new Stage();
-			subMenuPaciente.setTitle("Menu Medico - Seleccion Paciente");
+			subMenuPaciente.setTitle("Menu " +pacienteActual.getNombreCompleto());
 			subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
 			subMenuPaciente.show();
 			subMenuPaciente.setMinHeight(600);
