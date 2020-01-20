@@ -66,6 +66,7 @@ public class controladorCitarPaciente implements Initializable{
 		System.out.println(pacienteActual.getNombreCompleto());
 		nombrePaciente.setText(pacienteActual.getNombreCompleto());
 		campoMedico.setText("Hola " + medicoActual.getNombre());
+		medicoActual = ControladorMedicopp.getMedicoActual();
 	}
 
     @FXML

@@ -67,8 +67,7 @@ public class ControladorEjercicios implements Initializable {
 		nombrePaciente.setText("Hola " + p.getNombre() + ",");
 
 		this.ejercicios = lectorJson.getEjercicios(p);
-		pantallaEj.setImage(
-				new Image(this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
+		pantallaEj.setImage(new Image(this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
 
 		this.interval = this.ejercicios.get(contador).getDuracion();
 		numeroEjercicio.setText(" " + (contador + 1) + " de " + this.ejercicios.size());

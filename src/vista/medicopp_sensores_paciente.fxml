@@ -42,10 +42,10 @@
    <left>
       <AnchorPane prefHeight="200.0" prefWidth="250.0" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paciente:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="25.0" />
-            <Text fx:id="campoPaciente" layoutX="61.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Nombre Paciente&gt;" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="25.0" />
+            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Paciente:" wrappingWidth="61.947914123535156" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="25.0" />
+            <Text fx:id="campoPaciente" layoutX="64.0" layoutY="37.36979103088379" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Nombre Paciente&gt;" wrappingWidth="180.61458587646484" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="25.0" />
             <Separator layoutX="50.0" layoutY="23.0" prefHeight="5.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
-            <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datos tomados por los sensores" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+            <Text layoutX="3.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datos tomados por los sensores" wrappingWidth="229.46743774414062" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
             <JFXButton fx:id="buttonVolver" buttonType="RAISED" layoutX="14.0" layoutY="331.0" onAction="#pressBtnVolver" prefWidth="100.0" styleClass="btn" stylesheets="@application.css" text="Volver" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0">
                <ripplerFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">

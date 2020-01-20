@@ -125,7 +125,7 @@
                                              <content>
                                                 <AnchorPane fx:id="anchorPaneRecibidos">
                                                    <children>
-                                                      <JFXButton fx:id="btnResponder" buttonType="RAISED" layoutX="598.0" layoutY="50.0" onAction="#pressBtnResponder" prefHeight="80.0" prefWidth="80.0" styleClass="btn" stylesheets="@application.css" text="Responder" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                                      <JFXButton fx:id="btnResponder" buttonType="RAISED" layoutX="598.0" layoutY="50.0" onAction="#pressBtnResponder" prefHeight="80.0" prefWidth="90.0" styleClass="btn" stylesheets="@application.css" text="Responder" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                                                          <ripplerFill>
                                                             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                                                <stops>
