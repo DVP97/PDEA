@@ -561,7 +561,7 @@ public class ControladorMedicopp implements Initializable {
 			table.setLayoutX(5);
 			table.setLayoutY(60);
 			table.setItems(avisos);
-			table.getColumns().addAll(columnaConcepto,columnaSensor);
+			table.getColumns().addAll(columnaConcepto,columnaSensor, columnaNombrePaciente);
 			anchorPaneAvisos.getChildren().add(table);
 			anchorPaneAvisos.setLeftAnchor(table, 10.0);
 			anchorPaneAvisos.setRightAnchor(table, 10.0);
