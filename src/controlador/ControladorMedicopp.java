@@ -199,7 +199,7 @@ public class ControladorMedicopp implements Initializable {
 		escritorJson.escribirEnJsonCitas(addCita);
 
 		// aviso al usuario de que se ha creado la cita correctamente
-		ControladorAvisos.setMensajeError("Se ha a�adido correctamente una nueva cita.");
+		ControladorAvisos.setMensajeError("Se ha creado correctamente una nueva cita.");
 		abrirVentanaAvisos();
 		// limpiar los campos del tab de Citas
 		inputBuscarPaciente.setValue(null);

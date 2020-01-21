@@ -169,7 +169,7 @@ public class ControladorEjercicios implements Initializable {
 		}
 		// Acaba y pasa al siguiente ejercicio
 		timeline.setOnFinished(e -> siguienteEjercicio());
-		System.out.println("EstÃ¡ terminado");
+		System.out.println("Está terminado");
 
 	}
 
@@ -183,8 +183,8 @@ public class ControladorEjercicios implements Initializable {
 		} else {
 
 			if (contador == ejercicios.size() - 1) {
-				System.out.println("EstÃ¡ usted en el Ãºltimo ejercicio");
-				ControladorAvisos.setMensajeError("EstÃ¡ usted en el Ãºltimo ejercicio, Â¡ha terminado!");
+				System.out.println("Está usted en el Último ejercicio");
+				ControladorAvisos.setMensajeError("Está usted en el Último ejercicio, ¡ha terminado!");
 				abrirVentanaAvisos();
 			} else {
 				this.contador = contador + 1;
@@ -202,8 +202,8 @@ public class ControladorEjercicios implements Initializable {
 	void ejercicioAnterior() {
 
 		if (contador == 0) {
-			System.out.println("EstÃ¡ usted en el primer ejercicio");
-			ControladorAvisos.setMensajeError("EstÃ¡ usted en el primer ejercicio.");
+			System.out.println("Está usted en el primer ejercicio");
+			ControladorAvisos.setMensajeError("Está usted en el primer ejercicio.");
 			abrirVentanaAvisos();
 		} else {
 

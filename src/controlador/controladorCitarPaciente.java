@@ -63,10 +63,10 @@ public class controladorCitarPaciente implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 		pacienteActual = ControladorMedicoSubmenuPaciente.getPacienteActual();
+		medicoActual = ControladorMedicopp.getMedicoActual();
 		System.out.println(pacienteActual.getNombreCompleto());
 		nombrePaciente.setText(pacienteActual.getNombreCompleto());
-		campoMedico.setText("Hola " + medicoActual.getNombre());
-		medicoActual = ControladorMedicopp.getMedicoActual();
+		campoMedico.setText("Hola " + medicoActual.getNombre()+",");	
 	}
 
     @FXML
@@ -106,7 +106,7 @@ public class controladorCitarPaciente implements Initializable{
 		escritorJson.escribirEnJsonCitas(addCita);
 
 		// aviso al usuario de que se ha creado la cita correctamente
-		ControladorAvisos.setMensajeError("Se ha a�adido correctamente una nueva cita.");
+		ControladorAvisos.setMensajeError("Se ha creado correctamente una nueva cita.");
 		abrirVentanaAvisos();
 		// limpiar los campos del tab de Citas
 		nombrePaciente.setText(null);

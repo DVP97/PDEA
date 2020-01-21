@@ -101,7 +101,7 @@ public class ControladorRegistro implements Initializable {
 				System.out.println("Usuario seleccionado: " +comboRol.getValue());
 				if ( pswrd.length()<4 | !pswrd.equals(pswrdSecond) ){
 		    		try {
-		    			ControladorAvisos.setMensajeError("Ambas contrasenas deben coincidir y tener minimos de 4 caracteres.");
+		    			ControladorAvisos.setMensajeError("Ambas contraseñas deben coincidir y tener minimos de 4 caracteres.");
 		    			abrirVentanaAvisos();
 	
 		    		}

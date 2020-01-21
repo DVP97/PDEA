@@ -112,8 +112,8 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 	void siguienteEjercicio() {
 
 		if (contador == ejercicios.size() - 1) {
-			System.out.println("Este es en el Ãºltimo ejercicio.");
-			ControladorAvisos.setMensajeError("Este es en el Ãºltimo ejercicio");
+			System.out.println("Este es en el Último ejercicio.");
+			ControladorAvisos.setMensajeError("Este es en el Último ejercicio");
 			abrirVentanaAvisos();
 		} else {
 

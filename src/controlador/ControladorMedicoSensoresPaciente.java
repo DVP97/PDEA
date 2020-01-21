@@ -96,7 +96,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	ArrayList<String> arrayListFechas = lectorJson.getFechaSensor1(pacienteActual.getDni());
     	
     	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas));
-    	NumberAxis yAxis = new NumberAxis(0,100,5);
+    	NumberAxis yAxis = new NumberAxis(0,120,5);
     	
     	LineChart<String,Number> Frecuencias = new LineChart(xAxis,yAxis);
 
