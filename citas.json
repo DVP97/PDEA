@@ -4,7 +4,7 @@
     "nota": "Revisión de la tensión",
     "dni": "39042568E",
     "nombrePaciente": "Miguel Hernandez Rodriguez",
-    "fechaString": "12:5 - 1/4/2020"
+    "fechaString": "12:05 - 1/4/2020"
   },
   {
     "fecha_cita": "Apr 2, 2020 12:30:00 PM",
@@ -14,59 +14,45 @@
     "fechaString": "12:30 - 2/4/2020"
   },
   {
-    "fecha_cita": "Apr 4, 2020 1:00:00 AM",
+    "fecha_cita": "Apr 4, 2020 1:00:00 PM",
     "nota": "Revisión anual",
     "dni": "07813720E",
     "nombrePaciente": "Luis Torres Rodriguez",
-    "fechaString": "1:0 - 4/4/2020"
+    "fechaString": "13:0 - 4/4/2020"
   },
   {
-    "fecha_cita": "Apr 5, 2020 1:30:00 AM",
+    "fecha_cita": "Apr 5, 2020 1:30:00 PM",
     "nota": "Revisión anual",
     "dni": "07522677K",
     "nombrePaciente": "Andres Lara Martinez",
-    "fechaString": "1:30 - 5/4/2020"
+    "fechaString": "13:30 - 5/4/2020"
   },
   {
-    "fecha_cita": "Apr 6, 2020 2:00:00 AM",
+    "fecha_cita": "Apr 6, 2020 2:00:00 PM",
     "nota": "Revisión anual",
     "dni": "60186612M",
     "nombrePaciente": "Laura Fernandez Arias",
-    "fechaString": "2:0 6/4/2020"
+    "fechaString": "14:0 6/4/2020"
   },
   {
     "fecha_cita": "Apr 6, 2020 2:30:00 PM",
     "nota": "Revisión anual",
     "dni": "38542880D",
     "nombrePaciente": "Maria Vega Rodriguez",
-    "fechaString": "2:30 - 6/4/2020"
+    "fechaString": "14:30 - 6/4/2020"
   },
   {
-    "fecha_cita": "Apr 8, 2020 3:00:00 AM",
+    "fecha_cita": "Apr 8, 2020 3:00:00 PM",
     "nota": "Revisión anual",
     "dni": "80777450R",
     "nombrePaciente": "Marcos Perez Parada",
-    "fechaString": "3:0 - 8/4/2020"
+    "fechaString": "15:0 - 8/4/2020"
   },
   {
-    "fecha_cita": "Apr 6, 2020 3:30:00 AM",
+    "fecha_cita": "Apr 6, 2020 3:30:00 PM",
     "nota": "Revisión anual",
     "dni": "66151022D",
     "nombrePaciente": "Luisa Martinez Rodriguez",
-    "fechaString": "3:30 - 6/4/2020"
-  },
-  {
-    "fecha_cita": "Apr 24, 2020 4:00:00 AM",
-    "nota": "Revisión anual",
-    "dni": "23733239E",
-    "nombrePaciente": "Diego Cabanas Rodriguez",
-    "fechaString": "4:0 - 24/4/2020"
-  },
-  {
-    "fecha_cita": "Jan 20, 2020 6:09:54 PM",
-    "nota": "dsagfsrsd",
-    "dni": "07813720E",
-    "nombrePaciente": "Luis Torres Rodriguez",
-    "fechaString": "18:9  -  20/1/2020"
+    "fechaString": "15:30 - 6/4/2020"
   }
 ]

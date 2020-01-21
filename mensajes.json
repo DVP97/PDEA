@@ -10,83 +10,43 @@
     "fecha": "Nov 26, 2019 6:18:21 PM"
   },
   {
-    "asunto": "Hola2",
+    "asunto": "Dolor en el pecho",
     "emisor": "07447768T",
     "receptor": "62544518C",
-    "mensaje": "segundo",
+    "mensaje": "Buenos dias dr. Cuenca, llevo unos dás con dolor de pecho y no se porque puede ser.",
     "leido": false,
     "contestado": false,
     "borrado": false,
     "fecha": "Nov 26, 2019 6:18:21 PM"
   },
   {
-    "asunto": "Hola",
+    "asunto": "Ejercicios",
     "emisor": "07447768T",
     "receptor": "62544518C",
-    "mensaje": "primero",
+    "mensaje": "Buenos dias dr. Cuenca, el ejercicio 3 me resulta demasiado complejo.",
     "leido": false,
     "contestado": false,
     "borrado": false,
     "fecha": "Sep 27, 2019 1:31:22 PM"
   },
   {
-    "asunto": "Hola4",
-    "emisor": "07447768T",
-    "receptor": "62544518C",
-    "mensaje": "probando\nel tamanho\ndel accordion\nal leer mensajes",
-    "leido": false,
-    "contestado": false,
-    "borrado": false,
-    "fecha": "Nov 27, 2019 1:54:15 PM"
-  },
-  {
-    "asunto": "Hola5",
+    "asunto": "Cita",
     "emisor": "62544518C",
     "receptor": "07522677K",
-    "mensaje": "Probando envio de mensajes de medico a paciente",
+    "mensaje": "Buenos dias Andres, podría venir a mi consulta mañana día 22 de enero a las 12:00? \nCuento con su respuesta.",
     "leido": false,
     "contestado": false,
     "borrado": false,
     "fecha": "Nov 30, 2019 7:55:22 PM"
   },
   {
-    "asunto": "Hola6",
-    "emisor": "62544518C",
-    "receptor": "07522677K",
-    "mensaje": "Hola probando",
-    "leido": false,
-    "contestado": false,
-    "borrado": false,
-    "fecha": "Nov 30, 2019 10:40:05 PM"
-  },
-  {
-    "asunto": "efwert",
+    "asunto": "Ejercicios",
     "emisor": "07447768T",
     "receptor": "62544518C",
-    "mensaje": "fgsdwdfs",
+    "mensaje": "No se preocupe Sofia, le cambiare ese ejercicio por otro un poco mas sencillo.",
     "leido": false,
     "contestado": false,
     "borrado": false,
     "fecha": "Dec 10, 2019 1:17:27 PM"
-  },
-  {
-    "asunto": "holi",
-    "emisor": "07447768T",
-    "receptor": "62544518C",
-    "mensaje": "holi",
-    "leido": false,
-    "contestado": false,
-    "borrado": false,
-    "fecha": "Dec 10, 2019 6:22:51 PM"
-  },
-  {
-    "asunto": "Probando asunto submenu paciente",
-    "emisor": "62544518C",
-    "receptor": "07447768T",
-    "mensaje": "Hello World!",
-    "leido": false,
-    "contestado": false,
-    "borrado": false,
-    "fecha": "Dec 11, 2019 11:56:56 AM"
   }
 ]
