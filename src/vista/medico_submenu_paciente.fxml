@@ -130,7 +130,7 @@
                                                       <Separator layoutX="347.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                    </children>
                                                 </AnchorPane>
-                                                <GridPane layoutX="458.0" layoutY="216.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="60.0">
+                                                <GridPane layoutX="459.0" layoutY="57.0" prefHeight="377.0" prefWidth="206.0" AnchorPane.bottomAnchor="63.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="57.0">
                                                    <columnConstraints>
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                                                    </columnConstraints>
@@ -141,7 +141,7 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <JFXButton fx:id="buttonEditar" buttonType="RAISED" onAction="#pressBtnEditar" prefHeight="25.0" prefWidth="180.0" styleClass="btn" stylesheets="@application.css" text="Editar Datos Paciente" GridPane.rowIndex="2">
+                                                      <JFXButton fx:id="buttonEditar" buttonType="RAISED" onAction="#pressBtnEditar" prefHeight="25.0" prefWidth="211.0" styleClass="btn" stylesheets="@application.css" text="Editar Datos Paciente" GridPane.rowIndex="2">
                                                          <ripplerFill>
                                                             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                                                <stops>
@@ -151,7 +151,7 @@
                                                             </RadialGradient>
                                                          </ripplerFill>
                                                       </JFXButton>
-                                                      <JFXButton fx:id="buttonConsultarSensores" buttonType="RAISED" onAction="#pressBtnConsultarSensores" prefHeight="25.0" prefWidth="180.0" styleClass="btn" stylesheets="@application.css" text="Consultar Sensores">
+                                                      <JFXButton fx:id="buttonConsultarSensores" buttonType="RAISED" onAction="#pressBtnConsultarSensores" prefHeight="25.0" prefWidth="211.0" styleClass="btn" stylesheets="@application.css" text="Consultar Sensores">
                                                          <ripplerFill>
                                                             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                                                <stops>
@@ -161,7 +161,7 @@
                                                             </RadialGradient>
                                                          </ripplerFill>
                                                       </JFXButton>
-                                                      <JFXButton fx:id="buttonCitarPac" buttonType="RAISED" onAction="#pressBtnCitarPac" prefHeight="25.0" prefWidth="180.0" styleClass="btn" stylesheets="@application.css" text="Citar Paciente" GridPane.rowIndex="3">
+                                                      <JFXButton fx:id="buttonCitarPac" buttonType="RAISED" onAction="#pressBtnCitarPac" prefHeight="25.0" prefWidth="216.0" styleClass="btn" stylesheets="@application.css" text="Citar Paciente" GridPane.rowIndex="3">
                                                          <ripplerFill>
                                                             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                                                <stops>
@@ -171,7 +171,7 @@
                                                             </RadialGradient>
                                                          </ripplerFill>
                                                       </JFXButton>
-                                                      <JFXButton fx:id="buttonConsultarEjerciciosPac" buttonType="RAISED" onAction="#pressBtnConsultarEjerciciosPac" prefHeight="25.0" prefWidth="180.0" styleClass="btn" stylesheets="@application.css" text="Consultar Ejercicios Paciente" GridPane.rowIndex="1">
+                                                      <JFXButton fx:id="buttonConsultarEjerciciosPac" buttonType="RAISED" onAction="#pressBtnConsultarEjerciciosPac" prefHeight="25.0" prefWidth="209.0" styleClass="btn" stylesheets="@application.css" text="Consultar Ejercicios Paciente" GridPane.rowIndex="1">
                                                          <ripplerFill>
                                                             <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                                                <stops>

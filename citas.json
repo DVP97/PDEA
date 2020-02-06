@@ -54,5 +54,19 @@
     "dni": "66151022D",
     "nombrePaciente": "Luisa Martinez Rodriguez",
     "fechaString": "15:30 - 6/4/2020"
+  },
+  {
+    "fecha_cita": "Feb 6, 2020 6:33:52 PM",
+    "nota": "Revisión mensual",
+    "dni": "07813720E",
+    "nombrePaciente": "Luis Torres Rodriguez",
+    "fechaString": "18:33  -  6/2/2020"
+  },
+  {
+    "fecha_cita": "Feb 6, 2020 6:37:28 PM",
+    "nota": "Revisión mensual",
+    "dni": "07813720E",
+    "nombrePaciente": "Luis Torres Rodriguez",
+    "fechaString": "18:37  -  6/2/2020"
   }
 ]

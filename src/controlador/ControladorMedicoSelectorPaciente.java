@@ -119,9 +119,10 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     	
     }
     private void pressBtnBuscar() throws IOException {
+    	
     	String pacienteBuscado = inputBuscarPaciente.getValue();
-
     	Paciente p = coincidencia(pacienteBuscado);
+    	
     	if (coincidencia(pacienteBuscado)!= null) {
     		try {
 	    		System.out.println("coincidencia encontrada.");

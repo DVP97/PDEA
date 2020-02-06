@@ -9,6 +9,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import modelo.Cuidador;
@@ -28,7 +29,7 @@ public class ControladorCuidadorpp implements Initializable {
 	private Label campoCuidador;
 
 	@FXML
-	private JFXComboBox<String> comboPaciente;
+	private JFXComboBox<String> buscarPacCB;
 
 	@FXML
 	private JFXButton btnEjercicios;
@@ -42,24 +43,79 @@ public class ControladorCuidadorpp implements Initializable {
 
 	private static Cuidador cuidadorActual = ControladorCuidadorpp.getCuidadorActual();
 
-	private static Paciente pacienteElegido = new Paciente();
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 
-		Cuidador c = ControladorCuidadorpp.getCuidadorActual();
-		campoCuidador.setText("Hola " + c.getNombre() + ",");
-		comboPaciente.setItems(listaPacientesComboBox);
-		comboPaciente.arm();
+		campoCuidador.setText("Hola " +ControladorCuidadorpp.getCuidadorActual().getNombre()+ ",");
+		buscarPacCB.setItems(listaPacientesComboBox);
+		buscarPacCB.arm();
 	}
+	
+	@FXML
+	void comprobarInput(KeyEvent event) throws Exception {
+		//buscarPacCB.arm();
+		// comparar el nombre introducido con los pacientes asignados al cuidador, para
+		// sugerir posibles coincidencias de forma dinamica
+
+		ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDeCuidador(cuidadorActual);
+		ArrayList<String> sugerencias = new ArrayList<String>();
+
+		boolean sugerenciasEncontradas;
+		if (buscarPacCB.getValue() != null) {
+			for (int i = 0; i < cuidadorActual.getPacientes().size(); i++) {
+				// bucle que va comparando el input con el nombre de cada paciente
+				int longitud = 0;
+
+				for (int a = 0; a < buscarPacCB.getValue().length(); a++) {
+					// bucle que va comparando los char del input con los char del nombre de
+					// paciente
+					if (buscarPacCB.getValue().toLowerCase().charAt(a) == nombresPacientes.get(i).toLowerCase().charAt(a)) {
+						longitud++;
+					} else {
+						break;
+					}
+				}
+				if (longitud == buscarPacCB.getValue().length()) {
+					// add nombre en posicion i a un nuevo arraylist que se pasa al comboBox con la
+					// observableList listaSugerencias
+					sugerencias.add(nombresPacientes.get(i));
+					sugerenciasEncontradas = true;
+				}
+			}
+
+			if (sugerenciasEncontradas = true) {
+				buscarPacCB.getItems().clear();
+				ObservableList<String> listaSugerencias = FXCollections.observableArrayList(sugerencias);
+				buscarPacCB.setItems(listaSugerencias);
+			}
+		} else {
+			// por defecto se muestra la lista entera de pacientes
+			ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
+			buscarPacCB.setItems(listaPacientesComboBox);
+		}
+		buscarPacCB.autosize();
+		buscarPacCB.show();
+		buscarPacCB.arm();
+	}
+
 
 	@FXML
 	void pressBtnEjercicios(ActionEvent event) throws IOException {
-    	String pacienteBuscado = comboPaciente.getValue();
-
-    	pacienteElegido = coincidencia(pacienteBuscado);
+    	try {
+    		this.pressBtnE();
+    	}catch(ControladorExcepciones e) {
+    		ControladorAvisos.setMensajeError("El usuario seleccionado no es correcto.");
+    		e.abrirVentanaAvisos();
+    	}
+	}	
+	private void pressBtnE() throws IOException  {
+    	
+		String pacienteBuscado = buscarPacCB.getValue();
+    	Paciente pacienteElegido = coincidencia(pacienteBuscado);
 		
-    	if (pacienteElegido != null) {
+    	if (coincidencia(pacienteBuscado) != null) {
 			try {
 				System.out.println("Cargando Rutina ejercicios pacientes...");
 				ControladorCuidadorEjerciciosPaciente.setPacienteElegido(pacienteElegido);
@@ -71,6 +127,7 @@ public class ControladorCuidadorpp implements Initializable {
 				CuidadorRutinaPaciente.setMinHeight(600);
 				CuidadorRutinaPaciente.setMinWidth(800);
 
+				System.out.println("Cerrando ventana principal de Cuidador...");
 				Stage CerrarVentanaCuidador = (Stage) btnEjercicios.getScene().getWindow();
 				CerrarVentanaCuidador.close();
 			}
@@ -80,86 +137,53 @@ public class ControladorCuidadorpp implements Initializable {
 				case1.abrirVentanaAvisos();
 			}
 		} else {
-			System.out.println("Paciente no seleccionado.");
+			ControladorAvisos.setMensajeError("No se ha encontrado el paciente introducido.");
+	       	abrirVentanaAvisos();
 		}
+		
 	}
 	
- 
-
 	@FXML
-	void pressBtnAvisos(ActionEvent event) throws IOException {
-    	String pacienteBuscado = comboPaciente.getValue();
-
-    	pacienteElegido = coincidencia(pacienteBuscado);
-		
-    	if (pacienteElegido != null) {
-			try {
-				System.out.println("Cargando ventana de Avisos...");
-				ControladorCuidadorAvisos.setPacienteElegido(pacienteElegido);
-				Parent Avisos = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp_avisos_de_paciente.fxml"));
-				Stage AvisosPaciente = new Stage();
-				AvisosPaciente.setTitle("Menu Cuidador - Avisos de " + pacienteElegido.getNombre());
-				AvisosPaciente.setScene(new Scene(Avisos));
-				AvisosPaciente.show();
-				AvisosPaciente.setMinHeight(800);
-				AvisosPaciente.setMinWidth(1200);
-
-				Stage CambioVentanaAvisos = (Stage) btnAvisos.getScene().getWindow();
-				CambioVentanaAvisos.close();
-			} catch (ControladorExcepciones r) {
-				ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Avisos para Cuidador.");
-				r.abrirVentanaAvisos();
-			}
-		}
+	void pressBtnAvisos(ActionEvent event) throws IOException {}
+    	/*try {
+    		this.pressBtnA();
+    	}catch(ControladorExcepciones e) {
+    		ControladorAvisos.setMensajeError("El usuario seleccionado no es correcto.");
+    		e.abrirVentanaAvisos();
 	}
-
-	@FXML
-	void comprobarInput(KeyEvent event) throws Exception {
-		comboPaciente.arm();
-		// comparar el nombre introducido con los pacientes asignados al medico, para
-		// sugerir posibles coincidencias de forma dinamica
-
-		ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDeCuidador(cuidadorActual);
-		ArrayList<String> sugerencias = new ArrayList<String>();
-
-		boolean sugerenciasEncontradas;
-		if (comboPaciente.getValue() != null) {
-			for (int i = 0; i < cuidadorActual.getPacientes().size(); i++) {
-				// bucle que va comparando el input con el nombre de cada paciente
-				int longitud = 0;
-
-				for (int a = 0; a < comboPaciente.getValue().length(); a++) {
-					// bucle que va comparando los char del input con los char del nombre de
-					// paciente
-					if (comboPaciente.getValue().toLowerCase().charAt(a) == nombresPacientes.get(i).toLowerCase().charAt(a)) {
-						longitud++;
-					} else {
-						break;
-					}
-				}
-				if (longitud == comboPaciente.getValue().length()) {
-					// add nombre en posicion i a un nuevo arraylist que se pasa al comboBox con la
-					// observableList listaSugerencias
-					sugerencias.add(nombresPacientes.get(i));
-					sugerenciasEncontradas = true;
-				}
-			}
-
-			if (sugerenciasEncontradas = true) {
-				comboPaciente.getItems().clear();
-				ObservableList<String> listaSugerencias = FXCollections.observableArrayList(sugerencias);
-				comboPaciente.setItems(listaSugerencias);
-			}
-		} else {
-			// por defecto se muestra la lista entera de pacientes
-			ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
-			comboPaciente.setItems(listaPacientesComboBox);
-		}
-		comboPaciente.autosize();
-		comboPaciente.show();
 	}
+	/*
+    private void pressBtnA() throws IOException  {
+    		
+       String pacienteBuscado = buscarPacCB.getValue();
+       Paciente pacienteElegido = coincidencia(pacienteBuscado);
+    		
+        	if (coincidencia (pacienteBuscado) != null) {
+    			try {
+    				System.out.println("Cargando ventana de Avisos...");
+    				ControladorCuidadorAvisos.setPacienteElegido(pacienteElegido);
+    				Parent Avisos = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp_avisos_de_paciente.fxml"));
+    				Stage AvisosPaciente = new Stage();
+    				AvisosPaciente.setTitle("Menu Cuidador - Avisos de " + pacienteElegido.getNombre());
+    				AvisosPaciente.setScene(new Scene(Avisos));
+    				AvisosPaciente.show();
+    				AvisosPaciente.setMinHeight(800);
+    				AvisosPaciente.setMinWidth(1200);
 
-	private Paciente coincidencia(String pacienteBuscado) {
+    				System.out.println("Cerrando ventana principal del Cuidador");
+    				Stage CambioVentanaAvisos = (Stage) btnAvisos.getScene().getWindow();
+    				CambioVentanaAvisos.close();
+    			} catch (ControladorExcepciones r) {
+    				ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Avisos para Cuidador.");
+    				r.abrirVentanaAvisos();
+    			}
+    		} else {
+    			ControladorAvisos.setMensajeError("No se ha encontrado el paciente introducido.");
+    	       	abrirVentanaAvisos();
+    		}
+    	}
+	*/
+    private Paciente coincidencia(String pacienteBuscado) {
 		for (int i = 0; i < cuidadorActual.getPacientes().size(); i++) {
 			ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDeCuidador(cuidadorActual);
 			if (nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
@@ -171,21 +195,32 @@ public class ControladorCuidadorpp implements Initializable {
 	}
 
     
-   
+    public void abrirVentanaAvisos() {
+		try {
+			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
+			Stage VentanaAvisos = new Stage();
+			VentanaAvisos.setTitle("Aviso");
+			VentanaAvisos.setScene(new Scene(avisos));
+			VentanaAvisos.show();
+			VentanaAvisos.setMinHeight(200);
+			VentanaAvisos.setMinWidth(500);
+			VentanaAvisos.setMaxHeight(200);
+			VentanaAvisos.setMaxWidth(600);
+
+		}
+		catch(Exception a) {
+			System.out.println("Error");
+		}
+	}
     
 	// GETTERS
 	public static Cuidador getCuidadorActual() {
 		return cuidadorActual;
-	}
-	public static Paciente getPacienteElegido() {
-		return pacienteElegido;
 	}
 
 	// SETTERS
 	public static void setCuidadorActual(Cuidador CuidadorActual) {
 		cuidadorActual = CuidadorActual;
 	}
-	public static void setPacienteElegido(Paciente pacienteElegido) {
-		ControladorCuidadorpp.pacienteElegido = pacienteElegido;
-	}
+
 }
