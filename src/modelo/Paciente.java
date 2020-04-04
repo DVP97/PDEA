@@ -1,36 +1,27 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
 public final class Paciente extends Usuario{
 	private Date fecha_nacimiento;
-	private ArrayList<Integer> ejercicios;
-	ArrayList<String> cuidadores; 
 	String medico;
 	boolean ejerciciosHechos;
-	
-	public Paciente(String dni, String nombre, String apellidos, Integer telefono, String contrasena, Date fecha_nacimiento, ArrayList<String> cuidadores, String medico, ArrayList<Integer> ejercicios) {
+
+	public Paciente(String dni, String nombre, String apellidos, String telefono, String contrasena, Date fecha_nacimiento, String medico, boolean ejerciciosHechos) {
 		super(dni, nombre, apellidos, telefono, contrasena);
 		this.fecha_nacimiento= fecha_nacimiento;
-		this.cuidadores = cuidadores;
 		this.medico = medico;
-		this.ejercicios = ejercicios;
-		this.ejerciciosHechos = false;
-		
+		this.ejerciciosHechos = ejerciciosHechos;
 	}
 	
 	public Paciente () {
 		super();
 		this.fecha_nacimiento= null;
 		this.medico = null;
-		this.cuidadores = new ArrayList<String>();
-		this.ejercicios = new ArrayList<Integer>();
 		this.ejerciciosHechos=false;
 	}
-	
 	
 	
 	//GETTERS
@@ -53,17 +44,11 @@ public final class Paciente extends Usuario{
 	public Date getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
-	public ArrayList<String> getCuidadores(){
-		return cuidadores;
-	}
+
 	public String getMedico() {
 		return medico;
 	}
 
-	public ArrayList<Integer> getEjercicios() {
-		return ejercicios;
-	}
-	
 	public String getNombreCompleto() {
 		String n = this.getNombre()+ " " + this.getApellidos();
 		return n;
@@ -77,16 +62,8 @@ public final class Paciente extends Usuario{
 		this.fecha_nacimiento= fecha_nacimiento;
 	}
 
-	public void setCuidadores (ArrayList<String> cuidadores) {
-		this.cuidadores = cuidadores;
-	}
-	
 	public void setMedico (String medico) {
 		this.medico = medico;
-	}
-	
-	public void setEjercicios(ArrayList<Integer> ejercicios) {
-		this.ejercicios = ejercicios;
 	}
 	
 	public void setEjerciciosHechos(boolean ejerciciosHechos) {

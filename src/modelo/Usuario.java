@@ -4,11 +4,11 @@ public abstract class Usuario {
 	private String dni;
 	private String nombre;
 	private String apellidos;
-	private Integer telefono;
+	private String telefono;
 	private String contrasena;
 
 	
-	public Usuario (String dni, String nombre, String apellidos, Integer telefono, String contrasena) {
+	public Usuario (String dni, String nombre, String apellidos, String telefono, String contrasena) {
 		this.dni= dni;
 		this.nombre= nombre;
 		this.apellidos= apellidos;
@@ -37,7 +37,7 @@ public abstract class Usuario {
 		return nombre;
 	}
 	
-	public Integer getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 	
@@ -58,7 +58,7 @@ public abstract class Usuario {
 		this.nombre = nombre;
 	}
 	
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 	
