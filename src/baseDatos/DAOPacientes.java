@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modelo.Cuidador;
+import modelo.Ejercicio;
 import modelo.Paciente;
 
 public class DAOPacientes extends AbstractDAO {
@@ -56,7 +57,7 @@ public class DAOPacientes extends AbstractDAO {
 
 		con = super.getConexion();
 
-		String consulta = "insert into paciente (dni_paciente, nombre, apellidos, telefono, contraseña, fecha_nacimiento, medico, ejerciciosHechos)"
+		String consulta = "insert into paciente (dni_paciente, nombre, apellidos, telefono, contrasena, fecha_nacimiento, medico, ejerciciosHechos)"
 				+ " values (?,?,?,?,?,?,?,?)";
 
 		try {
@@ -92,7 +93,7 @@ public class DAOPacientes extends AbstractDAO {
 
 		con = super.getConexion();
 
-		String consulta = "update paciente set nombre = ?, apellidos= ?, telefono = ?, contraseña= ?, fecha_nacimiento= ?, medico= ?, ejerciciosHechos= ? "
+		String consulta = "update paciente set nombre = ?, apellidos= ?, telefono = ?, contrasena= ?, fecha_nacimiento= ?, medico= ?, ejerciciosHechos= ? "
 				+ "where dni_paciente = ?";
 
 		try {
@@ -128,8 +129,10 @@ public class DAOPacientes extends AbstractDAO {
 
 		con = super.getConexion();
 
+		String consulta = "delete from paciente where dni_paciente=?";
+		
 		try {
-			stmPaciente = con.prepareStatement("delete from paciente " + "where dni_paciente=?");
+			stmPaciente = con.prepareStatement(consulta);
 			stmPaciente.setString(1, paciente.getDni());
 
 			con.setAutoCommit(true);
@@ -154,7 +157,7 @@ public class DAOPacientes extends AbstractDAO {
 		PreparedStatement stmPaciente = null;
 		ResultSet rsCuidadores;
 		
-		con= this.getConexion();
+		con= super.getConexion();
 		
 		String consulta = "select c.* "
 				+ "from cuidador as c right join cuidadores_de_paciente as cu on c.dni_cuidador = cu.cuidador "
@@ -167,6 +170,40 @@ public class DAOPacientes extends AbstractDAO {
 			while (rsCuidadores.next()) {
 				cuidadorActual = new Cuidador(rsCuidadores.getString("dni_cuidador"), rsCuidadores.getString("nombre"), rsCuidadores.getString("apellidos"), rsCuidadores.getString("telefono"), rsCuidadores.getString("contrasena"));
 				resultado.add(cuidadorActual);
+			}
+		}
+		catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmPaciente.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+	}
+
+	public ArrayList<Ejercicio> obtenerEjercicios (Paciente paciente){
+		ArrayList<Ejercicio> resultado = new ArrayList<Ejercicio>();
+		Ejercicio ejercicioActual = null;
+		Connection con ; 
+		PreparedStatement stmPaciente = null;
+		ResultSet rsEjercicios;
+		
+		con= this.getConexion();
+		
+		String consulta = "select e.*, ep.duracion "
+				+ "from ejercicio as e right join ejercicios_de_paciente as ep on e.id_ejercicio = ep.ejercicio "
+				+ "where ep.paciente = ? ";
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setString(1, paciente.getDni());
+			rsEjercicios = stmPaciente.executeQuery();
+			
+			while (rsEjercicios.next()) {
+				ejercicioActual = new Ejercicio(rsEjercicios.getInt("id_ejercicio"), rsEjercicios.getString("nombre"), rsEjercicios.getInt("duracion"), rsEjercicios.getString("gif"));
+				resultado.add(ejercicioActual);
 			}
 		}
 		catch (SQLException e) {
