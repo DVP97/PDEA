@@ -9,13 +9,58 @@ import modelo.Paciente;
 
 public class FachadaBaseDatos {
 	private java.sql.Connection conexion;
-	private DAOPacientes daoPacientes;
+	private DAOCuidadores daoCuidadores;
 	private DAOMedicos daoMedicos;
+	private DAOPacientes daoPacientes;
+
 
 	// EN ESTA CLASE SE HACE LA CONEXION CON LA BBDD
 	public FachadaBaseDatos() {
-		daoPacientes = new DAOPacientes(conexion);
+		daoCuidadores = new DAOCuidadores(conexion);
 		daoMedicos = new DAOMedicos(conexion);
+		daoPacientes = new DAOPacientes(conexion);
+	}
+	
+	//CUIDADORES
+	public Cuidador visualizarCuidador(String dni) {
+		return daoCuidadores.visualizarCuidador(dni);
+	}
+
+	public void insertarCuidador(Cuidador cuidador) {
+		daoCuidadores.insertarCuidador(cuidador);
+	}
+
+	public void modificarMedico(Cuidador cuidador) {
+		daoCuidadores.modificarCuidador(cuidador);
+	}
+
+	public void borrarMedico(Cuidador cuidador) {
+		daoCuidadores.borrarCuidador(cuidador);
+	}
+
+	public ArrayList<Paciente> obtenerPacientesCuidador (Cuidador cuidador){
+		return daoCuidadores.obtenerPacientesCuidador(cuidador);
+	}
+	
+	// MEDICOS
+	public Medico visualizarMedico(String dni) {
+		return daoMedicos.visualizarMedico(dni);
+	}
+
+	public void insertarMedico(Medico medico) {
+		daoMedicos.insertarMedico(medico);
+	}
+
+	public void modificarMedico(Medico medico) {
+		daoMedicos.modificarMedico(medico);
+	}
+
+	public void borrarMedico(Medico medico) {
+		daoMedicos.borrarMedico(medico);
+	}
+
+	public ArrayList<Paciente> obtenerPacientesMedico(Medico medico) {
+		return daoMedicos.obtenerPacientesMedico(medico);
 	}
 
 	// PACIENTES
@@ -35,33 +80,12 @@ public class FachadaBaseDatos {
 		daoPacientes.borrarPaciente(paciente);
 	}
 
-	public ArrayList<Cuidador> obtenerCuidadores(Paciente paciente) {
-		return daoPacientes.obtenerCuidadores(paciente);
+	public ArrayList<Cuidador> obtenerCuidadoresPaciente(Paciente paciente) {
+		return daoPacientes.obtenerCuidadoresPaciente(paciente);
 	}
-	
-	public ArrayList<Ejercicio> obtenerEjercicios (Paciente paciente){
+
+	public ArrayList<Ejercicio> obtenerEjercicios(Paciente paciente) {
 		return daoPacientes.obtenerEjercicios(paciente);
 	}
 
-	// MEDICOS
-	public Medico visualizarMedico(String dni) {
-		return daoMedicos.visualizarMedico(dni);
-	}
-
-	public void insertarMedico(Medico medico) {
-		daoMedicos.insertarMedico(medico);
-	}
-	
-	public void modificarMedico (Medico medico) {
-		daoMedicos.modificarMedico(medico);
-	}
-	
-	public void borrarMedico(Medico medico) {
-		daoMedicos.borrarMedico(medico);
-	}
-	
-	public ArrayList<Paciente> obtenerPacientesMedico(Medico medico){
-		return daoMedicos.obtenerPacientesMedico(medico);
-	}
-	
 }

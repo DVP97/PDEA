@@ -150,7 +150,7 @@ public class DAOPacientes extends AbstractDAO {
 		}
 	}
 
-	public ArrayList<Cuidador> obtenerCuidadores (Paciente paciente){
+	public ArrayList<Cuidador> obtenerCuidadoresPaciente (Paciente paciente){
 		ArrayList<Cuidador> resultado = new ArrayList<Cuidador>();
 		Cuidador cuidadorActual = null;
 		Connection con ; 
