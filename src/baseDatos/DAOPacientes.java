@@ -5,10 +5,13 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import modelo.Cuidador;
 import modelo.Paciente;
 
 public class DAOPacientes extends AbstractDAO {
+	
 	public DAOPacientes(Connection conexion) {
 		super.setConexion(conexion);
 	}
@@ -144,4 +147,37 @@ public class DAOPacientes extends AbstractDAO {
 		}
 	}
 
+	public ArrayList<Cuidador> obtenerCuidadores (Paciente paciente){
+		ArrayList<Cuidador> resultado = new ArrayList<Cuidador>();
+		Cuidador cuidadorActual = null;
+		Connection con ; 
+		PreparedStatement stmPaciente = null;
+		ResultSet rsCuidadores;
+		
+		con= this.getConexion();
+		
+		String consulta = "select c.* "
+				+ "from cuidador as c right join cuidadores_de_paciente as cu on c.dni_cuidador = cu.cuidador "
+				+ "where cu.paciente = ? ";
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setString(1, paciente.getDni());
+			rsCuidadores = stmPaciente.executeQuery();
+			
+			while (rsCuidadores.next()) {
+				cuidadorActual = new Cuidador(rsCuidadores.getString("dni_cuidador"), rsCuidadores.getString("nombre"), rsCuidadores.getString("apellidos"), rsCuidadores.getString("telefono"), rsCuidadores.getString("contrasena"));
+				resultado.add(cuidadorActual);
+			}
+		}
+		catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmPaciente.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+	}
 }

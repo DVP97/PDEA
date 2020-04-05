@@ -1,28 +1,18 @@
 package modelo;
 
-import java.util.ArrayList;
-
-
 
 public final class Medico extends Usuario{
 	
-	ArrayList<String> pacientes; 
-	public Medico(String dni, String nombre, String apellidos, Integer telefono, String contrasena, ArrayList<String> pacientes) {
+	public Medico(String dni, String nombre, String apellidos, String telefono, String contrasena) {
 		super(dni, nombre, apellidos, telefono, contrasena);
-		this.pacientes = pacientes;
 	}
 	public Medico() {
 		super();
-		this.pacientes = new ArrayList<String>();
 	}
 	
 	//GETTERS
-	public ArrayList<String> getPacientes(){
-		return pacientes;
-	}
-	
-	//SETTERS
-	public void setPacientes (ArrayList<String> pacientes) {
-		this.pacientes = pacientes;
+	public String getNombreCompleto() {
+		String nombreCompleto =getNombre() + " " + getApellidos();
+		return nombreCompleto;
 	}
 }
