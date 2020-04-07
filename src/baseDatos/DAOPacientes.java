@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Ejercicio;
 import modelo.Paciente;
@@ -204,6 +205,39 @@ public class DAOPacientes extends AbstractDAO {
 			while (rsEjercicios.next()) {
 				ejercicioActual = new Ejercicio(rsEjercicios.getInt("id_ejercicio"), rsEjercicios.getString("nombre"), rsEjercicios.getInt("duracion"), rsEjercicios.getString("gif"));
 				resultado.add(ejercicioActual);
+			}
+		}
+		catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmPaciente.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
+	}
+
+	public ArrayList<Cita> obtenerCitasPaciente (Paciente paciente){
+		ArrayList<Cita> resultado = new ArrayList<Cita>();
+		Cita citaActual = null;
+		Connection con;
+		PreparedStatement stmPaciente = null;
+		ResultSet rsCitas;
+		
+		con = this.getConexion();
+		
+		String consulta = "select * from cita where paciente = ?";
+		
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setString(1, paciente.getDni());
+			rsCitas = stmPaciente.executeQuery();
+			
+			while (rsCitas.next()) {
+				citaActual = new Cita(rsCitas.getInt("id"), rsCitas.getDate("fecha_cita"), rsCitas.getString("nota"), rsCitas.getString("paciente"), rsCitas.getString("medico"));
+				resultado.add(citaActual);
 			}
 		}
 		catch (SQLException e) {

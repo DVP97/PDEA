@@ -23,7 +23,6 @@ public final class Paciente extends Usuario{
 		this.ejerciciosHechos=false;
 	}
 	
-	
 	//GETTERS
 	@SuppressWarnings("deprecation")
 	public String getFechaNacimientoString() {
