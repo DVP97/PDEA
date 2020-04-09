@@ -2,6 +2,7 @@ package application;
 
 
 
+import baseDatos.ConexionBBDD;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -13,6 +14,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
+		ConexionBBDD bbdd = new ConexionBBDD("PDEAnewBBDD.db");
+
+		bbdd.consulta();
 		
 		try {
 			Parent Login = FXMLLoader.load(getClass().getResource("/vista/login.fxml"));
