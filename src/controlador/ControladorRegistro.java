@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
+import baseDatos.FachadaBaseDatos;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -63,10 +64,12 @@ public class ControladorRegistro implements Initializable {
 
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("Paciente","Cuidador","Medico");
 
+    FachadaBaseDatos asdf = new FachadaBaseDatos();
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 		comboRol.setItems(dbTypeList);
+		
 	}
 
     @FXML
@@ -136,12 +139,8 @@ public class ControladorRegistro implements Initializable {
 										newPaciente.setTelefono(Integer.parseInt(textoTelefono.getText()));
 										newPaciente.setContrasena(passwordEncriptada);
 										System.out.println("Registrando usuario Paciente");
-	
-										ArrayList<Paciente> pacientes = new ArrayList<Paciente>();
-										pacientes = lectorJson.lectorJsonPacientes();
-										pacientes.add(newPaciente);
-										escritorJson.escribirEnJsonPacientes(pacientes);
-	
+										
+										asdf.insertarPaciente(newPaciente);
 	
 										ControladorAvisos.setMensajeError("Usuario Registrado.");
 										abrirVentanaAvisos();
@@ -166,11 +165,7 @@ public class ControladorRegistro implements Initializable {
 										newCuidador.setTelefono(Integer.parseInt(textoTelefono.getText()));
 										newCuidador.setContrasena(passwordEncriptada);
 	
-	
-										ArrayList<Cuidador> cuidadores = new ArrayList<Cuidador>();
-										cuidadores = lectorJson.lectorJsonCuidadores();
-										cuidadores.add(newCuidador);
-										escritorJson.escribirEnJsonCuidadores(cuidadores);
+										asdf.insertarCuidador(newCuidador);
 	
 										ControladorAvisos.setMensajeError("Usuario Registrado.");
 										abrirVentanaAvisos();
@@ -196,11 +191,7 @@ public class ControladorRegistro implements Initializable {
 										newMedico.setTelefono(Integer.parseInt(textoTelefono.getText()));
 										newMedico.setContrasena(passwordEncriptada);
 	
-	
-										ArrayList<Medico> medicos = new ArrayList<Medico>();
-										medicos = lectorJson.lectorJsonMedicos();
-										medicos.add(newMedico);
-										escritorJson.escribirEnJsonMedicos(medicos);
+										asdf.insertarMedico(newMedico);
 	
 										ControladorAvisos.setMensajeError("Usuario Registrado.");
 										abrirVentanaAvisos();
