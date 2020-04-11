@@ -149,7 +149,7 @@ public class DAOCuidadores extends AbstractDAO {
 		con= super.getConexion();
 		
 		String consulta = "select p.* "
-				+ "from paciente as p right join cuidadores_de_paciente as cu on p.dni_paciente = cu.paciente "
+				+ "from paciente as p right join cuidador_de_paciente as cu on p.dni_paciente = cu.paciente "
 				+ "where cu.cuidador = ? ";
 		try {
 			stmCuidador = con.prepareStatement(consulta);

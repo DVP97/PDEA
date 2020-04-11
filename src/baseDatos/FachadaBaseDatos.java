@@ -2,6 +2,7 @@ package baseDatos;
 
 import java.util.ArrayList;
 
+import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Ejercicio;
 import modelo.Medico;
@@ -9,16 +10,37 @@ import modelo.Paciente;
 
 public class FachadaBaseDatos {
 	private java.sql.Connection conexion;
+	private DAOCitas daoCitas;
 	private DAOCuidadores daoCuidadores;
+	private DAOEjercicios daoEjercicios;
 	private DAOMedicos daoMedicos;
 	private DAOPacientes daoPacientes;
 
 
 	// EN ESTA CLASE SE HACE LA CONEXION CON LA BBDD
 	public FachadaBaseDatos() {
+		daoCitas = new DAOCitas(conexion);
 		daoCuidadores = new DAOCuidadores(conexion);
+		daoEjercicios = new DAOEjercicios(conexion);
 		daoMedicos = new DAOMedicos(conexion);
 		daoPacientes = new DAOPacientes(conexion);
+	}
+	
+	//CITAS
+	public Cita visualizarCita(Integer id) {
+		return daoCitas.visualizarCita(id);
+	}
+	
+	public void insertarCita(Cita cita) {
+		daoCitas.insertarCita(cita);
+	}
+	
+	public void modificarCita (Cita cita) {
+		daoCitas.modificarCita(cita);
+	}
+	
+	public void borrarCita (Cita cita) {
+		daoCitas.borrarCita(cita);
 	}
 	
 	//CUIDADORES
@@ -42,6 +64,11 @@ public class FachadaBaseDatos {
 		return daoCuidadores.obtenerPacientesCuidador(cuidador);
 	}
 	
+	//EJERCICIOS
+	public Ejercicio visualizarEjercicio(Integer id) {
+		return daoEjercicios.visualizarEjercicio(id);
+	}
+	
 	// MEDICOS
 	public Medico visualizarMedico(String dni) {
 		return daoMedicos.visualizarMedico(dni);
@@ -61,6 +88,10 @@ public class FachadaBaseDatos {
 
 	public ArrayList<Paciente> obtenerPacientesMedico(Medico medico) {
 		return daoMedicos.obtenerPacientesMedico(medico);
+	}
+	
+	public ArrayList<Cita> obtenerCitasMedico (Medico medico){
+		return daoMedicos.obtenerCitasMedico(medico);
 	}
 
 	// PACIENTES
@@ -86,6 +117,10 @@ public class FachadaBaseDatos {
 
 	public ArrayList<Ejercicio> obtenerEjercicios(Paciente paciente) {
 		return daoPacientes.obtenerEjercicios(paciente);
+	}
+	
+	public ArrayList<Cita> obtenerCitasPaciente (Paciente paciente){
+		return daoPacientes.obtenerCitasPaciente(paciente);
 	}
 
 }

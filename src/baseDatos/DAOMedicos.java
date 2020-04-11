@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import modelo.Cita;
 import modelo.Medico;
 import modelo.Paciente;
 
@@ -165,6 +166,39 @@ public class DAOMedicos extends AbstractDAO {
 			}
 		}
 		return resultado;
+	}
+	
+	public ArrayList<Cita> obtenerCitasMedico (Medico medico){
+		ArrayList<Cita> resultado = new ArrayList<Cita>();
+		Cita citaActual = null;
+		Connection con;
+		PreparedStatement stmPaciente = null;
+		ResultSet rsCitas;
+		
+		con = this.getConexion();
+		
+		String consulta = "select * from cita where medico = ?";
+		
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setString(1, medico.getDni());
+			rsCitas = stmPaciente.executeQuery();
+			
+			while (rsCitas.next()) {
+				citaActual = new Cita(rsCitas.getInt("id"), rsCitas.getDate("fecha_cita"), rsCitas.getString("nota"), rsCitas.getString("paciente"), rsCitas.getString("medico"));
+				resultado.add(citaActual);
+			}
+		}
+		catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmPaciente.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return resultado;
 	}
 
 }

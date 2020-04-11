@@ -161,7 +161,7 @@ public class DAOPacientes extends AbstractDAO {
 		con= super.getConexion();
 		
 		String consulta = "select c.* "
-				+ "from cuidador as c right join cuidadores_de_paciente as cu on c.dni_cuidador = cu.cuidador "
+				+ "from cuidador as c right join cuidador_de_paciente as cu on c.dni_cuidador = cu.cuidador "
 				+ "where cu.paciente = ? ";
 		try {
 			stmPaciente = con.prepareStatement(consulta);
@@ -185,7 +185,7 @@ public class DAOPacientes extends AbstractDAO {
         return resultado;
 	}
 
-	public ArrayList<Ejercicio> obtenerEjercicios (Paciente paciente){
+	public ArrayList<Ejercicio> obtenerEjerciciosPaciente (Paciente paciente){
 		ArrayList<Ejercicio> resultado = new ArrayList<Ejercicio>();
 		Ejercicio ejercicioActual = null;
 		Connection con ; 
@@ -195,7 +195,7 @@ public class DAOPacientes extends AbstractDAO {
 		con= this.getConexion();
 		
 		String consulta = "select e.*, ep.duracion "
-				+ "from ejercicio as e right join ejercicios_de_paciente as ep on e.id_ejercicio = ep.ejercicio "
+				+ "from ejercicio as e right join ejercicio_de_paciente as ep on e.id_ejercicio = ep.ejercicio "
 				+ "where ep.paciente = ? ";
 		try {
 			stmPaciente = con.prepareStatement(consulta);
