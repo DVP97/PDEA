@@ -23,7 +23,7 @@ public class FachadaBaseDatos {
 	public FachadaBaseDatos() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			conexion = DriverManager.getConnection("jdbc:sqlite:PDEA.db");
+			conexion = DriverManager.getConnection("jdbc:sqlite:PDEAnewBBDD.db");
 		
 			daoCitas = new DAOCitas(conexion);
 			daoCuidadores = new DAOCuidadores(conexion);

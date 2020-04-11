@@ -54,7 +54,8 @@ public class ControladorLogin implements Initializable{
 	@FXML
 	private Separator separatorTop;
 	
-		
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 		
