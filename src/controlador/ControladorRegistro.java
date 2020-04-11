@@ -104,7 +104,7 @@ public class ControladorRegistro implements Initializable {
 				System.out.println("Usuario seleccionado: " +comboRol.getValue());
 				if ( pswrd.length()<4 | !pswrd.equals(pswrdSecond) ){
 		    		try {
-		    			ControladorAvisos.setMensajeError("Ambas contraseñas deben coincidir y tener minimos de 4 caracteres.");
+		    			ControladorAvisos.setMensajeError("Ambas contraseï¿½as deben coincidir y tener minimos de 4 caracteres.");
 		    			abrirVentanaAvisos();
 	
 		    		}
@@ -136,7 +136,7 @@ public class ControladorRegistro implements Initializable {
 										newPaciente.setApellidos(textoApellidos.getText());
 	
 										newPaciente.setFecha_nacimiento(date1);
-										newPaciente.setTelefono(Integer.parseInt(textoTelefono.getText()));
+										newPaciente.setTelefono(textoTelefono.getText());
 										newPaciente.setContrasena(passwordEncriptada);
 										System.out.println("Registrando usuario Paciente");
 										
@@ -162,7 +162,7 @@ public class ControladorRegistro implements Initializable {
 										newCuidador.setApellidos(textoApellidos.getText());
 	
 	
-										newCuidador.setTelefono(Integer.parseInt(textoTelefono.getText()));
+										newCuidador.setTelefono(textoTelefono.getText());
 										newCuidador.setContrasena(passwordEncriptada);
 	
 										asdf.insertarCuidador(newCuidador);
@@ -188,7 +188,7 @@ public class ControladorRegistro implements Initializable {
 										newMedico.setApellidos(textoApellidos.getText());
 	
 	
-										newMedico.setTelefono(Integer.parseInt(textoTelefono.getText()));
+										newMedico.setTelefono(textoTelefono.getText());
 										newMedico.setContrasena(passwordEncriptada);
 	
 										asdf.insertarMedico(newMedico);

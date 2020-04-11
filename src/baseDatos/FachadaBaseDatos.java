@@ -52,11 +52,11 @@ public class FachadaBaseDatos {
 		daoCuidadores.insertarCuidador(cuidador);
 	}
 
-	public void modificarMedico(Cuidador cuidador) {
+	public void modificarCuidador(Cuidador cuidador) {
 		daoCuidadores.modificarCuidador(cuidador);
 	}
 
-	public void borrarMedico(Cuidador cuidador) {
+	public void borrarCuidador(Cuidador cuidador) {
 		daoCuidadores.borrarCuidador(cuidador);
 	}
 
@@ -115,12 +115,25 @@ public class FachadaBaseDatos {
 		return daoPacientes.obtenerCuidadoresPaciente(paciente);
 	}
 
-	public ArrayList<Ejercicio> obtenerEjercicios(Paciente paciente) {
-		return daoPacientes.obtenerEjercicios(paciente);
+	public ArrayList<Ejercicio> obtenerEjerciciosPaciente(Paciente paciente) {
+		return daoPacientes.obtenerEjerciciosPaciente(paciente);
 	}
 	
 	public ArrayList<Cita> obtenerCitasPaciente (Paciente paciente){
 		return daoPacientes.obtenerCitasPaciente(paciente);
 	}
+	
+	public void asignarEjercicioPaciente (Paciente paciente, Ejercicio ejercicio) {
+		daoPacientes.asignarEjercicioPaciente(paciente, ejercicio);
+	}
+	
+	public void modificarDuracionEjercicioPaciente (Paciente paciente, Ejercicio ejercicio) {
+		daoPacientes.modificarDuracionEjercicioPaciente(paciente, ejercicio);
+	}
+	
+	public void borrarEjercicioPaciente (Paciente paciente, Ejercicio ejercicio) {
+		daoPacientes.borrarEjercicioPaciente(paciente, ejercicio);
+	}
+	
 
 }

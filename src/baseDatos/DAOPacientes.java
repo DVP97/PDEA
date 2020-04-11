@@ -251,4 +251,93 @@ public class DAOPacientes extends AbstractDAO {
         }
         return resultado;
 	}
+	
+	public void asignarEjercicioPaciente (Paciente paciente, Ejercicio ejercicio) {
+		Connection con;
+		PreparedStatement stmPaciente = null;
+		
+		con = super.getConexion();
+		
+		String consulta = "insert into ejercicio_de_paciente (paciente, ejercicio, duracion) "
+				+"values (?, ?, ?)";
+		
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setString(1, paciente.getDni());
+			stmPaciente.setInt(2, ejercicio.getId());
+			stmPaciente.setInt(3, ejercicio.getDuracion());
+		
+			con.setAutoCommit(true);
+			stmPaciente.executeUpdate();
+			con.setAutoCommit(false);
+		}
+		catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmPaciente.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+	}
+	
+	public void modificarDuracionEjercicioPaciente (Paciente paciente, Ejercicio ejercicio) {
+		Connection con;
+		PreparedStatement stmPaciente = null;
+		
+		con = super.getConexion();
+				
+		String consulta = "update ejercicio_de_paciente set duracion = ? "
+				+"where paciente = ? and ejercicio = ?";
+		
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setInt(1, ejercicio.getDuracion());
+			stmPaciente.setString(2, paciente.getDni());
+			stmPaciente.setInt(3, ejercicio.getId());
+		
+			con.setAutoCommit(true);
+			stmPaciente.executeUpdate();
+			con.setAutoCommit(false);
+		}
+		catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmPaciente.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+	}
+	
+	public void borrarEjercicioPaciente (Paciente paciente, Ejercicio ejercicio) {
+		Connection con;
+		PreparedStatement stmPaciente = null;
+		
+		con = super.getConexion();
+				
+		String consulta = "delete from ejercicio_de_paciente where paciente = ? and ejercicio = ?";
+		
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setString(1, paciente.getDni());
+			stmPaciente.setInt(2, ejercicio.getId());
+		
+			con.setAutoCommit(true);
+			stmPaciente.executeUpdate();
+			con.setAutoCommit(false);
+		}
+		catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmPaciente.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+		
+	}
 }

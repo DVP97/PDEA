@@ -13,6 +13,13 @@ public class Ejercicio{
 		this.gif = gif;
 	}
 	
+	public Ejercicio (Integer id, String nombre, String gif) {
+		this.id = id;
+		this.nombre = nombre;
+		this.duracion = null;
+		this.gif = gif;
+	}
+	
 	public Ejercicio() {
 		this.id = null;
 		this.nombre = null;
