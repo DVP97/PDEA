@@ -40,6 +40,8 @@ public class ControladorAvisosPaciente implements Initializable {
 	private Cita fecha_cita;
 	private boolean hechos;
 
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 

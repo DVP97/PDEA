@@ -1,17 +1,16 @@
 package controlador;
 
 import java.math.BigInteger;
+
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
-import baseDatos.FachadaBaseDatos;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,7 +26,6 @@ import modelo.Paciente;
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 public class ControladorRegistro implements Initializable {
 
     @FXML
@@ -64,7 +62,8 @@ public class ControladorRegistro implements Initializable {
 
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("Paciente","Cuidador","Medico");
 
-    FachadaBaseDatos asdf = new FachadaBaseDatos();
+    private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+    
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
@@ -140,7 +139,7 @@ public class ControladorRegistro implements Initializable {
 										newPaciente.setContrasena(passwordEncriptada);
 										System.out.println("Registrando usuario Paciente");
 										
-										asdf.insertarPaciente(newPaciente);
+										fbd.insertarPaciente(newPaciente);
 	
 										ControladorAvisos.setMensajeError("Usuario Registrado.");
 										abrirVentanaAvisos();
@@ -165,7 +164,7 @@ public class ControladorRegistro implements Initializable {
 										newCuidador.setTelefono(textoTelefono.getText());
 										newCuidador.setContrasena(passwordEncriptada);
 	
-										asdf.insertarCuidador(newCuidador);
+										fbd.insertarCuidador(newCuidador);
 	
 										ControladorAvisos.setMensajeError("Usuario Registrado.");
 										abrirVentanaAvisos();
@@ -191,7 +190,7 @@ public class ControladorRegistro implements Initializable {
 										newMedico.setTelefono(textoTelefono.getText());
 										newMedico.setContrasena(passwordEncriptada);
 	
-										asdf.insertarMedico(newMedico);
+										fbd.insertarMedico(newMedico);
 	
 										ControladorAvisos.setMensajeError("Usuario Registrado.");
 										abrirVentanaAvisos();
@@ -341,6 +340,7 @@ public class ControladorRegistro implements Initializable {
 	public void setTextoApellidos(TextField textoApellidos) {
 		this.textoApellidos = textoApellidos;
 	}
+
 
 
 }

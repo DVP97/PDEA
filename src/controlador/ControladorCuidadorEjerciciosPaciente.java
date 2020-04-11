@@ -48,6 +48,8 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 	private Integer contador = 0;
 	private boolean hechos;
     private static Paciente pacienteElegido = new Paciente();
+    
+    private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	
 	@Override
@@ -112,8 +114,8 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 	void siguienteEjercicio() {
 
 		if (contador == ejercicios.size() - 1) {
-			System.out.println("Este es en el Último ejercicio.");
-			ControladorAvisos.setMensajeError("Este es en el Último ejercicio");
+			System.out.println("Este es en el ï¿½ltimo ejercicio.");
+			ControladorAvisos.setMensajeError("Este es en el ï¿½ltimo ejercicio");
 			abrirVentanaAvisos();
 		} else {
 

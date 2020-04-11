@@ -57,6 +57,8 @@ public class ControladorEjercicios implements Initializable {
 	private Integer interval = 0;
 	private String[] hacerEjercicios;
 	private Paciente p = ControladorPacientepp.getPacienteActual();
+	
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	// Metodos
 
@@ -169,7 +171,7 @@ public class ControladorEjercicios implements Initializable {
 		}
 		// Acaba y pasa al siguiente ejercicio
 		timeline.setOnFinished(e -> siguienteEjercicio());
-		System.out.println("Está terminado");
+		System.out.println("Estï¿½ terminado");
 
 	}
 
@@ -183,8 +185,8 @@ public class ControladorEjercicios implements Initializable {
 		} else {
 
 			if (contador == ejercicios.size() - 1) {
-				System.out.println("Está usted en el Último ejercicio");
-				ControladorAvisos.setMensajeError("Está usted en el Último ejercicio, ¡ha terminado!");
+				System.out.println("Estï¿½ usted en el ï¿½ltimo ejercicio");
+				ControladorAvisos.setMensajeError("Estï¿½ usted en el ï¿½ltimo ejercicio, ï¿½ha terminado!");
 				abrirVentanaAvisos();
 			} else {
 				this.contador = contador + 1;
@@ -202,8 +204,8 @@ public class ControladorEjercicios implements Initializable {
 	void ejercicioAnterior() {
 
 		if (contador == 0) {
-			System.out.println("Está usted en el primer ejercicio");
-			ControladorAvisos.setMensajeError("Está usted en el primer ejercicio.");
+			System.out.println("Estï¿½ usted en el primer ejercicio");
+			ControladorAvisos.setMensajeError("Estï¿½ usted en el primer ejercicio.");
 			abrirVentanaAvisos();
 		} else {
 

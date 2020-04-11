@@ -21,6 +21,10 @@ public class Cita {
 		this.medico = medico;
 	}
 
+	public Cita() {
+		// TODO Auto-generated constructor stub
+	}
+
 	// GETTERS
 	public String getMedico() {
 		return medico;

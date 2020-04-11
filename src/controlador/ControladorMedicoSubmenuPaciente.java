@@ -142,6 +142,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     private static boolean editable = false;
     
     private ObservableList<Aviso> avisos = getAvisos();
+    
+    private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
     
     @Override

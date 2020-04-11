@@ -81,6 +81,7 @@ public class ControladorPacienteMensajes implements Initializable{
 	
 	private static Paciente pacienteActual = new Paciente();
 	
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {

@@ -43,7 +43,7 @@ public class ControladorCuidadorpp implements Initializable {
 
 	private static Cuidador cuidadorActual = ControladorCuidadorpp.getCuidadorActual();
 
-
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {

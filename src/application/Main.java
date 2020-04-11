@@ -11,13 +11,16 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
-
+	private static FachadaBaseDatos fbd = null;
 	@Override
 	public void start(Stage primaryStage) {
 
-		FachadaBaseDatos fbd = new FachadaBaseDatos();
+		fbd = this.getFbd();
+		
+		
 		Paciente p = new Paciente();
 		fbd.insertarPaciente(p);
+		
 
 		
 		try {
@@ -40,7 +43,18 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		
 		launch(args);
+
 		
+	}
+	
+	
+	public static FachadaBaseDatos getFbd () {
+		if(fbd == null) {
+			fbd = new FachadaBaseDatos();
+			return fbd;
+		}else{
+			return fbd;
+		}
 	}
 	
 	

@@ -55,6 +55,8 @@ public class ControladorCuidadorAvisos implements Initializable {
 	private static Paciente pacienteElegido = new Paciente();
 
 	private ObservableList<Aviso> avisos = getAvisos();
+	
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {

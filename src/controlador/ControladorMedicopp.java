@@ -137,6 +137,8 @@ public class ControladorMedicopp implements Initializable {
 	private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(getNombrePacientes());
 
 	private static Medico medicoActual = new Medico();
+	
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	// Metodos
 

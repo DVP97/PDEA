@@ -55,6 +55,8 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     
     private static Medico medicoActual = new Medico();
     
+    private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	medicoActual = ControladorMedicopp.getMedicoActual();

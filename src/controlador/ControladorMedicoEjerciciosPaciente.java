@@ -66,6 +66,8 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	private ObservableList<String> listaEjerciciosComboBox = FXCollections.observableArrayList(nombresEjercicios);
 
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		pacienteActual = ControladorMedicoSubmenuPaciente.getPacienteActual();

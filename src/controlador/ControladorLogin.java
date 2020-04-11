@@ -54,6 +54,9 @@ public class ControladorLogin implements Initializable{
 	@FXML
 	private Separator separatorTop;
 	
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+
+	
 		
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
@@ -65,7 +68,6 @@ public class ControladorLogin implements Initializable{
     void pressBtnRegistrar(ActionEvent event)  {
     	try {
     	System.out.println("Cargando ventana de Registro...");
-		ControladorPacientepp.setPacienteActual(lectorJson.getPaciente(txtInputUsuario.getText().toUpperCase()));
 		Parent NuevoRegistro = FXMLLoader.load(getClass().getResource("/vista/registro.fxml"));
 		Stage Registro = new Stage();
 		Registro.setTitle("Registro de Nuevo Usuario");
@@ -131,7 +133,7 @@ public class ControladorLogin implements Initializable{
 				case 1:
 					try {
 						System.out.println("Cargando ventana principal de Paciente...");
-						ControladorPacientepp.setPacienteActual(lectorJson.getPaciente(txtInputUsuario.getText().toUpperCase()));
+						fbd.visualizarPaciente(txtInputUsuario.getText().toUpperCase());
 						Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 						Stage Pacientepp = new Stage();
 						Pacientepp.setTitle("Menu Principal Paciente");
@@ -154,7 +156,7 @@ public class ControladorLogin implements Initializable{
 				case 2:
 					try {
 						System.out.println("Cargando ventana principal de Cuidador...");
-						ControladorCuidadorpp.setCuidadorActual(lectorJson.getCuidador(txtInputUsuario.getText().toUpperCase()));
+						fbd.visualizarCuidador(txtInputUsuario.getText().toUpperCase());
 						Parent CuidadorVentana = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp.fxml"));
 						Stage Cuidadorpp = new Stage();
 						Cuidadorpp.setTitle("Menu Principal Cuidador");
@@ -177,7 +179,7 @@ public class ControladorLogin implements Initializable{
 				case 3:
 					try {
 						System.out.println("Cargando ventana principal de Medico...");
-						ControladorMedicopp.setMedicoActual(lectorJson.getMedico(txtInputUsuario.getText().toUpperCase()));
+						fbd.visualizarMedico(txtInputUsuario.getText().toUpperCase());
 						Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/vista/medico_selector_paciente.fxml"));
 						Stage Medicopp = new Stage();
 						Medicopp.setTitle("Menu Medico - Seleccion Paciente");
@@ -252,11 +254,11 @@ public class ControladorLogin implements Initializable{
 
 	// funciones para comprobar el tipo de usuario
 	public boolean esPaciente() {
-		if(lectorJson.getPaciente(txtInputUsuario.getText().toUpperCase()) == null) {
+		if(fbd.visualizarPaciente((txtInputUsuario.getText().toUpperCase())) == null) {
 			
 			return false;
 		}else {
-			Paciente p  = lectorJson.getPaciente(txtInputUsuario.getText().toUpperCase());
+			Paciente p  = fbd.visualizarPaciente((txtInputUsuario.getText().toUpperCase()));
 			String contra = getMd5(txtInputPassword.getText());
 
 			if(p.getContrasena().equalsIgnoreCase(contra)) {
@@ -267,10 +269,10 @@ public class ControladorLogin implements Initializable{
 	}
 	
 	public boolean esCuidador() {
-		if(lectorJson.getCuidador(txtInputUsuario.getText().toUpperCase()) == null) {
+		if(fbd.visualizarCuidador((txtInputUsuario.getText().toUpperCase())) == null) {
 			return false;
 		}else {
-			Cuidador c  = lectorJson.getCuidador(txtInputUsuario.getText().toUpperCase());
+			Cuidador c  = fbd.visualizarCuidador((txtInputUsuario.getText().toUpperCase()));
 			String contra = getMd5(txtInputPassword.getText());
 			if(c.getContrasena().equalsIgnoreCase(contra)) {
 				return true;
@@ -280,10 +282,10 @@ public class ControladorLogin implements Initializable{
 	}
 	
 	public boolean esMedico() {
-		if(lectorJson.getMedico(txtInputUsuario.getText().toUpperCase()) == null) {
+		if(fbd.visualizarMedico(txtInputUsuario.getText().toUpperCase()) == null) {
 			return false;
 		}else {
-			Medico m  = lectorJson.getMedico(txtInputUsuario.getText().toUpperCase());
+			Medico m  = fbd.visualizarMedico((txtInputUsuario.getText().toUpperCase()));
 
 			String contra = getMd5(txtInputPassword.getText());
 		if(m.getContrasena().equalsIgnoreCase(contra)) {

@@ -29,7 +29,7 @@ import modelo.Cita;
 import modelo.Medico;
 import modelo.Paciente;
 
-public class controladorCitarPaciente implements Initializable{
+public class ControladorCitarPaciente implements Initializable{
 
     @FXML
     private JFXButton buttonVolver;
@@ -55,10 +55,14 @@ public class controladorCitarPaciente implements Initializable{
     private static Paciente pacienteActual = new Paciente();
     
 	private static Medico medicoActual = new Medico();
+	
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
     
-	private ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
+	private ArrayList<Paciente> nombresPacientes = fbd.obtenerPacientesMedico(medicoActual);
 	    
-	private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
+	private ObservableList<Paciente> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
+	
+	
 	    
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
@@ -71,13 +75,14 @@ public class controladorCitarPaciente implements Initializable{
 
     @FXML
     void pressBtnCrearCita(ActionEvent event) {
-    	ArrayList<Cita> addCita = lectorJson.lectorJsonCitas();
+  
 		Cita nCita = new Cita();
 		
 		Paciente p = pacienteActual;
 		// asociar mediante dni del paciente
-		nCita.setDni(p.getDni());
-		nCita.setNombrePaciente();
+		
+		nCita.setPaciente(p.getDni());
+		//nCita.setNombrePaciente();
 		// fecha de la cita
 		String FechaN[] = campoFecha.getValue().toString().split("-");
 		List<String> Fecha = Arrays.asList(FechaN);
@@ -93,17 +98,14 @@ public class controladorCitarPaciente implements Initializable{
 
 		// guardar dia y hora de la cita en un Date
 		Date calend = new Date(anho, mes, dia, hora, mins);
-		nCita.setFecha(calend);
-		nCita.setFechaString();
+		nCita.setFecha_cita(calend);
+		//nCita.setFechaString();
 
 		// aniadir comentario del medico
 		nCita.setNota(notaCita.getText());
 
-		// aniadir nCita al Arraylist
-		addCita.add(nCita);
-
-		// escribir en el json de citas el Arraylist modificado
-		escritorJson.escribirEnJsonCitas(addCita);
+		// escribir en la bbdd la cita 
+		fbd.insertarCita(nCita);
 
 		// aviso al usuario de que se ha creado la cita correctamente
 		ControladorAvisos.setMensajeError("Se ha creado correctamente una nueva cita.");
@@ -115,7 +117,7 @@ public class controladorCitarPaciente implements Initializable{
 		campoHora.setValue(null);
     }
     @FXML
-    void asdf(ActionEvent event){
+    void pressBtnCerrar(ActionEvent event){
 		Stage cerrarCrearCita = (Stage) buttonVolver.getScene().getWindow();
 		cerrarCrearCita.close();
 
