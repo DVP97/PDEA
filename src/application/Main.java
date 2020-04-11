@@ -2,9 +2,10 @@ package application;
 
 
 
-import baseDatos.ConexionBBDD;
+import baseDatos.FachadaBaseDatos;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import modelo.Paciente;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
@@ -14,9 +15,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		ConexionBBDD bbdd = new ConexionBBDD("PDEAnewBBDD.db");
+		FachadaBaseDatos fbd = new FachadaBaseDatos();
+		Paciente p = new Paciente();
+		fbd.insertarPaciente(p);
 
-		bbdd.consulta();
 		
 		try {
 			Parent Login = FXMLLoader.load(getClass().getResource("/vista/login.fxml"));

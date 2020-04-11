@@ -1,5 +1,7 @@
 package baseDatos;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 
 import modelo.Cita;
@@ -19,11 +21,18 @@ public class FachadaBaseDatos {
 
 	// EN ESTA CLASE SE HACE LA CONEXION CON LA BBDD
 	public FachadaBaseDatos() {
-		daoCitas = new DAOCitas(conexion);
-		daoCuidadores = new DAOCuidadores(conexion);
-		daoEjercicios = new DAOEjercicios(conexion);
-		daoMedicos = new DAOMedicos(conexion);
-		daoPacientes = new DAOPacientes(conexion);
+		try {
+			Class.forName("org.sqlite.JDBC");
+			conexion = DriverManager.getConnection("jdbc:sqlite:PDEA.db");
+		
+			daoCitas = new DAOCitas(conexion);
+			daoCuidadores = new DAOCuidadores(conexion);
+			daoEjercicios = new DAOEjercicios(conexion);
+			daoMedicos = new DAOMedicos(conexion);
+			daoPacientes = new DAOPacientes(conexion);
+		}catch ( Exception e ) {
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		}
 	}
 	
 	//CITAS
