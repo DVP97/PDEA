@@ -5,12 +5,12 @@ package application;
 import baseDatos.FachadaBaseDatos;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import modelo.Paciente;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
+<<<<<<< HEAD
 	private static FachadaBaseDatos fbd = null;
 	@Override
 	public void start(Stage primaryStage) {
@@ -22,6 +22,15 @@ public class Main extends Application {
 		fbd.insertarPaciente(p);
 		
 
+=======
+
+	static baseDatos.FachadaBaseDatos fbd; 
+	
+	@Override
+	public void start(Stage primaryStage) {
+
+		fbd = new FachadaBaseDatos();
+>>>>>>> 1ca3b64d836e3a58eec70f2c0536b60c75a33ece
 		
 		try {
 			Parent Login = FXMLLoader.load(getClass().getResource("/vista/login.fxml"));
@@ -32,8 +41,6 @@ public class Main extends Application {
 			primaryStage.setMinWidth(520);
 			primaryStage.setMaxHeight(500);
 			primaryStage.setMaxWidth(520);
-			
-			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -47,6 +54,7 @@ public class Main extends Application {
 		
 	}
 	
+<<<<<<< HEAD
 	
 	public static FachadaBaseDatos getFbd () {
 		if(fbd == null) {
@@ -58,4 +66,12 @@ public class Main extends Application {
 	}
 	
 	
+=======
+	public static baseDatos.FachadaBaseDatos getFbd() {
+		return fbd;
+	}
+	public void setFbd(baseDatos.FachadaBaseDatos fbd) {
+		Main.fbd = fbd;
+	}
+>>>>>>> 1ca3b64d836e3a58eec70f2c0536b60c75a33ece
 }
