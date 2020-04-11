@@ -8,6 +8,7 @@ import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Ejercicio;
 import modelo.Medico;
+import modelo.Mensaje;
 import modelo.Paciente;
 
 public class FachadaBaseDatos {
@@ -16,6 +17,7 @@ public class FachadaBaseDatos {
 	private DAOCuidadores daoCuidadores;
 	private DAOEjercicios daoEjercicios;
 	private DAOMedicos daoMedicos;
+	private DAOMensajes daoMensajes;
 	private DAOPacientes daoPacientes;
 
 
@@ -29,6 +31,7 @@ public class FachadaBaseDatos {
 			daoCuidadores = new DAOCuidadores(conexion);
 			daoEjercicios = new DAOEjercicios(conexion);
 			daoMedicos = new DAOMedicos(conexion);
+			daoMensajes = new DAOMensajes(conexion);
 			daoPacientes = new DAOPacientes(conexion);
 		}catch ( Exception e ) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
@@ -103,6 +106,27 @@ public class FachadaBaseDatos {
 		return daoMedicos.obtenerCitasMedico(medico);
 	}
 
+	//MENSAJES
+	public ArrayList<Mensaje> obtenerMensajesRecibidos (Medico medico){
+		return daoMensajes.obtenerMensajesRecibidos(medico);
+	}
+	
+	public ArrayList<Mensaje> obtenerMensajesEnviados (Medico medico){
+		return daoMensajes.obtenerMensajesEnviados(medico);
+	}
+	
+	public ArrayList<Mensaje> obtenerMensajesRecibidos (Paciente paciente){
+		return daoMensajes.obtenerMensajesRecibidos(paciente);
+	}
+	
+	public ArrayList<Mensaje> obtenerMensajesEnviados (Paciente paciente){
+		return daoMensajes.obtenerMensajesEnviados(paciente);
+	}
+	
+	public void enviarMensaje (Mensaje mensaje) {
+		daoMensajes.enviarMensaje(mensaje);
+	}
+	
 	// PACIENTES
 	public Paciente visualizarPaciente(String dni) {
 		return daoPacientes.visualizarPaciente(dni);

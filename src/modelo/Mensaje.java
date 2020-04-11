@@ -5,106 +5,96 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class Mensaje {
+	private Integer id_mensaje;
 	private String asunto;
-	private String emisor;
-	private String receptor;
+	private String dni_paciente;
+	private String dni_medico;
 	private String mensaje;
-	private boolean leido;
-	private boolean contestado;
-	private boolean borrado;
+	private boolean esMedicoEmisor;
 	private Date fecha;
-	
-	public Mensaje (String emisor, String receptor,  String mensaje, String asunto) {
+
+	public Mensaje(Integer id_mensaje, String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
+			String mensaje, Date fecha) {
+		this.id_mensaje = id_mensaje;
+		this.dni_medico = dni_medico;
+		this.dni_paciente = dni_paciente;
+		this.esMedicoEmisor = false;
 		this.asunto = asunto;
-		this.emisor = emisor;
-		this.receptor = receptor;
 		this.mensaje = mensaje;
-		this.leido = false;
-		this.contestado = false;
-		this.borrado = false;
 		this.fecha = Calendar.getInstance().getTime();
 	}
-	
-	public Mensaje () {
+
+	public Mensaje() {
 		this.asunto = null;
-		this.emisor = null;
-		this.receptor = null; 
+		this.dni_medico = null;
+		this.dni_paciente = null;
+		this.esMedicoEmisor = false;
+		this.asunto = null;
 		this.mensaje = null;
-		this.leido = false;
-		this.contestado = false;
-		this.borrado = false;
 		this.fecha = new Date();
 	}
-	
-	//GETTERS 
 
-	public String getEmisor() {
-		return emisor;
+	// GETTERS
+	public String getAsunto() {
+		return asunto;
 	}
-	public String getMensaje() {
-		return mensaje;
+	public String getDni_medico() {
+		return dni_medico;
 	}
-	public String getReceptor() {
-		return receptor;
-	}
-	public boolean isBorrado() {
-		return borrado;
-	}
-	public boolean isContestado() {
-		return contestado;
-	}
-	public boolean isLeido() {
-		return leido;
+	public String getDni_paciente() {
+		return dni_paciente;
 	}
 	public Date getFecha() {
 		return fecha;
 	}
-	public String getAsunto() {
-		return asunto;
+	public Integer getId_mensaje() {
+		return id_mensaje;
 	}
+	public String getMensaje() {
+		return mensaje;
+	}
+	public boolean isEsMedicoEmisor() {
+		return esMedicoEmisor;
+	}
+	
 	@SuppressWarnings("deprecation")
 	public String getFechaString() {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
 		cal.setTime(fecha);
 		String dia = ((Integer) fecha.getDate()).toString();
-		int m = fecha.getMonth() +1;
+		int m = fecha.getMonth() + 1;
 		String mes = ((Integer) m).toString();
-		int year =  cal.get(Calendar.YEAR);
+		int year = cal.get(Calendar.YEAR);
 		String anho = ((Integer) year).toString();
 		String hora = ((Integer) fecha.getHours()).toString();
 		String min = ((Integer) fecha.getMinutes()).toString();
-		String f = hora+ ":" + min + "\t-\t" +dia + "/"+ mes + "/"+ anho ;
+		String f = hora + ":" + min + "\t-\t" + dia + "/" + mes + "/" + anho;
 		return f;
-		
-	}
-	
-	//SETTERS
 
-	public void setEmisor(String emisor) {
-		this.emisor = emisor;
+	}
+
+	// SETTERS
+	public void setDni_medico(String dni_medico) {
+		this.dni_medico = dni_medico;
+	}
+	public void setDni_paciente(String dni_paciente) {
+		this.dni_paciente = dni_paciente;
+	}
+	public void setEsMedicoEmisor(boolean esMedicoEmisor) {
+		this.esMedicoEmisor = esMedicoEmisor;
+	}
+	public void setId_mensaje(Integer id_mensaje) {
+		this.id_mensaje = id_mensaje;
 	}
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-	
-	public void setReceptor(String receptor) {
-		this.receptor = receptor;
-	}
-	public void setBorrado(boolean borrado) {
-		this.borrado = borrado;
-	}
-	public void setContestado(boolean contestado) {
-		this.contestado = contestado;
-	}
-	public void setLeido(boolean leido) {
-		this.leido = leido;
-	}
 	public void setFecha() {
-		this.fecha = Calendar.getInstance().getTime();;
+		this.fecha = Calendar.getInstance().getTime();
 	}
 	public void setAsunto(String asunto) {
 		this.asunto = asunto;
 	}
-	
+
 }
