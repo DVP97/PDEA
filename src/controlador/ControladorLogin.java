@@ -55,13 +55,7 @@ public class ControladorLogin implements Initializable{
 	private Separator separatorTop;
 	
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
-<<<<<<< HEAD
 
-	
-		
-=======
-	
->>>>>>> 1ca3b64d836e3a58eec70f2c0536b60c75a33ece
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 		
