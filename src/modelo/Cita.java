@@ -20,6 +20,13 @@ public class Cita {
 		this.paciente = paciente;
 		this.medico = medico;
 	}
+	
+	public Cita(Date fecha, String nota, String paciente, String medico) {
+		this.fecha_cita = fecha;
+		this.nota = nota;
+		this.paciente = paciente;
+		this.medico = medico;
+	}
 
 	public Cita() {
 		// TODO Auto-generated constructor stub
