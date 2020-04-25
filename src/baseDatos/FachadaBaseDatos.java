@@ -23,18 +23,45 @@ public class FachadaBaseDatos {
 
 	// EN ESTA CLASE SE HACE LA CONEXION CON LA BBDD
 	public FachadaBaseDatos() {
+		//conexion a BBDD remota
+		boolean acceso = false;
 		try {
-			Class.forName("org.sqlite.JDBC");
-			conexion = DriverManager.getConnection("jdbc:sqlite:PDEAnewBBDD.db");
-		
-			daoCitas = new DAOCitas(conexion);
+			String USER = "pr_pdea";
+		    String PASS = "mochila";
+		    
+			Class.forName("org.mariadb.jdbc.Driver");
+
+            conexion = DriverManager.getConnection("jdbc:mariadb://2.139.176.212/pr_pdea", USER, PASS);
+            daoCitas = new DAOCitas(conexion);
 			daoCuidadores = new DAOCuidadores(conexion);
 			daoEjercicios = new DAOEjercicios(conexion);
 			daoMedicos = new DAOMedicos(conexion);
 			daoMensajes = new DAOMensajes(conexion);
-			daoPacientes = new DAOPacientes(conexion);
-		}catch ( Exception e ) {
+			daoPacientes = new DAOPacientes(conexion);	
+			
+			System.out.println("Conexion con BBDD remota establecida");
+			acceso =true;
+		}
+		catch(Exception e) {
 			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		}
+		if(acceso==false) {
+			//conexion a BBDD local
+			try {
+				Class.forName("org.sqlite.JDBC");
+				conexion = DriverManager.getConnection("jdbc:sqlite:PDEAnewBBDD.db");
+			
+				daoCitas = new DAOCitas(conexion);
+				daoCuidadores = new DAOCuidadores(conexion);
+				daoEjercicios = new DAOEjercicios(conexion);
+				daoMedicos = new DAOMedicos(conexion);
+				daoMensajes = new DAOMensajes(conexion);
+				daoPacientes = new DAOPacientes(conexion);
+				
+				System.out.println("Conexion con BBDD local");
+			}catch ( Exception e ) {
+				System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			}
 		}
 	}
 	
