@@ -147,7 +147,7 @@ public class DAOMedicos extends AbstractDAO {
 		con = super.getConexion();
 
 		String consulta = "select p.* " + "from paciente as p right join medico as m on p.medico = m.dni_medico "
-				+ "where m.dni_medico = ?";
+				+ "where m.dni_medico = ? ";
 
 		try {
 			stmMedico = con.prepareStatement(consulta);

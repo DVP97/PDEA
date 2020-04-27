@@ -131,7 +131,7 @@ public class ControladorLogin implements Initializable{
 				case 1:
 					try {
 						System.out.println("Cargando ventana principal de Paciente...");
-						fbd.visualizarPaciente(txtInputUsuario.getText().toUpperCase());
+						Paciente p = fbd.visualizarPaciente(txtInputUsuario.getText().toUpperCase());
 						Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 						Stage Pacientepp = new Stage();
 						Pacientepp.setTitle("Menu Principal Paciente");
@@ -139,6 +139,7 @@ public class ControladorLogin implements Initializable{
 						Pacientepp.show();
 						Pacientepp.setMinHeight(620);
 						Pacientepp.setMinWidth(600);
+						ControladorPacientepp.setPacienteActual(p);
 
 						System.out.println("Cerrando ventana de Login.");
 						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
@@ -154,7 +155,7 @@ public class ControladorLogin implements Initializable{
 				case 2:
 					try {
 						System.out.println("Cargando ventana principal de Cuidador...");
-						fbd.visualizarCuidador(txtInputUsuario.getText().toUpperCase());
+						Cuidador c = fbd.visualizarCuidador(txtInputUsuario.getText().toUpperCase());
 						Parent CuidadorVentana = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp.fxml"));
 						Stage Cuidadorpp = new Stage();
 						Cuidadorpp.setTitle("Menu Principal Cuidador");
@@ -162,6 +163,8 @@ public class ControladorLogin implements Initializable{
 						Cuidadorpp.show();
 						Cuidadorpp.setMinHeight(360);
 						Cuidadorpp.setMinWidth(500);
+						ControladorCuidadorpp.setCuidadorActual(c);
+						
 
 						System.out.println("Cerrando ventana de Login.");
 						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
@@ -177,7 +180,7 @@ public class ControladorLogin implements Initializable{
 				case 3:
 					try {
 						System.out.println("Cargando ventana principal de Medico...");
-						fbd.visualizarMedico(txtInputUsuario.getText().toUpperCase());
+						Medico m = fbd.visualizarMedico(txtInputUsuario.getText().toUpperCase());
 						Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/vista/medico_selector_paciente.fxml"));
 						Stage Medicopp = new Stage();
 						Medicopp.setTitle("Menu Medico - Seleccion Paciente");
@@ -185,6 +188,7 @@ public class ControladorLogin implements Initializable{
 						Medicopp.show();
 						Medicopp.setMinHeight(400);
 						Medicopp.setMinWidth(800);
+						ControladorMedicoSelectorPaciente.setMedicoActual(m);
 						
 						System.out.println("Cerrando ventana de Login.");
 						Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();

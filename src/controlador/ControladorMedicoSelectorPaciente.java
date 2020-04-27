@@ -39,8 +39,7 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @FXML
     private JFXButton btnMenuGeneral;
     
-    
-    private static Medico medicoActual = ControladorMedicopp.getMedicoActual();
+    private static Medico medicoActual = new Medico();
 
     private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
     
