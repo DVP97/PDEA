@@ -39,19 +39,21 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @FXML
     private JFXButton btnMenuGeneral;
     
-    private ArrayList<String> nombresPacientes = nPac();
-    
-    private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
     
     private static Medico medicoActual = ControladorMedicopp.getMedicoActual();
 
     private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
     
+    private ArrayList<String> nombresPacientes = nPac();
+    
+    private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
+    
     //Metodos
     public ArrayList<String> nPac(){
     	ArrayList<String> nombPacientes = new ArrayList<String>();
-		for(int i=0; i<fbd.obtenerPacientesMedico(medicoActual).size();i++) {
-			nombPacientes.add(fbd.obtenerPacientesMedico(medicoActual).get(i).getNombreCompleto());
+    	ArrayList<Paciente> arrayPacientes = fbd.obtenerPacientesMedico(medicoActual);
+		for(int i=0; i< arrayPacientes.size();i++) {
+			nombPacientes.add(arrayPacientes.get(i).getNombreCompleto());
 		}
 		return nombPacientes;
     }
