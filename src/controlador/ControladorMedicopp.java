@@ -379,7 +379,7 @@ public class ControladorMedicopp implements Initializable {
 
 	private ArrayList<String> getNombrePacientes() {
 		ArrayList<String> pacientes = new ArrayList<String>();
-		ArrayList<String> pacientesDnis = medicoActual.getPacientes();
+		ArrayList<String> pacientesDnis = Pac();
 
 		for (int i = 0; i < pacientesDnis.size(); i++) {
 
@@ -390,7 +390,15 @@ public class ControladorMedicopp implements Initializable {
 		}
 		return pacientes;
 	}
-
+	
+	public ArrayList<String> Pac(){
+	   	ArrayList<String> nombPacientes = new ArrayList<String>();
+		for(int i=0; i<fbd.obtenerPacientesMedico(medicoActual).size();i++) {
+			nombPacientes.add(fbd.obtenerPacientesMedico(medicoActual).get(i).getDni());
+		}
+		return nombPacientes;
+	}
+	 
 	private Integer getIndiceComboBox(String pac) {
 		for (int i = 0; i < getNombrePacientes().size(); i++) {
 			if (getNombrePacientes().get(i).equalsIgnoreCase(pac)) {

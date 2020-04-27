@@ -39,14 +39,23 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @FXML
     private JFXButton btnMenuGeneral;
     
-    private ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
+    private ArrayList<String> nombresPacientes = nPac();
     
     private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
     
     private static Medico medicoActual = ControladorMedicopp.getMedicoActual();
 
+    private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+    
     //Metodos
-
+    public ArrayList<String> nPac(){
+    	ArrayList<String> nombPacientes = new ArrayList<String>();
+		for(int i=0; i<fbd.obtenerPacientesMedico(medicoActual).size();i++) {
+			nombPacientes.add(fbd.obtenerPacientesMedico(medicoActual).get(i).getNombreCompleto());
+		}
+		return nombPacientes;
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
@@ -68,12 +77,12 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     void comprobarInput(KeyEvent event) throws Exception{
     	//comparar el nombre introducido con los pacientes asignados al medico, para sugerir posibles coincidencias de forma dinamica
     	
-    	ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
+    	ArrayList<String> nombresPacientes = nPac();
         ArrayList<String> sugerencias = new ArrayList<String>();
         
         boolean sugerenciasEncontradas;
         if(inputBuscarPaciente.getValue()!=null) {
-	    	for(int i=0; i< medicoActual.getPacientes().size(); i++) {
+	    	for(int i=0; i< fbd.obtenerPacientesMedico(medicoActual).size(); i++) {
 	    		//bucle que va comparando el input con el nombre de cada paciente
 	    		int longitud=0;
     		
@@ -153,10 +162,10 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     }
 
     private Paciente coincidencia (String pacienteBuscado) {
-    	for(int i=0; i< medicoActual.getPacientes().size(); i++) {
-            ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
+    	ArrayList<String> nombresPacientes = nPac();
+        for(int i=0; i<fbd.obtenerPacientesMedico(medicoActual).size(); i++) {
 	    	if(nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
-	    		Paciente p = lectorJson.getPaciente(medicoActual.getPacientes().get(i));
+	    		Paciente p = fbd.obtenerPacientesMedico(medicoActual).get(i);
 	    		return p;
 	    	}
     	}

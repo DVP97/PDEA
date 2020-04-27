@@ -136,7 +136,9 @@ public class DAOMedicos extends AbstractDAO {
 	}
 
 	public ArrayList<Paciente> obtenerPacientesMedico(Medico medico) {
+		
 		ArrayList<Paciente> resultado = new ArrayList<Paciente>();
+		
 		Paciente pacienteActual = null;
 		Connection con;
 		PreparedStatement stmMedico = null;
@@ -144,7 +146,7 @@ public class DAOMedicos extends AbstractDAO {
 
 		con = super.getConexion();
 
-		String consulta = "select m.* " + "from paciente as p right join medico as m on p.medico = m.dni_medico "
+		String consulta = "select p.* " + "from paciente as p right join medico as m on p.medico = m.dni_medico "
 				+ "where m.dni_medico = ?";
 
 		try {
