@@ -76,8 +76,6 @@ public class ControladorPacienteMensajes implements Initializable{
 
     @FXML
     private AnchorPane anchorPaneEnviados;
-
-		
 	
 	private static Paciente pacienteActual = new Paciente();
 	
