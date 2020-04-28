@@ -9,7 +9,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import modelo.Cuidador;
@@ -190,10 +189,9 @@ public class ControladorCuidadorpp implements Initializable {
     private Paciente coincidencia(String pacienteBuscado) {
 
 		for (int i = 0; i < numeroPacientes; i++) {
-			//ArrayList<String> nombresPacientes2 = fbd.obtenerPacientesCuidador(cuidadorActual);
-			ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDeCuidador(cuidadorActual);
+			ArrayList<String> nombresPacientes2 = nombresPacientes;
 			
-			if (nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
+			if (nombresPacientes2.get(i).equalsIgnoreCase(pacienteBuscado)) {
 			
 				Paciente p = fbd.obtenerPacientesCuidador(cuidadorActual).get(i);
 				return p;
