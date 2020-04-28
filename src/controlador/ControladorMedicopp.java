@@ -175,9 +175,9 @@ public class ControladorMedicopp implements Initializable {
 		// fecha de la cita
 		String FechaN[] = campoFecha.getValue().toString().split("-");
 		List<String> Fecha = Arrays.asList(FechaN);
-		int dia = Integer.parseInt(Fecha.get(0));
+		int anho = Integer.parseInt(Fecha.get(0));
 		int mes = Integer.parseInt(Fecha.get(1));
-		int anho = Integer.parseInt(Fecha.get(2));
+		int dia = Integer.parseInt(Fecha.get(2));
 
 		// hora de la cita
 		String HoraN[] = campoHora.getValue().toString().split(":");
