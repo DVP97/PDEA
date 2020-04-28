@@ -2,6 +2,8 @@ package controlador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -52,27 +54,33 @@ public class ControladorCuidadorAvisos implements Initializable {
 
 	private Cita fecha_cita;
 
-	private static Paciente pacienteElegido = new Paciente();
+	private static Paciente p = new Paciente();
+	private static Cuidador c = new Cuidador();
 
-	private ObservableList<Aviso> avisos = getAvisos();
+	//private ObservableList<Aviso> avisos = getAvisos();
 	
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 
-		Cuidador c = ControladorCuidadorpp.getCuidadorActual();
+
 		campoCuidador.setText("Hola " + c.getNombre() + ",");
-
-		campoPaciente.setText(pacienteElegido.getNombreCompleto());
+		campoPaciente.setText(p.getNombreCompleto());
 
 		
-		fecha_cita = seleccionarSiguienteCita(pacienteElegido);
+		fecha_cita = seleccionarSiguienteCita(p);
+		
 		// Recoge fecha de la cita
-		citaAvisos.setText(fecha_cita.getFechaString());
+		
+		DateFormat fechaHora = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		String fecha_convertido = fechaHora.format(fecha_cita.getFecha_cita());
+	
+		citaAvisos.setText(fecha_convertido);
 		
 		
-		if (avisos.size() > 0) {
+		
+		/*if (avisos.size() > 0) {
 			TableView<Aviso> table = new TableView<>();
 			// Primera columna
 			TableColumn<Aviso, String> columnaSensor = new TableColumn<>("Sensor");
@@ -106,7 +114,7 @@ public class ControladorCuidadorAvisos implements Initializable {
 			anchorPaneAvisos.setBottomAnchor(tableEmpty, 80.0);
 			tableEmpty.setAlignment(Pos.CENTER);
 
-		}
+		}*/
 
 	}
 
@@ -151,32 +159,37 @@ public class ControladorCuidadorAvisos implements Initializable {
 
 	// GETTERS
 	public static Paciente getPacienteElegido() {
-		return pacienteElegido;
+		return p;
 	}
-
-	public ObservableList<Aviso> getAvisos() {
-		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
-		avisos.addAll(lectorJson.crearAvisosSensor1(pacienteElegido.getDni()));
-		avisos.addAll(lectorJson.crearAvisosSensor2(pacienteElegido.getDni()));
-		avisos.addAll(lectorJson.crearAvisosSensor3(pacienteElegido.getDni()));
-
-		return avisos;
-	}
-
 	// SETTERS
 	public static void setPacienteElegido(Paciente PacienteElegido) {
-		pacienteElegido = PacienteElegido;
+		p = PacienteElegido;
 	}
+	
+	/*public ObservableList<Aviso> getAvisos() {
+		
+		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
+		avisos.addAll(lectorJson.crearAvisosSensor1(p.getDni()));
+		avisos.addAll(lectorJson.crearAvisosSensor2(p.getDni()));
+		avisos.addAll(lectorJson.crearAvisosSensor3(p.getDni()));
+
+		return avisos;
+	}*/
+
+
 
 	public class sortByDate implements Comparator<Cita> {
 		@Override
 		public int compare(Cita c1, Cita c2) {
-			return c1.getFecha().compareTo(c2.getFecha());
+			
+			return c1.getFecha_cita().compareTo(c2.getFecha_cita());
 		}
 	}
 
 	public Cita seleccionarSiguienteCita(Paciente p) {
-		ArrayList<Cita> citas = lectorJson.getCitasPaciente(p.getDni());
+		
+		ArrayList<Cita> citas;
+		citas = fbd.obtenerCitasPaciente(p);
 		Collections.sort(citas, new sortByDate());
 		return citas.get(0);
 	}

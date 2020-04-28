@@ -23,7 +23,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class lectorJson {
 	
-	public static ArrayList<Paciente> lectorJsonPacientes() {
+	/*public static ArrayList<Paciente> lectorJsonPacientes() {
 		try {
 			//guardas en una clase FileReader el nombre del json que quieres leer
 			FileReader fr = new FileReader("pacientes.json");
@@ -613,5 +613,5 @@ public class lectorJson {
 		
 	
 	
-	
+*/	
 }
