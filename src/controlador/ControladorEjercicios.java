@@ -190,6 +190,7 @@ public class ControladorEjercicios implements Initializable {
 				ControladorAvisos.setMensajeError("Esta usted en el ultimo ejercicio, ¡ha terminado!");
 				abrirVentanaAvisos();
 			} else {
+				
 				this.contador = contador + 1;
 				this.interval = this.ejercicios.get(contador).getDuracion();
 				cronometro.setText("00:" + interval);

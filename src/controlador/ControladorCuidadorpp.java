@@ -36,33 +36,34 @@ public class ControladorCuidadorpp implements Initializable {
 	@FXML
 	private JFXButton btnAvisos;
 
-	private ArrayList<String> nombresPacientes = getNombresPacientes();
-	private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
-	
-
 	private static Cuidador cuidadorActual = new Cuidador();
 
-	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	
+
+	private static baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 	int numeroPacientes = fbd.obtenerPacientesCuidador(cuidadorActual).size();
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 
+		ArrayList<String> nombresPacientes = getNombresPacientes();
+		ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
 		campoCuidador.setText("Hola " + cuidadorActual.getNombre()+ ",");
 		buscarPacCB.setItems(listaPacientesComboBox);
 		buscarPacCB.arm();
+		
 	}
 	
 	@FXML
 	void comprobarInput(KeyEvent event) throws Exception {
-		//buscarPacCB.arm();
+		buscarPacCB.arm();
 		// comparar el nombre introducido con los pacientes asignados al cuidador, para
 		// sugerir posibles coincidencias de forma dinamica
 
 		ArrayList<String> sugerencias = new ArrayList<String>();
 
 		int longitud = 0;
-		int numeroPacientes = fbd.obtenerPacientesCuidador(cuidadorActual).size();
+		ArrayList<String> nombresPacientes = getNombresPacientes();
 		boolean sugerenciasEncontradas;
 		
 		if (buscarPacCB.getValue() != null) {
@@ -147,15 +148,15 @@ public class ControladorCuidadorpp implements Initializable {
 	}
 	
 	@FXML
-	void pressBtnAvisos(ActionEvent event) throws IOException {}
-    	/*try {
+	void pressBtnAvisos(ActionEvent event) throws IOException {
+    	try {
     		this.pressBtnA();
     	}catch(ControladorExcepciones e) {
     		ControladorAvisos.setMensajeError("El usuario seleccionado no es correcto.");
     		e.abrirVentanaAvisos();
 	}
 	}
-	/*
+	
     private void pressBtnA() throws IOException  {
     		
        String pacienteBuscado = buscarPacCB.getValue();
@@ -185,9 +186,9 @@ public class ControladorCuidadorpp implements Initializable {
     	       	abrirVentanaAvisos();
     		}
     	}
-	*/
+	
     private Paciente coincidencia(String pacienteBuscado) {
-
+    	ArrayList<String> nombresPacientes = getNombresPacientes();
 		for (int i = 0; i < numeroPacientes; i++) {
 			ArrayList<String> nombresPacientes2 = nombresPacientes;
 			
@@ -224,7 +225,10 @@ public class ControladorCuidadorpp implements Initializable {
 	public ArrayList <String> getNombresPacientes () {
 		
 		ArrayList <String> nombres = new ArrayList <String>();
-		ArrayList <Paciente> pacientes = fbd.obtenerPacientesCuidador(cuidadorActual);
+		ArrayList <Paciente> pacientes;
+		
+		pacientes = fbd.obtenerPacientesCuidador(cuidadorActual);
+		
 		
 		for (int i=0; i < pacientes.size(); i++) {
 			

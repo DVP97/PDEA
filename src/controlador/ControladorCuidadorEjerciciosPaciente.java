@@ -47,7 +47,8 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 	private ArrayList<Ejercicio> ejercicios;
 	private Integer contador = 0;
 	private boolean hechos;
-    private static Paciente pacienteElegido = new Paciente();
+    private static Paciente p = new Paciente();
+	private static Cuidador c = new Cuidador();
     
     private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
@@ -55,14 +56,14 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 
-		Cuidador c = ControladorCuidadorpp.getCuidadorActual();
+
 		campoCuidador.setText("Hola " + c.getNombre() + ",");
-		campoPaciente.setText(pacienteElegido.getNombreCompleto());
+		campoPaciente.setText(p.getNombreCompleto());
 
 		// Aquí falta la chica del desplegable
-		Paciente p = ControladorPacientepp.getPacienteActual();
+
 		hechos = p.isEjerciciosHechos();
-		
+
 
 		if (hechos) {
 
@@ -72,7 +73,8 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 			campoHechos.setText("Ejercicios no acabados.");
 		}
 
-		this.ejercicios = lectorJson.getEjercicios(pacienteElegido);
+		this.ejercicios = fbd.obtenerEjerciciosPaciente(p);
+
 		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
 
 	}
@@ -114,8 +116,8 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 	void siguienteEjercicio() {
 
 		if (contador == ejercicios.size() - 1) {
-			System.out.println("Este es en el �ltimo ejercicio.");
-			ControladorAvisos.setMensajeError("Este es en el �ltimo ejercicio");
+			System.out.println("Este es en el ultimo ejercicio.");
+			ControladorAvisos.setMensajeError("Este es en el ultimo ejercicio");
 			abrirVentanaAvisos();
 		} else {
 
@@ -159,11 +161,11 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 	
 	//GETTERS
     public static Paciente getPacienteElegido() {
-		return pacienteElegido;
+		return p;
 	}
     
     //SETTERS
     public static void setPacienteElegido(Paciente PacienteElegido) {
-		pacienteElegido = PacienteElegido;
+		p = PacienteElegido;
 	}
 }
