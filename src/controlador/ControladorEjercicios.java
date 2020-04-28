@@ -65,16 +65,16 @@ public class ControladorEjercicios implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		// Paciente p = ControladorPacientepp.getPacienteActual();
+		
 		nombrePaciente.setText("Hola " + p.getNombre() + ",");
 
-		this.ejercicios = lectorJson.getEjercicios(p);
+		this.ejercicios = fbd.obtenerEjerciciosPaciente(p);
 		pantallaEj.setImage(new Image(this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
 
 		this.interval = this.ejercicios.get(contador).getDuracion();
 		numeroEjercicio.setText(" " + (contador + 1) + " de " + this.ejercicios.size());
 
-		// String hacerEjercicios con tama�o array de ejercicios
+		// String hacerEjercicios con tamaño array de ejercicios
 		hacerEjercicios = new String[this.ejercicios.size()];
 		for (int i = 0; i < hacerEjercicios.length; i++) {
 			hacerEjercicios[i] = ejercicios.get(i).getNombre();
@@ -82,7 +82,7 @@ public class ControladorEjercicios implements Initializable {
 
 	}
 
-	// Funci�n asociada al boton de comenzar. Inicia la cuenta atr�s del cron�metro.
+	// Funcion asociada al boton de comenzar. Inicia la cuenta atras del cronometro.
 	@FXML
 	void pressBtnComenzar(ActionEvent event) {
 		this.btnComenzar.setDisable(true);
@@ -95,21 +95,21 @@ public class ControladorEjercicios implements Initializable {
 		}
 	}
 
-	// Bot�n anterior
+	// Boton anterior
 	// ------------------------------------------------
 	@FXML
 	void pressBtnAnterior(ActionEvent event) {
 		ejercicioAnterior();
 	}
 
-	// Bot�n siguiente
+	// Boton siguiente
 	// ------------------------------------------------
 	@FXML
 	void pressBtnSiguiente(ActionEvent event) {
 		siguienteEjercicio();
 	}
 
-	// Bot�n volver
+	// Boton volver
 	// ------------------------------------------------
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
@@ -123,7 +123,8 @@ public class ControladorEjercicios implements Initializable {
 
 			System.out.println(hechos);
 			p.setEjerciciosHechos(hechos);
-			escritorJson.modificarPaciente(p);
+			fbd.modificarPaciente(p);
+			
 
 			System.out.println("Cargando ventana principal de Paciente...");
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
@@ -171,7 +172,7 @@ public class ControladorEjercicios implements Initializable {
 		}
 		// Acaba y pasa al siguiente ejercicio
 		timeline.setOnFinished(e -> siguienteEjercicio());
-		System.out.println("Est� terminado");
+		System.out.println("Esta terminado");
 
 	}
 
@@ -185,8 +186,8 @@ public class ControladorEjercicios implements Initializable {
 		} else {
 
 			if (contador == ejercicios.size() - 1) {
-				System.out.println("Est� usted en el �ltimo ejercicio");
-				ControladorAvisos.setMensajeError("Est� usted en el �ltimo ejercicio, �ha terminado!");
+				System.out.println("Esta usted en el ultimo ejercicio");
+				ControladorAvisos.setMensajeError("Esta usted en el ultimo ejercicio, ¡ha terminado!");
 				abrirVentanaAvisos();
 			} else {
 				this.contador = contador + 1;
@@ -204,8 +205,8 @@ public class ControladorEjercicios implements Initializable {
 	void ejercicioAnterior() {
 
 		if (contador == 0) {
-			System.out.println("Est� usted en el primer ejercicio");
-			ControladorAvisos.setMensajeError("Est� usted en el primer ejercicio.");
+			System.out.println("Esta usted en el primer ejercicio");
+			ControladorAvisos.setMensajeError("Esta usted en el primer ejercicio.");
 			abrirVentanaAvisos();
 		} else {
 

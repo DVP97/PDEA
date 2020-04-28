@@ -135,6 +135,7 @@ public class DAOMedicos extends AbstractDAO {
 		}
 	}
 
+	////Función que devuelve los pacientes del médico
 	public ArrayList<Paciente> obtenerPacientesMedico(Medico medico) {
 		
 		ArrayList<Paciente> resultado = new ArrayList<Paciente>();
@@ -170,6 +171,7 @@ public class DAOMedicos extends AbstractDAO {
 		return resultado;
 	}
 	
+	//Función que devuelve las citas
 	public ArrayList<Cita> obtenerCitasMedico (Medico medico){
 		ArrayList<Cita> resultado = new ArrayList<Cita>();
 		Cita citaActual = null;
