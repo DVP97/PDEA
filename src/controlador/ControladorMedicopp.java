@@ -140,7 +140,6 @@ public class ControladorMedicopp implements Initializable {
 	
 	private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nPac());
 
-
 	// Metodos
 
 	@Override
@@ -166,7 +165,7 @@ public class ControladorMedicopp implements Initializable {
 	@FXML
 	@SuppressWarnings("deprecation")
 	void pressBtnCrearCita(ActionEvent event) {
-		ArrayList<Cita> addCita = lectorJson.lectorJsonCitas();
+		//ArrayList<Cita> addCita = lectorJson.lectorJsonCitas();
 		Cita nCita = new Cita();
 
 		String pacienteBuscado = inputBuscarPaciente.getValue();
@@ -195,7 +194,7 @@ public class ControladorMedicopp implements Initializable {
 		nCita.setMedico(ControladorMedicoSelectorPaciente.getMedicoActual().getDni());
 
 		// aniadir nCita al Arraylist
-		addCita.add(nCita);
+		//addCita.add(nCita);
 
 		// insertar nueva cita en base de datos
 		fbd.insertarCita(nCita);
@@ -262,7 +261,7 @@ public class ControladorMedicopp implements Initializable {
 
 	private Paciente coincidencia(String pacienteBuscado) {
 		for (int i = 0; i < fbd.obtenerPacientesMedico(medicoActual).size(); i++) {
-			ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
+			ArrayList<String> nombresPacientes = nPac();
 			if (nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
 				Paciente p = fbd.obtenerPacientesMedico(medicoActual).get(i);
 				return p;
@@ -308,7 +307,7 @@ public class ControladorMedicopp implements Initializable {
 		TitledPane tp = getExpanded();
 		if (tp != null) {
 			String dni = tp.getId();
-			Paciente pac = lectorJson.getPaciente(dni);
+			Paciente pac = fbd.visualizarPaciente(dni);
 
 			comboBoxElegirDestinatario.setValue(pac.getNombre() + " " + pac.getApellidos());
 

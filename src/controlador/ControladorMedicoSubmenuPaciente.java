@@ -165,12 +165,11 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	setTitledPanesRecibidos();
     	
     	setAvisos();
-    	/*
+
     	Cita proximaCita = seleccionarSiguienteCita(pacienteActual);
-    	System.out.println(proximaCita.getFechaString());
     	notaCita.setText(proximaCita.getNota());
     	fc.setText(proximaCita.getFechaString());
-		*/
+		
     }
     
     

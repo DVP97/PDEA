@@ -33,12 +33,12 @@ public class ControladorPacientepp implements Initializable {
         
     private static Paciente pacienteActual = new Paciente();
     
-    private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+
     
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
-    	campoPaciente.setText("Hola " +ControladorPacientepp.getPacienteActual().getNombre() +",");
+    	campoPaciente.setText("Hola " +pacienteActual.getNombre() +",");
 	}
     
     @FXML
