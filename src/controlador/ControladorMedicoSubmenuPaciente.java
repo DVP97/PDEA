@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -164,12 +165,12 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	setTitledPanesRecibidos();
     	
     	setAvisos();
-    	
+    	/*
     	Cita proximaCita = seleccionarSiguienteCita(pacienteActual);
     	System.out.println(proximaCita.getFechaString());
     	notaCita.setText(proximaCita.getNota());
     	fc.setText(proximaCita.getFechaString());
-
+		*/
     }
     
     
@@ -231,10 +232,10 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	Date calend= new Date(anho, mes, dia);
     	p.setFecha_nacimiento(calend);
     	//campo telefono
-    	int TlfPacNew = Integer.parseInt(campoTlfPac.getText());
+    	String TlfPacNew = campoTlfPac.getText();
     	p.setTelefono(TlfPacNew);
 
-    	p.setCuidadores(fbd.obtenerCuidadoresPaciente(pacienteActual));
+    	//p.setsetCuidadores(fbd.obtenerCuidadoresPaciente(pacienteActual));
     	
     	escritorJson.modificarPaciente(p);	
     }
@@ -266,6 +267,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     void pressBtnResponder(ActionEvent event) {
     	JFXTabPaneMensajeria.getSelectionModel().select(2);
     }
+    
     @FXML
     void pressBtnCitarPac(ActionEvent event) throws IOException {
     	try {
@@ -287,6 +289,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			case1.abrirVentanaAvisos();
 		}
     }
+    
     @FXML
     void pressBtnConsultarEjerciciosPac(ActionEvent event) throws IOException {
     	try {
@@ -361,21 +364,21 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	StringBuilder stringBuilder = new StringBuilder();
 		Cuidador c = new Cuidador();
 		int i = 0 ;
-		if (p.getCuidadores().size()==1) {
-			c = lectorJson.getCuidador(p.getCuidadores().get(0));
+		if (fbd.obtenerCuidadoresPaciente(p).size()==1) {
+			c = fbd.obtenerCuidadoresPaciente(p).get(0);
 	    	stringBuilder.append(c.getNombre() + " " + c.getApellidos());
 	    	return stringBuilder.toString();
-		}else if (p.getCuidadores().size()==0){
+		}else if (fbd.obtenerCuidadoresPaciente(p).size()==0){
 			stringBuilder.append("Este paciente no tiene cuidadores.");
 			return stringBuilder.toString();
 		}
 		else {
 		
-	    	for (i = 0 ; i < (p.getCuidadores().size()-1); i++) {
-	    		c = lectorJson.getCuidador(p.getCuidadores().get(i));
+	    	for (i = 0 ; i < (fbd.obtenerCuidadoresPaciente(p).size()-1); i++) {
+	    		c = fbd.obtenerCuidadoresPaciente(p).get(i);
 	    		stringBuilder.append(c.getNombre() + " " + c.getApellidos() + ", ");
 	    	}
-	    	c = lectorJson.getCuidador(p.getCuidadores().get(i));
+	    	c = fbd.obtenerCuidadoresPaciente(p).get(i);
 	    	stringBuilder.append(c.getNombre() + " " + c.getApellidos());
 	    	return stringBuilder.toString();
 		}
@@ -383,12 +386,9 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 
     
     private void enviarMensaje(String dniPac) {
-    	Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText(), campoAsunto.getText());
-		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
+    	Mensaje msg = new Mensaje(ControladorMedicoSelectorPaciente.getMedicoActual().getDni(), dniPac, true, campoAsunto.getText(), campoRedactar.getText(), Calendar.getInstance().getTime());
 		
-		mensajes= lectorJson.lectorJsonMensajes();
-		mensajes.add(msg);
-		escritorJson.escribirEnJsonMensajes(mensajes);
+		fbd.enviarMensaje(msg);
 
 		ControladorAvisos.setMensajeError("Mensaje Enviado.");
 		abrirVentanaAvisos();
@@ -405,13 +405,13 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 
 		if(numeroMensajesRecibidos()>0) {
     		for(int i=0; i<numeroMensajesRecibidos(); i++) {
-    			ArrayList<Mensaje> mensajesRec =lectorJson.getMensajesA(medicoActual.getDni(), pacienteActual.getDni());
+    			ArrayList<Mensaje> mensajesRec =fbd.obtenerMensajesRecibidos(pacienteActual);
     			List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
 				listMensajesRec.addAll(mensajesRec);
 				Collections.sort(listMensajesRec, new sortByDate());
     			Mensaje mensajeAct = listMensajesRec.get(i);
     			
-    			Paciente pacEmisor = lectorJson.getPaciente(mensajeAct.getEmisor());
+    			Paciente pacEmisor = fbd.visualizarPaciente(mensajeAct.getDni_paciente());
     			Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
@@ -450,7 +450,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			//identificar primero tipo de usuario
 
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
-				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesA(medicoActual.getDni(), pacienteActual.getDni());
+				ArrayList<Mensaje> mensajesEnv  = fbd.obtenerMensajesEnviados(pacienteActual);
 				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
 				listMensajesEnv.addAll(mensajesEnv);
 				Collections.sort(listMensajesEnv, new sortByDate());
@@ -491,16 +491,14 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		}
 	}
 	
-	
-
 	public Integer numeroMensajesRecibidos() {
 		Medico m = ControladorMedicopp.getMedicoActual();
-		return lectorJson.getMensajesA(m.getDni(), pacienteActual.getDni()).size();
+		return fbd.obtenerMensajesRecibidos(pacienteActual).size();
 	}
 
 	public Integer numeroMensajesEnviados() {
 		Medico m = ControladorMedicopp.getMedicoActual();
-		return lectorJson.getMensajesA(pacienteActual.getDni(), m.getDni()).size();
+		return fbd.obtenerMensajesRecibidos(pacienteActual).size();
 	}
 	
 	public class sortByDate implements Comparator<Mensaje> {
@@ -582,14 +580,14 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     public class sortByDateC implements Comparator<Cita>{
 		@Override
 		public int compare (Cita c1, Cita c2) {
-			return c1.getFecha().compareTo(c2.getFecha());
+			return c1.getFecha_cita().compareTo(c2.getFecha_cita());
 		}
 	}
-	
+	/*
 	public Cita seleccionarSiguienteCita(Paciente p) {
-		ArrayList<Cita> citas = lectorJson.getCitasPaciente(p.getDni());
+		ArrayList<Cita> citas = fbd.obtenerCitasPaciente(pacienteActual);
 		Collections.sort(citas, new sortByDateC());
 		return citas.get(0);
 	}
-
+	*/
 }
