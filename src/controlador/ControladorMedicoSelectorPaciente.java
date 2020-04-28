@@ -39,7 +39,7 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @FXML
     private JFXButton btnMenuGeneral;
     
-    private static Medico medicoActual = ControladorMedicopp.getMedicoActual();
+    private static Medico medicoActual = new Medico();
     
     private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
@@ -60,7 +60,7 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     	//medicoActual=getMedicoActual();
-    	campoMedico.setText("Hola " +ControladorMedicoSubmenuPaciente.getMedicoActual().getNombre()+",");
+    	campoMedico.setText("Hola " +medicoActual.getNombre()+",");
     	inputBuscarPaciente.setItems(listaPacientesComboBox);
     }
     

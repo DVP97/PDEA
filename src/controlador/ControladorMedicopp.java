@@ -134,7 +134,7 @@ public class ControladorMedicopp implements Initializable {
 	@FXML
 	private JFXComboBox<String> comboBoxElegirDestinatario;
 	
-	private static Medico medicoActual = new Medico();
+	private static Medico medicoActual = ControladorMedicoSelectorPaciente.getMedicoActual();
 
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 	
