@@ -151,7 +151,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     public void initialize(URL location, ResourceBundle reosurces) {
     	System.out.println(medicoActual.getNombre());
     	System.out.println(pacienteActual.getNombre());
-    	campoMedico.setText("Hola " +ControladorMedicoSelectorPaciente.getMedicoActual()+",");
+    	campoMedico.setText("Hola " +ControladorMedicoSelectorPaciente.getMedicoActual().getNombre()+",");
     	
     	setCamposDatos();
     	
@@ -235,9 +235,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	String TlfPacNew = campoTlfPac.getText();
     	p.setTelefono(TlfPacNew);
 
-    	//p.setsetCuidadores(fbd.obtenerCuidadoresPaciente(pacienteActual));
-    	
-    	escritorJson.modificarPaciente(p);	
+    	//(fbd.modificarCuidador_de_Paciente(p));
+    	fbd.modificarPaciente(p);	
     }
     
     @FXML
@@ -570,9 +569,9 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     
     public ObservableList<Aviso> getAvisos() {
 		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
-		avisos.addAll(lectorJson.crearAvisosSensor1(pacienteActual.getDni()));
-		avisos.addAll(lectorJson.crearAvisosSensor2(pacienteActual.getDni()));
-		avisos.addAll(lectorJson.crearAvisosSensor3(pacienteActual.getDni()));
+		//avisos.addAll(fbd.generaravisossensor1(pacienteActual));
+		//avisos.addAll(fbd.generaravisossensor1(pacienteActual));
+		//avisos.addAll(fbd.generaravisossensor1(pacienteActual));
 
 		return avisos;
 	}
@@ -583,11 +582,11 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			return c1.getFecha_cita().compareTo(c2.getFecha_cita());
 		}
 	}
-	/*
+	
 	public Cita seleccionarSiguienteCita(Paciente p) {
 		ArrayList<Cita> citas = fbd.obtenerCitasPaciente(pacienteActual);
 		Collections.sort(citas, new sortByDateC());
 		return citas.get(0);
 	}
-	*/
+	
 }

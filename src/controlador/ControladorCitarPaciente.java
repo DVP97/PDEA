@@ -67,7 +67,7 @@ public class ControladorCitarPaciente implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 		pacienteActual = ControladorMedicoSubmenuPaciente.getPacienteActual();
-		medicoActual = ControladorMedicopp.getMedicoActual();
+		medicoActual = ControladorMedicoSelectorPaciente.getMedicoActual();
 		System.out.println(pacienteActual.getNombreCompleto());
 		nombrePaciente.setText(pacienteActual.getNombreCompleto());
 		campoMedico.setText("Hola " + medicoActual.getNombre()+",");	
@@ -99,7 +99,7 @@ public class ControladorCitarPaciente implements Initializable{
 		// guardar dia y hora de la cita en un Date
 		Date calend = new Date(anho, mes, dia, hora, mins);
 		nCita.setFecha_cita(calend);
-		//nCita.setFechaString();
+		
 
 		// aniadir comentario del medico
 		nCita.setNota(notaCita.getText());
