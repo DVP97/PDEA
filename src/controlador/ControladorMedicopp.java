@@ -415,7 +415,8 @@ public class ControladorMedicopp implements Initializable {
 	}
 
 	private void enviarMensaje(String dniPac) {
-		Mensaje msg = new Mensaje(ControladorMedicoSelectorPaciente.getMedicoActual().getDni(), dniPac, true, campoAsunto.getText(), campoRedactar.getText(), Calendar.getInstance().getTime());
+		String fecha_mensaje = getFechaString(Calendar.getInstance().getTime());
+		Mensaje msg = new Mensaje(ControladorMedicoSelectorPaciente.getMedicoActual().getDni(), dniPac, true, campoAsunto.getText(), campoRedactar.getText(), fecha_mensaje);
 		fbd.enviarMensaje(msg);
 		ControladorAvisos.setMensajeError("Mensaje Enviado.");
 		abrirVentanaAvisos();
@@ -588,9 +589,9 @@ public class ControladorMedicopp implements Initializable {
 
 		for (int i = 0; i < pacientes.size(); i++) {
 			//crear daos sensores
-			avisos.addAll(lectorJson.crearAvisosSensor1(pacientes.get(i)));
-			avisos.addAll(lectorJson.crearAvisosSensor2(pacientes.get(i)));
-			avisos.addAll(lectorJson.crearAvisosSensor3(pacientes.get(i)));
+			//avisos.addAll(lectorJson.crearAvisosSensor1(pacientes.get(i)));
+			//avisos.addAll(lectorJson.crearAvisosSensor2(pacientes.get(i)));
+			//avisos.addAll(lectorJson.crearAvisosSensor3(pacientes.get(i)));
 		}
 		return avisos;
 	}

@@ -35,7 +35,7 @@ public class DAOMensajes extends AbstractDAO {
 			rsMensajes = stmMedico.executeQuery();
 			
 			while (rsMensajes.next()) {
-				mensajeActual = new Mensaje(rsMensajes.getInt("id_mensaje"), rsMensajes.getString("dni_medico"), rsMensajes.getString("dni_paciente"), rsMensajes.getBoolean("esMedicoEmisor"), rsMensajes.getString("asunto"), rsMensajes.getString("mensaje"), rsMensajes.getDate("fecha"));
+				mensajeActual = new Mensaje(rsMensajes.getInt("id_mensaje"), rsMensajes.getString("dni_medico"), rsMensajes.getString("dni_paciente"), rsMensajes.getBoolean("esMedicoEmisor"), rsMensajes.getString("asunto"), rsMensajes.getString("mensaje"), rsMensajes.getString("fecha"));
 				resultado.add(mensajeActual);
 			}
 		}catch (SQLException e) {
@@ -67,7 +67,7 @@ public class DAOMensajes extends AbstractDAO {
 			rsMensajes = stmMedico.executeQuery();
 			
 			while (rsMensajes.next()) {
-				mensajeActual = new Mensaje(rsMensajes.getInt("id_mensaje"), rsMensajes.getString("dni_medico"), rsMensajes.getString("dni_paciente"), rsMensajes.getBoolean("esMedicoEmisor"), rsMensajes.getString("asunto"), rsMensajes.getString("mensaje"), rsMensajes.getDate("fecha"));
+				mensajeActual = new Mensaje(rsMensajes.getInt("id_mensaje"), rsMensajes.getString("dni_medico"), rsMensajes.getString("dni_paciente"), rsMensajes.getBoolean("esMedicoEmisor"), rsMensajes.getString("asunto"), rsMensajes.getString("mensaje"), rsMensajes.getString("fecha"));
 				resultado.add(mensajeActual);
 			}
 		}catch (SQLException e) {
@@ -99,7 +99,7 @@ public class DAOMensajes extends AbstractDAO {
 			rsMensajes = stmPaciente.executeQuery();
 			
 			while (rsMensajes.next()) {
-				mensajeActual = new Mensaje(rsMensajes.getInt("id_mensaje"), rsMensajes.getString("dni_medico"), rsMensajes.getString("dni_paciente"), rsMensajes.getBoolean("esMedicoEmisor"), rsMensajes.getString("asunto"), rsMensajes.getString("mensaje"), rsMensajes.getDate("fecha"));
+				mensajeActual = new Mensaje(rsMensajes.getInt("id_mensaje"), rsMensajes.getString("dni_medico"), rsMensajes.getString("dni_paciente"), rsMensajes.getBoolean("esMedicoEmisor"), rsMensajes.getString("asunto"), rsMensajes.getString("mensaje"), rsMensajes.getString("fecha"));
 				resultado.add(mensajeActual);
 			}
 		}catch (SQLException e) {
@@ -131,7 +131,7 @@ public class DAOMensajes extends AbstractDAO {
 			rsMensajes = stmPaciente.executeQuery();
 			
 			while (rsMensajes.next()) {
-				mensajeActual = new Mensaje(rsMensajes.getInt("id_mensaje"), rsMensajes.getString("dni_medico"), rsMensajes.getString("dni_paciente"), rsMensajes.getBoolean("esMedicoEmisor"), rsMensajes.getString("asunto"), rsMensajes.getString("mensaje"), rsMensajes.getDate("fecha"));
+				mensajeActual = new Mensaje(rsMensajes.getInt("id_mensaje"), rsMensajes.getString("dni_medico"), rsMensajes.getString("dni_paciente"), rsMensajes.getBoolean("esMedicoEmisor"), rsMensajes.getString("asunto"), rsMensajes.getString("mensaje"), rsMensajes.getString("fecha"));
 				resultado.add(mensajeActual);
 			}
 		}catch (SQLException e) {
@@ -161,7 +161,7 @@ public class DAOMensajes extends AbstractDAO {
 			stmMensaje.setBoolean(3, mensaje.isEsMedicoEmisor());
 			stmMensaje.setString(4, mensaje.getAsunto());
 			stmMensaje.setString(5, mensaje.getMensaje());
-			stmMensaje.setDate(6, (Date) mensaje.getFecha());
+			stmMensaje.setString(6, mensaje.getFechaString());
 			
 			con.setAutoCommit(true);
 			stmMensaje.executeUpdate();

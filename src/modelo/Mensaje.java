@@ -14,7 +14,7 @@ public class Mensaje {
 	private Date fecha;
 
 	public Mensaje(Integer id_mensaje, String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
-			String mensaje, Date fecha) {
+			String mensaje, String string) {
 		this.id_mensaje = id_mensaje;
 		this.dni_medico = dni_medico;
 		this.dni_paciente = dni_paciente;
@@ -25,7 +25,7 @@ public class Mensaje {
 	}
 
 	public Mensaje(String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
-			String mensaje, Date fecha) {
+			String mensaje, String fecha) {
 		this.dni_medico = dni_medico;
 		this.dni_paciente = dni_paciente;
 		this.esMedicoEmisor = false;
