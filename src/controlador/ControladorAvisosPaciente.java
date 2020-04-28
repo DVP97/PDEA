@@ -2,12 +2,13 @@ package controlador;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 
-import org.omg.CORBA.OMGVMCID;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -37,11 +38,11 @@ public class ControladorAvisosPaciente implements Initializable {
 	@FXML
 	private Label campoPaciente;
 
-	private Cita fecha_cita;
+	private static Cita fecha_cita;
 	private boolean hechos;
-
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 	private Paciente p = ControladorPacientepp.getPacienteActual();
+
 	
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
@@ -61,7 +62,14 @@ public class ControladorAvisosPaciente implements Initializable {
 		}
 		// Muestra fecha de la cita
 		fecha_cita = seleccionarSiguienteCita(p);
-		campoFecha.setText(fecha_cita.getFecha_cita().toString());
+
+		
+		DateFormat fechaHora = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		String fecha_convertido = fechaHora.format(fecha_cita.getFecha_cita());
+	
+		campoFecha.setText(fecha_convertido);
+		
+		
 
 	}
 
@@ -115,8 +123,32 @@ public class ControladorAvisosPaciente implements Initializable {
 	}
 	
 	public Cita seleccionarSiguienteCita(Paciente p) {
-		ArrayList <Cita> citas = fbd.obtenerCitasPaciente(p);
+		
+			ArrayList <Cita> citas = fbd.obtenerCitasPaciente(p);
+			if (citas != null) {
+				
+			//	campoFecha.setText(fecha_cita.getFecha_cita().toString());
+				
+			}else {
+				campoFecha.setText("No tiene citas pendientes");
+			}
+		
 		Collections.sort(citas, new sortByDate());
 		return citas.get(0);
 	}
+		
+
+
+
+	
+	// GETTERS
+	public static Cita getCita() {
+		return fecha_cita;
+	}
+
+	// SETTERS
+	public static void setCuidadorActual(Cita fechaCita) {
+		fecha_cita = fechaCita;
+	}
+
 }
