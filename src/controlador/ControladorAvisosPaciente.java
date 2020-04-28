@@ -41,11 +41,11 @@ public class ControladorAvisosPaciente implements Initializable {
 	private boolean hechos;
 
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	private Paciente p = ControladorPacientepp.getPacienteActual();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 
-		Paciente p = ControladorPacientepp.getPacienteActual();
 		campoPaciente.setText("Hola " + p.getNombre() + ",");
 
 		// Muestra el valor del booleano
@@ -60,8 +60,8 @@ public class ControladorAvisosPaciente implements Initializable {
 			campoHechos.setText("Ejercicios no acabados.");
 		}
 		// Muestra fecha de la cita
-		Cita prox = seleccionarSiguienteCita(p);
-		campoFecha.setText(prox.getFechaString());
+		fecha_cita = seleccionarSiguienteCita(p);
+		campoFecha.setText(fecha_cita.getFecha_cita().toString());
 
 	}
 
@@ -109,12 +109,13 @@ public class ControladorAvisosPaciente implements Initializable {
 	public class sortByDate implements Comparator<Cita>{
 		@Override
 		public int compare (Cita c1, Cita c2) {
-			return c1.getFecha().compareTo(c2.getFecha());
+	
+			return c1.getFecha_cita().compareTo(c2.getFecha_cita());
 		}
 	}
 	
 	public Cita seleccionarSiguienteCita(Paciente p) {
-		ArrayList<Cita> citas = lectorJson.getCitasPaciente(p.getDni());
+		ArrayList <Cita> citas = fbd.obtenerCitasPaciente(p);
 		Collections.sort(citas, new sortByDate());
 		return citas.get(0);
 	}
