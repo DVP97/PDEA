@@ -39,13 +39,13 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     @FXML
     private JFXButton btnMenuGeneral;
     
-    private static Medico medicoActual = new Medico();
-
-    private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+    private static Medico medicoActual = ControladorMedicopp.getMedicoActual();
     
+    private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+
     private ArrayList<String> nombresPacientes = nPac();
     
-    private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
+    private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);     
     
     //Metodos
     public ArrayList<String> nPac(){
@@ -59,7 +59,8 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
+    	//medicoActual=getMedicoActual();
+    	campoMedico.setText("Hola " +ControladorMedicoSubmenuPaciente.getMedicoActual().getNombre()+",");
     	inputBuscarPaciente.setItems(listaPacientesComboBox);
     }
     
@@ -128,6 +129,7 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
     	}
     	
     }
+    
     private void pressBtnBuscar() throws IOException {
     	
     	String pacienteBuscado = inputBuscarPaciente.getValue();
@@ -220,8 +222,8 @@ public class ControladorMedicoSelectorPaciente implements Initializable{
 		return medicoActual;
 	}
 
-	public static void setMedicoActual(Medico MedicoActual) {
-		medicoActual = MedicoActual;
+	public static void setMedicoActual(Medico m) {
+		medicoActual = m;
 	}
 
 }

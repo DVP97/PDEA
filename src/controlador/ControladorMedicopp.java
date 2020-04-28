@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -132,13 +133,13 @@ public class ControladorMedicopp implements Initializable {
 
 	@FXML
 	private JFXComboBox<String> comboBoxElegirDestinatario;
-
-
-	private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(getNombrePacientes());
-
-	private static Medico medicoActual = new Medico();
 	
+	private static Medico medicoActual = new Medico();
+
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	
+	private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nPac());
+
 
 	// Metodos
 
@@ -171,8 +172,7 @@ public class ControladorMedicopp implements Initializable {
 		String pacienteBuscado = inputBuscarPaciente.getValue();
 		Paciente p = coincidencia(pacienteBuscado);
 		// asociar mediante dni del paciente
-		nCita.setDni(p.getDni());
-		nCita.setNombrePaciente();
+		nCita.setPaciente(p.getDni());
 		// fecha de la cita
 		String FechaN[] = campoFecha.getValue().toString().split("-");
 		List<String> Fecha = Arrays.asList(FechaN);
@@ -188,17 +188,17 @@ public class ControladorMedicopp implements Initializable {
 
 		// guardar dia y hora de la cita en un Date
 		Date calend = new Date(anho, mes, dia, hora, mins);
-		nCita.setFecha(calend);
+		nCita.setFecha_cita(calend);
 
 		// aniadir comentario del medico
 		nCita.setNota(notaCita.getText());
-		nCita.setFechaString();
+		nCita.setMedico(ControladorMedicoSelectorPaciente.getMedicoActual().getDni());
 
 		// aniadir nCita al Arraylist
 		addCita.add(nCita);
 
-		// escribir en el json de citas el Arraylist modificado
-		escritorJson.escribirEnJsonCitas(addCita);
+		// insertar nueva cita en base de datos
+		fbd.insertarCita(nCita);
 
 		// aviso al usuario de que se ha creado la cita correctamente
 		ControladorAvisos.setMensajeError("Se ha creado correctamente una nueva cita.");
@@ -219,12 +219,12 @@ public class ControladorMedicopp implements Initializable {
 		// comparar el nombre introducido con los pacientes asignados al medico, para
 		// sugerir posibles coincidencias de forma dinamica
 
-		ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
+		ArrayList<String> nombresPacientes = nPac();
 		ArrayList<String> sugerencias = new ArrayList<String>();
 
 		boolean sugerenciasEncontradas;
 		if (inputBuscarPaciente.getValue() != null) {
-			for (int i = 0; i < medicoActual.getPacientes().size(); i++) {
+			for (int i = 0; i < fbd.obtenerPacientesMedico(medicoActual).size(); i++) {
 				// bucle que va comparando el input con el nombre de cada paciente
 				int longitud = 0;
 
@@ -261,10 +261,10 @@ public class ControladorMedicopp implements Initializable {
 	}
 
 	private Paciente coincidencia(String pacienteBuscado) {
-		for (int i = 0; i < medicoActual.getPacientes().size(); i++) {
+		for (int i = 0; i < fbd.obtenerPacientesMedico(medicoActual).size(); i++) {
 			ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDe(medicoActual);
 			if (nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
-				Paciente p = lectorJson.getPaciente(medicoActual.getPacientes().get(i));
+				Paciente p = fbd.obtenerPacientesMedico(medicoActual).get(i);
 				return p;
 			}
 		}
@@ -281,7 +281,7 @@ public class ControladorMedicopp implements Initializable {
 					String pac = comboBoxElegirDestinatario.getValue();
 					Integer indice = getIndiceComboBox(pac);
 					if (indice != null) {
-						String dniPac = medicoActual.getPacientes().get(indice);
+						String dniPac = fbd.obtenerPacientesMedico(medicoActual).get(indice).getDni();
 
 						enviarMensaje(dniPac);
 					} else {
@@ -377,19 +377,14 @@ public class ControladorMedicopp implements Initializable {
 		medicoActual = MedicoActual;
 	}
 
-	private ArrayList<String> getNombrePacientes() {
-		ArrayList<String> pacientes = new ArrayList<String>();
-		ArrayList<String> pacientesDnis = Pac();
-
-		for (int i = 0; i < pacientesDnis.size(); i++) {
-
-			String nombrePac = lectorJson.getPaciente(pacientesDnis.get(i)).getNombre();
-			String apellidosPac = lectorJson.getPaciente(pacientesDnis.get(i)).getApellidos();
-			String nombreCompleto = nombrePac + " " + apellidosPac;
-			pacientes.add(nombreCompleto);
+    public ArrayList<String> nPac(){
+    	ArrayList<String> nombPacientes = new ArrayList<String>();
+    	ArrayList<Paciente> arrayPacientes = fbd.obtenerPacientesMedico(medicoActual);
+		for(int i=0; i< arrayPacientes.size();i++) {
+			nombPacientes.add(arrayPacientes.get(i).getNombreCompleto());
 		}
-		return pacientes;
-	}
+		return nombPacientes;
+    }
 	
 	public ArrayList<String> Pac(){
 	   	ArrayList<String> nombPacientes = new ArrayList<String>();
@@ -400,8 +395,8 @@ public class ControladorMedicopp implements Initializable {
 	}
 	 
 	private Integer getIndiceComboBox(String pac) {
-		for (int i = 0; i < getNombrePacientes().size(); i++) {
-			if (getNombrePacientes().get(i).equalsIgnoreCase(pac)) {
+		for (int i = 0; i < nPac().size(); i++) {
+			if (nPac().get(i).equalsIgnoreCase(pac)) {
 				return i;
 			}
 		}
@@ -409,23 +404,18 @@ public class ControladorMedicopp implements Initializable {
 	}
 
 	private Integer numeroMensajesRecibidos() {
-		Medico m = ControladorMedicopp.getMedicoActual();
-		return lectorJson.getMensajesEnviadosA(m.getDni()).size();
+		Medico m = ControladorMedicoSelectorPaciente.getMedicoActual();
+		return fbd.obtenerMensajesEnviados(m).size();
 	}
 
 	private Integer numeroMensajesEnviados() {
-		Medico m = ControladorMedicopp.getMedicoActual();
-		return lectorJson.getMensajesEnviadosPor(m.getDni()).size();
+		Medico m = ControladorMedicoSelectorPaciente.getMedicoActual();
+		return fbd.obtenerMensajesRecibidos(m).size();
 	}
 
 	private void enviarMensaje(String dniPac) {
-		Mensaje msg = new Mensaje(getMedicoActual().getDni(), dniPac, campoRedactar.getText(), campoAsunto.getText());
-		ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
-
-		mensajes = lectorJson.lectorJsonMensajes();
-		mensajes.add(msg);
-		escritorJson.escribirEnJsonMensajes(mensajes);
-
+		Mensaje msg = new Mensaje(ControladorMedicoSelectorPaciente.getMedicoActual().getDni(), dniPac, true, campoAsunto.getText(), campoRedactar.getText(), Calendar.getInstance().getTime());
+		fbd.enviarMensaje(msg);
 		ControladorAvisos.setMensajeError("Mensaje Enviado.");
 		abrirVentanaAvisos();
 
@@ -452,14 +442,13 @@ public class ControladorMedicopp implements Initializable {
 
 		if (numeroMensajesRecibidos() > 0) {
 			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
-				ArrayList<Mensaje> mensajesRec = lectorJson
-						.getMensajesEnviadosA(ControladorMedicopp.getMedicoActual().getDni());
+				ArrayList<Mensaje> mensajesRec = fbd.obtenerMensajesRecibidos(ControladorMedicoSelectorPaciente.getMedicoActual());
 				List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
 				listMensajesRec.addAll(mensajesRec);
 				Collections.sort(listMensajesRec, new sortByDate());
 				Mensaje mensajeAct = listMensajesRec.get(i);
 
-				Paciente pacEmisor = lectorJson.getPaciente(mensajeAct.getEmisor());
+				Paciente pacEmisor = fbd.visualizarPaciente(mensajeAct.getDni_paciente());
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
@@ -467,7 +456,7 @@ public class ControladorMedicopp implements Initializable {
 				// Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append("De: ");
-				Paciente p = lectorJson.getPaciente(mensajeAct.getEmisor());
+				Paciente p = fbd.visualizarPaciente(mensajeAct.getDni_paciente());
 				stringBuilder.append(p.getNombreCompleto());
 				stringBuilder.append("\r");
 				stringBuilder.append("Asunto: ");
@@ -501,14 +490,13 @@ public class ControladorMedicopp implements Initializable {
 			// identificar primero tipo de usuario
 
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
-				ArrayList<Mensaje> mensajesEnv = lectorJson
-						.getMensajesEnviadosPor(ControladorMedicopp.getMedicoActual().getDni());
+				ArrayList<Mensaje> mensajesEnv = fbd.obtenerMensajesEnviados(ControladorMedicoSelectorPaciente.getMedicoActual());
 				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
 				listMensajesEnv.addAll(mensajesEnv);
 				Collections.sort(listMensajesEnv, new sortByDate());
 				Mensaje mensajeAct = mensajesEnv.get(i);
 
-				Paciente pacienteReceptor = lectorJson.getPaciente(mensajeAct.getReceptor());
+				Paciente pacienteReceptor = fbd.visualizarPaciente(mensajeAct.getDni_paciente());
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.minHeight(60);
@@ -518,7 +506,7 @@ public class ControladorMedicopp implements Initializable {
 				// Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append("A: ");
-				Paciente p = lectorJson.getPaciente(mensajeAct.getReceptor());
+				Paciente p = fbd.visualizarPaciente(mensajeAct.getDni_paciente());
 				stringBuilder.append(p.getNombreCompleto());
 				stringBuilder.append("\r");
 				stringBuilder.append("Asunto: ");
@@ -595,9 +583,10 @@ public class ControladorMedicopp implements Initializable {
 
 	public ObservableList<Aviso> getAvisos() {
 		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
-		ArrayList<String> pacientes = medicoActual.getPacientes();
+		ArrayList<String> pacientes = nPac();
 
 		for (int i = 0; i < pacientes.size(); i++) {
+			//crear daos sensores
 			avisos.addAll(lectorJson.crearAvisosSensor1(pacientes.get(i)));
 			avisos.addAll(lectorJson.crearAvisosSensor2(pacientes.get(i)));
 			avisos.addAll(lectorJson.crearAvisosSensor3(pacientes.get(i)));
@@ -606,10 +595,11 @@ public class ControladorMedicopp implements Initializable {
 	}
 	public ObservableList<Cita> getCitas() {
 		ObservableList<Cita> citas = FXCollections.observableArrayList();
-		ArrayList<String> pacientes = medicoActual.getPacientes();
+		ArrayList<Paciente> pacientes = fbd.obtenerPacientesMedico(ControladorMedicoSelectorPaciente.getMedicoActual());
 
 		for (int i = 0; i < pacientes.size(); i++) {
-			citas.addAll(lectorJson.getCitasPaciente(pacientes.get(i)));
+			fbd.obtenerCitasPaciente(pacientes.get(i));
+			
 			Collections.sort(citas, new sortByDateC());
 
 		}
@@ -618,7 +608,7 @@ public class ControladorMedicopp implements Initializable {
 	  public class sortByDateC implements Comparator<Cita>{
 			@Override
 			public int compare (Cita c1, Cita c2) {
-				return c1.getFecha().compareTo(c2.getFecha());
+				return c1.getFecha_cita().compareTo(c2.getFecha_cita());
 			}
 		}
 	

@@ -141,16 +141,16 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     
     private static boolean editable = false;
     
-    private ObservableList<Aviso> avisos = getAvisos();
-    
     private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+    
+    private ObservableList<Aviso> avisos = getAvisos();   
 
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {
     	System.out.println(medicoActual.getNombre());
     	System.out.println(pacienteActual.getNombre());
-    	campoMedico.setText("Hola " +ControladorMedicopp.getMedicoActual().getNombre()+",");
+    	campoMedico.setText("Hola " +ControladorMedicoSelectorPaciente.getMedicoActual()+",");
     	
     	setCamposDatos();
     	
@@ -234,7 +234,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	int TlfPacNew = Integer.parseInt(campoTlfPac.getText());
     	p.setTelefono(TlfPacNew);
 
-    	p.setCuidadores(pacienteActual.getCuidadores());
+    	p.setCuidadores(fbd.obtenerCuidadoresPaciente(pacienteActual));
     	
     	escritorJson.modificarPaciente(p);	
     }

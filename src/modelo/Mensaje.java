@@ -24,6 +24,16 @@ public class Mensaje {
 		this.fecha = Calendar.getInstance().getTime();
 	}
 
+	public Mensaje(String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
+			String mensaje, Date fecha) {
+		this.dni_medico = dni_medico;
+		this.dni_paciente = dni_paciente;
+		this.esMedicoEmisor = false;
+		this.asunto = asunto;
+		this.mensaje = mensaje;
+		this.fecha = Calendar.getInstance().getTime();
+	}
+	
 	public Mensaje() {
 		this.asunto = null;
 		this.dni_medico = null;
