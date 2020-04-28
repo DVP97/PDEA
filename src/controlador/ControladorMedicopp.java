@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -187,7 +188,8 @@ public class ControladorMedicopp implements Initializable {
 
 		// guardar dia y hora de la cita en un Date
 		Date calend = new Date(anho, mes, dia, hora, mins);
-		nCita.setFecha_cita(calend);
+		String newCita = getFechaString(calend);
+		nCita.setFecha_cita(newCita);
 
 		// aniadir comentario del medico
 		nCita.setNota(notaCita.getText());
@@ -610,7 +612,22 @@ public class ControladorMedicopp implements Initializable {
 				return c1.getFecha_cita().compareTo(c2.getFecha_cita());
 			}
 		}
-	
+	  public String getFechaString(Date dummy) {
+			// Choose time zone in which you want to interpret your Date
+			Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+			cal.setTime(dummy);
+			String dia = ((Integer) dummy.getDate()).toString();
+			int m = dummy.getMonth() + 1;
+			String mes = ((Integer) m).toString();
+			int year = cal.get(Calendar.YEAR);
+			String anho = ((Integer) year).toString();
+			String hora = ((Integer) dummy.getHours()).toString();
+			String min = ((Integer) dummy.getMinutes()).toString();
+			String f = hora + ":" + min + "  -  " + dia + "/" + mes + "/" + anho;
+			return f;
+		}
+	  
 	public void setCitas() {
 		ObservableList<Cita> citas = getCitas();
 		if (citas.size() > 0) {

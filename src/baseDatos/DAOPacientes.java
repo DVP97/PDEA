@@ -236,7 +236,7 @@ public class DAOPacientes extends AbstractDAO {
 			rsCitas = stmPaciente.executeQuery();
 			
 			while (rsCitas.next()) {
-				citaActual = new Cita(rsCitas.getInt("id"), rsCitas.getDate("fecha_cita"), rsCitas.getString("nota"), rsCitas.getString("paciente"), rsCitas.getString("medico"));
+				citaActual = new Cita(rsCitas.getInt("id"), rsCitas.getString("fecha_cita"), rsCitas.getString("nota"), rsCitas.getString("paciente"), rsCitas.getString("medico"));
 				resultado.add(citaActual);
 			}
 		}

@@ -30,7 +30,7 @@ public class DAOCitas extends AbstractDAO{
 			rsCita = stmCita.executeQuery();
 			
 			if (rsCita.next()) {
-				resultado = new Cita(rsCita.getInt("id"), rsCita.getDate("fecha_cita"), rsCita.getString("nota"), rsCita.getString("dni_paciente"), rsCita.getString("dni_medico"));
+				resultado = new Cita(rsCita.getInt("id"), rsCita.getString("fecha_cita"), rsCita.getString("nota"), rsCita.getString("dni_paciente"), rsCita.getString("dni_medico"));
 			}
 			
 		}catch (SQLException e) {
@@ -57,7 +57,7 @@ public class DAOCitas extends AbstractDAO{
 		try {
 			stmCita = con.prepareStatement(consulta);
 			stmCita.setInt(1, 0);
-			stmCita.setString(2, cita.getFechaString());
+			stmCita.setString(2, cita.getFecha_cita());
 			stmCita.setString(3, cita.getNota());
 			stmCita.setString(4, cita.getPaciente());
 			stmCita.setString(5, cita.getMedico());
@@ -88,7 +88,7 @@ public class DAOCitas extends AbstractDAO{
 		
 		try {
 			stmCita = con.prepareStatement(consulta);
-			stmCita.setDate(1, (Date) cita.getFecha_cita());
+			stmCita.setString(1, cita.getFecha_cita());
 			stmCita.setString(2, cita.getNota());
 			stmCita.setInt(3, cita.getId());
 			
