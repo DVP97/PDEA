@@ -37,18 +37,19 @@ public class ControladorCuidadorpp implements Initializable {
 	@FXML
 	private JFXButton btnAvisos;
 
-	private ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDeCuidador(cuidadorActual);
-
+	private ArrayList<String> nombresPacientes = getNombresPacientes();
 	private ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
+	
 
-	private static Cuidador cuidadorActual = ControladorCuidadorpp.getCuidadorActual();
+	private static Cuidador cuidadorActual = new Cuidador();
 
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	int numeroPacientes = fbd.obtenerPacientesCuidador(cuidadorActual).size();
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 
-		campoCuidador.setText("Hola " +ControladorCuidadorpp.getCuidadorActual().getNombre()+ ",");
+		campoCuidador.setText("Hola " + cuidadorActual.getNombre()+ ",");
 		buscarPacCB.setItems(listaPacientesComboBox);
 		buscarPacCB.arm();
 	}
@@ -59,15 +60,17 @@ public class ControladorCuidadorpp implements Initializable {
 		// comparar el nombre introducido con los pacientes asignados al cuidador, para
 		// sugerir posibles coincidencias de forma dinamica
 
-		ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDeCuidador(cuidadorActual);
 		ArrayList<String> sugerencias = new ArrayList<String>();
 
+		int longitud = 0;
+		int numeroPacientes = fbd.obtenerPacientesCuidador(cuidadorActual).size();
 		boolean sugerenciasEncontradas;
+		
 		if (buscarPacCB.getValue() != null) {
-			for (int i = 0; i < cuidadorActual.getPacientes().size(); i++) {
+			for (int i = 0; i < numeroPacientes; i++) {
+				
 				// bucle que va comparando el input con el nombre de cada paciente
-				int longitud = 0;
-
+				
 				for (int a = 0; a < buscarPacCB.getValue().length(); a++) {
 					// bucle que va comparando los char del input con los char del nombre de
 					// paciente
@@ -110,6 +113,7 @@ public class ControladorCuidadorpp implements Initializable {
     		e.abrirVentanaAvisos();
     	}
 	}	
+	
 	private void pressBtnE() throws IOException  {
     	
 		String pacienteBuscado = buscarPacCB.getValue();
@@ -184,10 +188,14 @@ public class ControladorCuidadorpp implements Initializable {
     	}
 	*/
     private Paciente coincidencia(String pacienteBuscado) {
-		for (int i = 0; i < cuidadorActual.getPacientes().size(); i++) {
+
+		for (int i = 0; i < numeroPacientes; i++) {
+			//ArrayList<String> nombresPacientes2 = fbd.obtenerPacientesCuidador(cuidadorActual);
 			ArrayList<String> nombresPacientes = lectorJson.getNombresCompletosPacientesDeCuidador(cuidadorActual);
+			
 			if (nombresPacientes.get(i).equalsIgnoreCase(pacienteBuscado)) {
-				Paciente p = lectorJson.getPaciente(cuidadorActual.getPacientes().get(i));
+			
+				Paciente p = fbd.obtenerPacientesCuidador(cuidadorActual).get(i);
 				return p;
 			}
 		}
@@ -213,14 +221,31 @@ public class ControladorCuidadorpp implements Initializable {
 		}
 	}
     
+
+	
+	public ArrayList <String> getNombresPacientes () {
+		
+		ArrayList <String> nombres = new ArrayList <String>();
+		ArrayList <Paciente> pacientes = fbd.obtenerPacientesCuidador(cuidadorActual);
+		
+		for (int i=0; i < pacientes.size(); i++) {
+			
+			nombres.add(pacientes.get(i).getNombreCompleto());
+			
+		}
+		
+		return nombres;
+		
+	}
+
 	// GETTERS
 	public static Cuidador getCuidadorActual() {
 		return cuidadorActual;
 	}
-
 	// SETTERS
 	public static void setCuidadorActual(Cuidador CuidadorActual) {
 		cuidadorActual = CuidadorActual;
 	}
 
 }
+
