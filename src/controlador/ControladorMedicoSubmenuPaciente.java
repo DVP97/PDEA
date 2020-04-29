@@ -585,9 +585,9 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     
     public ObservableList<Aviso> getAvisos() {
 		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
-		//avisos.addAll(fbd.generaravisossensor1(pacienteActual));
-		//avisos.addAll(fbd.generaravisossensor1(pacienteActual));
-		//avisos.addAll(fbd.generaravisossensor1(pacienteActual));
+		avisos.addAll(fbd.crearAvisosSensor1(pacienteActual.getDni()));
+		avisos.addAll(fbd.crearAvisosSensor2(pacienteActual.getDni()));
+		avisos.addAll(fbd.crearAvisosSensor3(pacienteActual.getDni()));
 
 		return avisos;
 	}

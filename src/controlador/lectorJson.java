@@ -1,3 +1,4 @@
+/*
 package controlador;
 
 import java.io.FileReader;
@@ -495,5 +496,6 @@ public class lectorJson {
 		
 	
 	
-*/	
+	
 }
+*/

@@ -207,4 +207,17 @@ public class FachadaBaseDatos {
 		return daoSensores.crearAvisosSensor1(dni);
 	}
 	
+	public void getDatosSensor2De(String dni) {
+		daoSensores.getDatosSensor2De(dni);
+	}
+	public ArrayList<Aviso> crearAvisosSensor2(String dni) {
+		return daoSensores.crearAvisosSensor2(dni);
+	}
+	
+	public void getDatosSensor3De(String dni) {
+		daoSensores.getDatosSensor3De(dni);
+	}
+	public ArrayList<Aviso> crearAvisosSensor3(String dni) {
+		return daoSensores.crearAvisosSensor3(dni);
+	}
 }
