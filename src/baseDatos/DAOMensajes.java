@@ -27,7 +27,7 @@ public class DAOMensajes extends AbstractDAO {
 		
 		con = super.getConexion();
 		
-		String consulta = "select * from mensaje where dni_medico = ? and esMedicoEmisor = 'false' order by fecha desc";
+		String consulta = "select * from mensaje where dni_medico = ? and esMedicoEmisor = 0 order by fecha desc";
 		
 		try {
 			stmMedico = con.prepareStatement(consulta);
@@ -59,7 +59,7 @@ public class DAOMensajes extends AbstractDAO {
 		
 		con = super.getConexion();
 		
-		String consulta = "select * from mensaje where dni_medico = ? and esMedicoEmisor = 'true' order by fecha desc";
+		String consulta = "select * from mensaje where dni_medico = ? and esMedicoEmisor = 1 order by fecha desc";
 		
 		try {
 			stmMedico = con.prepareStatement(consulta);

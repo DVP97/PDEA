@@ -41,6 +41,7 @@ public class FachadaBaseDatos {
 			daoMedicos = new DAOMedicos(conexion);
 			daoMensajes = new DAOMensajes(conexion);
 			daoPacientes = new DAOPacientes(conexion);	
+			daoSensores = new DAOSensores(conexion);
 			
 			System.out.println("Conexion con BBDD remota establecida");
 			acceso =true;
