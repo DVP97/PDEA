@@ -41,6 +41,8 @@ public class ControladorCuidadorAvisos implements Initializable {
     
 	@FXML
 	private JFXButton btnVolver;
+	@FXML
+	private JFXButton btnSensores;
 
 	private Cita fecha_cita;
 
@@ -60,46 +62,9 @@ public class ControladorCuidadorAvisos implements Initializable {
 	
 		fecha_cita = seleccionarSiguienteCita(pacienteActual);
 		citaAvisos.setText(fecha_cita.getFecha_cita());
-	
-		
-		
-		/*if (avisos.size() > 0) {
-			TableView<Aviso> table = new TableView<>();
-			// Primera columna
-			TableColumn<Aviso, String> columnaSensor = new TableColumn<>("Sensor");
-			columnaSensor.setMinWidth(200);
-			columnaSensor.setCellValueFactory(new PropertyValueFactory<>("nombreSensor"));
-
-			// Segunda columna
-			TableColumn<Aviso, String> columnaConcepto = new TableColumn<>("Concepto");
-			columnaConcepto.setMinWidth(600);
-			columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("concepto"));
-
-			table.setLayoutX(5);
-			table.setLayoutY(60);
-			table.setItems(avisos);
-			table.getColumns().addAll(columnaConcepto, columnaSensor);
-			anchorPaneAvisos.getChildren().add(table);
-			anchorPaneAvisos.setLeftAnchor(table, 0.0);
-			anchorPaneAvisos.setRightAnchor(table, 0.0);
-			anchorPaneAvisos.setTopAnchor(table, 0.0);
-			anchorPaneAvisos.setBottomAnchor(table, 20.0);
-
-		} else {
-			Label tableEmpty = new Label("Todos los datos proporcionados por los sensores estan bien.");
-
-			tableEmpty.setFont(new Font("Arial", 15));
-
-			anchorPaneAvisos.getChildren().add(tableEmpty);
-			anchorPaneAvisos.setLeftAnchor(tableEmpty, 0.0);
-			anchorPaneAvisos.setRightAnchor(tableEmpty, 0.0);
-			anchorPaneAvisos.setTopAnchor(tableEmpty, 0.0);
-			anchorPaneAvisos.setBottomAnchor(tableEmpty, 80.0);
-			tableEmpty.setAlignment(Pos.CENTER);
-
-		}*/
 
 	}
+
 
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
@@ -122,7 +87,44 @@ public class ControladorCuidadorAvisos implements Initializable {
 			case1.abrirVentanaAvisos();
 		}
 	}
+	
+	@FXML
+	void pressBtnSensores(ActionEvent event) throws IOException {
+    	try {
+    		this.pressBtnS();
+    	}catch(ControladorExcepciones e) {
+    		ControladorAvisos.setMensajeError("ERROR");
+    		e.abrirVentanaAvisos();
+    	}
+	}
 
+    private void pressBtnS() throws IOException  {
+		
+
+     			try {
+     				System.out.println("Cargando ventana de Sensores...");
+
+     				Parent Avisos = FXMLLoader.load(getClass().getResource("/vista/cuidador_sensores_de_paciente.fxml"));
+     				Stage AvisosPaciente = new Stage();
+     				AvisosPaciente.setTitle("Menu Cuidador - Avisos de " + pacienteActual.getNombre());
+     				AvisosPaciente.setScene(new Scene(Avisos));
+     				AvisosPaciente.show();
+     				AvisosPaciente.setMinHeight(650);
+     				AvisosPaciente.setMinWidth(700);
+     				AvisosPaciente.setMaxWidth(700);
+     				AvisosPaciente.setMaxHeight(750);
+     				
+
+     				System.out.println("Cerrando ventana avisos del Cuidador");
+     				Stage CambioVentanaSensores = (Stage) btnSensores.getScene().getWindow();
+     				CambioVentanaSensores.close();
+     			} catch (ControladorExcepciones r) {
+     				ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Sensores para Cuidador.");
+     				r.abrirVentanaAvisos();
+     			}
+
+     	}
+	
 	public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
@@ -149,16 +151,6 @@ public class ControladorCuidadorAvisos implements Initializable {
 		pacienteActual = PacienteElegido;
 	}
 	
-	/*public ObservableList<Aviso> getAvisos() {
-		
-		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
-		avisos.addAll(lectorJson.crearAvisosSensor1(p.getDni()));
-		avisos.addAll(lectorJson.crearAvisosSensor2(p.getDni()));
-		avisos.addAll(lectorJson.crearAvisosSensor3(p.getDni()));
-
-		return avisos;
-	}*/
-
 
 
 	public class sortByDate implements Comparator<Cita> {

@@ -35,6 +35,8 @@ public class ControladorCuidadorpp implements Initializable {
 
 	@FXML
 	private JFXButton btnAvisos;
+	
+	
 
 	private static Cuidador cuidadorActual = new Cuidador();
 
@@ -166,13 +168,13 @@ public class ControladorCuidadorpp implements Initializable {
     			try {
     				System.out.println("Cargando ventana de Avisos...");
     				ControladorCuidadorAvisos.setPacienteElegido(pacienteElegido);
-    				Parent Avisos = FXMLLoader.load(getClass().getResource("/vista/cuidadorpp_avisos_de_paciente.fxml"));
+    				Parent Avisos = FXMLLoader.load(getClass().getResource("/vista/cuidador_avisos_de_paciente.fxml"));
     				Stage AvisosPaciente = new Stage();
     				AvisosPaciente.setTitle("Menu Cuidador - Avisos de " + pacienteElegido.getNombre());
     				AvisosPaciente.setScene(new Scene(Avisos));
     				AvisosPaciente.show();
-    				AvisosPaciente.setMinHeight(800);
-    				AvisosPaciente.setMinWidth(1200);
+    				AvisosPaciente.setMinHeight(399);
+    				AvisosPaciente.setMinWidth(616);
 
     				System.out.println("Cerrando ventana principal del Cuidador");
     				Stage CambioVentanaAvisos = (Stage) btnAvisos.getScene().getWindow();

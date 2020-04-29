@@ -27,6 +27,7 @@ public class ControladorAvisosPaciente implements Initializable {
 
 	@FXML
 	private JFXButton btnAnterior;
+	
 	@FXML
 	private JFXButton btnNext;
 	@FXML
@@ -70,6 +71,7 @@ public class ControladorAvisosPaciente implements Initializable {
 
 	}
 
+	
 	// Botón volver
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
