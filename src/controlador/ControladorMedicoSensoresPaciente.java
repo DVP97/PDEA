@@ -69,7 +69,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	
     	InicializarGraficaFrecuencia();
     	InicializarGraficaPresion();
-    	//InicializarGraficaSaturacion();
+    	InicializarGraficaSaturacion();
     }
   
     @FXML
@@ -130,7 +130,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	
     	AnchorPaneFrecuencia.getChildren().add(Frecuencias);
     	AnchorPaneFrecuencia.setTopAnchor(Frecuencias, 0.0);
-    	AnchorPaneFrecuencia.setBottomAnchor(Frecuencias, -100.0);
+    	AnchorPaneFrecuencia.setBottomAnchor(Frecuencias, -50.0);
     	AnchorPaneFrecuencia.setLeftAnchor(Frecuencias, 0.0);
     	AnchorPaneFrecuencia.setRightAnchor(Frecuencias, 0.0);
     	
@@ -152,9 +152,6 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas3));
     	NumberAxis yAxis = new NumberAxis(0,180,5);
     	
-    	CategoryAxis xAxisDias = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas3));
-    	NumberAxis yAxisDias = new NumberAxis(0,180,5);
-    	
     	LineChart<String,Number> Sistoles = new LineChart(xAxis,yAxis);
     	
     	Sistoles.setTitle("Presion");
@@ -167,12 +164,11 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	anchorPaneTension.getChildren().addAll(Sistoles);
 
     	anchorPaneTension.setTopAnchor(Sistoles, 0.0);
-    	anchorPaneTension.setBottomAnchor(Sistoles, 200.0);
+    	anchorPaneTension.setBottomAnchor(Sistoles, -50.0);
     	anchorPaneTension.setLeftAnchor(Sistoles, 0.0);
     	anchorPaneTension.setRightAnchor(Sistoles, 0.0);
     }
- 
-/*
+
      void InicializarGraficaSaturacion(){
     	 ArrayList<Oximetro> arrayoximetro = fbd.getDatosSensor2De((pacienteActual.getDni()));
     	ArrayList<Integer> arrayListDatosMedicos = new ArrayList<Integer>();
@@ -180,12 +176,12 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     		Oximetro p = arrayoximetro.get(i);
     		arrayListDatosMedicos.add(p.getDatosMedicos());
     	}
-    	ArrayList<String> arrayListFechas = new ArrayList<String>();
+    	ArrayList<String> arrayListFechas2 = new ArrayList<String>();
     	for(int i =0; i < arrayoximetro.size(); i++){
     		Oximetro p = arrayoximetro.get(i);
-    		arrayListFechas.add(getFechaString(p.getFecha()));
+    		arrayListFechas2.add(getFechaString(p.getFecha()));
     	}
-    	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas));
+    	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas2));
     	NumberAxis yAxis = new NumberAxis(0,100,1);
  	
     	LineChart<String,Number> Frecuencias = new LineChart(xAxis,yAxis);
@@ -193,19 +189,19 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	Frecuencias.setTitle(" Saturacion O2");
     	XYChart.Series series = new XYChart.Series<>();
     	for(int i =0; i<arrayListDatosMedicos.size();i++) {
-    		series.getData().add(new XYChart.Data<>(arrayListFechas.get(i),arrayListDatosMedicos.get(i)));
+    		series.getData().add(new XYChart.Data<>(arrayListFechas2.get(i),arrayListDatosMedicos.get(i)));
     	}
     	
     	Frecuencias.getData().add(series);
     	
     	AnchorPaneSaturacion.getChildren().add(Frecuencias);
     	AnchorPaneSaturacion.setTopAnchor(Frecuencias, 0.0);
-    	AnchorPaneSaturacion.setBottomAnchor(Frecuencias, -100.0);
+    	AnchorPaneSaturacion.setBottomAnchor(Frecuencias, -50.0);
     	AnchorPaneSaturacion.setLeftAnchor(Frecuencias, 0.0);
     	AnchorPaneSaturacion.setRightAnchor(Frecuencias, 0.0);
     	
     }
-   */ 
+    
  	public String getFechaString(Date dummy) {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
@@ -218,7 +214,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
 		String anho = ((Integer) year).toString();
 		//String hora = ((Integer) dummy.getHours()).toString();
 		//String min = ((Integer) dummy.getMinutes()).toString();
-		String f = ":" + "  -  " + dia + "/" + mes + "/" + anho;
+		String f = dia + "/" + mes + "/" + anho;
 		return f;
 	}
 }
