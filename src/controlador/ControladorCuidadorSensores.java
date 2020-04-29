@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import modelo.Cuidador;
 import modelo.Paciente;
 import modelo.Aviso;
+import controlador.ControladorCuidadorAvisos;
 
 public class ControladorCuidadorSensores implements Initializable {
 
@@ -45,11 +46,12 @@ public class ControladorCuidadorSensores implements Initializable {
 	@FXML
 	private JFXButton btnSensores;
 
-	private static Paciente p = new Paciente();
-
-	private ObservableList<Aviso> avisos = getAvisos();
+	private static Paciente p = ControladorCuidadorAvisos.getPacienteElegido();
 	
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	
+	private ObservableList<Aviso> avisos = getAvisos();
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
@@ -61,7 +63,7 @@ public class ControladorCuidadorSensores implements Initializable {
 	
 		
 		
-		if (avisos.size() > 0) {
+		if (avisos.size() != 0) {
 			TableView<Aviso> table = new TableView<>();
 			// Primera columna
 			TableColumn<Aviso, String> columnaSensor = new TableColumn<>("Sensor");
@@ -86,7 +88,7 @@ public class ControladorCuidadorSensores implements Initializable {
 		} else {
 			Label tableEmpty = new Label("Todos los datos proporcionados por los sensores estan bien.");
 
-			tableEmpty.setFont(new Font("Arial", 15));
+			//tableEmpty.setFont(new Font("Arial", 15));
 
 			anchorPaneAvisos.getChildren().add(tableEmpty);
 			anchorPaneAvisos.setLeftAnchor(tableEmpty, 0.0);
@@ -153,9 +155,12 @@ public class ControladorCuidadorSensores implements Initializable {
 	public ObservableList<Aviso> getAvisos() {
 		
 		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
-		avisos.addAll(lectorJson.crearAvisosSensor1(p.getDni()));
-		avisos.addAll(lectorJson.crearAvisosSensor2(p.getDni()));
-		avisos.addAll(lectorJson.crearAvisosSensor3(p.getDni()));
+
+
+			avisos.addAll(fbd.crearAvisosSensor1(p.getDni()));
+			avisos.addAll(fbd.crearAvisosSensor2(p.getDni()));
+			avisos.addAll(fbd.crearAvisosSensor3(p.getDni()));
+
 
 		return avisos;
 	}
