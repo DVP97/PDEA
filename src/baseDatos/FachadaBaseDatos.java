@@ -3,15 +3,16 @@ package baseDatos;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
-import com.sun.javafx.collections.ArrayListenerHelper;
-
 import modelo.Aviso;
 import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Ejercicio;
 import modelo.Medico;
 import modelo.Mensaje;
+import modelo.Oximetro;
 import modelo.Paciente;
+import modelo.Presion;
+import modelo.Pulsiometro;
 
 public class FachadaBaseDatos {
 	private java.sql.Connection conexion;
@@ -207,22 +208,22 @@ public class FachadaBaseDatos {
 	}
 	
 	//SENSORES
-	public void getDatosSensor1De(String dni) {
-		daoSensores.getDatosSensor1De(dni);
+	public ArrayList<Pulsiometro> getDatosSensor1De(String dni) {
+		return daoSensores.getDatosSensor1De(dni);
 	}
 	public ArrayList<Aviso> crearAvisosSensor1(String dni) {
 		return daoSensores.crearAvisosSensor1(dni);
 	}
 	
-	public void getDatosSensor2De(String dni) {
-		daoSensores.getDatosSensor2De(dni);
+	public ArrayList<Oximetro> getDatosSensor2De(String dni) {
+		return daoSensores.getDatosSensor2De(dni);
 	}
 	public ArrayList<Aviso> crearAvisosSensor2(String dni) {
 		return daoSensores.crearAvisosSensor2(dni);
 	}
 	
-	public void getDatosSensor3De(String dni) {
-		daoSensores.getDatosSensor3De(dni);
+	public ArrayList<Presion> getDatosSensor3De(String dni) {
+		return daoSensores.getDatosSensor3De(dni);
 	}
 	public ArrayList<Aviso> crearAvisosSensor3(String dni) {
 		return daoSensores.crearAvisosSensor3(dni);
