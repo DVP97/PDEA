@@ -13,10 +13,7 @@ import modelo.Ejercicio;
 import modelo.Paciente;
 
 public class DAOPacientes extends AbstractDAO {
-	
-	//private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
-
-	
+		
 	public DAOPacientes(Connection conexion) {
 		super.setConexion(conexion);
 	}
@@ -288,6 +285,35 @@ public class DAOPacientes extends AbstractDAO {
         }
 	}
 	
+	public void asignarCuidadorPaciente (Paciente paciente, Cuidador cuidador) {
+		Connection con;
+		PreparedStatement stmPaciente = null;
+		
+		con = super.getConexion();
+		
+		String consulta = "insert into cuidador_de_paciente (paciente, cuidador) "
+				+"values (?, ?)";
+		
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setString(1, paciente.getDni());
+			stmPaciente.setString(2, cuidador.getDni());
+		
+			con.setAutoCommit(true);
+			stmPaciente.executeUpdate();
+			con.setAutoCommit(false);
+		}
+		catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmPaciente.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+	}
+	
 	public void modificarDuracionEjercicioPaciente (Paciente paciente, Ejercicio ejercicio) {
 		Connection con;
 		PreparedStatement stmPaciente = null;
@@ -346,78 +372,6 @@ public class DAOPacientes extends AbstractDAO {
         }
 		
 	}
-	/*
 	
 	
-	public static ArrayList<Aviso> crearAvisosSensor2(String dni){
-		ArrayList<Aviso> avisos = new ArrayList<Aviso>();
-		ArrayList<datoSensor2> sensor2 = getDatosSensor2De(dni);
-		for (int i =0 ; i<sensor2.size();i++) {
-			datoSensor2 s2 = sensor2.get(i);
-			int a = s2.getDatosMedicos().compareTo(85);
-			if(a<0) {
-				Aviso aviso = new Aviso();
-				aviso.setConcepto("La saturacion de oxigeno en sangre es demasiado baja.");
-				aviso.setDatoSensor(s2);
-				aviso.setNombrePaciente();
-
-				aviso.setNombreSensor("Sensor 2");
-
-				avisos.add(aviso);
-			}
-		}
-		return avisos;
-	}
-	
-	public static ArrayList<Aviso> crearAvisosSensor3(String dni){
-		ArrayList<Aviso> avisos = new ArrayList<Aviso>();
-		ArrayList<datoSensor3> sensor3 = getDatosSensor3De(dni);
-		for (int i =0 ; i<sensor3.size();i++) {
-			datoSensor3 s3 = sensor3.get(i);
-			int a = s3.getSistoleAntes().compareTo(180);
-			int b = s3.getDiastoleAntes().compareTo(110);
-			int c = s3.getSistoleDespues().compareTo(180);
-			int d = s3.getDiastoleDespues().compareTo(110);
-			if(a>0) {
-				Aviso aviso = new Aviso();
-				aviso.setConcepto("La sistole antes de hacer el ejercicio es demasiado alta.");
-				aviso.setDatoSensor(s3);
-				aviso.setNombrePaciente();
-
-				aviso.setNombreSensor("Sensor 3");
-
-				avisos.add(aviso);
-			}if(b>0) {
-				Aviso aviso = new Aviso();
-				aviso.setConcepto("La diastole antes de hacer el ejercicio es demasiado alta.");
-				aviso.setDatoSensor(s3);
-				aviso.setNombrePaciente();
-
-				aviso.setNombreSensor("Sensor 3");
-
-				avisos.add(aviso);
-			}if(c>0) {
-				Aviso aviso = new Aviso();
-				aviso.setConcepto("La sistole despues de hacer el ejercicio es demasiado alta.");
-				aviso.setDatoSensor(s3);
-				aviso.setNombrePaciente();
-
-				aviso.setNombreSensor("Sensor 3");
-
-				avisos.add(aviso);
-			}
-			if(d<0) {
-				Aviso aviso = new Aviso();
-				aviso.setConcepto("La diastole despues de hacer el ejercicio es demasiado alta.");
-				aviso.setDatoSensor(s3);
-				aviso.setNombrePaciente();
-
-				aviso.setNombreSensor("Sensor 3");
-
-				avisos.add(aviso);
-			}
-		}
-		return avisos;
-	}
-	*/
 }

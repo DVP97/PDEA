@@ -191,6 +191,10 @@ public class FachadaBaseDatos {
 		daoPacientes.asignarEjercicioPaciente(paciente, ejercicio);
 	}
 	
+	public void asignarCuidadorPaciente (Paciente paciente, Cuidador cuidador) {
+		daoPacientes.asignarCuidadorPaciente(paciente, cuidador);
+	}
+	
 	public void modificarDuracionEjercicioPaciente (Paciente paciente, Ejercicio ejercicio) {
 		daoPacientes.modificarDuracionEjercicioPaciente(paciente, ejercicio);
 	}

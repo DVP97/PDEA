@@ -64,11 +64,11 @@ public class DAOCuidadores extends AbstractDAO {
 			stmCuidador.setString(3, cuidador.getApellidos());
 			stmCuidador.setString(4, cuidador.getTelefono());
 			stmCuidador.setString(5, cuidador.getContrasena());
-			
+
 			con.setAutoCommit(true);
 			stmCuidador.executeUpdate();
 			con.setAutoCommit(false);
-			
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {
@@ -80,7 +80,7 @@ public class DAOCuidadores extends AbstractDAO {
 		}
 	}
 
-	public void modificarCuidador (Cuidador cuidador) {
+	public void modificarCuidador(Cuidador cuidador) {
 		Connection con;
 		PreparedStatement stmCuidador = null;
 
@@ -112,14 +112,14 @@ public class DAOCuidadores extends AbstractDAO {
 		}
 	}
 
-	public void borrarCuidador (Cuidador cuidador) {
+	public void borrarCuidador(Cuidador cuidador) {
 		Connection con;
 		PreparedStatement stmCuidador = null;
 
 		con = super.getConexion();
 
 		String consulta = "delete from cuidador where dni_cuidador = ?";
-		
+
 		try {
 			stmCuidador = con.prepareStatement(consulta);
 			stmCuidador.setString(1, cuidador.getDni());
@@ -139,15 +139,15 @@ public class DAOCuidadores extends AbstractDAO {
 		}
 	}
 
-	public ArrayList<Paciente> obtenerPacientesCuidador (Cuidador cuidador){
+	public ArrayList<Paciente> obtenerPacientesCuidador(Cuidador cuidador) {
 		ArrayList<Paciente> resultado = new ArrayList<Paciente>();
 		Paciente pacienteActual = null;
-		Connection con ; 
+		Connection con;
 		PreparedStatement stmCuidador = null;
 		ResultSet rsPacientes;
-		
-		con= super.getConexion();
-		
+
+		con = super.getConexion();
+
 		String consulta = "select p.* "
 				+ "from paciente as p right join cuidador_de_paciente as cu on p.dni_paciente = cu.paciente "
 				+ "where cu.cuidador = ? ";
@@ -155,7 +155,7 @@ public class DAOCuidadores extends AbstractDAO {
 			stmCuidador = con.prepareStatement(consulta);
 			stmCuidador.setString(1, cuidador.getDni());
 			rsPacientes = stmCuidador.executeQuery();
-			
+
 			while (rsPacientes.next()) {
 				pacienteActual = new Paciente(rsPacientes.getString("dni_paciente"), rsPacientes.getString("nombre"),
 						rsPacientes.getString("apellidos"), rsPacientes.getString("telefono"),
@@ -163,18 +163,16 @@ public class DAOCuidadores extends AbstractDAO {
 						rsPacientes.getString("medico"), rsPacientes.getBoolean("ejerciciosHechos"));
 				resultado.add(pacienteActual);
 			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				stmCuidador.close();
+			} catch (SQLException e) {
+				System.out.println("Imposible cerrar cursores");
+			}
 		}
-		catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            try {
-            	stmCuidador.close();
-            } catch (SQLException e) {
-                System.out.println("Imposible cerrar cursores");
-            }
-        }
-        return resultado;
+		return resultado;
 	}
 
-	
 }
