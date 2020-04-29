@@ -28,14 +28,14 @@ public class Mensaje {
 	}
 	
 	public Mensaje(Integer id_mensaje, String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
-			String mensaje, Date fecha) {
+			String mensaje, String fecha) {
 		this.id_mensaje = id_mensaje;
 		this.dni_medico = dni_medico;
 		this.dni_paciente = dni_paciente;
 		this.esMedicoEmisor = false;
 		this.asunto = asunto;
 		this.mensaje = mensaje;
-		this.fecha = fecha;
+		this.fecha = this.stringToDate(fecha);
 	}
 
 	public Mensaje(String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
@@ -80,9 +80,6 @@ public class Mensaje {
 	public boolean isEsMedicoEmisor() {
 		return esMedicoEmisor;
 	}
-	
-	
-	
 	
 	@SuppressWarnings("deprecation")
 	public String getFechaString() {
