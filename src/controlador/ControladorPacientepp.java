@@ -33,8 +33,6 @@ public class ControladorPacientepp implements Initializable {
         
     private static Paciente pacienteActual = new Paciente();
     
-
-    
     
     @Override
     public void initialize(URL location, ResourceBundle reosurces) {

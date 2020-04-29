@@ -79,6 +79,7 @@ public class ControladorPacienteMensajes implements Initializable{
     private AnchorPane anchorPaneEnviados;
 	
 	private static Paciente pacienteActual = new Paciente();
+	
 	private static Date fecha = new Date ();
 	
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();

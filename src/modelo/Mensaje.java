@@ -1,5 +1,6 @@
 package modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -14,7 +15,7 @@ public class Mensaje {
 	private Date fecha;
 
 	public Mensaje(Integer id_mensaje, String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
-			String mensaje, String string) {
+			String mensaje) {
 		this.id_mensaje = id_mensaje;
 		this.dni_medico = dni_medico;
 		this.dni_paciente = dni_paciente;
@@ -22,6 +23,17 @@ public class Mensaje {
 		this.asunto = asunto;
 		this.mensaje = mensaje;
 		this.fecha = Calendar.getInstance().getTime();
+	}
+	
+	public Mensaje(Integer id_mensaje, String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
+			String mensaje, Date fecha) {
+		this.id_mensaje = id_mensaje;
+		this.dni_medico = dni_medico;
+		this.dni_paciente = dni_paciente;
+		this.esMedicoEmisor = false;
+		this.asunto = asunto;
+		this.mensaje = mensaje;
+		this.fecha = fecha;
 	}
 
 	public Mensaje(String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
