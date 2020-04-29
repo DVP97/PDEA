@@ -3,7 +3,10 @@ package controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -65,8 +68,8 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	campoPaciente.setText(pacienteActual.getNombreCompleto());
     	
     	InicializarGraficaFrecuencia();
-    	InicializarGraficasTension();
-    	InicializarGraficaSaturacion();
+    	InicializarGraficaPresion();
+    	//InicializarGraficaSaturacion();
     }
   
     @FXML
@@ -92,10 +95,22 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
 	}
 
     void InicializarGraficaFrecuencia(){
-    	
-    	ArrayList<Integer> arrayListFrecAntes = lectorJson.getSensor1FrecuenciaAntes(pacienteActual.getDni());
-    	ArrayList<Integer> arrayListFrecDespues = lectorJson.getSensor1FrecuenciaDespues(pacienteActual.getDni());
-    	ArrayList<String> arrayListFechas = lectorJson.getFechaSensor1(pacienteActual.getDni());
+    	ArrayList<Pulsiometro> arraypulsiometro = fbd.getDatosSensor1De((pacienteActual.getDni()));
+    	ArrayList<Integer> arrayListFrecAntes = new ArrayList<Integer>();
+    	for(int i =0; i < arraypulsiometro.size(); i++){
+    		Pulsiometro p = arraypulsiometro.get(i);
+    		arrayListFrecAntes.add(p.getFrecuenciaAntes());
+    	}
+    	ArrayList<Integer> arrayListFrecDespues = new ArrayList<Integer>();
+    	for(int i =0; i < arraypulsiometro.size(); i++){
+    		Pulsiometro p = arraypulsiometro.get(i);
+    		arrayListFrecDespues.add(p.getFrecuenciaDespues());
+    	}
+    	ArrayList<String> arrayListFechas = new ArrayList<String>();
+    	for(int i =0; i < arraypulsiometro.size(); i++){
+    		Pulsiometro p = arraypulsiometro.get(i);
+    		arrayListFechas.add(getFechaString(p.getFecha()));
+    	}
     	
     	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas));
     	NumberAxis yAxis = new NumberAxis(0,120,5);
@@ -119,22 +134,21 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	AnchorPaneFrecuencia.setLeftAnchor(Frecuencias, 0.0);
     	AnchorPaneFrecuencia.setRightAnchor(Frecuencias, 0.0);
     	
-    	ArrayList<Integer> prueba = lectorJson.getDatosSensor2(pacienteActual.getDni());
-    	for (int  i = 0 ; i < prueba.size(); i++) {
-    		System.out.println("Dato " +i+ ":" + prueba.get(i));
-    	}
     }
 
-    void InicializarGraficasTension(){
+    void InicializarGraficaPresion(){
+    	ArrayList<Presion> arraypresion = fbd.getDatosSensor3De((pacienteActual.getDni()));
+    	ArrayList<Integer> arrayListPresion = new ArrayList<Integer>();
+    	for(int i =0; i < arraypresion.size(); i++){
+    		Presion p = arraypresion.get(i);
+    		arrayListPresion.add(p.getDato());
+    	}
     	
-    	ArrayList<Integer> arrayListSistoleAntes = lectorJson.getSistoleAntesSensor3(pacienteActual.getDni());
-    	ArrayList<Integer> arrayListSistoleDespues = lectorJson.getSistoleDespuesSensor3(pacienteActual.getDni());    	
-    	
-    	ArrayList<Integer> arrayListDiastoleAntes = lectorJson.getDiastoleAntesSensor3(pacienteActual.getDni());
-    	ArrayList<Integer> arrayListDiastoleDespues = lectorJson.getDiastoleDespuesSensor3(pacienteActual.getDni());
-    	
-    	ArrayList<String> arrayListFechas3 = lectorJson.getFechaSensor3(pacienteActual.getDni());
-    	
+    	ArrayList<String> arrayListFechas3 = new ArrayList<String>();
+    	for(int i =0; i < arraypresion.size(); i++){
+    		Presion p = arraypresion.get(i);
+    		arrayListFechas3.add(getFechaString(p.getFecha()));
+    	}
     	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas3));
     	NumberAxis yAxis = new NumberAxis(0,180,5);
     	
@@ -142,52 +156,35 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	NumberAxis yAxisDias = new NumberAxis(0,180,5);
     	
     	LineChart<String,Number> Sistoles = new LineChart(xAxis,yAxis);
-
-    	LineChart<String,Number> Diastoles = new LineChart(xAxisDias,yAxisDias);
     	
-    	Sistoles.setTitle("Sistoles");
+    	Sistoles.setTitle("Presion");
     	XYChart.Series series = new XYChart.Series<>();
-    	for(int i =0; i<arrayListSistoleAntes.size();i++) {
-    		series.getData().add(new XYChart.Data<>(arrayListFechas3.get(i),arrayListSistoleAntes.get(i)));
+    	for(int i =0; i<arrayListPresion.size();i++) {
+    		series.getData().add(new XYChart.Data<>(arrayListFechas3.get(i),arrayListPresion.get(i)));
     	}
-    	XYChart.Series series2 = new XYChart.Series<>();
-    	for(int i =0; i<arrayListSistoleDespues.size();i++) {
-    		series2.getData().add(new XYChart.Data<>(arrayListFechas3.get(i),arrayListSistoleDespues.get(i)));
-    	}
-    	Sistoles.getData().addAll(series,series2);
+    	Sistoles.getData().addAll(series);
     	
-    	Diastoles.setTitle("Diastoles");
-    	XYChart.Series seriesDiast = new XYChart.Series<>();
-    	for(int i =0; i<arrayListDiastoleAntes.size();i++) {
-    		seriesDiast.getData().add(new XYChart.Data<>(arrayListFechas3.get(i),arrayListDiastoleAntes.get(i)));
-    	}
-    	XYChart.Series seriesDiast2 = new XYChart.Series<>();
-    	for(int i =0; i<arrayListDiastoleDespues.size();i++) {
-    		seriesDiast2.getData().add(new XYChart.Data<>(arrayListFechas3.get(i),arrayListDiastoleDespues.get(i)));
-    	}
-    	Diastoles.getData().addAll(seriesDiast,seriesDiast2);
-    	
-    	anchorPaneTension.getChildren().addAll(Sistoles,Diastoles);
+    	anchorPaneTension.getChildren().addAll(Sistoles);
 
     	anchorPaneTension.setTopAnchor(Sistoles, 0.0);
     	anchorPaneTension.setBottomAnchor(Sistoles, 200.0);
     	anchorPaneTension.setLeftAnchor(Sistoles, 0.0);
     	anchorPaneTension.setRightAnchor(Sistoles, 0.0);
-    	
-    	anchorPaneTension.setBottomAnchor(Diastoles, -100.0);
-    	anchorPaneTension.setLeftAnchor(Diastoles, 0.0);
-    	anchorPaneTension.setRightAnchor(Diastoles, 0.0);
     }
  
-
+/*
      void InicializarGraficaSaturacion(){
-    	
-    	ArrayList<Integer> arrayListDatosMedicos = lectorJson.getDatosSensor2(pacienteActual.getDni());
-    	
-    	//System.out.println(arrayListDatosMedicos);
-    	
-    	ArrayList<String> arrayListFechas = lectorJson.getFechaSensor2(pacienteActual.getDni());
-    	
+    	 ArrayList<Oximetro> arrayoximetro = fbd.getDatosSensor2De((pacienteActual.getDni()));
+    	ArrayList<Integer> arrayListDatosMedicos = new ArrayList<Integer>();
+    	for(int i =0; i < arrayoximetro.size(); i++){
+    		Oximetro p = arrayoximetro.get(i);
+    		arrayListDatosMedicos.add(p.getDatosMedicos());
+    	}
+    	ArrayList<String> arrayListFechas = new ArrayList<String>();
+    	for(int i =0; i < arrayoximetro.size(); i++){
+    		Oximetro p = arrayoximetro.get(i);
+    		arrayListFechas.add(getFechaString(p.getFecha()));
+    	}
     	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas));
     	NumberAxis yAxis = new NumberAxis(0,100,1);
  	
@@ -208,5 +205,20 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	AnchorPaneSaturacion.setRightAnchor(Frecuencias, 0.0);
     	
     }
-    
+   */ 
+ 	public String getFechaString(Date dummy) {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+		cal.setTime(dummy);
+		String dia = ((Integer) dummy.getDate()).toString();
+		int m = dummy.getMonth() + 1;
+		String mes = ((Integer) m).toString();
+		int year = cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		//String hora = ((Integer) dummy.getHours()).toString();
+		//String min = ((Integer) dummy.getMinutes()).toString();
+		String f = ":" + "  -  " + dia + "/" + mes + "/" + anho;
+		return f;
+	}
 }
