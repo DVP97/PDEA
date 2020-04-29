@@ -2,14 +2,14 @@ package modelo;
 
 import java.util.Date;
 
-public final class datoSensor3 extends datoSensor{
+public final class Presion extends datoSensor{
 	private Integer sistoleAntes;
 	private Integer diastoleAntes;
 	private Integer sistoleDespues;
 	private Integer diastoleDespues;
 	
 	
-	public datoSensor3(Date fecha, String dni, Integer sistoleAntes, Integer diastoleAntes, Integer sistoleDespues, Integer diastoleDespues) {
+	public Presion(Date fecha, String dni, Integer sistoleAntes, Integer diastoleAntes, Integer sistoleDespues, Integer diastoleDespues) {
 		super(fecha, dni);
 		this.sistoleAntes = sistoleAntes;
 		this.diastoleAntes = diastoleAntes;
@@ -17,7 +17,7 @@ public final class datoSensor3 extends datoSensor{
 		this.sistoleDespues = sistoleDespues;
 	}
 	
-	public datoSensor3() {
+	public Presion() {
 		super();
 		this.sistoleAntes = null;
 		this.diastoleAntes = null;

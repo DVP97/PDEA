@@ -3,16 +3,16 @@ package modelo;
 import java.util.Date;
 
 
-public final class datoSensor2 extends datoSensor{
+public final class Oximetro extends datoSensor{
 	private Integer datosMedicos;
 	
 	
-	public datoSensor2(Date fecha, String dni, Integer datosMedicos) {
+	public Oximetro(Date fecha, String dni, Integer datosMedicos) {
 		super(fecha, dni);
 		this.datosMedicos = datosMedicos;
 	}
 	
-	public datoSensor2() {
+	public Oximetro() {
 		super();
 		this.datosMedicos = null;
 	}

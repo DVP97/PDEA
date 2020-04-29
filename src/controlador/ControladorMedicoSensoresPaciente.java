@@ -27,9 +27,9 @@ import jdk.nashorn.internal.runtime.regexp.joni.constants.AnchorType;
 import javafx.scene.chart.XYChart.Series;
 import modelo.Medico;
 import modelo.Paciente;
-import modelo.datoSensor1;
-import modelo.datoSensor2;
-import modelo.datoSensor3;
+import modelo.Pulsiometro;
+import modelo.Oximetro;
+import modelo.Presion;
 
 public class ControladorMedicoSensoresPaciente implements Initializable {
 
