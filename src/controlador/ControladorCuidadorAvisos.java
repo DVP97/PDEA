@@ -2,8 +2,6 @@ package controlador;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,23 +10,15 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import modelo.Aviso;
 import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Paciente;
@@ -54,8 +44,7 @@ public class ControladorCuidadorAvisos implements Initializable {
 
 	private Cita fecha_cita;
 
-	private static Paciente p = new Paciente();
-	private static Cuidador c = new Cuidador();
+	private static Paciente pacienteActual = new Paciente();
 
 	//private ObservableList<Aviso> avisos = getAvisos();
 	
@@ -64,20 +53,14 @@ public class ControladorCuidadorAvisos implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 
-
+		Cuidador c = ControladorCuidadorpp.getCuidadorActual();
 		campoCuidador.setText("Hola " + c.getNombre() + ",");
-		campoPaciente.setText(p.getNombreCompleto());
+		campoPaciente.setText(pacienteActual.getNombreCompleto());
 
-		
-		fecha_cita = seleccionarSiguienteCita(p);
-		
-		// Recoge fecha de la cita
-		
-		DateFormat fechaHora = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		String fecha_convertido = fechaHora.format(fecha_cita.getFecha_cita());
 	
-		citaAvisos.setText(fecha_convertido);
-		
+		fecha_cita = seleccionarSiguienteCita(pacienteActual);
+		citaAvisos.setText(fecha_cita.getFecha_cita());
+	
 		
 		
 		/*if (avisos.size() > 0) {
@@ -159,11 +142,11 @@ public class ControladorCuidadorAvisos implements Initializable {
 
 	// GETTERS
 	public static Paciente getPacienteElegido() {
-		return p;
+		return pacienteActual;
 	}
 	// SETTERS
 	public static void setPacienteElegido(Paciente PacienteElegido) {
-		p = PacienteElegido;
+		pacienteActual = PacienteElegido;
 	}
 	
 	/*public ObservableList<Aviso> getAvisos() {
@@ -181,8 +164,9 @@ public class ControladorCuidadorAvisos implements Initializable {
 	public class sortByDate implements Comparator<Cita> {
 		@Override
 		public int compare(Cita c1, Cita c2) {
-			
 			return c1.getFecha_cita().compareTo(c2.getFecha_cita());
+			
+			
 		}
 	}
 

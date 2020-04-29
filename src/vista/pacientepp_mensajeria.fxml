@@ -77,14 +77,14 @@
                            <content>
                               <ScrollPane fitToWidth="true">
                                  <content>
-                                    <AnchorPane fx:id="anchorPaneRecibidos">
+                                    <AnchorPane fx:id="anchorPaneRecibidos" prefHeight="162.0" prefWidth="477.0">
                                        <children>
                                           <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recibidos:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Text>
-                                          <Accordion fx:id="AccordionMensajesRec" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
+                                          <Accordion fx:id="AccordionMensajesRec" layoutY="24.0" minHeight="60.0" prefHeight="139.0" prefWidth="476.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="24.0" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -95,14 +95,14 @@
                            <content>
                               <ScrollPane fitToWidth="true">
                                  <content>
-                                    <AnchorPane fx:id="anchorPaneEnviados">
+                                    <AnchorPane fx:id="anchorPaneEnviados" prefHeight="165.0" prefWidth="477.0">
                                        <children>
                                           <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enviados:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="3.0">
                                              <font>
                                                 <Font size="18.0" />
                                              </font>
                                           </Text>
-                                          <Accordion fx:id="AccordionMensajesEnv" minHeight="60.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="60.0" />
+                                          <Accordion fx:id="AccordionMensajesEnv" layoutY="26.0" minHeight="60.0" prefHeight="134.0" prefWidth="467.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="26.0" />
                                        </children>
                                     </AnchorPane>
                                  </content>

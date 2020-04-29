@@ -79,7 +79,28 @@ public class Mensaje {
 		String anho = ((Integer) year).toString();
 		String hora = ((Integer) fecha.getHours()).toString();
 		String min = ((Integer) fecha.getMinutes()).toString();
-		String f = hora + ":" + min + "\t-\t" + dia + "/" + mes + "/" + anho;
+		String sec = ((Integer)fecha.getSeconds()).toString();
+		
+		if (mes.length() == 1) {
+			mes = 0 + mes ;
+		}
+		if (dia.length() == 1) {
+			dia = 0 + dia ;
+		}
+		
+		if (hora.length() == 1) {
+			hora = 0 + hora ;
+		}
+		
+		if (min.length()==1) {
+			min = 0 + min ;
+		}
+		
+		if (sec.length()==1) {
+			sec = 0 + sec ;
+		}
+	
+		String f = hora + ":" + min + ":" + sec + "\t-\t" + dia + "/" + mes + "/" + anho;
 		return f;
 
 	}

@@ -108,18 +108,19 @@ public class ControladorPacienteMensajes implements Initializable{
 						msg.setAsunto(campoAsunto.getText());
 						msg.setMensaje(campoEscritura.getText());
 						msg.setEsMedicoEmisor(false);
-						msg.getFechaString();
+					    //msg.setFecha();
 						
 					
 				System.out.println("El mensaje ha sido creado");
+
 				fbd.enviarMensaje(msg);
+				setTitlePanesEnviados();
 			
 			
 				ControladorAvisos.setMensajeError("Mensaje Enviado.");
 				abrirVentanaAvisos();
 				
 				AccordionMensajesEnv.getPanes().clear();
-				
 				setTitlePanesEnviados();
 				
 				campoAsunto.clear();
@@ -230,7 +231,7 @@ public class ControladorPacienteMensajes implements Initializable{
 				
 				//Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append("Asunto: ");
+				stringBuilder.append("Asunto:    ");
 				stringBuilder.append(mensajeAct.getAsunto());
 				stringBuilder.append("\r");
 				stringBuilder.append(mensajeAct.getFechaString());
@@ -265,7 +266,6 @@ public class ControladorPacienteMensajes implements Initializable{
     		
 			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
 				
-
 				ArrayList<Mensaje> mensajesRec  = fbd.obtenerMensajesRecibidos(p);
 				List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
 				listMensajesRec.addAll(mensajesRec);

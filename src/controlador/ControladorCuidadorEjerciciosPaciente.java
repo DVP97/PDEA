@@ -47,8 +47,8 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 	private ArrayList<Ejercicio> ejercicios;
 	private Integer contador = 0;
 	private boolean hechos;
-    private static Paciente p = new Paciente();
-	private static Cuidador c = new Cuidador();
+    private static Paciente pacienteActual = new Paciente();
+	
     
     private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
@@ -57,12 +57,13 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 	public void initialize(URL location, ResourceBundle reosurces) {
 
 
+		Cuidador c = ControladorCuidadorpp.getCuidadorActual();
 		campoCuidador.setText("Hola " + c.getNombre() + ",");
-		campoPaciente.setText(p.getNombreCompleto());
+		campoPaciente.setText(pacienteActual.getNombreCompleto());
 
 		// Aquí falta la chica del desplegable
 
-		hechos = p.isEjerciciosHechos();
+		hechos = pacienteActual.isEjerciciosHechos();
 
 
 		if (hechos) {
@@ -73,7 +74,7 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 			campoHechos.setText("Ejercicios no acabados.");
 		}
 
-		this.ejercicios = fbd.obtenerEjerciciosPaciente(p);
+		this.ejercicios = fbd.obtenerEjerciciosPaciente(pacienteActual);
 
 		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
 
@@ -161,11 +162,11 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 	
 	//GETTERS
     public static Paciente getPacienteElegido() {
-		return p;
+		return pacienteActual;
 	}
     
     //SETTERS
     public static void setPacienteElegido(Paciente PacienteElegido) {
-		p = PacienteElegido;
+		pacienteActual = PacienteElegido;
 	}
 }
