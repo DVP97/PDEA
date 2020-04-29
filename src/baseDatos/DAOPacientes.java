@@ -340,5 +340,78 @@ public class DAOPacientes extends AbstractDAO {
         }
 		
 	}
+	/*
+	
+	
+	public static ArrayList<Aviso> crearAvisosSensor2(String dni){
+		ArrayList<Aviso> avisos = new ArrayList<Aviso>();
+		ArrayList<datoSensor2> sensor2 = getDatosSensor2De(dni);
+		for (int i =0 ; i<sensor2.size();i++) {
+			datoSensor2 s2 = sensor2.get(i);
+			int a = s2.getDatosMedicos().compareTo(85);
+			if(a<0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La saturacion de oxigeno en sangre es demasiado baja.");
+				aviso.setDatoSensor(s2);
+				aviso.setNombrePaciente();
 
+				aviso.setNombreSensor("Sensor 2");
+
+				avisos.add(aviso);
+			}
+		}
+		return avisos;
+	}
+	
+	public static ArrayList<Aviso> crearAvisosSensor3(String dni){
+		ArrayList<Aviso> avisos = new ArrayList<Aviso>();
+		ArrayList<datoSensor3> sensor3 = getDatosSensor3De(dni);
+		for (int i =0 ; i<sensor3.size();i++) {
+			datoSensor3 s3 = sensor3.get(i);
+			int a = s3.getSistoleAntes().compareTo(180);
+			int b = s3.getDiastoleAntes().compareTo(110);
+			int c = s3.getSistoleDespues().compareTo(180);
+			int d = s3.getDiastoleDespues().compareTo(110);
+			if(a>0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La sistole antes de hacer el ejercicio es demasiado alta.");
+				aviso.setDatoSensor(s3);
+				aviso.setNombrePaciente();
+
+				aviso.setNombreSensor("Sensor 3");
+
+				avisos.add(aviso);
+			}if(b>0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La diastole antes de hacer el ejercicio es demasiado alta.");
+				aviso.setDatoSensor(s3);
+				aviso.setNombrePaciente();
+
+				aviso.setNombreSensor("Sensor 3");
+
+				avisos.add(aviso);
+			}if(c>0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La sistole despues de hacer el ejercicio es demasiado alta.");
+				aviso.setDatoSensor(s3);
+				aviso.setNombrePaciente();
+
+				aviso.setNombreSensor("Sensor 3");
+
+				avisos.add(aviso);
+			}
+			if(d<0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La diastole despues de hacer el ejercicio es demasiado alta.");
+				aviso.setDatoSensor(s3);
+				aviso.setNombrePaciente();
+
+				aviso.setNombreSensor("Sensor 3");
+
+				avisos.add(aviso);
+			}
+		}
+		return avisos;
+	}
+	*/
 }

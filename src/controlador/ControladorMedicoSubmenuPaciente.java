@@ -10,6 +10,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
@@ -168,7 +169,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 
     	Cita proximaCita = seleccionarSiguienteCita(pacienteActual);
     	notaCita.setText(proximaCita.getNota());
-    	fc.setText(proximaCita.getFechaString());
+    	fc.setText(proximaCita.getFecha_cita());
 		
     }
     
@@ -384,8 +385,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 
     
     private void enviarMensaje(String dniPac) {
-    	Mensaje msg = new Mensaje(ControladorMedicoSelectorPaciente.getMedicoActual().getDni(), dniPac, true, campoAsunto.getText(), campoRedactar.getText(), Calendar.getInstance().getTime());
-		
+    	String fecha_mensaje = getFechaString(Calendar.getInstance().getTime());
+		Mensaje msg = new Mensaje(ControladorMedicoSelectorPaciente.getMedicoActual().getDni(), dniPac, true, campoAsunto.getText(), campoRedactar.getText(), fecha_mensaje);
 		fbd.enviarMensaje(msg);
 
 		ControladorAvisos.setMensajeError("Mensaje Enviado.");
@@ -397,6 +398,22 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		campoRedactar.clear();
 		campoAsunto.clear();
     }
+    
+    public String getFechaString(Date dummy) {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+		cal.setTime(dummy);
+		String dia = ((Integer) dummy.getDate()).toString();
+		int m = dummy.getMonth() + 1;
+		String mes = ((Integer) m).toString();
+		int year = cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		String hora = ((Integer) dummy.getHours()).toString();
+		String min = ((Integer) dummy.getMinutes()).toString();
+		String f = hora + ":" + min + "  -  " + dia + "/" + mes + "/" + anho;
+		return f;
+	}
     
     public void setTitledPanesRecibidos() {
     	ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();

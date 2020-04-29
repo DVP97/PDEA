@@ -3,6 +3,9 @@ package baseDatos;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
+import com.sun.javafx.collections.ArrayListenerHelper;
+
+import modelo.Aviso;
 import modelo.Cita;
 import modelo.Cuidador;
 import modelo.Ejercicio;
@@ -18,6 +21,7 @@ public class FachadaBaseDatos {
 	private DAOMedicos daoMedicos;
 	private DAOMensajes daoMensajes;
 	private DAOPacientes daoPacientes;
+	private DAOSensores daoSensores;
 
 
 	// EN ESTA CLASE SE HACE LA CONEXION CON LA BBDD
@@ -194,5 +198,12 @@ public class FachadaBaseDatos {
 		daoPacientes.borrarEjercicioPaciente(paciente, ejercicio);
 	}
 	
-
+	//SENSORES
+	public void getDatosSensor1De(String dni) {
+		daoSensores.getDatosSensor1De(dni);
+	}
+	public ArrayList<Aviso> crearAvisosSensor1(String dni) {
+		return daoSensores.crearAvisosSensor1(dni);
+	}
+	
 }

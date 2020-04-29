@@ -166,7 +166,6 @@ public class ControladorMedicopp implements Initializable {
 	@FXML
 	@SuppressWarnings("deprecation")
 	void pressBtnCrearCita(ActionEvent event) {
-		//ArrayList<Cita> addCita = lectorJson.lectorJsonCitas();
 		Cita nCita = new Cita();
 
 		String pacienteBuscado = inputBuscarPaciente.getValue();
@@ -196,7 +195,6 @@ public class ControladorMedicopp implements Initializable {
 		nCita.setMedico(ControladorMedicoSelectorPaciente.getMedicoActual().getDni());
 
 		// aniadir nCita al Arraylist
-		//addCita.add(nCita);
 
 		// insertar nueva cita en base de datos
 		fbd.insertarCita(nCita);
@@ -585,11 +583,11 @@ public class ControladorMedicopp implements Initializable {
 
 	public ObservableList<Aviso> getAvisos() {
 		ObservableList<Aviso> avisos = FXCollections.observableArrayList();
-		ArrayList<String> pacientes = nPac();
-
+		ArrayList<String> pacientes = Pac();
+	
 		for (int i = 0; i < pacientes.size(); i++) {
 			//crear daos sensores
-			//avisos.addAll(lectorJson.crearAvisosSensor1(pacientes.get(i)));
+			//avisos.addAll(fbd.crearAvisosSensor1(pacientes.get(i)));
 			//avisos.addAll(lectorJson.crearAvisosSensor2(pacientes.get(i)));
 			//avisos.addAll(lectorJson.crearAvisosSensor3(pacientes.get(i)));
 		}

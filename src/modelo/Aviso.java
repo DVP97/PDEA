@@ -7,12 +7,13 @@ public class Aviso {
 	private datoSensor datoSensor;
 	private String nombreSensor;
 	private String nombrePaciente;
-	
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 	public Aviso (String concepto, datoSensor ds, String nombre) {
 		this.concepto = concepto;
 		this.datoSensor = ds;
 		this.nombreSensor = nombre;
-		this.nombrePaciente = lectorJson.getPaciente(datoSensor.getDni()).getNombreCompleto();
+		
+		this.nombrePaciente = fbd.visualizarPaciente(datoSensor.getDni()).getNombreCompleto();
 	}
 	
 	public Aviso() {
@@ -45,6 +46,6 @@ public class Aviso {
 		this.nombreSensor = nombreSensor;
 	}
 	public void setNombrePaciente() {
-		this.nombrePaciente = lectorJson.getPaciente(datoSensor.getDni()).getNombreCompleto();
+		this.nombrePaciente = fbd.visualizarPaciente(datoSensor.getDni()).getNombreCompleto();
 	}
 }
