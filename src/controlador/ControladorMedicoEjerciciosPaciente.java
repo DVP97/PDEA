@@ -64,11 +64,12 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	private static Paciente pacienteActual = new Paciente();
 
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 	private ArrayList<String> nombresEjercicios = getTodosNombres();
 
 	private ObservableList<String> listaEjerciciosComboBox = FXCollections.observableArrayList(nombresEjercicios);
 
-	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -184,6 +185,8 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 		ArrayList<Ejercicio> ejercicios = fbd.visualizarEjercicios();
 		ArrayList<String> nombres = new ArrayList<String>();
 		for (int i = 0 ; i < ejercicios.size(); i++) {
+			
+			
 			nombres.add(ejercicios.get(i).getNombre());
 		}
 		return nombres; 
