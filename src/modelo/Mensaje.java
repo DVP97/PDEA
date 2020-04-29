@@ -1,8 +1,10 @@
 package modelo;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public class Mensaje {
@@ -79,6 +81,9 @@ public class Mensaje {
 		return esMedicoEmisor;
 	}
 	
+	
+	
+	
 	@SuppressWarnings("deprecation")
 	public String getFechaString() {
 		// Choose time zone in which you want to interpret your Date
@@ -117,6 +122,27 @@ public class Mensaje {
 
 	}
 
+	public Date stringToDate(String stringFecha) {
+		String FechaN[] = stringFecha.split("  -  ");
+		List<String> Fecha = Arrays.asList(FechaN);
+		
+		String ff[] = Fecha.get(1).split("/");
+		List<String> fechaCita = Arrays.asList(ff);
+		int dia = Integer.parseInt(fechaCita.get(0));
+		int mes = Integer.parseInt(fechaCita.get(1));
+		int anho = Integer.parseInt(fechaCita.get(2));
+
+		// hora de la cita
+		String HoraN[] = Fecha.get(0).split(":");
+		List<String> HoraCita = Arrays.asList(HoraN);
+		int hora = Integer.parseInt(HoraCita.get(0));
+		int mins = Integer.parseInt(HoraCita.get(1));
+
+		// guardar dia y hora de la cita en un Date
+		Date calend = new Date(anho, mes, dia, hora, mins);
+		return calend;
+	}
+	
 	// SETTERS
 	public void setDni_medico(String dni_medico) {
 		this.dni_medico = dni_medico;
