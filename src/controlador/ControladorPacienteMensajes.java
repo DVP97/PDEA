@@ -27,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Accordion;
 import javafx.scene.text.Font;
+import modelo.Cita;
 import modelo.Mensaje;
 import modelo.Paciente;
 
@@ -102,13 +103,14 @@ public class ControladorPacienteMensajes implements Initializable{
 				String medPac = p.getMedico();
 				
 				Mensaje msg = new Mensaje ();
+				Date fecha = new Date();
 				
 						msg.setDni_medico(medPac);
 						msg.setDni_paciente(p.getDni());
 						msg.setAsunto(campoAsunto.getText());
 						msg.setMensaje(campoEscritura.getText());
 						msg.setEsMedicoEmisor(false);
-					    //msg.setFecha();
+					    msg.getFecha();
 						
 					
 				System.out.println("El mensaje ha sido creado");

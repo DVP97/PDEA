@@ -59,6 +59,11 @@
  	-fx-font-weight: bold;
  	-fx-font: 200% sans-serif;
 }
+.textoDuracion{
+	-fx-text-fill: #ffffff;
+ 	-fx-font-weight: bold;
+ 	-fx-font: 150% sans-serif;
+}
 
 .textoEjercicio{
  	-fx-text-fill: #ffffff;

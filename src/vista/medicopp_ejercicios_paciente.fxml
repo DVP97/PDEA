@@ -2,9 +2,14 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,6 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -61,10 +67,30 @@
       </JFXButton>
       <AnchorPane fx:id="anchorPaneEjercicios" layoutX="27.0" layoutY="188.0" prefHeight="252.0" prefWidth="659.0">
          <children>
+            <Text layoutX="535.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duración: " wrappingWidth="60.475265979766846" />
             <Accordion fx:id="accordionEjercicios" layoutX="229.0" layoutY="86.0" prefHeight="252.0" prefWidth="479.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="0.0" />
-            <JFXButton fx:id="btnEliminarEjercicio" buttonType="RAISED" layoutX="520.0" layoutY="74.0" onAction="#pressBtnEliminar" prefHeight="104.0" prefWidth="90.0" styleClass="btn" stylesheets="@application.css" text="Eliminar" />
+            <JFXButton fx:id="btnEliminarEjercicio" buttonType="RAISED" layoutX="520.0" layoutY="30.0" onAction="#pressBtnEliminar" prefHeight="104.0" prefWidth="90.0" styleClass="btn" stylesheets="@application.css" text="Eliminar" />
+            <Circle centerX="50.0" fill="#159485d4" layoutX="515.0" layoutY="212.0" opacity="0.99" radius="34.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" styleClass="btnCronometro">
+               <cursor>
+                  <Cursor fx:constant="MOVE" />
+               </cursor>
+               <effect>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect>
+            </Circle>
+            <Label fx:id="campoDuracion" layoutX="535.0" layoutY="200.0" opacity="0.94" prefHeight="23.0" prefWidth="60.0" styleClass="textoDuracion" stylesheets="@application.css" text=" 00:30" textAlignment="CENTER" textOverrun="CLIP" />
          </children>
       </AnchorPane>
       <JFXButton fx:id="btnAnadirEjercicio" buttonType="RAISED" layoutX="519.0" layoutY="121.0" onAction="#pressBtnAnadir" prefHeight="45.0" prefWidth="124.0" styleClass="btn" stylesheets="@application.css" text="Añadir" />
    </children>
+   <effect>
+      <Blend />
+   </effect>
 </AnchorPane>
