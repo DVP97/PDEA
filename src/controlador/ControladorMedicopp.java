@@ -587,8 +587,8 @@ public class ControladorMedicopp implements Initializable {
 	
 		for (int i = 0; i < pacientes.size(); i++) {
 			avisos.addAll(fbd.crearAvisosSensor1(pacientes.get(i)));
-			//avisos.addAll(lectorJson.crearAvisosSensor2(pacientes.get(i)));
-			//avisos.addAll(lectorJson.crearAvisosSensor3(pacientes.get(i)));
+			avisos.addAll(fbd.crearAvisosSensor2(pacientes.get(i)));
+			avisos.addAll(fbd.crearAvisosSensor3(pacientes.get(i)));
 		}
 		return avisos;
 	}
