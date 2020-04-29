@@ -635,7 +635,7 @@ public class ControladorMedicopp implements Initializable {
 			// Primera columna
 			TableColumn<Cita, String> columnaNombrePaciente = new TableColumn<>("Paciente");
 			columnaNombrePaciente.setMinWidth(200);
-			columnaNombrePaciente.setCellValueFactory(new PropertyValueFactory<>("paciente"));
+			columnaNombrePaciente.setCellValueFactory(new PropertyValueFactory<>("nombrePaciente"));
 
 			// Segunda columna
 			TableColumn<Cita, String> columnaFecha = new TableColumn<>("Fecha");

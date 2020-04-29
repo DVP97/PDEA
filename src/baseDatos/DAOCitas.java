@@ -7,9 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import modelo.Cita;
+import modelo.Paciente;
 
 public class DAOCitas extends AbstractDAO{
 	
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+
 	public DAOCitas (Connection conexion) {
 		super.setConexion(conexion);
 	}
@@ -30,7 +33,9 @@ public class DAOCitas extends AbstractDAO{
 			rsCita = stmCita.executeQuery();
 			
 			if (rsCita.next()) {
-				resultado = new Cita(rsCita.getInt("id"), rsCita.getString("fecha_cita"), rsCita.getString("nota"), rsCita.getString("dni_paciente"), rsCita.getString("dni_medico"));
+				Paciente p = fbd.visualizarPaciente(rsCita.getString("dni_paciente"));
+				String nombre = p.getNombre() + " " + p.getApellidos();
+				resultado = new Cita(rsCita.getInt("id"), rsCita.getString("fecha_cita"), rsCita.getString("nota"), rsCita.getString("dni_paciente"), rsCita.getString("dni_medico"), nombre);
 			}
 			
 		}catch (SQLException e) {

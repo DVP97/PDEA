@@ -1,9 +1,5 @@
 package modelo;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
-
 
 public class Cita {
 
@@ -12,13 +8,16 @@ public class Cita {
 	private String nota;
 	private String paciente;
 	private String medico;
+	private String nombrePaciente;
+	
 
-	public Cita(Integer id, String fecha, String nota, String paciente, String medico) {
+	public Cita(Integer id, String fecha, String nota, String paciente, String medico, String nombrePaciente) {
 		this.id = id;
 		this.fecha_cita = fecha;
 		this.nota = nota;
 		this.paciente = paciente;
 		this.medico = medico;
+		this.nombrePaciente = nombrePaciente;
 	}
 	
 	public Cita(String fecha, String nota, String paciente, String medico) {
@@ -26,6 +25,7 @@ public class Cita {
 		this.nota = nota;
 		this.paciente = paciente;
 		this.medico = medico;
+		this.nombrePaciente = null;
 	}
 
 	public Cita() {
