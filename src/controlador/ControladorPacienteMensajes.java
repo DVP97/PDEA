@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -78,6 +79,7 @@ public class ControladorPacienteMensajes implements Initializable{
     private AnchorPane anchorPaneEnviados;
 	
 	private static Paciente pacienteActual = new Paciente();
+	private static Date fecha = new Date ();
 	
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 	
@@ -98,12 +100,20 @@ public class ControladorPacienteMensajes implements Initializable{
 			try {
 				Paciente p = ControladorPacientepp.getPacienteActual();
 				String medPac = p.getMedico();
-				Mensaje msg = new Mensaje(p.getDni(), medPac, campoEscritura.getText(), campoAsunto.getText());
+				
+				Mensaje msg = new Mensaje ();
+				
+						msg.setDni_medico(medPac);
+						msg.setDni_paciente(p.getDni());
+						msg.setAsunto(campoAsunto.getText());
+						msg.setMensaje(campoEscritura.getText());
+						msg.setEsMedicoEmisor(false);
+						msg.getFechaString();
+						
+					
 				System.out.println("El mensaje ha sido creado");
-				ArrayList<Mensaje> mensajes = new ArrayList<Mensaje>();
-				mensajes= lectorJson.lectorJsonMensajes();
-				mensajes.add(msg);
-				escritorJson.escribirEnJsonMensajes(mensajes);
+				fbd.enviarMensaje(msg);
+			
 			
 				ControladorAvisos.setMensajeError("Mensaje Enviado.");
 				abrirVentanaAvisos();
@@ -164,12 +174,13 @@ public class ControladorPacienteMensajes implements Initializable{
 	//METODOS
 	public Integer numeroMensajesRecibidos() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
-		return lectorJson.getMensajesEnviadosA(p.getDni()).size();
+		return fbd.obtenerMensajesRecibidos(p).size();
 	}
 	
 	public Integer numeroMensajesEnviados() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
-		return lectorJson.getMensajesEnviadosPor(p.getDni()).size();
+		
+		return fbd.obtenerMensajesEnviados(p).size();
 	}
 
 	public class sortByDate implements Comparator<Mensaje> {
@@ -206,7 +217,8 @@ public class ControladorPacienteMensajes implements Initializable{
 		if (numeroMensajesEnviados() > 0) {
 			
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
-				ArrayList<Mensaje> mensajesEnv  = lectorJson.getMensajesEnviadosPor(p.getDni());
+				
+				ArrayList<Mensaje> mensajesEnv = fbd.obtenerMensajesEnviados(p);
 				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
 				listMensajesEnv.addAll(mensajesEnv);
 				Collections.sort(listMensajesEnv, new sortByDate());
@@ -252,7 +264,9 @@ public class ControladorPacienteMensajes implements Initializable{
     	if (numeroMensajesRecibidos() > 0) {
     		
 			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
-				ArrayList<Mensaje> mensajesRec  = lectorJson.getMensajesEnviadosA(p.getDni());
+				
+
+				ArrayList<Mensaje> mensajesRec  = fbd.obtenerMensajesRecibidos(p);
 				List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
 				listMensajesRec.addAll(mensajesRec);
 				Collections.sort(listMensajesRec, new sortByDate());

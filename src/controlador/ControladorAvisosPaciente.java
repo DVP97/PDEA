@@ -62,13 +62,10 @@ public class ControladorAvisosPaciente implements Initializable {
 		}
 		// Muestra fecha de la cita
 		fecha_cita = seleccionarSiguienteCita(p);
-
+		campoFecha.setText(fecha_cita.getFecha_cita().toString());
 		
-		DateFormat fechaHora = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		String fecha_convertido = fechaHora.format(fecha_cita.getFecha_cita());
-	
-		campoFecha.setText(fecha_convertido);
-		
+		//DateFormat fechaHora = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		//String fecha_convertido = fechaHora.format(fecha_cita.getFecha_cita());
 		
 
 	}
@@ -127,7 +124,7 @@ public class ControladorAvisosPaciente implements Initializable {
 			ArrayList <Cita> citas = fbd.obtenerCitasPaciente(p);
 			if (citas != null) {
 				
-			//	campoFecha.setText(fecha_cita.getFecha_cita().toString());
+				//campoFecha.setText(fecha_cita.getFecha_cita().toString());
 				
 			}else {
 				campoFecha.setText("No tiene citas pendientes");
