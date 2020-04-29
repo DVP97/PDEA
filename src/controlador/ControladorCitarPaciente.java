@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -98,12 +100,14 @@ public class ControladorCitarPaciente implements Initializable{
 
 		// guardar dia y hora de la cita en un Date
 		Date calend = new Date(anho, mes, dia, hora, mins);
-		nCita.setFecha_cita(calend);
+		nCita.setFecha_cita(getFechaString(calend));
 		
 
 		// aniadir comentario del medico
 		nCita.setNota(notaCita.getText());
 
+		// introducir medico actual 
+		nCita.setMedico(medicoActual.getDni());
 		// escribir en la bbdd la cita 
 		fbd.insertarCita(nCita);
 
@@ -138,6 +142,22 @@ public class ControladorCitarPaciente implements Initializable{
 		} catch (Exception a) {
 			System.out.println("Error");
 		}
+	}
+    
+    public String getFechaString(Date dummy) {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+		cal.setTime(dummy);
+		String dia = ((Integer) dummy.getDate()).toString();
+		int m = dummy.getMonth() + 1;
+		String mes = ((Integer) m).toString();
+		int year = cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		String hora = ((Integer) dummy.getHours()).toString();
+		String min = ((Integer) dummy.getMinutes()).toString();
+		String f = hora + ":" + min + "  -  " + dia + "/" + mes + "/" + anho;
+		return f;
 	}
 }
 

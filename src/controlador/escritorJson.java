@@ -1,4 +1,4 @@
-
+/*
 package controlador;
 
 import java.io.FileWriter;
@@ -87,3 +87,4 @@ public class escritorJson {
 	
 	
 }
+*/

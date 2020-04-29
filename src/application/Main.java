@@ -1,5 +1,9 @@
 package application;
 
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 import baseDatos.FachadaBaseDatos;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -15,7 +19,6 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		fbd = Main.getFbd();
-
 		try {
 			Parent Login = FXMLLoader.load(getClass().getResource("/vista/login.fxml"));
 			primaryStage.setTitle("PDEA Login");
@@ -44,5 +47,6 @@ public class Main extends Application {
 			return fbd;
 		}
 	}
+	
 
 }

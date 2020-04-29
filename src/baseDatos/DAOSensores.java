@@ -8,13 +8,15 @@ import java.util.ArrayList;
 
 import modelo.Aviso;
 import modelo.Pulsiometro;
+import modelo.Oximetro;
+import modelo.Presion;
 
 public class DAOSensores extends AbstractDAO{
 		
 	public DAOSensores(Connection conexion) {
 		super.setConexion(conexion);
 	}
-	
+	//SENSOR1 pulsiometro
 	public ArrayList<Pulsiometro> getDatosSensor1De(String dni){
 		ArrayList<Pulsiometro> s1 = new ArrayList<Pulsiometro>();
 		Pulsiometro datoS1 = null;
@@ -93,6 +95,119 @@ public class DAOSensores extends AbstractDAO{
 				aviso.setNombrePaciente();
 
 				aviso.setNombreSensor("Sensor 1");
+
+				avisos.add(aviso);
+			}
+		}
+		return avisos;
+	}
+	
+	//SENSOR2 OXIMETRO
+	public ArrayList<Oximetro> getDatosSensor2De(String dni){
+		ArrayList<Oximetro> s2 = new ArrayList<Oximetro>();
+		Oximetro datoS2 = null;
+		Connection con;
+		PreparedStatement stmPaciente = null;
+		ResultSet rsPaciente = null;
+
+		con = super.getConexion();
+
+		String consulta = "select * from oximetro where paciente = ?";
+		
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setString(1, dni);
+			rsPaciente = stmPaciente.executeQuery();
+
+			while (rsPaciente.next()) {
+				datoS2 = new Oximetro(
+						rsPaciente.getDate("fecha_dato"), 
+						rsPaciente.getString("paciente"),
+						rsPaciente.getInt("datoMedico"));
+				s2.add(datoS2);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				stmPaciente.close();
+			} catch (SQLException e) {
+				System.out.println("Imposible cerrar cursores");
+			}
+		}
+		return s2; 
+	}
+	
+	public ArrayList<Aviso> crearAvisosSensor2(String dni){
+		ArrayList<Aviso> avisos = new ArrayList<Aviso>();
+		ArrayList<Oximetro> sensor2 = getDatosSensor2De(dni);
+		for (int i =0 ; i<sensor2.size();i++) {
+			Oximetro s2 = sensor2.get(i);
+			int a = s2.getDatosMedicos().compareTo(85);
+			if(a<0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("La saturacion de oxigeno en sangre es demasiado baja.");
+				aviso.setDatoSensor(s2);
+				aviso.setNombrePaciente();
+
+				aviso.setNombreSensor("Sensor 2");
+
+				avisos.add(aviso);
+			}
+		}
+		return avisos;
+	}
+	
+	//SENSOR3 PRESION
+	public ArrayList<Presion> getDatosSensor3De(String dni){
+		ArrayList<Presion> s3 = new ArrayList<Presion>();
+		Presion datoS3 = null;
+		Connection con;
+		PreparedStatement stmPaciente = null;
+		ResultSet rsPaciente = null;
+
+		con = super.getConexion();
+
+		String consulta = "select * from presion where paciente = ?";
+		
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setString(1, dni);
+			rsPaciente = stmPaciente.executeQuery();
+
+			while (rsPaciente.next()) {
+				datoS3 = new Presion(
+						rsPaciente.getDate("fecha_dato"), 
+						rsPaciente.getInt("dato"),
+						rsPaciente.getString("paciente"));
+				s3.add(datoS3);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				stmPaciente.close();
+			} catch (SQLException e) {
+				System.out.println("Imposible cerrar cursores");
+			}
+		}
+		return s3; 
+	}
+	
+	public  ArrayList<Aviso> crearAvisosSensor3(String dni){
+		ArrayList<Aviso> avisos = new ArrayList<Aviso>();
+		ArrayList<Presion> sensor3 = getDatosSensor3De(dni);
+		for (int i =0 ; i<sensor3.size();i++) {
+			Presion s3 = sensor3.get(i);
+			int a = s3.getDato().compareTo(180);
+
+			if(a>0) {
+				Aviso aviso = new Aviso();
+				aviso.setConcepto("Lleva mucho tiempo parado.");
+				aviso.setDatoSensor(s3);
+				aviso.setNombrePaciente();
+
+				aviso.setNombreSensor("Sensor 3");
 
 				avisos.add(aviso);
 			}

@@ -1,7 +1,5 @@
 package modelo;
 
-import controlador.lectorJson;
-
 public class Aviso {
 	private String concepto;
 	private datoSensor datoSensor;

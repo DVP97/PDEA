@@ -1,5 +1,6 @@
 package modelo;
 
+import java.util.Date;
 
 public class Cita {
 
@@ -79,6 +80,9 @@ public class Cita {
 	}
 	public void setFecha_cita(String fecha_cita) {
 		this.fecha_cita = fecha_cita;
+	}
+	public void setFecha_cita(Date fecha_cita) {
+		this.fecha_cita = fecha_cita.toString();
 	}
 	public void setId(Integer id) {
 		this.id = id;
