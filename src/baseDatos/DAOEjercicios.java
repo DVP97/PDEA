@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modelo.Ejercicio;
 
@@ -42,6 +43,36 @@ public class DAOEjercicios extends AbstractDAO{
 		}
 		return resultado;
 	}
+	public ArrayList<Ejercicio> visualizarEjercicios() {
+        ArrayList<Ejercicio> ejercicios = new ArrayList<Ejercicio>();
+        Ejercicio resultado = null;
+        Connection con;
+        PreparedStatement stmEjercicio = null;
+        ResultSet rsEjercicio = null;
+
+        con = super.getConexion();
+
+        String consulta = "select * from ejercicio";
+
+        try {
+            stmEjercicio = con.prepareStatement(consulta);
+            rsEjercicio = stmEjercicio.executeQuery();
+
+            while(rsEjercicio.next()) {
+                resultado = new Ejercicio(rsEjercicio.getInt("id_ejercicio"), rsEjercicio.getString("nombre"), rsEjercicio.getString("gif"));
+                ejercicios.add(resultado);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                stmEjercicio.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+        return ejercicios;
+    }
 
 	
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="382.0" prefWidth="581.0" styleClass="background" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorCuidadorSensores">
+   <children>
+      <Label fx:id="campoCuidador" layoutX="19.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio,">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Separator layoutX="19.0" layoutY="48.0" prefHeight="5.0" prefWidth="151.0" />
+      <Label layoutX="21.0" layoutY="65.0" styleClass="normalLabel" stylesheets="@application.css" text="Paciente:" />
+      <Label fx:id="campoPaciente" layoutX="84.0" layoutY="66.0" prefHeight="16.0" prefWidth="223.0" styleClass="normalLabel" stylesheets="@application.css" text="Pepito " />
+      <Label layoutX="512.0" layoutY="517.0" styleClass="smallLabel" stylesheets="@application.css" text="Cuidador" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+      <AnchorPane fx:id="anchorPaneAvisos" layoutX="95.0" layoutY="127.0" prefHeight="201.0" prefWidth="412.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="127.0" />
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="14.0" layoutY="92.0">
+         <image>
+            <Image url="@../modelo/avisos.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="512.0" layoutY="15.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+         <image>
+            <Image url="@../modelo/logo.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnVolver" buttonType="RAISED" layoutX="14.0" layoutY="497.0" onAction="#pressBtnVolver" prefHeight="40.0" prefWidth="70.0" styleClass="btn" stylesheets="@application.css" text="Volver" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
+         <ripplerFill>
+            <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="#81f1c1" />
+                  <Stop color="#5d5d52" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill>
+      </JFXButton>
+      <Label layoutX="70.0" layoutY="103.0" styleClass="normalLabel" stylesheets="@application.css" text="Sensores" />
+   </children>
+</AnchorPane>

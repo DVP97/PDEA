@@ -56,6 +56,8 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 	
 	@FXML
 	private Label campoMedico;
+	@FXML
+	private Label campoDuracion; 
 
 	@FXML
 	private Accordion accordionEjercicios;
@@ -97,30 +99,6 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 	}
 
 	@FXML
-	void pressBtnVolver(ActionEvent event) throws IOException {
-
-		try {
-			System.out.println("Cargando submenu paciente...");
-			Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
-			Stage subMenuPaciente = new Stage();
-			subMenuPaciente.setTitle("Menu " + pacienteActual.getNombreCompleto());
-			subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
-			subMenuPaciente.show();
-			subMenuPaciente.setMinHeight(600);
-			subMenuPaciente.setMinWidth(800);
-
-			Stage CerrarVentanaSensores = (Stage) buttonVolver.getScene().getWindow();
-			CerrarVentanaSensores.close();
-		}
-
-		catch (ControladorExcepciones case1) {
-			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Submenu.");
-			case1.abrirVentanaAvisos();
-		}
-
-	}
-
-	@FXML
 	void pressBtnAnadir(ActionEvent event) {
 		
 			String ejercicio = comboPaciente.getValue().toString();
@@ -128,7 +106,16 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 			if (indice != null) {
 				
-				addEjercicio(indice+1);
+				if (campoDuracion.getText() != null) {
+					
+					addEjercicio(indice+1);
+					
+				} else {
+					
+					ControladorAvisos.setMensajeError("Por favor, añada la duracion del ejercicio.");
+					abrirVentanaAvisos();
+				}
+				
 
 			} else {
 				ControladorAvisos.setMensajeError("Por favor, seleccione un ejercicio.");
@@ -137,12 +124,17 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 		
 	}
 
-	private void addEjercicio(Integer id) {
-		Ejercicio ej = lectorJson.getEjercicio(id);
-		ArrayList<Integer> ejercicios = pacienteActual.getEjercicios();
 
-		ejercicios.add(ej.getId());
-		escritorJson.modificarPaciente(pacienteActual);
+	
+	private void addEjercicio(Integer id) {
+		
+		
+		Ejercicio ej = fbd.visualizarEjercicio(id);
+	    ej.setDuracion (Integer.parseInt(campoDuracion.getText()));
+		
+
+		fbd.asignarEjercicioPaciente(pacienteActual, ej);
+		
 		accordionEjercicios.getPanes().clear();
 		setTitlePanesEjercicios();
 
@@ -151,12 +143,14 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 	@FXML
 	void pressBtnEliminar(ActionEvent event) {
 
+		/*
 		TitledPane tp = getExpanded();
 
 		if (tp != null) {
 			Integer id = Integer.parseInt(tp.getId());
 			Ejercicio ejercicio = lectorJson.getEjercicio(id);
 
+			
 			ArrayList<Ejercicio> ejPac = lectorJson.getEjercicios(pacienteActual);
 			ArrayList<Integer> devuelvo = new ArrayList<Integer>();
 
@@ -170,38 +164,24 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 		} else {
 			ControladorAvisos.setMensajeError("Por favor, seleccione un mensaje.");
 			abrirVentanaAvisos();
-		}
+		}/*
 
 	}
 
-	public void abrirVentanaAvisos() {
-		try {
-			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
-			Stage VentanaAvisos = new Stage();
-			VentanaAvisos.setTitle("Aviso");
-			VentanaAvisos.setScene(new Scene(avisos));
-			VentanaAvisos.show();
-			VentanaAvisos.setMinHeight(200);
-			VentanaAvisos.setMinWidth(500);
-			VentanaAvisos.setMaxHeight(200);
-			VentanaAvisos.setMaxWidth(600);
 
-		} catch (Exception a) {
-			System.out.println("Error");
-		}
-	}
 
-	private ArrayList<String> getNombresEjercicios() {
+	/*private ArrayList<String> getNombresEjercicios() {
 		ArrayList<Ejercicio> ejercicios = lectorJson.getEjercicios(pacienteActual);
 		ArrayList<String> nombres = new ArrayList<String>();
 		for (int i = 0; i < ejercicios.size(); i++) {
 			Ejercicio e = ejercicios.get(i);
 			nombres.add(e.getNombre());
 		}
-		return nombres;
+		return nombres;*/
 	}
+	
 	private ArrayList<String> getTodosNombres(){
-		ArrayList<Ejercicio> ejercicios = lectorJson.lectorJsonEjercicios();
+		ArrayList<Ejercicio> ejercicios = fbd.visualizarEjercicios();
 		ArrayList<String> nombres = new ArrayList<String>();
 		for (int i = 0 ; i < ejercicios.size(); i++) {
 			nombres.add(ejercicios.get(i).getNombre());
@@ -215,7 +195,8 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 		if (numeroEjerciciosPaciente() > 0) {
 			for (int i = 0; i < numeroEjerciciosPaciente(); i++) {
-				ArrayList<Ejercicio> ejerciciosPac = lectorJson.getEjercicios(pacienteActual);
+				
+				ArrayList<Ejercicio> ejerciciosPac = fbd.obtenerEjerciciosPaciente(pacienteActual);
 				List<Ejercicio> listEjerciciosPac = new ArrayList<Ejercicio>();
 				listEjerciciosPac.addAll(ejerciciosPac);
 				Ejercicio ejercicioActual = listEjerciciosPac.get(i);
@@ -249,7 +230,48 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 	}
 
 	private Integer numeroEjerciciosPaciente() {
-		return lectorJson.getEjercicios(pacienteActual).size();
+		return fbd.obtenerEjerciciosPaciente(pacienteActual).size();
+	
+	}
+	@FXML
+	void pressBtnVolver(ActionEvent event) throws IOException {
+
+		try {
+			System.out.println("Cargando submenu paciente...");
+			Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
+			Stage subMenuPaciente = new Stage();
+			subMenuPaciente.setTitle("Menu " + pacienteActual.getNombreCompleto());
+			subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
+			subMenuPaciente.show();
+			subMenuPaciente.setMinHeight(600);
+			subMenuPaciente.setMinWidth(800);
+
+			Stage CerrarVentanaSensores = (Stage) buttonVolver.getScene().getWindow();
+			CerrarVentanaSensores.close();
+		}
+
+		catch (ControladorExcepciones case1) {
+			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Submenu.");
+			case1.abrirVentanaAvisos();
+		}
+
+	}
+	
+	public void abrirVentanaAvisos() {
+		try {
+			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
+			Stage VentanaAvisos = new Stage();
+			VentanaAvisos.setTitle("Aviso");
+			VentanaAvisos.setScene(new Scene(avisos));
+			VentanaAvisos.show();
+			VentanaAvisos.setMinHeight(200);
+			VentanaAvisos.setMinWidth(500);
+			VentanaAvisos.setMaxHeight(200);
+			VentanaAvisos.setMaxWidth(600);
+
+		} catch (Exception a) {
+			System.out.println("Error");
+		}
 	}
 
 }

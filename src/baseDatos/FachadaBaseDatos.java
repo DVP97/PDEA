@@ -111,6 +111,9 @@ public class FachadaBaseDatos {
 	public Ejercicio visualizarEjercicio(Integer id) {
 		return daoEjercicios.visualizarEjercicio(id);
 	}
+	public ArrayList<Ejercicio> visualizarEjercicios(){
+	    return daoEjercicios.visualizarEjercicios();
+	}
 	
 	// MEDICOS
 	public Medico visualizarMedico(String dni) {
