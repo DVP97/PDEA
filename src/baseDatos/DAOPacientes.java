@@ -14,7 +14,7 @@ import modelo.Paciente;
 
 public class DAOPacientes extends AbstractDAO {
 	
-	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	//private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	
 	public DAOPacientes(Connection conexion) {
@@ -240,7 +240,7 @@ public class DAOPacientes extends AbstractDAO {
 			rsCitas = stmPaciente.executeQuery();
 			
 			while (rsCitas.next()) {
-				Paciente p = fbd.visualizarPaciente(rsCitas.getString("dni_paciente"));
+				Paciente p = this.visualizarPaciente(rsCitas.getString("paciente"));
 				String nombre = p.getNombre() + " " + p.getApellidos();
 				citaActual = new Cita(rsCitas.getInt("id"), rsCitas.getString("fecha_cita"), rsCitas.getString("nota"), rsCitas.getString("paciente"), rsCitas.getString("medico"), nombre);
 				resultado.add(citaActual);

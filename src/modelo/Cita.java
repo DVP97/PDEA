@@ -48,6 +48,10 @@ public class Cita {
 	public String getNota() {
 		return nota;
 	}
+	public String getNombrePaciente() {
+		return nombrePaciente;
+	}
+	
 	/*
 	@SuppressWarnings("deprecation")
 	public String getFechaString() {
@@ -81,6 +85,9 @@ public class Cita {
 	}
 	public void setNota(String nota) {
 		this.nota = nota;
+	}
+	public void setNombrePaciente(String nombrePaciente) {
+		this.nombrePaciente = nombrePaciente;
 	}
 	
 	

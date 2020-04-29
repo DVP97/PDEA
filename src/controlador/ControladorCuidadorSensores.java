@@ -31,8 +31,6 @@ import modelo.Aviso;
 
 public class ControladorCuidadorSensores implements Initializable {
 
-
-
 	@FXML
 	private AnchorPane anchorPaneAvisos;
 

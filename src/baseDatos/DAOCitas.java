@@ -11,7 +11,7 @@ import modelo.Paciente;
 
 public class DAOCitas extends AbstractDAO{
 	
-	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
+	//private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	public DAOCitas (Connection conexion) {
 		super.setConexion(conexion);
@@ -33,9 +33,9 @@ public class DAOCitas extends AbstractDAO{
 			rsCita = stmCita.executeQuery();
 			
 			if (rsCita.next()) {
-				Paciente p = fbd.visualizarPaciente(rsCita.getString("dni_paciente"));
+				Paciente p = this.visualizarPaciente(rsCita.getString("paciente"));
 				String nombre = p.getNombre() + " " + p.getApellidos();
-				resultado = new Cita(rsCita.getInt("id"), rsCita.getString("fecha_cita"), rsCita.getString("nota"), rsCita.getString("dni_paciente"), rsCita.getString("dni_medico"), nombre);
+				resultado = new Cita(rsCita.getInt("id"), rsCita.getString("fecha_cita"), rsCita.getString("nota"), rsCita.getString("paciente"), rsCita.getString("dni_medico"), nombre);
 			}
 			
 		}catch (SQLException e) {
@@ -136,6 +136,41 @@ public class DAOCitas extends AbstractDAO{
 				System.out.println("Imposible cerrar cursores");
 			}
 		}
+	}
+	
+	public Paciente visualizarPaciente(String dni) {
+		Paciente resultado = null;
+		Connection con;
+		PreparedStatement stmPaciente = null;
+		ResultSet rsPaciente = null;
+
+		con = super.getConexion();
+
+		String consulta = "select * from paciente where dni_paciente = ?";
+
+		try {
+			stmPaciente = con.prepareStatement(consulta);
+			stmPaciente.setString(1, dni);
+			rsPaciente = stmPaciente.executeQuery();
+
+			if (rsPaciente.next()) {
+				
+				resultado = new Paciente(rsPaciente.getString("dni_paciente"), rsPaciente.getString("nombre"),
+						rsPaciente.getString("apellidos"), rsPaciente.getString("telefono"),
+						rsPaciente.getString("contrasena"), rsPaciente.getDate("fecha_nacimiento"),
+						rsPaciente.getString("medico"), rsPaciente.getBoolean("ejerciciosHechos"));
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				stmPaciente.close();
+			} catch (SQLException e) {
+				System.out.println("Imposible cerrar cursores");
+			}
+		}
+		return resultado;
 	}
 
 }
