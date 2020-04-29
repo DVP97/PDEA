@@ -3,8 +3,6 @@ package baseDatos;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
-import com.sun.javafx.collections.ArrayListenerHelper;
-
 import modelo.Aviso;
 import modelo.Cita;
 import modelo.Cuidador;
