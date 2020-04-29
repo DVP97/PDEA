@@ -595,60 +595,68 @@ public class ControladorMedicopp implements Initializable {
 		}
 		return avisos;
 	}
-	public ObservableList<Cita> getCitas() {
-		ObservableList<Cita> citas = FXCollections.observableArrayList();
-		ArrayList<Paciente> pacientes = fbd.obtenerPacientesMedico(ControladorMedicoSelectorPaciente.getMedicoActual());
 
-		for (int i = 0; i < pacientes.size(); i++) {
-			fbd.obtenerCitasPaciente(pacientes.get(i));
-			
-			Collections.sort(citas, new sortByDateC());
 
+	public String getFechaString(Date dummy) {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+		cal.setTime(dummy);
+		String dia = ((Integer) dummy.getDate()).toString();
+		int m = dummy.getMonth() + 1;
+		String mes = ((Integer) m).toString();
+		int year = cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		String hora = ((Integer) dummy.getHours()).toString();
+		String min = ((Integer) dummy.getMinutes()).toString();
+		String f = hora + ":" + min + "  -  " + dia + "/" + mes + "/" + anho;
+		return f;
+	}
+	
+	public class sortByDateC implements Comparator<Cita>{
+		@Override
+		public int compare (Cita c1, Cita c2) {
+			return c1.getFecha_cita().compareTo(c2.getFecha_cita());
 		}
+	}
+	
+	public ObservableList<Cita> getCitas() {
+		ArrayList<Paciente> pacientes = fbd.obtenerPacientesMedico(ControladorMedicoSelectorPaciente.getMedicoActual());
+		ObservableList<Cita> citas = FXCollections.observableArrayList();	
+		
+		for (int i = 0; i < pacientes.size(); i++) {
+			citas.addAll(fbd.obtenerCitasPaciente(pacientes.get(i)));	
+			Collections.sort(citas, new sortByDateC());
+		}	
+
 		return citas;
 	}
-	  public class sortByDateC implements Comparator<Cita>{
-			@Override
-			public int compare (Cita c1, Cita c2) {
-				return c1.getFecha_cita().compareTo(c2.getFecha_cita());
-			}
-		}
-	  public String getFechaString(Date dummy) {
-			// Choose time zone in which you want to interpret your Date
-			Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
-
-			cal.setTime(dummy);
-			String dia = ((Integer) dummy.getDate()).toString();
-			int m = dummy.getMonth() + 1;
-			String mes = ((Integer) m).toString();
-			int year = cal.get(Calendar.YEAR);
-			String anho = ((Integer) year).toString();
-			String hora = ((Integer) dummy.getHours()).toString();
-			String min = ((Integer) dummy.getMinutes()).toString();
-			String f = hora + ":" + min + "  -  " + dia + "/" + mes + "/" + anho;
-			return f;
-		}
-	  
-	public void setCitas() {
+	
+  	public void setCitas() {
 		ObservableList<Cita> citas = getCitas();
 		if (citas.size() > 0) {
 			// Primera columna
 			TableColumn<Cita, String> columnaNombrePaciente = new TableColumn<>("Paciente");
 			columnaNombrePaciente.setMinWidth(200);
-			columnaNombrePaciente.setCellValueFactory(new PropertyValueFactory<>("nombrePaciente"));
+			columnaNombrePaciente.setCellValueFactory(new PropertyValueFactory<>("paciente"));
 
 			// Segunda columna
-			TableColumn<Cita, String> columnaConcepto = new TableColumn<>("Fecha");
+			TableColumn<Cita, String> columnaFecha = new TableColumn<>("Fecha");
+			columnaFecha.setMinWidth(200);
+			columnaFecha.setCellValueFactory(new PropertyValueFactory<>("fecha_cita"));
+			
+			// Tercera columna
+			TableColumn<Cita, String> columnaConcepto = new TableColumn<>("Concepto");
 			columnaConcepto.setMinWidth(200);
-			columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("fechaString"));
-
+			columnaConcepto.setCellValueFactory(new PropertyValueFactory<>("nota"));
+						
 			TableView<Cita> t;
-
+			
 			t = new TableView<>();
 			t.setLayoutX(5);
 			t.setLayoutY(60);
 			t.setItems(citas);
-			t.getColumns().addAll(columnaNombrePaciente, columnaConcepto);
+			t.getColumns().addAll(columnaNombrePaciente, columnaFecha, columnaConcepto);
 			anchorPaneCitas.getChildren().add(t);
 			anchorPaneCitas.setLeftAnchor(t, 10.0);
 			anchorPaneCitas.setRightAnchor(t, 10.0);
@@ -657,12 +665,12 @@ public class ControladorMedicopp implements Initializable {
 			
 
 		} else {
-			Label tableEmpty = new Label("Todos los datos proporcionados por los sensores estan bien.");
+			Label tableEmpty = new Label("No hay citas.");
 
 			tableEmpty.setFont(new Font("Arial", 10));
 			tableEmpty.setLayoutY(60);
 			tableEmpty.setLayoutX(5);
-			// anchorPaneAvisos.getChildren().add(tableEmpty);
+			anchorPaneAvisos.getChildren().add(tableEmpty);
 
 			AnchorPane.setTopAnchor(tableEmpty, Double.valueOf(40));
 		}
