@@ -230,7 +230,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	int mes  = Integer.parseInt(Fecha.get(1));
     	int anho = Integer.parseInt(Fecha.get(2));
     	Date calend= new Date(anho, mes, dia);
-    	p.setFecha_nacimiento(calend);
+    	p.setFecha_nacimiento(getFechaString(calend));
+    	
     	//campo telefono
     	String TlfPacNew = campoTlfPac.getText();
     	p.setTelefono(TlfPacNew);
@@ -352,7 +353,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
     	campoDniPac.setText(p.getDni());
     	campoNombrePac.setText(p.getNombre());
     	campoApellidosPac.setText(p.getApellidos());
-    	campoFechaNacPac.setText(p.getFechaNacimientoString());
+    	campoFechaNacPac.setText(p.getFecha_nacimiento());
     	campoTlfPac.setText(p.getTelefono().toString());
     	campoCuidadoresPac.setText(getCampoCuidadores());
     }
@@ -604,5 +605,6 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		Collections.sort(citas, new sortByDateC());
 		return citas.get(0);
 	}
+	
 	
 }
