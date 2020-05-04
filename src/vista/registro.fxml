@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -27,7 +28,7 @@
                </font>
             </Label>
             <Separator layoutX="14.0" layoutY="56.0" prefWidth="200.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0" />
-            <GridPane layoutX="14.0" layoutY="102.0" maxWidth="1000.0" prefHeight="173.0" prefWidth="580.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="80.0">
+            <GridPane layoutX="14.0" layoutY="82.0" maxWidth="1000.0" prefHeight="246.0" prefWidth="573.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="82.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="218.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="328.0" />
@@ -44,16 +45,16 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="textoDNI" promptText="76459842F" GridPane.columnIndex="1" />
+                  <TextField fx:id="textoDNI" prefHeight="26.0" prefWidth="274.0" promptText="76459842F" GridPane.columnIndex="1" />
                   <TextField fx:id="textoNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="textoApellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <PasswordField fx:id="textoContrasena" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <PasswordField fx:id="textoContrasena2" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <PasswordField fx:id="textoContrasena" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <PasswordField fx:id="textoContrasena2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ComboBox fx:id="comboRol" prefHeight="27.0" prefWidth="237.0" promptText="Elija paciente" styleClass="normalLabel" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="DNI:" />
                   <Label text="Nombre:" GridPane.rowIndex="1" />
-                  <Label text="Contraseña:" GridPane.rowIndex="5" />
-                  <Label text="Repite la contraseña:" GridPane.rowIndex="6" />
+                  <Label text="Contraseña:" GridPane.rowIndex="3" />
+                  <Label text="Repite la contraseña:" GridPane.rowIndex="4" />
                   <Label text="Rol:" GridPane.rowIndex="7" />
                   <Label text="Apellidos:" GridPane.rowIndex="2" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="8">
@@ -82,10 +83,10 @@
                            </ripplerFill></JFXButton>
                      </children>
                   </AnchorPane>
-                  <Label text="Telefono:" GridPane.rowIndex="4" />
-                  <Label text="Fecha de nacimiento:" GridPane.rowIndex="3" />
-                  <TextField fx:id="textoTelefono" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <TextField fx:id="textoFechaNac" promptText="30/10/1988" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Telefono:" GridPane.rowIndex="5" />
+                  <Label text="Fecha de nacimiento:" GridPane.rowIndex="6" />
+                  <TextField fx:id="textoTelefono" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <JFXDatePicker fx:id="campoFecha" editable="false" prefHeight="27.0" prefWidth="353.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <ImageView fitHeight="55.0" fitWidth="67.0" layoutX="527.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">

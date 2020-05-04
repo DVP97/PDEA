@@ -1,9 +1,5 @@
 package application;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
 import baseDatos.FachadaBaseDatos;
 import javafx.application.Application;
 import javafx.stage.Stage;

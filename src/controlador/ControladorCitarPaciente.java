@@ -99,6 +99,7 @@ public class ControladorCitarPaciente implements Initializable{
 		Date calend = new Date(anho, mes, dia, hora, mins);
 		nCita.setFecha_cita(getFechaString(calend));
 		
+	
 
 		// aniadir comentario del medico
 		nCita.setNota(notaCita.getText());

@@ -6,10 +6,15 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,6 +62,8 @@ public class ControladorRegistro implements Initializable {
 
     @FXML
     private JFXButton btnAceptar;
+    @FXML
+    private JFXDatePicker campoFecha;
 
 
 
@@ -75,10 +82,29 @@ public class ControladorRegistro implements Initializable {
     void pulsarBtnAceptar_reg(ActionEvent event) {
     try {
 
-	    	//Comprobacion de que coinciden las contrase�as
-	    	String pswrd =textoContrasena.getText();
-	    	String pswrdSecond =textoContrasena2.getText();
+    	String FechaN[] = campoFecha.getValue().toString().split("-");
+		List<String> Fecha = Arrays.asList(FechaN);
+		int dia = Integer.parseInt(Fecha.get(0));
+		int mes = Integer.parseInt(Fecha.get(1));
+		int anho = Integer.parseInt(Fecha.get(2));
+		// guardar dia y hora de la cita en un Date
+		@SuppressWarnings("deprecation")
+		Date calend = new Date(anho, mes, dia);
+		
+		//nCita.setFecha_cita(getFechaString(calend));
+		
+	    	//Comprobacion de que coinciden las contrasenas
+	    	String pswrd = textoContrasena.getText();
+	    	String pswrdSecond = textoContrasena2.getText();
 	    	String passwordEncriptada = getMd5(pswrd);
+	    	//Declaraciones
+	    	String nombre = textoNombre.getText(), apellidos = textoApellidos.getText(), dni = textoDNI.getText(),
+	    			tlfn = textoTelefono.getText(); //fechaNacimiento = textoFechaNac.getText();
+	    	//System.out.println(fechaNacimiento);
+	    	//Date fechaNacimientoParseada = new SimpleDateFormat("dd/MM/yyyy").parse(fechaNacimiento);
+	    	System.out.println(calend);
+	    	boolean prueba = false;
+	    	prueba = comprobarDigitosDNI();
 
 	
 	    	//Comprobacion de el resto de campos
@@ -100,51 +126,58 @@ public class ControladorRegistro implements Initializable {
 			}
 	
 			else {
+				
 				System.out.println("Usuario seleccionado: " +comboRol.getValue());
-				if ( pswrd.length()<4 | !pswrd.equals(pswrdSecond) ){
+				
+				if(dni.length() !=9 | nombre.length()<1 | apellidos.length()<1 | tlfn.length()!=9 | pswrd.length()<1 ) {
+					ControladorAvisos.setMensajeError("Por favor revise los datos introducidos.");
+					abrirVentanaAvisos();	
+				}
+
+				if ( pswrd.length()>0 && pswrd.length()<4 | !pswrd.equals(pswrdSecond) ){
 		    		try {
-		    			ControladorAvisos.setMensajeError("Ambas contrase�as deben coincidir y tener minimos de 4 caracteres.");
+		    			ControladorAvisos.setMensajeError("Ambas contraseñas deben coincidir y tener un minimo de 4 caracteres.");
 		    			abrirVentanaAvisos();
 	
 		    		}
 		    		catch(Exception a) {
 		    			System.out.println("Error");
 		    			 a.printStackTrace();
-		    		}
-		    	}
-	
-				else {
-					
-					System.out.println(passwordEncriptada);
-					if( comprobarDigitosDNI()==false| Character.isLetter(textoDNI.getText().charAt(8)) == false) {
-						ControladorAvisos.setMensajeError("Por favor revise los datos introducidos.");
+		    		}	
+		    	}  
+
+				System.out.println(prueba);
+				if (!prueba ) {
+							ControladorAvisos.setMensajeError("Por favor compruebe que el dni es correcto.");
 			    			abrirVentanaAvisos();
-					}
-					else {
+			    		
+				} else {
+						System.out.println(passwordEncriptada);
 						try {
 							switch (roltype) {
 	
 								case 1:
 									try {
-										String sDate1=textoFechaNac.getText();
-										Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
 	
 										Paciente newPaciente = new Paciente();
-										newPaciente.setDni(textoDNI.getText().toUpperCase());
-										newPaciente.setNombre(textoNombre.getText());
-										newPaciente.setApellidos(textoApellidos.getText());
+										newPaciente.setDni(dni);
+										newPaciente.setNombre(nombre);
+										newPaciente.setApellidos(apellidos);
+										newPaciente.setFecha_nacimiento(calend);
+										//getFechaNacimientoString();
+										//nCita.setFecha_cita(getFechaString(calend));
 	
-										newPaciente.setFecha_nacimiento(date1);
-										newPaciente.setTelefono(textoTelefono.getText());
+										//newPaciente.setFecha_nacimiento(fechaNacimientoParseada);
+										newPaciente.setTelefono(tlfn);
 										newPaciente.setContrasena(passwordEncriptada);
 										System.out.println("Registrando usuario Paciente");
 										
 										fbd.insertarPaciente(newPaciente);
-	
 										ControladorAvisos.setMensajeError("Usuario Registrado.");
 										abrirVentanaAvisos();
 										Stage  CerrarRegistro= (Stage) btnAceptar.getScene().getWindow();
 										CerrarRegistro.close();
+										
 									}
 									catch(Exception a) {
 										ControladorAvisos.setMensajeError("Error registrando paciente, por favor revise los datos introducidos.");
@@ -172,7 +205,7 @@ public class ControladorRegistro implements Initializable {
 										CerrarRegistro.close();
 									}
 									catch(Exception a) {
-										ControladorAvisos.setMensajeError("error registrando cuidador, por favor revise los datos introducidos.");
+										ControladorAvisos.setMensajeError("Error registrando cuidador, por favor revise los datos introducidos.");
 										abrirVentanaAvisos();
 									}
 									break;
@@ -198,7 +231,7 @@ public class ControladorRegistro implements Initializable {
 										CerrarRegistro.close();
 									}
 									catch(Exception a) {
-										ControladorAvisos.setMensajeError("error registrando medico, por favor revise los datos introducidos.");
+										ControladorAvisos.setMensajeError("Error registrando medico, por favor revise los datos introducidos.");
 										abrirVentanaAvisos();
 									}
 									break;
@@ -215,10 +248,10 @@ public class ControladorRegistro implements Initializable {
 						}
 					}
 				}
-			}
+			
     	}
     	catch(Exception a) {
-    		ControladorAvisos.setMensajeError("Revise los campos a completar.");
+    		ControladorAvisos.setMensajeError("Complete todos lo campos pedidos porfavor.");
     		abrirVentanaAvisos();
     	}
     }
@@ -249,14 +282,13 @@ public class ControladorRegistro implements Initializable {
             while (hashtext.length() < 32) {
                 hashtext = "0" + hashtext;
             }
-
-
-
+            
             return hashtext;
         }
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+        
     }
 
     public void abrirVentanaAvisos() {
@@ -276,20 +308,40 @@ public class ControladorRegistro implements Initializable {
 			System.out.println("Error");
 		}
 	}
+    
     public boolean comprobarDigitosDNI() {
-		String inputUser = textoDNI.getText().toUpperCase();
-		for(int i=0; i<inputUser.length()-1; i++) {
+		
+    	String inputUser = textoDNI.getText().toUpperCase();
+    	int in = inputUser.length(); 
+    	String letra = dniReal(inputUser);
+		
+		for(int i=0; i<=in-2; i++) {
 			if(Character.isDigit((inputUser.charAt(i)))==false) {
 				ControladorAvisos.setMensajeError("El usuario debe estar compuesto por 8 digitos y una letra.");
-					return false;
-			}
-		}
-		if(textoDNI.getText().length()!=9 | textoNombre.getText().length()<1 | textoApellidos.getText().length()<1 | textoTelefono.getText().length()!=9) {
-			ControladorAvisos.setMensajeError("Por favor revise los datos introducidos.");
+				abrirVentanaAvisos();
+				return false;
+			}	
+		}	
+		if (!inputUser.endsWith(letra)) {
+			ControladorAvisos.setMensajeError("El dni introducido no es válido, introduzca uno real. ");
+			abrirVentanaAvisos();
 			return false;
 		}
-		return true;
+		return true;	
 	}
+    
+    //Comprobar que el DNI es real
+    public String dniReal (String comprobacionLetra) {
+    	
+    	String dniLetra = null;
+    	String[] letra = {"T","R","W","A","G","M","Y","F","P","D","X","B","N","J","Z","S","Q","V","H","L","C","K","E"};
+    	int comprobacionNum = Integer.parseInt(comprobacionLetra.substring(0, 8));
+    	int resto = comprobacionNum % 23;
+    	dniLetra = letra [resto];
+    	
+    	
+    	return dniLetra;
+    }
       //-----------------------------------------
 
     //Getters y Setters
@@ -340,7 +392,5 @@ public class ControladorRegistro implements Initializable {
 	public void setTextoApellidos(TextField textoApellidos) {
 		this.textoApellidos = textoApellidos;
 	}
-
-
 
 }
