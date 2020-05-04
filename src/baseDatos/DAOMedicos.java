@@ -158,7 +158,7 @@ public class DAOMedicos extends AbstractDAO {
 			rsPacientes =stmMedico.executeQuery();
 			
 			while (rsPacientes.next()) {
-				pacienteActual = new Paciente(rsPacientes.getString("dni_paciente"), rsPacientes.getString("nombre"), rsPacientes.getString("apellidos"), rsPacientes.getString("telefono"), rsPacientes.getString("contrasena"), rsPacientes.getDate("fecha_nacimiento"), rsPacientes.getString("medico"), rsPacientes.getBoolean("ejerciciosHechos"));
+				pacienteActual = new Paciente(rsPacientes.getString("dni_paciente"), rsPacientes.getString("nombre"), rsPacientes.getString("apellidos"), rsPacientes.getString("telefono"), rsPacientes.getString("contrasena"), rsPacientes.getString("fecha_nacimiento"), rsPacientes.getString("medico"), rsPacientes.getBoolean("ejerciciosHechos"));
 				resultado.add(pacienteActual);
 			}
 		} catch (SQLException e) {
@@ -228,7 +228,7 @@ public class DAOMedicos extends AbstractDAO {
 				
 				resultado = new Paciente(rsPaciente.getString("dni_paciente"), rsPaciente.getString("nombre"),
 						rsPaciente.getString("apellidos"), rsPaciente.getString("telefono"),
-						rsPaciente.getString("contrasena"), rsPaciente.getDate("fecha_nacimiento"),
+						rsPaciente.getString("contrasena"), rsPaciente.getString("fecha_nacimiento"),
 						rsPaciente.getString("medico"), rsPaciente.getBoolean("ejerciciosHechos"));
 			}
 

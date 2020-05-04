@@ -1,15 +1,11 @@
 package modelo;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
-
 public final class Paciente extends Usuario{
-	private Date fecha_nacimiento;
+	private String fecha_nacimiento;
 	String medico;
 	boolean ejerciciosHechos;
 
-	public Paciente(String dni, String nombre, String apellidos, String telefono, String contrasena, Date fecha_nacimiento, String medico, boolean ejerciciosHechos) {
+	public Paciente(String dni, String nombre, String apellidos, String telefono, String contrasena, String fecha_nacimiento, String medico, boolean ejerciciosHechos) {
 		super(dni, nombre, apellidos, telefono, contrasena);
 		this.fecha_nacimiento= fecha_nacimiento;
 		this.medico = medico;
@@ -24,7 +20,7 @@ public final class Paciente extends Usuario{
 	}
 	
 	//GETTERS
-	@SuppressWarnings("deprecation")
+	/*@SuppressWarnings("deprecation")
 	public String getFechaNacimientoString() {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
@@ -38,9 +34,9 @@ public final class Paciente extends Usuario{
 		String f = dia + "/"+ mes + "/"+ anho ;
 		return f;
 		
-	}
+	}*/
 	
-	public Date getFecha_nacimiento() {
+	public String getFecha_nacimiento() {
 		return fecha_nacimiento;
 	}
 
@@ -57,7 +53,7 @@ public final class Paciente extends Usuario{
 	}
 	
 	//SETTERS
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
+	public void setFecha_nacimiento(String fecha_nacimiento) {
 		this.fecha_nacimiento= fecha_nacimiento;
 	}
 

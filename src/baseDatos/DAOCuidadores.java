@@ -159,7 +159,7 @@ public class DAOCuidadores extends AbstractDAO {
 			while (rsPacientes.next()) {
 				pacienteActual = new Paciente(rsPacientes.getString("dni_paciente"), rsPacientes.getString("nombre"),
 						rsPacientes.getString("apellidos"), rsPacientes.getString("telefono"),
-						rsPacientes.getString("contrasena"), rsPacientes.getDate("fecha_nacimiento"),
+						rsPacientes.getString("contrasena"), rsPacientes.getString("fecha_nacimiento"),
 						rsPacientes.getString("medico"), rsPacientes.getBoolean("ejerciciosHechos"));
 				resultado.add(pacienteActual);
 			}

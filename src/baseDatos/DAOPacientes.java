@@ -37,7 +37,7 @@ public class DAOPacientes extends AbstractDAO {
 				
 				resultado = new Paciente(rsPaciente.getString("dni_paciente"), rsPaciente.getString("nombre"),
 						rsPaciente.getString("apellidos"), rsPaciente.getString("telefono"),
-						rsPaciente.getString("contrasena"), rsPaciente.getDate("fecha_nacimiento"),
+						rsPaciente.getString("contrasena"), rsPaciente.getString("fecha_nacimiento"),
 						rsPaciente.getString("medico"), rsPaciente.getBoolean("ejerciciosHechos"));
 			}
 
@@ -69,7 +69,7 @@ public class DAOPacientes extends AbstractDAO {
 			stmPaciente.setString(3, paciente.getApellidos());
 			stmPaciente.setString(4, paciente.getTelefono());
 			stmPaciente.setString(5, paciente.getContrasena());
-			stmPaciente.setDate(6, (Date) paciente.getFecha_nacimiento());
+			stmPaciente.setString(6, paciente.getFecha_nacimiento());
 			stmPaciente.setString(7, paciente.getMedico());
 			stmPaciente.setBoolean(8, paciente.isEjerciciosHechos());
 
@@ -104,7 +104,7 @@ public class DAOPacientes extends AbstractDAO {
 			stmPaciente.setString(2, paciente.getApellidos());
 			stmPaciente.setString(3, paciente.getTelefono());
 			stmPaciente.setString(4, paciente.getContrasena());
-			stmPaciente.setDate(5, (Date) paciente.getFecha_nacimiento());
+			stmPaciente.setString(5, paciente.getFecha_nacimiento());
 			stmPaciente.setString(6, paciente.getMedico());
 			stmPaciente.setBoolean(7, paciente.isEjerciciosHechos());
 			stmPaciente.setString(8, paciente.getDni());

@@ -156,7 +156,7 @@ public class DAOCitas extends AbstractDAO{
 				
 				resultado = new Paciente(rsPaciente.getString("dni_paciente"), rsPaciente.getString("nombre"),
 						rsPaciente.getString("apellidos"), rsPaciente.getString("telefono"),
-						rsPaciente.getString("contrasena"), rsPaciente.getDate("fecha_nacimiento"),
+						rsPaciente.getString("contrasena"), rsPaciente.getString("fecha_nacimiento"),
 						rsPaciente.getString("medico"), rsPaciente.getBoolean("ejerciciosHechos"));
 			}
 

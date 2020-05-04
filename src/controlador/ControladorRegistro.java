@@ -91,7 +91,6 @@ public class ControladorRegistro implements Initializable {
 		@SuppressWarnings("deprecation")
 		Date calend = new Date(anho, mes, dia);
 		
-		//nCita.setFecha_cita(getFechaString(calend));
 		
 	    	//Comprobacion de que coinciden las contrasenas
 	    	String pswrd = textoContrasena.getText();
@@ -99,9 +98,8 @@ public class ControladorRegistro implements Initializable {
 	    	String passwordEncriptada = getMd5(pswrd);
 	    	//Declaraciones
 	    	String nombre = textoNombre.getText(), apellidos = textoApellidos.getText(), dni = textoDNI.getText(),
-	    			tlfn = textoTelefono.getText(); //fechaNacimiento = textoFechaNac.getText();
-	    	//System.out.println(fechaNacimiento);
-	    	//Date fechaNacimientoParseada = new SimpleDateFormat("dd/MM/yyyy").parse(fechaNacimiento);
+	    			tlfn = textoTelefono.getText();
+	    
 	    	System.out.println(calend);
 	    	boolean prueba = false;
 	    	prueba = comprobarDigitosDNI();
@@ -163,10 +161,7 @@ public class ControladorRegistro implements Initializable {
 										newPaciente.setDni(dni);
 										newPaciente.setNombre(nombre);
 										newPaciente.setApellidos(apellidos);
-										newPaciente.setFecha_nacimiento(calend);
-										//getFechaNacimientoString();
-										//nCita.setFecha_cita(getFechaString(calend));
-	
+										newPaciente.setFecha_nacimiento(getFechaString(calend));
 										//newPaciente.setFecha_nacimiento(fechaNacimientoParseada);
 										newPaciente.setTelefono(tlfn);
 										newPaciente.setContrasena(passwordEncriptada);
@@ -391,6 +386,21 @@ public class ControladorRegistro implements Initializable {
 
 	public void setTextoApellidos(TextField textoApellidos) {
 		this.textoApellidos = textoApellidos;
+	}
+    public String getFechaString(Date dummy) {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+		cal.setTime(dummy);
+		String dia = ((Integer) dummy.getDate()).toString();
+		int m = dummy.getMonth() + 1;
+		String mes = ((Integer) m).toString();
+		int year = cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		String hora = ((Integer) dummy.getHours()).toString();
+		String min = ((Integer) dummy.getMinutes()).toString();
+		String f = hora + ":" + min + "  -  " + dia + "/" + mes + "/" + anho;
+		return f;
 	}
 
 }
