@@ -82,15 +82,14 @@ public class ControladorRegistro implements Initializable {
     void pulsarBtnAceptar_reg(ActionEvent event) {
     try {
 
-    	String FechaN[] = campoFecha.getValue().toString().split("-");
-		List<String> Fecha = Arrays.asList(FechaN);
-		int dia = Integer.parseInt(Fecha.get(0));
-		int mes = Integer.parseInt(Fecha.get(1));
-		int anho = Integer.parseInt(Fecha.get(2));
-		// guardar dia y hora de la cita en un Date
-		@SuppressWarnings("deprecation")
-		Date calend = new Date(anho, mes, dia);
-		
+    		String FechaN[] = campoFecha.getValue().toString().split("-");
+    		List<String> Fecha = Arrays.asList(FechaN);
+    		int dia = Integer.parseInt(Fecha.get(0));
+    		int mes = Integer.parseInt(Fecha.get(1));
+    		int anho = Integer.parseInt(Fecha.get(2));
+    		// guardar dia y hora de la cita en un Date
+    		@SuppressWarnings("deprecation")
+    		Date calend = new Date(anho, mes, dia);
 		
 	    	//Comprobacion de que coinciden las contrasenas
 	    	String pswrd = textoContrasena.getText();
@@ -99,15 +98,10 @@ public class ControladorRegistro implements Initializable {
 	    	//Declaraciones
 	    	String nombre = textoNombre.getText(), apellidos = textoApellidos.getText(), dni = textoDNI.getText(),
 	    			tlfn = textoTelefono.getText();
-	    
-	    	System.out.println(calend);
 	    	boolean prueba = false;
 	    	prueba = comprobarDigitosDNI();
-
 	
 	    	//Comprobacion de el resto de campos
-	
-	
 	    	int roltype=0;
 	
 			if (comboRol.getValue().equals ("Paciente")) {
