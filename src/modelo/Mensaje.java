@@ -1,6 +1,5 @@
 package modelo;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,7 +13,7 @@ public class Mensaje {
 	private String dni_medico;
 	private String mensaje;
 	private boolean esMedicoEmisor;
-	private Date fecha;
+	private String fecha;
 
 	public Mensaje(Integer id_mensaje, String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
 			String mensaje) {
@@ -24,7 +23,7 @@ public class Mensaje {
 		this.esMedicoEmisor = false;
 		this.asunto = asunto;
 		this.mensaje = mensaje;
-		this.fecha = Calendar.getInstance().getTime();
+		this.fecha = getFechaString(Calendar.getInstance().getTime());
 	}
 	
 	public Mensaje(Integer id_mensaje, String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
@@ -35,7 +34,7 @@ public class Mensaje {
 		this.esMedicoEmisor = false;
 		this.asunto = asunto;
 		this.mensaje = mensaje;
-		this.fecha = this.stringToDate(fecha);
+		this.fecha = fecha;
 	}
 
 	public Mensaje(String dni_medico, String dni_paciente, boolean esMedicoEmisor, String asunto,
@@ -45,7 +44,7 @@ public class Mensaje {
 		this.esMedicoEmisor = false;
 		this.asunto = asunto;
 		this.mensaje = mensaje;
-		this.fecha = Calendar.getInstance().getTime();
+		this.fecha = getFechaString(Calendar.getInstance().getTime());
 	}
 	
 	public Mensaje() {
@@ -55,7 +54,7 @@ public class Mensaje {
 		this.esMedicoEmisor = false;
 		this.asunto = null;
 		this.mensaje = null;
-		this.fecha = new Date();
+		this.fecha = null;
 	}
 
 	// GETTERS
@@ -68,7 +67,7 @@ public class Mensaje {
 	public String getDni_paciente() {
 		return dni_paciente;
 	}
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 	public Integer getId_mensaje() {
@@ -80,65 +79,7 @@ public class Mensaje {
 	public boolean isEsMedicoEmisor() {
 		return esMedicoEmisor;
 	}
-	
-	@SuppressWarnings("deprecation")
-	public String getFechaString() {
-		// Choose time zone in which you want to interpret your Date
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
-		cal.setTime(fecha);
-		String dia = ((Integer) fecha.getDate()).toString();
-		int m = fecha.getMonth() + 1;
-		String mes = ((Integer) m).toString();
-		int year = cal.get(Calendar.YEAR);
-		String anho = ((Integer) year).toString();
-		String hora = ((Integer) fecha.getHours()).toString();
-		String min = ((Integer) fecha.getMinutes()).toString();
-		String sec = ((Integer)fecha.getSeconds()).toString();
-		
-		if (mes.length() == 1) {
-			mes = 0 + mes ;
-		}
-		if (dia.length() == 1) {
-			dia = 0 + dia ;
-		}
-		
-		if (hora.length() == 1) {
-			hora = 0 + hora ;
-		}
-		
-		if (min.length()==1) {
-			min = 0 + min ;
-		}
-		
-		if (sec.length()==1) {
-			sec = 0 + sec ;
-		}
-	
-		String f = hora + ":" + min + ":" + sec + "\t-\t" + dia + "/" + mes + "/" + anho;
-		return f;
 
-	}
-
-	public Date stringToDate(String stringFecha) {
-		String FechaN[] = stringFecha.split("  -  ");
-		List<String> Fecha = Arrays.asList(FechaN);
-		
-		String ff[] = Fecha.get(1).split("/");
-		List<String> fechaCita = Arrays.asList(ff);
-		int dia = Integer.parseInt(fechaCita.get(0));
-		int mes = Integer.parseInt(fechaCita.get(1));
-		int anho = Integer.parseInt(fechaCita.get(2));
-
-		// hora de la cita
-		String HoraN[] = Fecha.get(0).split(":");
-		List<String> HoraCita = Arrays.asList(HoraN);
-		int hora = Integer.parseInt(HoraCita.get(0));
-		int mins = Integer.parseInt(HoraCita.get(1));
-
-		// guardar dia y hora de la cita en un Date
-		Date calend = new Date(anho, mes, dia, hora, mins);
-		return calend;
-	}
 	
 	// SETTERS
 	public void setDni_medico(String dni_medico) {
@@ -157,10 +98,31 @@ public class Mensaje {
 		this.mensaje = mensaje;
 	}
 	public void setFecha() {
-		this.fecha = Calendar.getInstance().getTime();
+		this.fecha = getFechaString(Calendar.getInstance().getTime());
 	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+	
 	public void setAsunto(String asunto) {
 		this.asunto = asunto;
+	}
+	
+    public String getFechaString(Date dummy) {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+		cal.setTime(dummy);
+		String dia = ((Integer) dummy.getDate()).toString();
+		int m = dummy.getMonth() + 1;
+		String mes = ((Integer) m).toString();
+		int year = cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		String hora = ((Integer) dummy.getHours()).toString();
+		String min = ((Integer) dummy.getMinutes()).toString();
+		String f = hora + ":" + min + "  -  " + dia + "/" + mes + "/" + anho;
+		return f;
 	}
 
 }

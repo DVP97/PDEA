@@ -462,7 +462,7 @@ public class ControladorMedicopp implements Initializable {
 				stringBuilder.append("Asunto: ");
 				stringBuilder.append(mensajeAct.getAsunto());
 				stringBuilder.append("\r");
-				stringBuilder.append(mensajeAct.getFechaString());
+				stringBuilder.append(mensajeAct.getFecha());
 
 				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido);
 				tp.setId(pacEmisor.getDni());
@@ -512,7 +512,7 @@ public class ControladorMedicopp implements Initializable {
 				stringBuilder.append("Asunto: ");
 				stringBuilder.append(mensajeAct.getAsunto());
 				stringBuilder.append("\r");
-				stringBuilder.append(mensajeAct.getFechaString());
+				stringBuilder.append(mensajeAct.getFecha());
 
 				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido);
 				tp.setId(pacienteReceptor.getDni());
