@@ -85,7 +85,8 @@
                   </Lighting>
                </effect>
             </Circle>
-            <Label fx:id="campoDuracion" layoutX="535.0" layoutY="200.0" opacity="0.94" prefHeight="23.0" prefWidth="60.0" styleClass="textoDuracion" stylesheets="@application.css" text=" 00:30" textAlignment="CENTER" textOverrun="CLIP" />
+            <Label fx:id="campoDuracion" layoutX="554.0" layoutY="198.0" opacity="0.94" prefHeight="23.0" prefWidth="60.0" styleClass="textoDuracion" stylesheets="@application.css" text="30" textAlignment="CENTER" textOverrun="CLIP" />
+            <Label layoutX="549.0" layoutY="218.0" opacity="0.94" prefHeight="23.0" prefWidth="60.0" styleClass="textoDuracion" stylesheets="@application.css" text="Seg" textAlignment="CENTER" textOverrun="CLIP" />
          </children>
       </AnchorPane>
       <JFXButton fx:id="btnAnadirEjercicio" buttonType="RAISED" layoutX="519.0" layoutY="121.0" onAction="#pressBtnAnadir" prefHeight="45.0" prefWidth="124.0" styleClass="btn" stylesheets="@application.css" text="Añadir" />

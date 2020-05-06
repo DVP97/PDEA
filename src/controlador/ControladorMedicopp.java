@@ -156,7 +156,7 @@ public class ControladorMedicopp implements Initializable {
 		setAvisos();
 		setCitas();
 		
-		setTitledPanesEnviados();
+		//setTitledPanesEnviados();
 		setTitledPanesRecibidos();
 
 		inputBuscarPaciente.setItems(listaPacientesComboBox);
@@ -606,7 +606,7 @@ public class ControladorMedicopp implements Initializable {
 		String anho = ((Integer) year).toString();
 		String hora = ((Integer) dummy.getHours()).toString();
 		String min = ((Integer) dummy.getMinutes()).toString();
-		String f = hora + ":" + min + "  -  " + dia + "/" + mes + "/" + anho;
+		String f = hora + ":" + min + ":00  -  " + dia + "/" + mes + "/" + anho;
 		return f;
 	}
 	
