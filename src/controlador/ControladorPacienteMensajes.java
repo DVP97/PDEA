@@ -3,11 +3,13 @@ package controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -103,16 +105,10 @@ public class ControladorPacienteMensajes implements Initializable{
 				Paciente p = ControladorPacientepp.getPacienteActual();
 				String medPac = p.getMedico();
 				
-				Mensaje msg = new Mensaje ();
-				Date fecha = new Date();
-				
-						msg.setDni_medico(medPac);
-						msg.setDni_paciente(p.getDni());
-						msg.setAsunto(campoAsunto.getText());
-						msg.setMensaje(campoEscritura.getText());
-						msg.setEsMedicoEmisor(false);
-					    msg.getFecha();
-						
+				String fecha_mensaje = getFechaString(Calendar.getInstance().getTime());
+
+				Mensaje msg = new Mensaje (medPac, p.getDni(), false, campoAsunto.getText(), campoEscritura.getText(), fecha_mensaje);
+
 					
 				System.out.println("El mensaje ha sido creado");
 
@@ -306,4 +302,20 @@ public class ControladorPacienteMensajes implements Initializable{
 			AnchorPane.setTopAnchor(emptyRec, Double.valueOf(40));
 		}
     }
+    
+    public String getFechaString(Date dummy) {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+		cal.setTime(dummy);
+		String dia = ((Integer) dummy.getDate()).toString();
+		int m = dummy.getMonth() + 1;
+		String mes = ((Integer) m).toString();
+		int year = cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		String hora = ((Integer) dummy.getHours()).toString();
+		String min = ((Integer) dummy.getMinutes()).toString();
+		String f = hora + ":" + min + "  -  " + dia + "/" + mes + "/" + anho;
+		return f;
+	}
 }
