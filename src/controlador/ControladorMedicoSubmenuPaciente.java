@@ -412,7 +412,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		String anho = ((Integer) year).toString();
 		String hora = ((Integer) dummy.getHours()).toString();
 		String min = ((Integer) dummy.getMinutes()).toString();
-		String f = hora + ":" + min + "  -  " + dia + "/" + mes + "/" + anho;
+		String f = hora + ":" + min + ":00  -  " + dia + "/" + mes + "/" + anho;
 		return f;
 	}
     

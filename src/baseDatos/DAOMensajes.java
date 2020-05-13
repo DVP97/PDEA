@@ -160,7 +160,7 @@ public class DAOMensajes extends AbstractDAO {
 			stmMensaje.setBoolean(3, mensaje.isEsMedicoEmisor());
 			stmMensaje.setString(4, mensaje.getAsunto());
 			stmMensaje.setString(5, mensaje.getMensaje());
-			stmMensaje.setString(6, mensaje.getFechaString());
+			stmMensaje.setString(6, mensaje.getFecha());
 			
 			con.setAutoCommit(true);
 			stmMensaje.executeUpdate();

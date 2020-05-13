@@ -130,7 +130,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	
     	AnchorPaneFrecuencia.getChildren().add(Frecuencias);
     	AnchorPaneFrecuencia.setTopAnchor(Frecuencias, 0.0);
-    	AnchorPaneFrecuencia.setBottomAnchor(Frecuencias, -50.0);
+    	AnchorPaneFrecuencia.setBottomAnchor(Frecuencias, -35.0);
     	AnchorPaneFrecuencia.setLeftAnchor(Frecuencias, 0.0);
     	AnchorPaneFrecuencia.setRightAnchor(Frecuencias, 0.0);
     	
@@ -164,7 +164,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	anchorPaneTension.getChildren().addAll(Sistoles);
 
     	anchorPaneTension.setTopAnchor(Sistoles, 0.0);
-    	anchorPaneTension.setBottomAnchor(Sistoles, -50.0);
+    	anchorPaneTension.setBottomAnchor(Sistoles, -35.0);
     	anchorPaneTension.setLeftAnchor(Sistoles, 0.0);
     	anchorPaneTension.setRightAnchor(Sistoles, 0.0);
     }
@@ -196,7 +196,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	
     	AnchorPaneSaturacion.getChildren().add(Frecuencias);
     	AnchorPaneSaturacion.setTopAnchor(Frecuencias, 0.0);
-    	AnchorPaneSaturacion.setBottomAnchor(Frecuencias, -50.0);
+    	AnchorPaneSaturacion.setBottomAnchor(Frecuencias, -35.0);
     	AnchorPaneSaturacion.setLeftAnchor(Frecuencias, 0.0);
     	AnchorPaneSaturacion.setRightAnchor(Frecuencias, 0.0);
     	
