@@ -54,6 +54,12 @@
 	
 }
 
+.comboBoss{
+	-fx-background-color: white;
+ 	-fx-text-fill: white;
+ 	-fx-font-weight: bold;
+	-fx-background-radius: 10px;
+}
 .textoCronometro{
 	-fx-text-fill: #ffffff;
  	-fx-font-weight: bold;
