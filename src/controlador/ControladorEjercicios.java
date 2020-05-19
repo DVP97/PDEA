@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import modelo.Paciente;
@@ -60,7 +61,6 @@ public class ControladorEjercicios implements Initializable {
 	
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
-	// Metodos
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -69,6 +69,7 @@ public class ControladorEjercicios implements Initializable {
 		nombrePaciente.setText("Hola " + p.getNombre() + ",");
 
 		this.ejercicios = fbd.obtenerEjerciciosPaciente(p);
+		if(ejercicios.size() != 0) {
 		pantallaEj.setImage(new Image(this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
 
 		this.interval = this.ejercicios.get(contador).getDuracion();
@@ -78,6 +79,14 @@ public class ControladorEjercicios implements Initializable {
 		hacerEjercicios = new String[this.ejercicios.size()];
 		for (int i = 0; i < hacerEjercicios.length; i++) {
 			hacerEjercicios[i] = ejercicios.get(i).getNombre();
+		}
+		}else {
+			Label emptyEnv = new Label("No hay mensajes enviados.");
+			emptyEnv.setFont(new Font("Arial", 18));
+			emptyEnv.setLayoutY(60);
+			emptyEnv.setLayoutX(5);
+			anchorGrande.getChildren().add(emptyEnv);
+			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
 		}
 
 	}

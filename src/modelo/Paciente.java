@@ -4,12 +4,21 @@ public final class Paciente extends Usuario{
 	private String fecha_nacimiento;
 	String medico;
 	boolean ejerciciosHechos;
+	String cuandoHechos;
 
 	public Paciente(String dni, String nombre, String apellidos, String telefono, String contrasena, String fecha_nacimiento, String medico, boolean ejerciciosHechos) {
 		super(dni, nombre, apellidos, telefono, contrasena);
 		this.fecha_nacimiento= fecha_nacimiento;
 		this.medico = medico;
 		this.ejerciciosHechos = ejerciciosHechos;
+	}
+	
+	public Paciente(String dni, String nombre, String apellidos, String telefono, String contrasena, String fecha_nacimiento, String medico, boolean ejerciciosHechos, String cuandoHechos) {
+		super(dni, nombre, apellidos, telefono, contrasena);
+		this.fecha_nacimiento= fecha_nacimiento;
+		this.medico = medico;
+		this.ejerciciosHechos = ejerciciosHechos;
+		this.cuandoHechos = cuandoHechos;
 	}
 	
 	public Paciente () {
@@ -52,6 +61,10 @@ public final class Paciente extends Usuario{
 		return ejerciciosHechos;
 	}
 	
+	public String getCuandoHechos() {
+		return cuandoHechos;
+	}
+	
 	//SETTERS
 	public void setFecha_nacimiento(String fecha_nacimiento) {
 		this.fecha_nacimiento= fecha_nacimiento;
@@ -65,6 +78,9 @@ public final class Paciente extends Usuario{
 		this.ejerciciosHechos = ejerciciosHechos;
 	}
 	
+	public void setCuandoHechos(String cuandoHechos) {
+		this.cuandoHechos = cuandoHechos;
+	}
 	
 	//METODOS
 

@@ -3,10 +3,14 @@ package controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
-
+import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -25,7 +29,7 @@ public class ControladorAvisosPaciente implements Initializable {
 
 	@FXML
 	private JFXButton btnAnterior;
-	
+
 	@FXML
 	private JFXButton btnNext;
 	@FXML
@@ -38,11 +42,9 @@ public class ControladorAvisosPaciente implements Initializable {
 	private Label campoPaciente;
 
 	private static Cita fecha_cita;
-	private boolean hechos;
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 	private Paciente p = ControladorPacientepp.getPacienteActual();
 
-	
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 
@@ -50,7 +52,7 @@ public class ControladorAvisosPaciente implements Initializable {
 
 		// Muestra el valor del booleano
 
-		hechos = p.isEjerciciosHechos();
+		boolean hechos = hizoEjerciciosHoy();
 
 		if (hechos) {
 
@@ -62,14 +64,12 @@ public class ControladorAvisosPaciente implements Initializable {
 		// Muestra fecha de la cita
 		fecha_cita = seleccionarSiguienteCita(p);
 		campoFecha.setText(fecha_cita.getFecha_cita().toString());
-		
-		//DateFormat fechaHora = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		//String fecha_convertido = fechaHora.format(fecha_cita.getFecha_cita());
-		
+
+		// DateFormat fechaHora = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		// String fecha_convertido = fechaHora.format(fecha_cita.getFecha_cita());
 
 	}
 
-	
 	// Botón volver
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
@@ -110,37 +110,133 @@ public class ControladorAvisosPaciente implements Initializable {
 			System.out.println("Error");
 		}
 	}
-	
-	public class sortByDate implements Comparator<Cita>{
+
+	public class sortByDate implements Comparator<Cita> {
 		@Override
-		public int compare (Cita c1, Cita c2) {
-	
+		public int compare(Cita c1, Cita c2) {
+
 			return c1.getFecha_cita().compareTo(c2.getFecha_cita());
 		}
 	}
-	
+
 	public Cita seleccionarSiguienteCita(Paciente p) {
-		
-			ArrayList <Cita> citas = fbd.obtenerCitasPaciente(p);
-			if (citas != null) {
-				
-				//campoFecha.setText(fecha_cita.getFecha_cita().toString());
-				
-			}else {
-				campoFecha.setText("No tiene citas pendientes");
-			}
-		
+
+		ArrayList<Cita> citas = fbd.obtenerCitasPaciente(p);
+		if (citas != null) {
+
+			// campoFecha.setText(fecha_cita.getFecha_cita().toString());
+
+		} else {
+			campoFecha.setText("No tiene citas pendientes");
+		}
+
 		Collections.sort(citas, new sortByDate());
 		return citas.get(0);
 	}
-		
 
+	private boolean hizoEjerciciosHoy() {
+		boolean hechos = p.isEjerciciosHechos();
+		if (hechos = true) {
+			String fechaHoy = getFechaString(Calendar.getInstance().getTime());
+			String fechaHizo = p.getCuandoHechos();
+			
+			boolean asdf = compararFechas(fechaHoy, fechaHizo);
+			if (asdf = true) {
+				return true;
+			}else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
+	@SuppressWarnings("deprecation")
+	private boolean compararFechas(String fechaHoy, String fechaHizo) {
+		// HOY
+		String partsHoy[] = fechaHoy.split("\\-");
+		String partshoraHoy = partsHoy[0];
+		String partsdiaHoy = partsHoy[1];
 
-	
+		// FECHA HORA:MINUTOS
+		String partshoraHoy1[] = partshoraHoy.split("\\:");
+		Integer horaHoy = Integer.parseInt(partshoraHoy1[0]);
+		Integer minutosHoy = Integer.parseInt(partshoraHoy1[1]);
+
+		// FECHA DIA/MES/AÑO
+		String partshoraHoy2[] = partsdiaHoy.split("\\/");
+		Integer diaHoy = Integer.parseInt(partshoraHoy2[0]);
+		Integer mesHoy = Integer.parseInt(partshoraHoy2[1]);
+		Integer anoHoy = Integer.parseInt(partshoraHoy2[2]);
+
+		// Construimos el date
+		Date dateHoy = new Date((anoHoy - 1900), mesHoy, diaHoy, horaHoy, minutosHoy);
+
+		// HIZO EJERCICIOS
+		String partsHizo[] = fechaHizo.split("\\-");
+		String partshoraHizo = partsHizo[0];
+		String partsdiaHizo = partsHizo[1];
+
+		// FECHA HORA:MINUTOS
+		String partshoraHizo1[] = partshoraHizo.split("\\:");
+		Integer horaHizo = Integer.parseInt(partshoraHizo1[0]);
+		Integer minutosHizo = Integer.parseInt(partshoraHizo1[1]);
+
+		// FECHA DIA/MES/AÑO
+		String partshoraHizo2[] = partsdiaHizo.split("\\/");
+		Integer diaHizo = Integer.parseInt(partshoraHizo2[0]);
+		Integer mesHizo = Integer.parseInt(partshoraHizo2[1]);
+		Integer anoHizo = Integer.parseInt(partshoraHizo2[2]);
+
+		// Construimos el date
+		Date dateHizo = new Date((anoHizo - 1900), mesHizo, diaHizo, horaHizo, minutosHizo);
+
+		//Calendar auxiliar (sumamos 24 horas a la fecha de cuando hizo los ejercicios)
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(dateHizo);
+
+		cal.add(Calendar.DAY_OF_MONTH, 1);
+
+		Date dateHizoSumada = cal.getTime();
+
+		// codigo comparar dates
+		if (dateHoy.compareTo(dateHizoSumada) > 0) {
+			return false;	
+		} else if (dateHoy.compareTo(dateHizoSumada) < 0) {
+			return true;
+		} else if (dateHoy.compareTo(dateHizoSumada) == 0) {
+			return true;
+		}
+		return false;
+	}
+
 	// GETTERS
 	public static Cita getCita() {
 		return fecha_cita;
+	}
+
+	@SuppressWarnings("deprecation")
+	public String getFechaString(Date dummy) {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+		cal.setTime(dummy);
+		String dia = ((Integer) dummy.getDate()).toString();
+		int m = dummy.getMonth() + 1;
+		String mes = ((Integer) m).toString();
+		int year = cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		String hora = ((Integer) dummy.getHours()).toString();
+		String min = ((Integer) dummy.getMinutes()).toString();
+		String f = hora + ":" + min + ":00  -  " + dia + "/" + mes + "/" + anho;
+		return f;
+	}
+
+	public ArrayList<String> getElementosFecha(String fecha) {
+		ArrayList<String> result = new ArrayList<String>();
+
+		return result;
+
 	}
 
 	// SETTERS

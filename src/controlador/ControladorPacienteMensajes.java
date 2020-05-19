@@ -32,110 +32,99 @@ import javafx.scene.text.Font;
 import modelo.Mensaje;
 import modelo.Paciente;
 
-public class ControladorPacienteMensajes implements Initializable{
+public class ControladorPacienteMensajes implements Initializable {
 
-	
 	@FXML
-	private JFXButton btnEnviar; 
-	
+	private JFXButton btnEnviar;
+
 	@FXML
 	private JFXButton btnVolver;
-	
+
 	@FXML
-    private Label campoPaciente;
-	
+	private Label campoPaciente;
+
 	@FXML
 	private Tab tabRecibidos;
-	
+
 	@FXML
 	private TitledPane structMensajeRecib;
-	
+
 	@FXML
 	private Label textoMensajeRecib;
-	
+
 	@FXML
 	private Tab tabEnviados;
-	
+
 	@FXML
 	private TitledPane structMensajeEnv;
-	
+
 	@FXML
 	private Label textoMensajeEnv;
-	
+
 	@FXML
 	private TextArea campoEscritura;
-	
+
 	@FXML
 	private TextField campoAsunto;
-	
-	@FXML
-    private Accordion AccordionMensajesRec;
-	
-	@FXML
-    private Accordion AccordionMensajesEnv;
-	
-    @FXML
-    private AnchorPane anchorPaneRecibidos;
 
-    @FXML
-    private AnchorPane anchorPaneEnviados;
-	
+	@FXML
+	private Accordion AccordionMensajesRec;
+
+	@FXML
+	private Accordion AccordionMensajesEnv;
+
+	@FXML
+	private AnchorPane anchorPaneRecibidos;
+
+	@FXML
+	private AnchorPane anchorPaneEnviados;
+
 	private static Paciente pacienteActual = new Paciente();
-	
-	
+
 	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 		Paciente p = ControladorPacientepp.getPacienteActual();
-		campoPaciente.setText("Hola " +p.getNombre()+",");
-		
+		campoPaciente.setText("Hola " + p.getNombre() + ",");
+
 		setTitlePanesRecibidos();
 		setTitlePanesEnviados();
-		
+
 	}
-	
+
 	@FXML
 	void pressBtnEnviar(ActionEvent event) {
-		if(campoEscritura.getLength()>0){
-			
+		if (campoEscritura.getLength() > 0) {
 			try {
 				Paciente p = ControladorPacientepp.getPacienteActual();
 				String medPac = p.getMedico();
-				
+
 				String fecha_mensaje = getFechaString(Calendar.getInstance().getTime());
 
-				Mensaje msg = new Mensaje (medPac, p.getDni(), false, campoAsunto.getText(), campoEscritura.getText(), fecha_mensaje);
-
-					
-				System.out.println("El mensaje ha sido creado");
+				Mensaje msg = new Mensaje(medPac, p.getDni(), false, campoAsunto.getText(), campoEscritura.getText(),
+						fecha_mensaje);
 
 				fbd.enviarMensaje(msg);
-				setTitlePanesEnviados();
-			
-			
 				ControladorAvisos.setMensajeError("Mensaje Enviado.");
 				abrirVentanaAvisos();
-				
+
 				AccordionMensajesEnv.getPanes().clear();
 				setTitlePanesEnviados();
-				
+
 				campoAsunto.clear();
 				campoEscritura.clear();
-				
-			}
-			catch(Exception a) {
+
+			} catch (Exception a) {
 				ControladorAvisos.setMensajeError("Error enviando el mensaje.");
 				abrirVentanaAvisos();
 			}
-		}
-		else{
+		} else {
 			ControladorAvisos.setMensajeError("No ha introducido texto alguno en el mensaje que intenta enviar.");
 			abrirVentanaAvisos();
 		}
-	}	
+	}
 
-	    
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
@@ -148,48 +137,47 @@ public class ControladorPacienteMensajes implements Initializable{
 			Pacientepp.setMinHeight(550);
 			Pacientepp.setMinWidth(500);
 
-			System.out.println("Cerrando ventana de Login.");
 			Stage CerrarVentanaLogin = (Stage) btnVolver.getScene().getWindow();
 			CerrarVentanaLogin.close();
-		}	
-		
-		catch(ControladorExcepciones case1){
+		}
+
+		catch (ControladorExcepciones case1) {
 			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Paciente.");
 			case1.abrirVentanaAvisos();
 		}
 	}
-	 
-	//GETTER
+
+	// GETTER
 	public static Paciente getPacienteActual() {
 		return pacienteActual;
 	}
-	 
-	//SETTER
+
+	// SETTER
 	public static void setPacienteActual(Paciente pacienteActual) {
 		ControladorPacienteMensajes.pacienteActual = pacienteActual;
 	}
-	
-	//METODOS
+
+	// METODOS
 	public Integer numeroMensajesRecibidos() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
 		return fbd.obtenerMensajesRecibidos(p).size();
 	}
-	
+
 	public Integer numeroMensajesEnviados() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
-		
+
 		return fbd.obtenerMensajesEnviados(p).size();
 	}
 
 	public class sortByDate implements Comparator<Mensaje> {
-		 
-	    @Override
-	    public int compare(Mensaje m2, Mensaje m1) {
-	        return m1.getFecha().compareTo(m2.getFecha());
-	    }
+
+		@Override
+		public int compare(Mensaje m2, Mensaje m1) {
+			return m1.getFecha().compareTo(m2.getFecha());
+		}
 	}
 
-    public void abrirVentanaAvisos() {
+	public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
 			Stage VentanaAvisos = new Stage();
@@ -201,107 +189,105 @@ public class ControladorPacienteMensajes implements Initializable{
 			VentanaAvisos.setMaxHeight(200);
 			VentanaAvisos.setMaxWidth(600);
 
-		}
-		catch(Exception a) {
+		} catch (Exception a) {
 			System.out.println("Error");
 		}
 	}
-    
-    public void setTitlePanesEnviados() {
+
+	public void setTitlePanesEnviados() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
 
 		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
 
 		if (numeroMensajesEnviados() > 0) {
-			
+
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
-				
+
 				ArrayList<Mensaje> mensajesEnv = fbd.obtenerMensajesEnviados(p);
 				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
 				listMensajesEnv.addAll(mensajesEnv);
 				Collections.sort(listMensajesEnv, new sortByDate());
 				Mensaje mensajeAct = listMensajesEnv.get(i);
-				
+
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
-				
-				//Label titled pane con asunto fecha y hora
+
+				// Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append("Asunto:    ");
 				stringBuilder.append(mensajeAct.getAsunto());
 				stringBuilder.append("\r");
 				stringBuilder.append(mensajeAct.getFecha());
-				
-				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;
+
+				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido);
 				tpse.add(i, tp);
-				
+
 			}
-			
+
 			AccordionMensajesEnv.setLayoutY(60);
 			AccordionMensajesEnv.setLayoutX(5);
 			AccordionMensajesEnv.getPanes().addAll(tpse);
 			AnchorPane.setTopAnchor(AccordionMensajesEnv, Double.valueOf(30));
-		}
-		else {
+		} else {
 			Label emptyEnv = new Label("No hay mensajes enviados.");
 			emptyEnv.setFont(new Font("Arial", 18));
 			emptyEnv.setLayoutY(60);
 			emptyEnv.setLayoutX(5);
 			anchorPaneEnviados.getChildren().add(emptyEnv);
-			
+
 			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
 		}
-    }
-    
-    public void setTitlePanesRecibidos() {
+	}
+
+	public void setTitlePanesRecibidos() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
 
 		ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
 
-    	if (numeroMensajesRecibidos() > 0) {
-    		
+		if (numeroMensajesRecibidos() > 0) {
+
 			for (int i = 0; i < numeroMensajesRecibidos(); i++) {
-				
-				ArrayList<Mensaje> mensajesRec  = fbd.obtenerMensajesRecibidos(p);
+
+				ArrayList<Mensaje> mensajesRec = fbd.obtenerMensajesRecibidos(p);
 				List<Mensaje> listMensajesRec = new ArrayList<Mensaje>();
 				listMensajesRec.addAll(mensajesRec);
 				Collections.sort(listMensajesRec, new sortByDate());
 				Mensaje mensajeAct = listMensajesRec.get(i);
-				
+
 				Label contenido = new Label(mensajeAct.getMensaje());
 				ScrollPane panelContenido = new ScrollPane(contenido);
 				contenido.boundsInParentProperty();
-				
-				//Label titled pane con asunto fecha y hora
+
+				// Label titled pane con asunto fecha y hora
 				StringBuilder stringBuilder = new StringBuilder();
 				stringBuilder.append("Asunto: ");
 				stringBuilder.append(mensajeAct.getAsunto());
 				stringBuilder.append("\r");
 				stringBuilder.append(mensajeAct.getFecha());
-				
-				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido) ;	
+
+				TitledPane tp = new TitledPane(stringBuilder.toString(), panelContenido);
 				tpsr.add(i, tp);
-				
+
 			}
-			
+
 			AccordionMensajesRec.setLayoutY(60);
 			AccordionMensajesRec.setLayoutX(5);
 			AccordionMensajesRec.getPanes().addAll(tpsr);
 			AnchorPane.setTopAnchor(AccordionMensajesRec, Double.valueOf(30));
-		}
-		else {
+		} else {
 			Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
 			emptyRec.setFont(new Font("Arial", 18));
 			emptyRec.setLayoutY(60);
 			emptyRec.setLayoutX(5);
 			anchorPaneRecibidos.getChildren().add(emptyRec);
-			
+
 			AnchorPane.setTopAnchor(emptyRec, Double.valueOf(40));
 		}
-    }
-    
-    public String getFechaString(Date dummy) {
+	}
+
+	@SuppressWarnings("deprecation")
+	public String getFechaString(Date dummy) {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
 
@@ -313,7 +299,7 @@ public class ControladorPacienteMensajes implements Initializable{
 		String anho = ((Integer) year).toString();
 		String hora = ((Integer) dummy.getHours()).toString();
 		String min = ((Integer) dummy.getMinutes()).toString();
-		String f = hora + ":" + min +":00  -  " + dia + "/" + mes + "/" + anho;
+		String f = hora + ":" + min + ":00  -  " + dia + "/" + mes + "/" + anho;
 		return f;
 	}
 }
