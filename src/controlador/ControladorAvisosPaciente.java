@@ -48,7 +48,6 @@ public class ControladorAvisosPaciente implements Initializable {
 
 		campoPaciente.setText("Hola " + p.getNombre() + ",");
 
-		boolean a = compararFechas("13:23-15/05/2020", "13:23-15/06/2020", 0);
 		// Muestra el valor del booleano
 
 		boolean hechos = hizoEjerciciosHoy();
