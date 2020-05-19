@@ -61,30 +61,29 @@ public class ControladorEjercicios implements Initializable {
 	private Integer interval = 0;
 	private String[] hacerEjercicios;
 	private Paciente p = ControladorPacientepp.getPacienteActual();
-	
-	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		
 		nombrePaciente.setText("Hola " + p.getNombre() + ",");
 
 		this.ejercicios = fbd.obtenerEjerciciosPaciente(p);
-		if(ejercicios.size() != 0) {
-		pantallaEj.setImage(new Image(this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
+		if (ejercicios.size() != 0) {
+			pantallaEj.setImage(new Image(
+					this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
 
-		this.interval = this.ejercicios.get(contador).getDuracion();
-		numeroEjercicio.setText(" " + (contador + 1) + " de " + this.ejercicios.size());
+			this.interval = this.ejercicios.get(contador).getDuracion();
+			numeroEjercicio.setText(" " + (contador + 1) + " de " + this.ejercicios.size());
 
-		// String hacerEjercicios con tamaño array de ejercicios
-		hacerEjercicios = new String[this.ejercicios.size()];
-		for (int i = 0; i < hacerEjercicios.length; i++) {
-			hacerEjercicios[i] = ejercicios.get(i).getNombre();
-		}
-		}else {
-			Label emptyEnv = new Label("No hay mensajes enviados.");
+			// String hacerEjercicios con tamaño array de ejercicios
+			hacerEjercicios = new String[this.ejercicios.size()];
+			for (int i = 0; i < hacerEjercicios.length; i++) {
+				hacerEjercicios[i] = ejercicios.get(i).getNombre();
+			}
+		} else {
+			Label emptyEnv = new Label("No hay ejercicios asignados.");
 			emptyEnv.setFont(new Font("Arial", 18));
 			emptyEnv.setLayoutY(60);
 			emptyEnv.setLayoutX(5);
@@ -132,14 +131,12 @@ public class ControladorEjercicios implements Initializable {
 					hechos = false;
 				}
 			}
-
 			p.setEjerciciosHechos(hechos);
 			if (hechos == true) {
 				String fechaHoy = getFechaString(Calendar.getInstance().getTime());
 				p.setCuandoHechos(fechaHoy);
 			}
 			fbd.modificarPaciente(p);
-			
 
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 			Stage Pacientepp = new Stage();
@@ -201,7 +198,7 @@ public class ControladorEjercicios implements Initializable {
 				ControladorAvisos.setMensajeError("Esta usted en el ultimo ejercicio, ¡ha terminado!");
 				abrirVentanaAvisos();
 			} else {
-				
+
 				this.contador = contador + 1;
 				this.interval = this.ejercicios.get(contador).getDuracion();
 				cronometro.setText("00:" + interval);
@@ -248,21 +245,21 @@ public class ControladorEjercicios implements Initializable {
 			System.out.println("Error");
 		}
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	private String getFechaString(Date dummy) {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
 
 		cal.setTime(dummy);
-		Integer dia =  ((Integer) dummy.getDate());
+		Integer dia = ((Integer) dummy.getDate());
 		String dias;
 		if (dia < 10) {
 			dias = "0" + dia.toString();
 		} else {
 			dias = dia.toString();
 		}
-		Integer m = (Integer)dummy.getMonth() + 1;
+		Integer m = (Integer) dummy.getMonth() + 1;
 		String mess;
 		if (m < 10) {
 			mess = "0" + m.toString();
@@ -271,7 +268,7 @@ public class ControladorEjercicios implements Initializable {
 		}
 		int year = cal.get(Calendar.YEAR);
 		String anho = ((Integer) year).toString();
-		Integer hora =  ((Integer) dummy.getHours());
+		Integer hora = ((Integer) dummy.getHours());
 		String horas;
 		if (hora < 10) {
 			horas = "0" + hora.toString();
