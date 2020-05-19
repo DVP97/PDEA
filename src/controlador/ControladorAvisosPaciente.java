@@ -114,7 +114,7 @@ public class ControladorAvisosPaciente implements Initializable {
 	private Cita seleccionarSiguienteCita() {
 		Cita c = new Cita();
 		ArrayList<Cita> citas = borrarCitasPasadas();
-		if (citas != null) {
+		if (citas.size() != 0) {
 			c = citas.get(0);
 			campoFecha.setText(c.getFecha_cita());
 		} else {
@@ -252,7 +252,7 @@ public class ControladorAvisosPaciente implements Initializable {
 		ArrayList<Cita> citas = fbd.obtenerCitasPaciente(p);
 		Collections.sort(citas, new sortByDate());
 		ArrayList<Cita> resultado = new ArrayList<Cita>();
-		if (citas != null) {
+		if (citas.size() != 0) {
 			Collections.sort(citas, new sortByDate());
 			for (int i = 0; i < citas.size(); i++) {
 				String fechaHoy = getFechaString(Calendar.getInstance().getTime());
