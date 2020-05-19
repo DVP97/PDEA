@@ -198,6 +198,8 @@ public class ControladorPacienteMensajes implements Initializable {
 
 		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
 
+		anchorPaneEnviados.getChildren().clear();
+		
 		if (numeroMensajesEnviados() > 0) {
 
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
@@ -229,6 +231,7 @@ public class ControladorPacienteMensajes implements Initializable {
 			AccordionMensajesEnv.getPanes().addAll(tpse);
 			AnchorPane.setTopAnchor(AccordionMensajesEnv, Double.valueOf(30));
 		} else {
+			
 			Label emptyEnv = new Label("No hay mensajes enviados.");
 			emptyEnv.setFont(new Font("Arial", 18));
 			emptyEnv.setLayoutY(60);
@@ -241,6 +244,8 @@ public class ControladorPacienteMensajes implements Initializable {
 
 	public void setTitlePanesRecibidos() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
+
+		anchorPaneRecibidos.getChildren().clear();
 
 		ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
 
