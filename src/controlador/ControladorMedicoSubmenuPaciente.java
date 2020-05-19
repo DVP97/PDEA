@@ -16,7 +16,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXTextField;
 
-import controlador.ControladorAvisosPaciente.sortByDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -400,7 +399,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		campoAsunto.clear();
     }
     
-    public String getFechaString(Date dummy) {
+    @SuppressWarnings("deprecation")
+	public String getFechaString(Date dummy) {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
 
@@ -508,12 +508,10 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 	}
 	
 	public Integer numeroMensajesRecibidos() {
-		Medico m = ControladorMedicopp.getMedicoActual();
 		return fbd.obtenerMensajesRecibidos(pacienteActual).size();
 	}
 
 	public Integer numeroMensajesEnviados() {
-		Medico m = ControladorMedicopp.getMedicoActual();
 		return fbd.obtenerMensajesRecibidos(pacienteActual).size();
 	}
 	
