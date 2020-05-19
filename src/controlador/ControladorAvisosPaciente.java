@@ -62,11 +62,8 @@ public class ControladorAvisosPaciente implements Initializable {
 			campoHechos.setText("Ejercicios no acabados.");
 		}
 		// Muestra fecha de la cita
-		fecha_cita = seleccionarSiguienteCita(p);
-		campoFecha.setText(fecha_cita.getFecha_cita().toString());
+		fecha_cita = seleccionarSiguienteCita();
 
-		// DateFormat fechaHora = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-		// String fecha_convertido = fechaHora.format(fecha_cita.getFecha_cita());
 
 	}
 
@@ -111,7 +108,7 @@ public class ControladorAvisosPaciente implements Initializable {
 		}
 	}
 
-	public class sortByDate implements Comparator<Cita> {
+	private class sortByDate implements Comparator<Cita> {
 		@Override
 		public int compare(Cita c1, Cita c2) {
 
@@ -119,19 +116,17 @@ public class ControladorAvisosPaciente implements Initializable {
 		}
 	}
 
-	public Cita seleccionarSiguienteCita(Paciente p) {
-
-		ArrayList<Cita> citas = fbd.obtenerCitasPaciente(p);
+	private Cita seleccionarSiguienteCita() {
+		Cita c = new Cita();
+		ArrayList<Cita> citas = borrarCitasPasadas();
 		if (citas != null) {
-
-			// campoFecha.setText(fecha_cita.getFecha_cita().toString());
+			c = citas.get(0);
+			campoFecha.setText(c.getFecha_cita());
 
 		} else {
 			campoFecha.setText("No tiene citas pendientes");
 		}
-
-		Collections.sort(citas, new sortByDate());
-		return citas.get(0);
+		return c;
 	}
 
 	private boolean hizoEjerciciosHoy() {
@@ -140,7 +135,7 @@ public class ControladorAvisosPaciente implements Initializable {
 			String fechaHoy = getFechaString(Calendar.getInstance().getTime());
 			String fechaHizo = p.getCuandoHechos();
 			
-			boolean asdf = compararFechas(fechaHoy, fechaHizo);
+			boolean asdf = compararFechas(fechaHoy, fechaHizo,1);
 			if (asdf = true) {
 				return true;
 			}else {
@@ -152,7 +147,7 @@ public class ControladorAvisosPaciente implements Initializable {
 	}
 
 	@SuppressWarnings("deprecation")
-	private boolean compararFechas(String fechaHoy, String fechaHizo) {
+	private boolean compararFechas(String fechaHoy, String fechaHizo, int b) {
 		// HOY
 		String partsHoy[] = fechaHoy.split("\\-");
 		String partshoraHoy = partsHoy[0];
@@ -195,16 +190,16 @@ public class ControladorAvisosPaciente implements Initializable {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(dateHizo);
 
-		cal.add(Calendar.DAY_OF_MONTH, 1);
+		cal.add(Calendar.DAY_OF_MONTH, b);
 
 		Date dateHizoSumada = cal.getTime();
 
-		// codigo comparar dates
-		if (dateHoy.compareTo(dateHizoSumada) > 0) {
+		int a = comparar(dateHoy, dateHizoSumada);
+		if (a > 0) {
 			return false;	
-		} else if (dateHoy.compareTo(dateHizoSumada) < 0) {
+		} else if (a < 0) {
 			return true;
-		} else if (dateHoy.compareTo(dateHizoSumada) == 0) {
+		} else if (a == 0) {
 			return true;
 		}
 		return false;
@@ -244,4 +239,32 @@ public class ControladorAvisosPaciente implements Initializable {
 		fecha_cita = fechaCita;
 	}
 
+	private ArrayList<Cita> borrarCitasPasadas(){
+		ArrayList<Cita> citas = fbd.obtenerCitasPaciente(p);
+		Collections.sort(citas, new sortByDate());
+		ArrayList<Cita> resultado = new ArrayList<Cita>();
+		if(citas!=null) {
+			Collections.sort(citas, new sortByDate());
+			for (int i = 0 ; i < citas.size() ; i ++) {
+				String fechaHoy = getFechaString(Calendar.getInstance().getTime());
+				boolean b = compararFechas(fechaHoy, citas.get(i).getFecha_cita(), 0);
+				if (b = true) {
+					resultado.add(citas.get(i));
+				}
+			}
+		}
+		return resultado;	
+	}
+
+	private int comparar (Date hoy, Date hizo) {
+		if (hoy.compareTo(hizo) > 0) {
+			return 1;	
+		} else if (hoy.compareTo(hizo) < 0) {
+			return -1;
+		} else if (hoy.compareTo(hizo) == 0) {
+			return 0;
+		}
+		return 0;
+	}
+		
 }
