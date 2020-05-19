@@ -133,7 +133,6 @@ public class ControladorEjercicios implements Initializable {
 				}
 			}
 
-			System.out.println(hechos);
 			p.setEjerciciosHechos(hechos);
 			if (hechos = true) {
 				String fechaHoy = getFechaString(Calendar.getInstance().getTime());
@@ -142,7 +141,6 @@ public class ControladorEjercicios implements Initializable {
 			fbd.modificarPaciente(p);
 			
 
-			System.out.println("Cargando ventana principal de Paciente...");
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 			Stage Pacientepp = new Stage();
 			Pacientepp.setTitle("Menu Principal Paciente");
@@ -151,7 +149,6 @@ public class ControladorEjercicios implements Initializable {
 			Pacientepp.setMinHeight(550);
 			Pacientepp.setMinWidth(500);
 
-			System.out.println("Cerrando ventana de Login.");
 			Stage CerrarVentanaLogin = (Stage) btnVolver.getScene().getWindow();
 			CerrarVentanaLogin.close();
 		}
@@ -188,7 +185,6 @@ public class ControladorEjercicios implements Initializable {
 		}
 		// Acaba y pasa al siguiente ejercicio
 		timeline.setOnFinished(e -> siguienteEjercicio());
-		System.out.println("Esta terminado");
 
 	}
 
@@ -202,7 +198,6 @@ public class ControladorEjercicios implements Initializable {
 		} else {
 
 			if (contador == ejercicios.size() - 1) {
-				System.out.println("Esta usted en el ultimo ejercicio");
 				ControladorAvisos.setMensajeError("Esta usted en el ultimo ejercicio, ¡ha terminado!");
 				abrirVentanaAvisos();
 			} else {
@@ -222,7 +217,6 @@ public class ControladorEjercicios implements Initializable {
 	void ejercicioAnterior() {
 
 		if (contador == 0) {
-			System.out.println("Esta usted en el primer ejercicio");
 			ControladorAvisos.setMensajeError("Esta usted en el primer ejercicio.");
 			abrirVentanaAvisos();
 		} else {

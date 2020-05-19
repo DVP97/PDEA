@@ -128,7 +128,6 @@ public class ControladorPacienteMensajes implements Initializable {
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
-			System.out.println("Cargando ventana principal de Paciente...");
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 			Stage Pacientepp = new Stage();
 			Pacientepp.setTitle("Menu Principal Paciente");

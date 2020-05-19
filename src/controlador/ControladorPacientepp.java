@@ -42,7 +42,6 @@ public class ControladorPacientepp implements Initializable {
     @FXML
     void pressBtnMensajes(ActionEvent event) throws IOException  {
     	try {
-        	System.out.println("Cargando ventana de Mensajes...");
     		Parent Mensajeria = FXMLLoader.load(getClass().getResource("/vista/pacientepp_mensajeria.fxml"));
     		Stage MensajeriaPaciente = new Stage();
     		MensajeriaPaciente.setTitle("Mensajeria Paciente");
@@ -63,7 +62,6 @@ public class ControladorPacientepp implements Initializable {
     @FXML
     void pressBtnAvisos(ActionEvent event) throws IOException {
     	try {
-    		System.out.println("Cargando ventana de Avisos...");
     		Parent Avisos = FXMLLoader.load(getClass().getResource("/vista/pacientepp_avisos.fxml"));
     		Stage AvisosPaciente = new Stage();
     		AvisosPaciente.setTitle("Avisos Paciente");
@@ -86,7 +84,6 @@ public class ControladorPacientepp implements Initializable {
     @FXML
     void  pressBtnEjercicios (ActionEvent event) throws IOException {
     	try {
-        	System.out.println("Cargando ventana de Ejercicios...");
     		Parent Ejercicios = FXMLLoader.load(getClass().getResource("/vista/pacientepp_ejercicios.fxml"));
     		Stage EjerciciosPaciente = new Stage();
     		EjerciciosPaciente.setTitle("Ejercicios Paciente");

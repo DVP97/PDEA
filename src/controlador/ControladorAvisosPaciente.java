@@ -71,7 +71,6 @@ public class ControladorAvisosPaciente implements Initializable {
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 		try {
-			System.out.println("Cargando ventana principal de Paciente...");
 			Parent PacienteVentana = FXMLLoader.load(getClass().getResource("/vista/menupaciente.fxml"));
 			Stage Pacientepp = new Stage();
 			Pacientepp.setTitle("Menu Principal Paciente");
@@ -80,7 +79,6 @@ public class ControladorAvisosPaciente implements Initializable {
 			Pacientepp.setMinHeight(550);
 			Pacientepp.setMinWidth(500);
 
-			System.out.println("Cerrando ventana de Login.");
 			Stage CerrarVentanaLogin = (Stage) btnVolver.getScene().getWindow();
 			CerrarVentanaLogin.close();
 		}
