@@ -164,12 +164,10 @@ public class ControladorPacienteMensajes implements Initializable {
 
 	public Integer numeroMensajesEnviados() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
-
 		return fbd.obtenerMensajesEnviados(p).size();
 	}
 
 	public class sortByDate implements Comparator<Mensaje> {
-
 		@Override
 		public int compare(Mensaje m2, Mensaje m1) {
 			return m1.getFecha().compareTo(m2.getFecha());
@@ -198,7 +196,7 @@ public class ControladorPacienteMensajes implements Initializable {
 
 		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
 
-		anchorPaneEnviados.getChildren().clear();
+		//anchorPaneEnviados.getChildren().clear();
 		
 		if (numeroMensajesEnviados() > 0) {
 
@@ -228,6 +226,7 @@ public class ControladorPacienteMensajes implements Initializable {
 
 			AccordionMensajesEnv.setLayoutY(60);
 			AccordionMensajesEnv.setLayoutX(5);
+			AccordionMensajesEnv.getPanes().clear();
 			AccordionMensajesEnv.getPanes().addAll(tpse);
 			AnchorPane.setTopAnchor(AccordionMensajesEnv, Double.valueOf(30));
 		} else {
@@ -245,7 +244,7 @@ public class ControladorPacienteMensajes implements Initializable {
 	public void setTitlePanesRecibidos() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
 
-		anchorPaneRecibidos.getChildren().clear();
+		//anchorPaneRecibidos.getChildren().clear();
 
 		ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
 
@@ -277,8 +276,10 @@ public class ControladorPacienteMensajes implements Initializable {
 
 			AccordionMensajesRec.setLayoutY(60);
 			AccordionMensajesRec.setLayoutX(5);
+			AccordionMensajesRec.getPanes().clear();
 			AccordionMensajesRec.getPanes().addAll(tpsr);
 			AnchorPane.setTopAnchor(AccordionMensajesRec, Double.valueOf(30));
+			
 		} else {
 			Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
 			emptyRec.setFont(new Font("Arial", 18));
