@@ -106,7 +106,7 @@ public class ControladorAvisosPaciente implements Initializable {
 		}
 	}
 
-	private class sortByDate implements Comparator<Cita> {
+	public class sortByDate implements Comparator<Cita> {
 		@Override
 		public int compare(Cita c1, Cita c2) {
 
