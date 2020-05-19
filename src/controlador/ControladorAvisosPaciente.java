@@ -211,7 +211,7 @@ public class ControladorAvisosPaciente implements Initializable {
 	}
 
 	@SuppressWarnings("deprecation")
-	public String getFechaString(Date dummy) {
+	private String getFechaString(Date dummy) {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
 
@@ -227,12 +227,6 @@ public class ControladorAvisosPaciente implements Initializable {
 		return f;
 	}
 
-	public ArrayList<String> getElementosFecha(String fecha) {
-		ArrayList<String> result = new ArrayList<String>();
-
-		return result;
-
-	}
 
 	// SETTERS
 	public static void setCuidadorActual(Cita fechaCita) {

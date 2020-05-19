@@ -3,7 +3,10 @@ package controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.KeyFrame;
@@ -132,6 +135,10 @@ public class ControladorEjercicios implements Initializable {
 
 			System.out.println(hechos);
 			p.setEjerciciosHechos(hechos);
+			if (hechos = true) {
+				String fechaHoy = getFechaString(Calendar.getInstance().getTime());
+				p.setCuandoHechos(fechaHoy);
+			}
 			fbd.modificarPaciente(p);
 			
 
@@ -246,5 +253,21 @@ public class ControladorEjercicios implements Initializable {
 		} catch (Exception a) {
 			System.out.println("Error");
 		}
+	}
+	@SuppressWarnings("deprecation")
+	private String getFechaString(Date dummy) {
+		// Choose time zone in which you want to interpret your Date
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
+
+		cal.setTime(dummy);
+		String dia = ((Integer) dummy.getDate()).toString();
+		int m = dummy.getMonth() + 1;
+		String mes = ((Integer) m).toString();
+		int year = cal.get(Calendar.YEAR);
+		String anho = ((Integer) year).toString();
+		String hora = ((Integer) dummy.getHours()).toString();
+		String min = ((Integer) dummy.getMinutes()).toString();
+		String f = hora + ":" + min + ":00  -  " + dia + "/" + mes + "/" + anho;
+		return f;
 	}
 }
