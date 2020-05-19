@@ -23,7 +23,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.Ejercicio;
 import modelo.Paciente;
@@ -144,49 +143,26 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 	@FXML
 	void pressBtnEliminar(ActionEvent event) {
 
-		/*
 		TitledPane tp = getExpanded();
 
 		if (tp != null) {
 			Integer id = Integer.parseInt(tp.getId());
-			Ejercicio ejercicio = lectorJson.getEjercicio(id);
-
+			Ejercicio ejercicio = fbd.visualizarEjercicio(id);
 			
-			ArrayList<Ejercicio> ejPac = lectorJson.getEjercicios(pacienteActual);
-			ArrayList<Integer> devuelvo = new ArrayList<Integer>();
-
-			for (int i = 0; i < ejPac.size(); i++) {
-				if (ejPac.get(i).getId() != ejercicio.getId()) {
-					devuelvo.add(ejPac.get(i).getId());
-				}
-			}
-			pacienteActual.setEjercicios(devuelvo);
+			fbd.borrarEjercicioPaciente(pacienteActual, ejercicio);
 
 		} else {
 			ControladorAvisos.setMensajeError("Por favor, seleccione un mensaje.");
 			abrirVentanaAvisos();
-		}/*
-
-	}
-
-
-
-	/*private ArrayList<String> getNombresEjercicios() {
-		ArrayList<Ejercicio> ejercicios = lectorJson.getEjercicios(pacienteActual);
-		ArrayList<String> nombres = new ArrayList<String>();
-		for (int i = 0; i < ejercicios.size(); i++) {
-			Ejercicio e = ejercicios.get(i);
-			nombres.add(e.getNombre());
 		}
-		return nombres;*/
+
 	}
+
 	
 	private ArrayList<String> getTodosNombres(){
 		ArrayList<Ejercicio> ejercicios = fbd.visualizarEjercicios();
 		ArrayList<String> nombres = new ArrayList<String>();
 		for (int i = 0 ; i < ejercicios.size(); i++) {
-			
-			
 			nombres.add(ejercicios.get(i).getNombre());
 		}
 		return nombres; 
@@ -221,14 +197,6 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 			accordionEjercicios.setLayoutX(5);
 			accordionEjercicios.getPanes().addAll(tpse);
 			AnchorPane.setTopAnchor(accordionEjercicios, Double.valueOf(30));
-		} else {
-			Label emptyEnv = new Label("No hay mensajes enviados.");
-			emptyEnv.setFont(new Font("Arial", 18));
-			emptyEnv.setLayoutY(60);
-			emptyEnv.setLayoutX(5);
-			anchorPaneEjercicios.getChildren().add(emptyEnv);
-
-			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
 		}
 	}
 

@@ -164,12 +164,10 @@ public class ControladorPacienteMensajes implements Initializable {
 
 	public Integer numeroMensajesEnviados() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
-
 		return fbd.obtenerMensajesEnviados(p).size();
 	}
 
 	public class sortByDate implements Comparator<Mensaje> {
-
 		@Override
 		public int compare(Mensaje m2, Mensaje m1) {
 			return m1.getFecha().compareTo(m2.getFecha());
@@ -198,7 +196,7 @@ public class ControladorPacienteMensajes implements Initializable {
 
 		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
 
-		anchorPaneEnviados.getChildren().clear();
+		//anchorPaneEnviados.getChildren().clear();
 		
 		if (numeroMensajesEnviados() > 0) {
 
@@ -228,6 +226,7 @@ public class ControladorPacienteMensajes implements Initializable {
 
 			AccordionMensajesEnv.setLayoutY(60);
 			AccordionMensajesEnv.setLayoutX(5);
+			AccordionMensajesEnv.getPanes().clear();
 			AccordionMensajesEnv.getPanes().addAll(tpse);
 			AnchorPane.setTopAnchor(AccordionMensajesEnv, Double.valueOf(30));
 		} else {
@@ -245,7 +244,7 @@ public class ControladorPacienteMensajes implements Initializable {
 	public void setTitlePanesRecibidos() {
 		Paciente p = ControladorPacientepp.getPacienteActual();
 
-		anchorPaneRecibidos.getChildren().clear();
+		//anchorPaneRecibidos.getChildren().clear();
 
 		ArrayList<TitledPane> tpsr = new ArrayList<TitledPane>();
 
@@ -277,8 +276,10 @@ public class ControladorPacienteMensajes implements Initializable {
 
 			AccordionMensajesRec.setLayoutY(60);
 			AccordionMensajesRec.setLayoutX(5);
+			AccordionMensajesRec.getPanes().clear();
 			AccordionMensajesRec.getPanes().addAll(tpsr);
 			AnchorPane.setTopAnchor(AccordionMensajesRec, Double.valueOf(30));
+			
 		} else {
 			Label emptyRec = new Label("No hay mensajes en la bandeja de entrada.");
 			emptyRec.setFont(new Font("Arial", 18));
@@ -291,19 +292,42 @@ public class ControladorPacienteMensajes implements Initializable {
 	}
 
 	@SuppressWarnings("deprecation")
-	public String getFechaString(Date dummy) {
+	private String getFechaString(Date dummy) {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
 
 		cal.setTime(dummy);
-		String dia = ((Integer) dummy.getDate()).toString();
-		int m = dummy.getMonth() + 1;
-		String mes = ((Integer) m).toString();
+		Integer dia =  ((Integer) dummy.getDate());
+		String dias;
+		if (dia < 10) {
+			dias = "0" + dia.toString();
+		} else {
+			dias = dia.toString();
+		}
+		Integer m = (Integer)dummy.getMonth() + 1;
+		String mess;
+		if (m < 10) {
+			mess = "0" + m.toString();
+		} else {
+			mess = m.toString();
+		}
 		int year = cal.get(Calendar.YEAR);
 		String anho = ((Integer) year).toString();
-		String hora = ((Integer) dummy.getHours()).toString();
-		String min = ((Integer) dummy.getMinutes()).toString();
-		String f = hora + ":" + min + ":00  -  " + dia + "/" + mes + "/" + anho;
+		Integer hora =  ((Integer) dummy.getHours());
+		String horas;
+		if (hora < 10) {
+			horas = "0" + hora.toString();
+		} else {
+			horas = hora.toString();
+		}
+		Integer min = (Integer) dummy.getMinutes();
+		String mins;
+		if (min < 10) {
+			mins = "0" + min.toString();
+		} else {
+			mins = min.toString();
+		}
+		String f = horas + ":" + mins + "-" + dias + "/" + mess + "/" + anho;
 		return f;
 	}
 }
