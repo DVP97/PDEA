@@ -28,6 +28,9 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 
 	@FXML
 	private Label campoHechos;
+	
+	@FXML
+	private Label campoDuracion;
 
 	@FXML
 	private JFXButton btnAnterior;
@@ -77,7 +80,7 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 		this.ejercicios = fbd.obtenerEjerciciosPaciente(pacienteActual);
 
 		pantallaEj.setImage(new Image(this.getClass().getResource("/"+this.ejercicios.get(contador).getGif()).toExternalForm()));
-
+		campoDuracion.setText("00:" +this.ejercicios.get(contador).getDuracion().toString());
 	}
 
 	@FXML
@@ -126,6 +129,7 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 
 			pantallaEj.setImage(new Image(
 					this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
+			campoDuracion.setText("00:" +this.ejercicios.get(contador).getDuracion().toString());
 		}
 	}
 
@@ -139,7 +143,7 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 			this.contador = contador - 1;
 			pantallaEj.setImage(new Image(
 					this.getClass().getResource("/" + this.ejercicios.get(contador).getGif()).toExternalForm()));
-
+			campoDuracion.setText("00:" + this.ejercicios.get(contador).getDuracion().toString());
 		}
 	}
 

@@ -31,7 +31,7 @@ import modelo.Paciente;
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-public class ControladorRegistro implements Initializable {
+public class ControladorGestorRegistro implements Initializable {
 
     @FXML
     private TextField textoDNI;

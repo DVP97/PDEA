@@ -52,13 +52,13 @@ public class ControladorCuidadorpp implements Initializable {
 		ObservableList<String> listaPacientesComboBox = FXCollections.observableArrayList(nombresPacientes);
 		campoCuidador.setText("Hola " + cuidadorActual.getNombre()+ ",");
 		buscarPacCB.setItems(listaPacientesComboBox);
-		buscarPacCB.arm();
+		//buscarPacCB.arm();
 		
 	}
 	
 	@FXML
 	void comprobarInput(KeyEvent event) throws Exception {
-		buscarPacCB.arm();
+		//buscarPacCB.arm();
 		// comparar el nombre introducido con los pacientes asignados al cuidador, para
 		// sugerir posibles coincidencias de forma dinamica
 
