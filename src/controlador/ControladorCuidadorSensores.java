@@ -61,8 +61,6 @@ public class ControladorCuidadorSensores implements Initializable {
 		campoPaciente.setText(p.getNombreCompleto());
 
 	
-		
-		
 		if (avisos.size() != 0) {
 			TableView<Aviso> table = new TableView<>();
 			// Primera columna

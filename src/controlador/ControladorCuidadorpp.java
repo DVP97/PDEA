@@ -35,8 +35,6 @@ public class ControladorCuidadorpp implements Initializable {
 
 	@FXML
 	private JFXButton btnAvisos;
-	
-	
 
 	private static Cuidador cuidadorActual = new Cuidador();
 
@@ -231,15 +229,11 @@ public class ControladorCuidadorpp implements Initializable {
 		
 		pacientes = fbd.obtenerPacientesCuidador(cuidadorActual);
 		
-		
 		for (int i=0; i < pacientes.size(); i++) {
-			
 			nombres.add(pacientes.get(i).getNombreCompleto());
-			
 		}
 		
 		return nombres;
-		
 	}
 
 	// GETTERS
