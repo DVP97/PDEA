@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
@@ -49,14 +50,16 @@
                   <TextField fx:id="textoApellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <PasswordField fx:id="textoContrasena" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <PasswordField fx:id="textoContrasena2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <ComboBox fx:id="comboRol" prefHeight="27.0" prefWidth="237.0" promptText="Elija paciente" styleClass="normalLabel" stylesheets="@application.css" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="DNI:" />
                   <Label text="Nombre:" GridPane.rowIndex="1" />
                   <Label text="Contraseña:" GridPane.rowIndex="3" />
                   <Label text="Repite la contraseña:" GridPane.rowIndex="4" />
+                  <Label text="Rol:" GridPane.rowIndex="7" />
                   <Label text="Apellidos:" GridPane.rowIndex="2" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="8">
                      <children>
-                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutY="6.0" onAction="#pulsarBtnCancelar_reg" styleClass="btn" stylesheets="@application.css" text="Volver" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutY="6.0" onAction="#pulsarBtnCancelar_reg" styleClass="btn" stylesheets="@application.css" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <ripplerFill>
                               <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                  <stops>
