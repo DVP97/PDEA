@@ -54,13 +54,12 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	@FXML
 	private AnchorPane anchorPaneEjercicios;
-	
+
 	@FXML
 	private Label campoMedico;
-	
+
 	@FXML
-	private JFXTextField campoDuracion; 
-	
+	private JFXTextField campoDuracion;
 
 	@FXML
 	private Accordion accordionEjercicios;
@@ -72,14 +71,13 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	private ObservableList<String> listaEjerciciosComboBox = FXCollections.observableArrayList(nombresEjercicios);
 
-	
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		pacienteActual = ControladorMedicoSubmenuPaciente.getPacienteActual();
 		comboPaciente.setItems(listaEjerciciosComboBox);
 		setTitlePanesEjercicios();
-		campoMedico.setText("Hola "+ControladorMedicoSelectorPaciente.getMedicoActual().getNombre() + ",");
+		campoMedico.setText("Hola " + ControladorMedicoSelectorPaciente.getMedicoActual().getNombre() + ",");
+		campoDuracion.setText("00");
 	}
 
 	private TitledPane getExpanded() {
@@ -104,40 +102,44 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	@FXML
 	void pressBtnAnadir(ActionEvent event) {
-		
-			String ejercicio = comboPaciente.getValue().toString();
-			Integer indice = getIndiceComboBox(ejercicio);
 
-			if (indice != null) {
-				
-				if (campoDuracion.getText() != null) {
-					addEjercicio(indice+1);
-				} else {
-					
-					ControladorAvisos.setMensajeError("Por favor, añada la duracion del ejercicio.");
-					abrirVentanaAvisos();
-				}
-				
+		String ejercicio = comboPaciente.getValue().toString();
+		Integer indice = getIndiceComboBox(ejercicio);
 
+		if (indice != null) {
+
+			if (campoDuracion.getText() != null) {
+				addEjercicio(indice + 1);
+				campoDuracion.setText("00");
 			} else {
-				ControladorAvisos.setMensajeError("Por favor, seleccione un ejercicio.");
+
+				ControladorAvisos.setMensajeError("Por favor, añada la duracion del ejercicio.");
 				abrirVentanaAvisos();
 			}
-		
+
+		} else {
+			ControladorAvisos.setMensajeError("Por favor, seleccione un ejercicio.");
+			abrirVentanaAvisos();
+		}
+
 	}
 
-
-	
 	private void addEjercicio(Integer id) {
-		
-		
-		Ejercicio ej = fbd.visualizarEjercicio(id);
-	    ej.setDuracion (Integer.parseInt(campoDuracion.getText()));
 
-		fbd.asignarEjercicioPaciente(pacienteActual, ej);
-		
-		accordionEjercicios.getPanes().clear();
-		setTitlePanesEjercicios();
+		Ejercicio ej = fbd.visualizarEjercicio(id);
+		int campodur = campoDuracion.getText().compareToIgnoreCase("00");
+		if (campodur != 0) {
+			
+			ej.setDuracion(Integer.parseInt(campoDuracion.getText()));
+
+			fbd.asignarEjercicioPaciente(pacienteActual, ej);
+
+			accordionEjercicios.getPanes().clear();
+			setTitlePanesEjercicios();
+		} else {
+			ControladorAvisos.setMensajeError("Por favor, introduzca una duraccion para el ejercicio escogido.");
+			abrirVentanaAvisos();
+		}
 
 	}
 
@@ -149,8 +151,11 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 		if (tp != null) {
 			Integer id = Integer.parseInt(tp.getId());
 			Ejercicio ejercicio = fbd.visualizarEjercicio(id);
-			
+
 			fbd.borrarEjercicioPaciente(pacienteActual, ejercicio);
+
+			accordionEjercicios.getPanes().clear();
+			setTitlePanesEjercicios();
 
 		} else {
 			ControladorAvisos.setMensajeError("Por favor, seleccione un mensaje.");
@@ -159,23 +164,22 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	}
 
-	
-	private ArrayList<String> getTodosNombres(){
+	private ArrayList<String> getTodosNombres() {
 		ArrayList<Ejercicio> ejercicios = fbd.visualizarEjercicios();
 		ArrayList<String> nombres = new ArrayList<String>();
-		for (int i = 0 ; i < ejercicios.size(); i++) {
+		for (int i = 0; i < ejercicios.size(); i++) {
 			nombres.add(ejercicios.get(i).getNombre());
 		}
-		return nombres; 
-		
+		return nombres;
+
 	}
-	
+
 	private void setTitlePanesEjercicios() {
 		ArrayList<TitledPane> tpse = new ArrayList<TitledPane>();
 
 		if (numeroEjerciciosPaciente() > 0) {
 			for (int i = 0; i < numeroEjerciciosPaciente(); i++) {
-				
+
 				ArrayList<Ejercicio> ejerciciosPac = fbd.obtenerEjerciciosPaciente(pacienteActual);
 				List<Ejercicio> listEjerciciosPac = new ArrayList<Ejercicio>();
 				listEjerciciosPac.addAll(ejerciciosPac);
@@ -198,8 +202,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 			accordionEjercicios.setLayoutX(5);
 			accordionEjercicios.getPanes().addAll(tpse);
 			AnchorPane.setTopAnchor(accordionEjercicios, Double.valueOf(30));
-		}
-		else {
+		} else {
 			Label emptyEnv = new Label("No hay ejercicios asignados.");
 			emptyEnv.setFont(new Font("Arial", 18));
 			emptyEnv.setLayoutY(60);
@@ -212,14 +215,16 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 
 	private Integer numeroEjerciciosPaciente() {
 		return fbd.obtenerEjerciciosPaciente(pacienteActual).size();
-	
+
 	}
+
 	@FXML
 	void pressBtnVolver(ActionEvent event) throws IOException {
 
 		try {
 			System.out.println("Cargando submenu paciente...");
-			Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
+			Parent medicoSubMenuPaciente = FXMLLoader
+					.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
 			Stage subMenuPaciente = new Stage();
 			subMenuPaciente.setTitle("Menu " + pacienteActual.getNombreCompleto());
 			subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
@@ -237,7 +242,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 		}
 
 	}
-	
+
 	public void abrirVentanaAvisos() {
 		try {
 			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
