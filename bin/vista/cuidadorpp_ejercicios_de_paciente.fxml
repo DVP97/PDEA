@@ -50,21 +50,55 @@
       </ImageView>
       <Text layoutX="78.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ejercicios:" />
       <Label fx:id="campoHechos" layoutX="143.0" layoutY="125.0" prefHeight="26.0" prefWidth="314.0" text="Hechos" textAlignment="CENTER" />
-      <GridPane prefHeight="480.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane prefHeight="30.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="106.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="445.0" minWidth="10.0" prefWidth="419.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="74.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="514.0" minWidth="10.0" prefWidth="487.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="39.0" minWidth="10.0" prefWidth="38.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="372.0" minHeight="10.0" prefHeight="372.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="83.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="157.0" minHeight="10.0" prefHeight="145.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="372.0" minHeight="10.0" prefHeight="286.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="221.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Group GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <children>
-                  <JFXButton fx:id="btnNext" buttonType="RAISED" contentDisplay="CENTER" layoutX="278.0" layoutY="227.0" onAction="#pressBtnNext" styleClass="btn" stylesheets="@application.css" text="Siguiente" textAlignment="CENTER">
+                  <AnchorPane fx:id="anchorGrande" layoutX="-10.0" prefHeight="321.0" prefWidth="425.0">
+                     <children>
+                        <JFXButton fx:id="btnNext" buttonType="RAISED" contentDisplay="CENTER" layoutX="285.0" layoutY="286.0" onAction="#pressBtnNext" styleClass="btn" stylesheets="@application.css" text="Siguiente" textAlignment="CENTER">
+                           <ripplerFill>
+                              <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="#81f1c1" />
+                                    <Stop color="#5d5d52" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </ripplerFill>
+                        </JFXButton>
+                        <JFXButton fx:id="btnAnterior" buttonType="RAISED" contentDisplay="CENTER" layoutX="58.0" layoutY="287.0" onAction="#pressBtnAnterior" styleClass="btn" stylesheets="@application.css" text="Anterior" textAlignment="CENTER">
+                           <ripplerFill>
+                              <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
+                                 <stops>
+                                    <Stop color="#81f1c1" />
+                                    <Stop color="#5d5d52" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </ripplerFill>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" layoutX="162.0" layoutY="282.0" prefHeight="39.0" prefWidth="72.0" styleClass="btnCronometro" stylesheets="@application.css" text=" " />
+                        <ImageView fx:id="pantallaEj" fitHeight="263.0" fitWidth="231.0" layoutX="114.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="campoDuracion" layoutX="172.0" layoutY="289.0" styleClass="btnComenzar" stylesheets="@application.css" text="00:00">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children></Group>
+            <Group GridPane.rowIndex="2">
+               <children>
+                  <JFXButton fx:id="btnVolver" buttonType="RAISED" onAction="#pressBtnVolver" prefHeight="40.0" prefWidth="120.0" styleClass="btn" stylesheets="@application.css" text="Volver" textAlignment="RIGHT">
                      <ripplerFill>
                         <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
                            <stops>
@@ -73,47 +107,14 @@
                            </stops>
                         </RadialGradient>
                      </ripplerFill>
-                  </JFXButton>
-                  <ImageView fx:id="pantallaEj" fitHeight="257.0" fitWidth="216.0" layoutX="90.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
-                  <JFXButton fx:id="btnAnterior" buttonType="RAISED" contentDisplay="CENTER" layoutX="15.0" layoutY="227.0" onAction="#pressBtnAnterior" styleClass="btn" stylesheets="@application.css" text="Anterior" textAlignment="CENTER">
-                     <ripplerFill>
-                        <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
-                           <stops>
-                              <Stop color="#81f1c1" />
-                              <Stop color="#5d5d52" offset="1.0" />
-                           </stops>
-                        </RadialGradient>
-                     </ripplerFill>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                   </JFXButton>
                </children>
             </Group>
-            <JFXButton buttonType="RAISED" prefHeight="39.0" prefWidth="72.0" styleClass="btnCronometro" stylesheets="@application.css" text=" " GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets bottom="1.0" left="180.0" top="300.0" />
-               </GridPane.margin>
-            </JFXButton>
-            <Label fx:id="campoDuracion" styleClass="btnComenzar" stylesheets="@application.css" text="00:00" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets bottom="1.0" left="190.0" top="300.0" />
-               </GridPane.margin>
-            </Label>
+            <Group GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <JFXButton fx:id="btnVolver" buttonType="RAISED" onAction="#pressBtnVolver" prefHeight="40.0" prefWidth="120.0" styleClass="btn" stylesheets="@application.css" text="Volver" textAlignment="RIGHT" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0">
-         <ripplerFill>
-            <RadialGradient centerX="0.4887640449438202" centerY="0.5" radius="0.5">
-               <stops>
-                  <Stop color="#81f1c1" />
-                  <Stop color="#5d5d52" offset="1.0" />
-               </stops>
-            </RadialGradient>
-         </ripplerFill>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </JFXButton>
    </children>
 </AnchorPane>

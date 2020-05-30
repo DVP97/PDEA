@@ -128,8 +128,8 @@ public class ControladorCuidadorpp implements Initializable {
 				CuidadorRutinaPaciente.setTitle("Menu Cuidador - Ejercicios de " + pacienteElegido.getNombre());
 				CuidadorRutinaPaciente.setScene(new Scene(CuidadorEjercicios));
 				CuidadorRutinaPaciente.show();
-				CuidadorRutinaPaciente.setMinHeight(600);
-				CuidadorRutinaPaciente.setMinWidth(800);
+				CuidadorRutinaPaciente.setMinHeight(550);
+				CuidadorRutinaPaciente.setMinWidth(620);
 
 				System.out.println("Cerrando ventana principal de Cuidador...");
 				Stage CerrarVentanaCuidador = (Stage) btnEjercicios.getScene().getWindow();
