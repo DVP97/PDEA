@@ -56,7 +56,7 @@
                   <Label text="Apellidos:" GridPane.rowIndex="2" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="8">
                      <children>
-                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutY="6.0" onAction="#pulsarBtnCancelar_reg" styleClass="btn" stylesheets="@application.css" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutY="6.0" onAction="#pulsarBtnCancelar_reg" styleClass="btn" stylesheets="@application.css" text="Volver" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <ripplerFill>
                               <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                  <stops>
