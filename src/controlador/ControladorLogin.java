@@ -276,7 +276,7 @@ public class ControladorLogin implements Initializable {
 			if (m.getContrasena().equalsIgnoreCase(contra)) {
 				@SuppressWarnings("unused")
 				boolean a = m.isGestor();
-				if (a = false) {
+				if (a == false) {
 					return true;
 				}
 			}
@@ -293,7 +293,7 @@ public class ControladorLogin implements Initializable {
 			if (m.getContrasena().equalsIgnoreCase(contra)) {
 				@SuppressWarnings("unused")
 				boolean a = m.isGestor();
-				if (a = true) {
+				if (a == true) {
 					return true;
 				}
 			}

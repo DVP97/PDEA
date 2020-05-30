@@ -14,7 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import modelo.Cuidador;
 import modelo.Medico;
 import modelo.Paciente;
 
@@ -24,15 +26,20 @@ public class ControladorGestorEliminar implements Initializable {
 	private Label campoGestor;
 
 	@FXML
+	private TextField textoDNI;
+
+	@FXML
 	private JFXComboBox<?> comboRol;
 
 	@FXML
-	private JFXButton btnRegistrar;
+	private JFXButton btnVolver;
 
 	@FXML
 	private JFXButton btnEliminar;
 
 	private static Medico gestor = new Medico();
+
+	private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
@@ -40,51 +47,109 @@ public class ControladorGestorEliminar implements Initializable {
 	}
 
 	@FXML
-	void pressBtnEliminar(ActionEvent event) throws IOException {
+	void pulsarBtnEliminar(ActionEvent event) throws IOException {
 		try {
-			Parent eliminar = FXMLLoader.load(getClass().getResource("/vista/gestor_eliminar.fxml"));
-			Stage MensajeriaPaciente = new Stage();
-    		MensajeriaPaciente.setTitle("Eliminar Usuario");
-    		MensajeriaPaciente.setScene(new Scene(eliminar));
-    		MensajeriaPaciente.show();
-    		MensajeriaPaciente.setMinHeight(525);
-    		MensajeriaPaciente.setMinWidth(620);
-    		
-    		Stage CambioVentanaMensajes = (Stage) btnEliminar.getScene().getWindow();
-    		CambioVentanaMensajes.close();
+			int a = tipoUsuario();
+			switch (a) {
+			case 1:
+				Paciente paciente = fbd.visualizarPaciente(textoDNI.getText());
+				fbd.borrarPaciente(paciente);
+				ControladorAvisos.setMensajeError("Paciente eliminado.");
+				abrirVentanaAvisos();
+				break;
+			case 2: 
+				Medico medico = fbd.visualizarMedico(textoDNI.getText());
+				fbd.borrarMedico(medico);
+				ControladorAvisos.setMensajeError("Medico eliminado.");
+				abrirVentanaAvisos();
+				break;
+			case 3:
+				Cuidador cuidador = fbd.visualizarCuidador(textoDNI.getText());
+				fbd.borrarCuidador(cuidador);
+				ControladorAvisos.setMensajeError("Cuidador eliminado.");
+				abrirVentanaAvisos();
+				break;
+				
+			default:
+				ControladorAvisos.setMensajeError("Error eliminando usuario.");
+				throw new ControladorExcepciones();
+			}
+			textoDNI.clear();
 
-		} catch (ControladorExcepciones r) {
-			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Eliminar Usuario.");
-			r.abrirVentanaAvisos();
+		} catch (ControladorExcepciones loginfailure) {
+			ControladorAvisos.setMensajeError("Error eliminando al usuario.");
+			loginfailure.abrirVentanaAvisos();
+			
 		}
 	}
 
-	// En esta acción se abre la ventana de registro
 	@FXML
-	void pressBtnRegistrar(ActionEvent event) throws IOException{
+	void pulsarBtnVolver(ActionEvent event) throws IOException {
+
 		try {
-			Parent eliminar = FXMLLoader.load(getClass().getResource("/vista/gestor_registrar.fxml"));
-			Stage MensajeriaPaciente = new Stage();
-    		MensajeriaPaciente.setTitle("Registrar Usuario");
-    		MensajeriaPaciente.setScene(new Scene(eliminar));
-    		MensajeriaPaciente.show();
-    		MensajeriaPaciente.setMinHeight(525);
-    		MensajeriaPaciente.setMinWidth(620);
-    		
-    		Stage CambioVentanaMensajes = (Stage) btnRegistrar.getScene().getWindow();
-    		CambioVentanaMensajes.close();
-		} catch (ControladorExcepciones r) {
-			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Registrar Usuario.");
-			r.abrirVentanaAvisos();
+			ControladorGestorpp.setGestor(gestor);
+
+			Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/gestorpp.fxml"));
+			Stage subMenuPaciente = new Stage();
+			subMenuPaciente.setTitle("Menu " + gestor.getNombreCompleto());
+			subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
+			subMenuPaciente.show();
+			subMenuPaciente.setMinHeight(600);
+			subMenuPaciente.setMinWidth(800);
+
+			Stage CerrarVentanaSensores = (Stage) btnVolver.getScene().getWindow();
+			CerrarVentanaSensores.close();
+		}
+
+		catch (ControladorExcepciones case1) {
+			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Submenu.");
+			case1.abrirVentanaAvisos();
 		}
 	}
 
-	 //Getters y Setters
-    public static Medico getGestor() {
-  		return gestor;
-  	}
+	// Getters y Setters
+	public static Medico getGestor() {
+		return gestor;
+	}
 
 	public static void setGestor(Medico med) {
-  		gestor = med;
-  	}
+		gestor = med;
+	}
+
+	public int tipoUsuario() {
+
+		String dni = textoDNI.getText();
+		Paciente p = fbd.visualizarPaciente(dni);
+		Medico m = fbd.visualizarMedico(dni);
+		Cuidador c = fbd.visualizarCuidador(dni);
+		if (p != null) {
+			return 1;
+		} else if (m != null) {
+			return 2;
+		} else if (c != null) {
+			return 3;
+		} else {
+			return 0;
+		}
+
+	}
+	
+	public void abrirVentanaAvisos() {
+		try {
+			Parent avisos = FXMLLoader.load(getClass().getResource("../vista/avisos.fxml"));
+			Stage VentanaAvisos = new Stage();
+			VentanaAvisos.setTitle("Aviso");
+			VentanaAvisos.setScene(new Scene(avisos));
+			VentanaAvisos.show();
+			VentanaAvisos.setMinHeight(200);
+			VentanaAvisos.setMinWidth(500);
+			VentanaAvisos.setMaxHeight(200);
+			VentanaAvisos.setMaxWidth(600);
+			
+		}
+		catch(IOException a) {
+			System.out.println("Error");
+			 a.printStackTrace();
+		}
+	}
 }

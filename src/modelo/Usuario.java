@@ -6,6 +6,7 @@ public abstract class Usuario {
 	private String apellidos;
 	private String telefono;
 	private String contrasena;
+	
 
 	
 	public Usuario (String dni, String nombre, String apellidos, String telefono, String contrasena) {

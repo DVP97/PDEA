@@ -19,7 +19,7 @@
    <children>
       <AnchorPane prefHeight="272.0" prefWidth="539.0" stylesheets="@application.css" VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="campoAdmin" layoutX="14.0" layoutY="24.0" styleClass="mainLabel" stylesheets="@application.css" text="..." AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <Label fx:id="campoGestor" layoutX="14.0" layoutY="24.0" styleClass="mainLabel" stylesheets="@application.css" text="..." AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -35,7 +35,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField fx:id="textoDNI" prefHeight="26.0" prefWidth="274.0" promptText="76459842F" GridPane.columnIndex="1" />
+                  <TextField fx:id="textoDNI" prefHeight="26.0" prefWidth="274.0" GridPane.columnIndex="1" />
                   <Label text="DNI:" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>

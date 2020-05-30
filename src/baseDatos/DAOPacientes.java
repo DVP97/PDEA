@@ -58,8 +58,8 @@ public class DAOPacientes extends AbstractDAO {
 
 		con = super.getConexion();
 
-		String consulta = "insert into paciente (dni_paciente, nombre, apellidos, telefono, contrasena, fecha_nacimiento, medico, ejerciciosHechos)"
-				+ " values (?,?,?,?,?,?,?,?, null)";
+		String consulta = "insert into paciente (dni_paciente, nombre, apellidos, telefono, contrasena, fecha_nacimiento, medico, ejerciciosHechos, cuandoHechos)"
+				+ " values (?,?,?,?,?,?,?,?,?)";
 
 		try {
 			stmPaciente = con.prepareStatement(consulta);
@@ -71,6 +71,7 @@ public class DAOPacientes extends AbstractDAO {
 			stmPaciente.setString(6, paciente.getFecha_nacimiento());
 			stmPaciente.setString(7, paciente.getMedico());
 			stmPaciente.setBoolean(8, paciente.isEjerciciosHechos());
+			stmPaciente.setString(9, null);
 
 			con.setAutoCommit(true);
 			stmPaciente.executeUpdate();
