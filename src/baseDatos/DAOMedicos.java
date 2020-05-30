@@ -12,7 +12,6 @@ import modelo.Paciente;
 
 public class DAOMedicos extends AbstractDAO {
 
-	//private baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 
 	public DAOMedicos(Connection conexion) {
 		super.setConexion(conexion);
@@ -36,7 +35,7 @@ public class DAOMedicos extends AbstractDAO {
 			if (rsMedico.next()) {
 				resultado = new Medico(rsMedico.getString("dni_medico"), rsMedico.getString("nombre"),
 						rsMedico.getString("apellidos"), rsMedico.getString("telefono"),
-						rsMedico.getString("contrasena"));
+						rsMedico.getString("contrasena"), rsMedico.getBoolean("isGestor"));
 
 			}
 
@@ -59,7 +58,7 @@ public class DAOMedicos extends AbstractDAO {
 		con = super.getConexion();
 
 		String consulta = "insert into medico (dni_medico, nombre, apellidos, telefono, contrasena)"
-				+ " values (?,?,?,?,?)";
+				+ " values (?,?,?,?,?, ?)";
 		try {
 			stmMedico = con.prepareStatement(consulta);
 			stmMedico.setString(1, medico.getDni());
@@ -67,6 +66,7 @@ public class DAOMedicos extends AbstractDAO {
 			stmMedico.setString(3, medico.getApellidos());
 			stmMedico.setString(4, medico.getTelefono());
 			stmMedico.setString(5, medico.getContrasena());
+			stmMedico.setBoolean(6, medico.isGestor());
 
 			con.setAutoCommit(true);
 			stmMedico.executeUpdate();
@@ -90,7 +90,7 @@ public class DAOMedicos extends AbstractDAO {
 
 		con = super.getConexion();
 
-		String consulta = "update medico set nombre = ?, apellidos= ?, telefono = ?, contrasena= ? "
+		String consulta = "update medico set nombre = ?, apellidos= ?, telefono = ?, contrasena= ?, isGestor = ? "
 				+ "where dni_medico = ?";
 
 		try {
@@ -100,6 +100,8 @@ public class DAOMedicos extends AbstractDAO {
 			stmMedico.setString(3, medico.getTelefono());
 			stmMedico.setString(4, medico.getContrasena());
 			stmMedico.setString(5, medico.getDni());
+			stmMedico.setBoolean(6, medico.isGestor());
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		} finally {

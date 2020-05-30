@@ -119,6 +119,8 @@ public class ControladorLogin implements Initializable {
 			}
 			if (esMedico()) {
 				usertype = 3;
+			}if(esGestor()) {
+				usertype = 4; 
 			}
 
 			switch (usertype) {
@@ -197,6 +199,30 @@ public class ControladorLogin implements Initializable {
 				}
 				break;
 
+			case 4:
+				try {
+					System.out.println("Cargando ventana principal de Gestor...");
+					Medico m = fbd.visualizarMedico(txtInputUsuario.getText().toUpperCase());
+					ControladorGestorpp.setGestor(m);;
+					Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/vista/gestorpp.fxml"));
+					Stage Medicopp = new Stage();
+					Medicopp.setTitle("Menu Gestor");
+					Medicopp.setScene(new Scene(MedicoVentana));
+					Medicopp.show();
+					Medicopp.setMinHeight(400);
+					Medicopp.setMinWidth(800);
+
+					System.out.println("Cerrando ventana de Login.");
+					Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
+					CerrarVentanaLogin.close();
+
+				}
+
+				catch (ControladorExcepciones case3) {
+					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
+					case3.abrirVentanaAvisos();
+				}
+				break;
 			default:
 				// en caso de que se introduzca un DNI que no se encuentre en la base de datos
 				ControladorAvisos.setMensajeError("Datos incorrectos.");
@@ -248,11 +274,33 @@ public class ControladorLogin implements Initializable {
 
 			String contra = getMd5(txtInputPassword.getText());
 			if (m.getContrasena().equalsIgnoreCase(contra)) {
-				return true;
+				@SuppressWarnings("unused")
+				boolean a = m.isGestor();
+				if (a = false) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
+	public boolean esGestor() {
+		if (fbd.visualizarMedico(txtInputUsuario.getText().toUpperCase()) == null) {
+			return false;
+		} else {
+			Medico m = fbd.visualizarMedico((txtInputUsuario.getText().toUpperCase()));
+
+			String contra = getMd5(txtInputPassword.getText());
+			if (m.getContrasena().equalsIgnoreCase(contra)) {
+				@SuppressWarnings("unused")
+				boolean a = m.isGestor();
+				if (a = true) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 
 	// funcion hash recibe contrasena y devuelve contrasena encriptado
 	public static String getMd5(String input) {
