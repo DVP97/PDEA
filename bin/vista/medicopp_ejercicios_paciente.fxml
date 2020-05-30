@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import javafx.geometry.Insets?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -19,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="campoDuracion" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorMedicoEjerciciosPaciente">
+<AnchorPane fx:id="anchorEjercicios" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ControladorMedicoEjerciciosPaciente">
    <children>
       <Label fx:id="campoMedico" layoutX="19.0" layoutY="14.0" styleClass="mainLabel" stylesheets="@application.css" text="Hola Sergio,">
          <font>
@@ -62,20 +61,32 @@
             </RadialGradient>
          </ripplerFill>
       </JFXButton>
-      <AnchorPane fx:id="anchorPaneEjercicios" layoutX="27.0" layoutY="188.0" prefHeight="252.0" prefWidth="659.0">
+      <AnchorPane fx:id="anchorPaneEjercicios" layoutX="37.0" layoutY="188.0" prefHeight="240.0" prefWidth="600.0">
          <children>
             <Text fill="#1e6f4b" layoutX="537.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duración: " wrappingWidth="60.475265979766846" />
             <Accordion fx:id="accordionEjercicios" layoutX="229.0" layoutY="86.0" prefHeight="252.0" prefWidth="479.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="180.0" AnchorPane.topAnchor="0.0" />
-            <JFXButton fx:id="btnEliminarEjercicio" buttonType="RAISED" layoutX="520.0" layoutY="30.0" onAction="#pressBtnEliminar" prefHeight="104.0" prefWidth="90.0" styleClass="btn" stylesheets="@application.css" text="Eliminar" />
+            <JFXButton fx:id="btnEliminarEjercicio" buttonType="RAISED" layoutX="520.0" layoutY="30.0" onAction="#pressBtnEliminar" prefHeight="104.0" prefWidth="90.0" styleClass="btn" stylesheets="@application.css" text="Eliminar">
+               <ripplerFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </ripplerFill></JFXButton>
             <JFXButton buttonType="RAISED" layoutX="520.0" layoutY="175.0" prefHeight="63.0" prefWidth="90.0" styleClass="btnCronometro" stylesheets="@application.css" text=" " />
-            <TextField fx:id="campoDuracion" layoutX="545.0" layoutY="193.0" prefHeight="28.0" prefWidth="43.0" styleClass="textoCronometro" stylesheets="@application.css" text=" 00:00">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </TextField>
+            <JFXTextField fx:id="campoDuracion" focusColor="#008f82" layoutX="535.0" layoutY="184.0" prefHeight="45.0" prefWidth="60.0" styleClass="textoDuracion" stylesheets="@application.css" text="00:00" unFocusColor="#008f82" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="btnAnadirEjercicio" buttonType="RAISED" layoutX="545.0" layoutY="121.0" onAction="#pressBtnAnadir" prefHeight="45.0" prefWidth="90.0" styleClass="btn" stylesheets="@application.css" text="Añadir" />
+      <JFXButton fx:id="btnAnadirEjercicio" buttonType="RAISED" layoutX="545.0" layoutY="121.0" onAction="#pressBtnAnadir" prefHeight="45.0" prefWidth="90.0" styleClass="btn" stylesheets="@application.css" text="Añadir">
+         <ripplerFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </ripplerFill></JFXButton>
    </children>
    <effect>
       <Blend />
