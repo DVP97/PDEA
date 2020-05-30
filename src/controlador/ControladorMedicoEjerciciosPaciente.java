@@ -25,6 +25,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.Ejercicio;
 import modelo.Paciente;
@@ -198,6 +199,15 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 			accordionEjercicios.setLayoutX(5);
 			accordionEjercicios.getPanes().addAll(tpse);
 			AnchorPane.setTopAnchor(accordionEjercicios, Double.valueOf(30));
+		}
+		else {
+			Label emptyEnv = new Label("No hay ejercicios asignados.");
+			emptyEnv.setFont(new Font("Arial", 18));
+			emptyEnv.setLayoutY(60);
+			emptyEnv.setLayoutX(5);
+			anchorPaneEjercicios.getChildren().add(emptyEnv);
+
+			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
 		}
 	}
 
