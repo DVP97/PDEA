@@ -222,7 +222,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 	void pressBtnVolver(ActionEvent event) throws IOException {
 
 		try {
-			System.out.println("Cargando submenu paciente...");
+			
 			Parent medicoSubMenuPaciente = FXMLLoader
 					.load(getClass().getResource("/vista/medico_submenu_paciente.fxml"));
 			Stage subMenuPaciente = new Stage();

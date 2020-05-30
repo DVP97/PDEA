@@ -1,11 +1,11 @@
 package controlador;
 
+import java.io.IOException;
 import java.math.BigInteger;
 
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,14 +14,15 @@ import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
+import com.sun.xml.internal.ws.org.objectweb.asm.Label;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -31,6 +32,7 @@ import modelo.Paciente;
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 public class ControladorGestorRegistro implements Initializable {
 
     @FXML
@@ -46,7 +48,7 @@ public class ControladorGestorRegistro implements Initializable {
     private PasswordField textoContrasena2;
 
     @FXML
-    private ComboBox<String> comboRol;
+    private JFXComboBox<String> comboRol;
 
     @FXML
     private TextField textoApellidos;
@@ -62,10 +64,15 @@ public class ControladorGestorRegistro implements Initializable {
 
     @FXML
     private JFXButton btnAceptar;
+    
     @FXML
     private JFXDatePicker campoFecha;
+    
+    @FXML
+    private Label campoGestor;
 
 
+    private static Medico gestor = new Medico();
 
     private ObservableList<String> dbTypeList = FXCollections.observableArrayList("Paciente","Cuidador","Medico");
 
@@ -74,6 +81,7 @@ public class ControladorGestorRegistro implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
+		campoGestor.setText("Hola " + gestor.getNombre() + ",");
 		comboRol.setItems(dbTypeList);
 		
 	}
@@ -246,10 +254,27 @@ public class ControladorGestorRegistro implements Initializable {
     }
 
     @FXML
-    void pulsarBtnCancelar_reg(ActionEvent event) {
-    	System.out.println("Cerrando ventana de Login.");
-		Stage CerrarVentanaRegistro = (Stage) btnAceptar.getScene().getWindow();
-		CerrarVentanaRegistro.close();
+    void pulsarBtnCancelar_reg(ActionEvent event)throws IOException {
+
+		try {
+			ControladorGestorpp.setGestor(gestor);
+
+			Parent medicoSubMenuPaciente = FXMLLoader.load(getClass().getResource("/vista/gestorpp.fxml"));
+			Stage subMenuPaciente = new Stage();
+			subMenuPaciente.setTitle("Menu " + gestor.getNombreCompleto());
+			subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
+			subMenuPaciente.show();
+			subMenuPaciente.setMinHeight(600);
+			subMenuPaciente.setMinWidth(800);
+
+			Stage CerrarVentanaSensores = (Stage) btnCancelar.getScene().getWindow();
+			CerrarVentanaSensores.close();
+		}
+
+		catch (ControladorExcepciones case1) {
+			ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Submenu.");
+			case1.abrirVentanaAvisos();
+		}
     }
 
     public static String getMd5(String input)
@@ -333,55 +358,10 @@ public class ControladorGestorRegistro implements Initializable {
     }
       //-----------------------------------------
 
-    //Getters y Setters
-	public TextField getTextoDNI() {
-		return textoDNI;
-	}
 
-	public void setTextoDNI(TextField textoDNI) {
-		this.textoDNI = textoDNI;
-	}
 
-	public TextField getTextoNombre() {
-		return textoNombre;
-	}
-
-	public void setTextoNombre(TextField textoNombre) {
-		this.textoNombre = textoNombre;
-	}
-
-	public PasswordField getTextoContrasena() {
-		return textoContrasena;
-	}
-
-	public void setTextoContrasena(PasswordField textoContrasena) {
-		this.textoContrasena = textoContrasena;
-	}
-
-	public PasswordField getTextoContrasena2() {
-		return textoContrasena2;
-	}
-
-	public void setTextoContrasena2(PasswordField textoContrasena2) {
-		this.textoContrasena2 = textoContrasena2;
-	}
-
-	public ComboBox<?> getComboRol() {
-		return comboRol;
-	}
-
-	public void setComboRol(ComboBox<String> comboRol) {
-		this.comboRol = comboRol;
-	}
-
-	public TextField getTextoApellidos() {
-		return textoApellidos;
-	}
-
-	public void setTextoApellidos(TextField textoApellidos) {
-		this.textoApellidos = textoApellidos;
-	}
-    public String getFechaString(Date dummy) {
+    @SuppressWarnings("deprecation")
+	public String getFechaString(Date dummy) {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
 
@@ -397,4 +377,12 @@ public class ControladorGestorRegistro implements Initializable {
 		return f;
 	}
 
+	 //Getters y Setters
+    public static Medico getGestor() {
+  		return gestor;
+  	}
+
+	public static void setGestor(Medico med) {
+  		gestor = med;
+  	}
 }

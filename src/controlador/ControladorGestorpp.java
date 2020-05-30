@@ -35,12 +35,16 @@ public class ControladorGestorpp implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
+	
 		campoGestor.setText("Hola " + gestor.getNombre() + ",");
 	}
 
+	
 	@FXML
 	void pressBtnEliminar(ActionEvent event) throws IOException {
 		try {
+			ControladorGestorEliminar.setGestor(gestor);
+
 			Parent eliminar = FXMLLoader.load(getClass().getResource("/vista/gestor_eliminar.fxml"));
 			Stage MensajeriaPaciente = new Stage();
     		MensajeriaPaciente.setTitle("Eliminar Usuario");
@@ -62,6 +66,7 @@ public class ControladorGestorpp implements Initializable {
 	@FXML
 	void pressBtnRegistrar(ActionEvent event) throws IOException{
 		try {
+			ControladorGestorRegistro.setGestor(gestor);
 			Parent eliminar = FXMLLoader.load(getClass().getResource("/vista/gestor_registrar.fxml"));
 			Stage MensajeriaPaciente = new Stage();
     		MensajeriaPaciente.setTitle("Registrar Usuario");

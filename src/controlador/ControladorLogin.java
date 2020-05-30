@@ -209,8 +209,8 @@ public class ControladorLogin implements Initializable {
 					Gestorpp.setTitle("Menu Gestor");
 					Gestorpp.setScene(new Scene(GestorVentana));
 					Gestorpp.show();
-					Gestorpp.setMinHeight(400);
-					Gestorpp.setMinWidth(800);
+					Gestorpp.setMinHeight(500);
+					Gestorpp.setMinWidth(700);
 
 					System.out.println("Cerrando ventana de Login.");
 					Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
@@ -218,9 +218,9 @@ public class ControladorLogin implements Initializable {
 
 				}
 
-				catch (ControladorExcepciones case3) {
+				catch (ControladorExcepciones case4) {
 					ControladorAvisos.setMensajeError("No se pudo abrir la ventana de Medico.");
-					case3.abrirVentanaAvisos();
+					case4.abrirVentanaAvisos();
 				}
 				break;
 			default:

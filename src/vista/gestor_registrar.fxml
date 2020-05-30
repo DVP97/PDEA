@@ -21,7 +21,7 @@
    <children>
       <AnchorPane prefHeight="338.0" prefWidth="600.0" stylesheets="@application.css" VBox.vgrow="ALWAYS">
          <children>
-            <Label fx:id="campoAdmin" layoutX="14.0" layoutY="24.0" styleClass="mainLabel" stylesheets="@application.css" text="..." AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <Label fx:id="campoGestor" layoutX="14.0" layoutY="24.0" styleClass="mainLabel" stylesheets="@application.css" text="..." AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                <font>
                   <Font size="20.0" />
                </font>
