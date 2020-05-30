@@ -297,8 +297,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			MenuEjercicios.setTitle("Menu Medico - Consultar Ejercicios Paciente");
 			MenuEjercicios.setScene(new Scene(ConsultarEjerciciospaciente));
 			MenuEjercicios.show();
-			MenuEjercicios.setMinHeight(400);
-			MenuEjercicios.setMinWidth(800);
+			MenuEjercicios.setMinHeight(500);
+			MenuEjercicios.setMinWidth(700);
 
 			Stage CerrarSubmenuPaciente = (Stage) buttonVolver.getScene().getWindow();
 			CerrarSubmenuPaciente.close();
