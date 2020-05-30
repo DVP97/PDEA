@@ -37,7 +37,7 @@ public class DAOPacientes extends AbstractDAO {
 				resultado = new Paciente(rsPaciente.getString("dni_paciente"), rsPaciente.getString("nombre"),
 						rsPaciente.getString("apellidos"), rsPaciente.getString("telefono"),
 						rsPaciente.getString("contrasena"), rsPaciente.getString("fecha_nacimiento"),
-						rsPaciente.getString("medico"), rsPaciente.getBoolean("ejerciciosHechos"));
+						rsPaciente.getString("medico"), rsPaciente.getBoolean("ejerciciosHechos"), rsPaciente.getString("cuandoHechos"));
 			}
 
 		} catch (SQLException e) {
@@ -59,7 +59,7 @@ public class DAOPacientes extends AbstractDAO {
 		con = super.getConexion();
 
 		String consulta = "insert into paciente (dni_paciente, nombre, apellidos, telefono, contrasena, fecha_nacimiento, medico, ejerciciosHechos)"
-				+ " values (?,?,?,?,?,?,?,?)";
+				+ " values (?,?,?,?,?,?,?,?, null)";
 
 		try {
 			stmPaciente = con.prepareStatement(consulta);
@@ -94,7 +94,7 @@ public class DAOPacientes extends AbstractDAO {
 
 		con = super.getConexion();
 
-		String consulta = "update paciente set nombre = ?, apellidos= ?, telefono = ?, contrasena= ?, fecha_nacimiento= ?, medico= ?, ejerciciosHechos= ? "
+		String consulta = "update paciente set nombre = ?, apellidos= ?, telefono = ?, contrasena= ?, fecha_nacimiento= ?, medico= ?, ejerciciosHechos= ?, cuandoHechos = ? "
 				+ "where dni_paciente = ?";
 
 		try {
@@ -107,6 +107,8 @@ public class DAOPacientes extends AbstractDAO {
 			stmPaciente.setString(6, paciente.getMedico());
 			stmPaciente.setBoolean(7, paciente.isEjerciciosHechos());
 			stmPaciente.setString(8, paciente.getDni());
+			stmPaciente.setString(9, paciente.getCuandoHechos());
+
 
 			con.setAutoCommit(true);
 			stmPaciente.executeUpdate();
