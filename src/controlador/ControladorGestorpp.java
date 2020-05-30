@@ -16,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import modelo.Medico;
-import modelo.Paciente;
 
 public class ControladorGestorpp implements Initializable {
 

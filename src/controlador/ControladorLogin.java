@@ -204,13 +204,13 @@ public class ControladorLogin implements Initializable {
 					System.out.println("Cargando ventana principal de Gestor...");
 					Medico m = fbd.visualizarMedico(txtInputUsuario.getText().toUpperCase());
 					ControladorGestorpp.setGestor(m);;
-					Parent MedicoVentana = FXMLLoader.load(getClass().getResource("/vista/gestorpp.fxml"));
-					Stage Medicopp = new Stage();
-					Medicopp.setTitle("Menu Gestor");
-					Medicopp.setScene(new Scene(MedicoVentana));
-					Medicopp.show();
-					Medicopp.setMinHeight(400);
-					Medicopp.setMinWidth(800);
+					Parent GestorVentana = FXMLLoader.load(getClass().getResource("/vista/gestorpp.fxml"));
+					Stage Gestorpp = new Stage();
+					Gestorpp.setTitle("Menu Gestor");
+					Gestorpp.setScene(new Scene(GestorVentana));
+					Gestorpp.show();
+					Gestorpp.setMinHeight(400);
+					Gestorpp.setMinWidth(800);
 
 					System.out.println("Cerrando ventana de Login.");
 					Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
