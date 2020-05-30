@@ -1,11 +1,7 @@
 package controlador;
 
-import java.awt.Font;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -28,7 +24,6 @@ import javafx.stage.Stage;
 import modelo.Cuidador;
 import modelo.Paciente;
 import modelo.Aviso;
-import controlador.ControladorCuidadorAvisos;
 
 public class ControladorCuidadorSensores implements Initializable {
 
@@ -53,6 +48,7 @@ public class ControladorCuidadorSensores implements Initializable {
 	private ObservableList<Aviso> avisos = getAvisos();
 
 
+	@SuppressWarnings({ "unchecked", "static-access" })
 	@Override
 	public void initialize(URL location, ResourceBundle reosurces) {
 

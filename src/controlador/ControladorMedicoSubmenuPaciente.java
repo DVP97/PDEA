@@ -543,7 +543,8 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 		}
 	}
     
-    private void setAvisos() {
+    @SuppressWarnings({ "unchecked", "static-access" })
+	private void setAvisos() {
     	if (avisos.size() > 0) {
 			// Primera columna
 			TableColumn<Aviso, String> columnaSensor = new TableColumn<>("Sensor");
