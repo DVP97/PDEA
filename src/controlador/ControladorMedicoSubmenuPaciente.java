@@ -466,7 +466,9 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 			//identificar primero tipo de usuario
 
 			for (int i = 0; i < numeroMensajesEnviados(); i++) {
+				
 				ArrayList<Mensaje> mensajesEnv  = fbd.obtenerMensajesEnviados(pacienteActual);
+
 				List<Mensaje> listMensajesEnv = new ArrayList<Mensaje>();
 				listMensajesEnv.addAll(mensajesEnv);
 				Collections.sort(listMensajesEnv, new sortByDate());
@@ -512,7 +514,7 @@ public class ControladorMedicoSubmenuPaciente implements Initializable {
 	}
 
 	public Integer numeroMensajesEnviados() {
-		return fbd.obtenerMensajesRecibidos(pacienteActual).size();
+		return fbd.obtenerMensajesEnviados(pacienteActual).size();
 	}
 	
 	public class sortByDate implements Comparator<Mensaje> {

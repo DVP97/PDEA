@@ -29,6 +29,9 @@ import javafx.scene.text.Font;
 public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 
 	@FXML
+	private AnchorPane anchorGrande;
+	
+	@FXML
 	private ImageView pantallaEj;
 
 	@FXML
@@ -91,7 +94,7 @@ public class ControladorCuidadorEjerciciosPaciente implements Initializable {
 			emptyEnv.setFont(new Font("Arial", 18));
 			emptyEnv.setLayoutY(60);
 			emptyEnv.setLayoutX(5);
-			//anchorGrande.getChildren().add(emptyEnv);
+			anchorGrande.getChildren().add(emptyEnv);
 			AnchorPane.setTopAnchor(emptyEnv, Double.valueOf(40));
 		}
 

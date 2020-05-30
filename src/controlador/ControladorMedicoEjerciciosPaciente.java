@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,8 +57,9 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 	
 	@FXML
 	private Label campoMedico;
+	
 	@FXML
-	private TextField campoDuracion; 
+	private JFXTextField campoDuracion; 
 	
 
 	@FXML
@@ -109,9 +111,7 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 			if (indice != null) {
 				
 				if (campoDuracion.getText() != null) {
-					
 					addEjercicio(indice+1);
-					
 				} else {
 					
 					ControladorAvisos.setMensajeError("Por favor, añada la duracion del ejercicio.");
@@ -133,7 +133,6 @@ public class ControladorMedicoEjerciciosPaciente implements Initializable {
 		
 		Ejercicio ej = fbd.visualizarEjercicio(id);
 	    ej.setDuracion (Integer.parseInt(campoDuracion.getText()));
-		
 
 		fbd.asignarEjercicioPaciente(pacienteActual, ej);
 		
