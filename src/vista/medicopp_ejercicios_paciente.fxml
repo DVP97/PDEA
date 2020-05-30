@@ -75,8 +75,8 @@
                   </RadialGradient>
                </ripplerFill></JFXButton>
             <JFXButton buttonType="RAISED" layoutX="520.0" layoutY="175.0" prefHeight="63.0" prefWidth="90.0" styleClass="btnCronometro" stylesheets="@application.css" text=" " />
-            <JFXTextField fx:id="campoDuracion" focusColor="#008f82" layoutX="562.0" layoutY="190.0" prefHeight="33.0" prefWidth="35.0" styleClass="textoDuracion" stylesheets="@application.css" unFocusColor="#008f82" />
-            <Label fx:id="duracionFija" layoutX="537.0" layoutY="195.0" styleClass="textoDuracion" stylesheets="@application.css" text="00:">
+            <JFXTextField fx:id="campoDuracion" focusColor="#008f82" layoutX="567.0" layoutY="189.0" prefHeight="33.0" prefWidth="35.0" styleClass="textoDuracion" stylesheets="@application.css" unFocusColor="#008f82" />
+            <Label fx:id="duracionFija" layoutX="540.0" layoutY="195.0" styleClass="textoDuracion" stylesheets="@application.css" text="00:">
                <font>
                   <Font size="20.0" />
                </font>
