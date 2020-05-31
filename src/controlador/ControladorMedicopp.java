@@ -535,6 +535,7 @@ public class ControladorMedicopp implements Initializable {
 
 	}
 
+	@SuppressWarnings({ "static-access", "unchecked" })
 	private void setAvisos() {
 		ObservableList<Aviso> avisos = getAvisos();
 		if (avisos.size() > 0) {
@@ -594,6 +595,7 @@ public class ControladorMedicopp implements Initializable {
 	}
 
 
+	@SuppressWarnings("deprecation")
 	public String getFechaString(Date dummy) {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
@@ -629,7 +631,8 @@ public class ControladorMedicopp implements Initializable {
 		return citas;
 	}
 	
-  	public void setCitas() {
+  	@SuppressWarnings({ "static-access", "unchecked" })
+	public void setCitas() {
 		ObservableList<Cita> citas = getCitas();
 		if (citas.size() > 0) {
 			// Primera columna

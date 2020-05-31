@@ -64,7 +64,7 @@ public class DAOSensores extends AbstractDAO{
 				Aviso aviso = new Aviso();
 				aviso.setConcepto("La frecuencia cardiaca es demasiado baja.");
 				aviso.setDatoSensor(s1);
-				aviso.setNombreSensor("Sensor 1");
+				aviso.setNombreSensor("Pulsiometro");
 				aviso.setNombrePaciente();
 				avisos.add(aviso);
 			}if(b>0) {
@@ -73,7 +73,7 @@ public class DAOSensores extends AbstractDAO{
 				aviso.setDatoSensor(s1);
 				aviso.setNombrePaciente();
 
-				aviso.setNombreSensor("Sensor 1");
+				aviso.setNombreSensor("Pulsiometro");
 
 				avisos.add(aviso);
 			}
@@ -129,7 +129,7 @@ public class DAOSensores extends AbstractDAO{
 				aviso.setDatoSensor(s2);
 				aviso.setNombrePaciente();
 
-				aviso.setNombreSensor("Sensor 2");
+				aviso.setNombreSensor("Oximetro");
 
 				avisos.add(aviso);
 			}

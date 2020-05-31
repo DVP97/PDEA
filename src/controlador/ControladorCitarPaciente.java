@@ -71,7 +71,8 @@ public class ControladorCitarPaciente implements Initializable{
 		campoMedico.setText("Hola " + medicoActual.getNombre()+",");	
 	}
 
-    @FXML
+    @SuppressWarnings("deprecation")
+	@FXML
     void pressBtnCrearCita(ActionEvent event) {
   
 		Cita nCita = new Cita();

@@ -11,7 +11,6 @@ import java.util.TimeZone;
 import com.jfoenix.controls.JFXButton;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +25,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import jdk.nashorn.internal.runtime.regexp.joni.constants.AnchorType;
-import javafx.scene.chart.XYChart.Series;
 import modelo.Medico;
 import modelo.Paciente;
 import modelo.Pulsiometro;
@@ -94,7 +91,8 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
 		}
 	}
 
-    void InicializarGraficaFrecuencia(){
+    @SuppressWarnings({ "static-access", "unchecked", "rawtypes" })
+	void InicializarGraficaFrecuencia(){
     	ArrayList<Pulsiometro> arraypulsiometro = fbd.getDatosSensor1De((pacienteActual.getDni()));
     	ArrayList<Integer> arrayListFrecAntes = new ArrayList<Integer>();
     	for(int i =0; i < arraypulsiometro.size(); i++){
@@ -108,11 +106,11 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	}
     	
     	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas));
-    	NumberAxis yAxis = new NumberAxis(0,120,5);
+    	NumberAxis yAxis = new NumberAxis(30,120,5);
     	
     	LineChart<String,Number> Frecuencias = new LineChart(xAxis,yAxis);
 
-    	Frecuencias.setTitle(" Frecuencia cardiaca");
+    	Frecuencias.setTitle("Pulsiometro");
     	XYChart.Series series = new XYChart.Series<>();
     	for(int i =0; i<arrayListFrecAntes.size();i++) {
     		series.getData().add(new XYChart.Data<>(arrayListFechas.get(i),arrayListFrecAntes.get(i)));
@@ -127,7 +125,8 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	
     }
 
-    void InicializarGraficaPresion(){
+    @SuppressWarnings({ "static-access", "unchecked", "rawtypes" })
+	void InicializarGraficaPresion(){
     	ArrayList<Presion> arraypresion = fbd.getDatosSensor3De((pacienteActual.getDni()));
     	ArrayList<Integer> arrayListPresion = new ArrayList<Integer>();
     	for(int i =0; i < arraypresion.size(); i++){
@@ -141,7 +140,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     		arrayListFechas3.add(getFechaString(p.getFecha()));
     	}
     	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas3));
-    	NumberAxis yAxis = new NumberAxis(0,180,5);
+    	NumberAxis yAxis = new NumberAxis(0,150,5);
     	
     	LineChart<String,Number> Sistoles = new LineChart(xAxis,yAxis);
     	
@@ -160,6 +159,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	anchorPaneTension.setRightAnchor(Sistoles, 0.0);
     }
 
+	@SuppressWarnings({ "static-access", "unchecked", "rawtypes" })
 	void InicializarGraficaSaturacion(){
     	 ArrayList<Oximetro> arrayoximetro = fbd.getDatosSensor2De((pacienteActual.getDni()));
     	ArrayList<Integer> arrayListDatosMedicos = new ArrayList<Integer>();
@@ -173,11 +173,11 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     		arrayListFechas2.add(getFechaString(p.getFecha()));
     	}
     	CategoryAxis xAxis = new CategoryAxis(FXCollections.observableArrayList(arrayListFechas2));
-    	NumberAxis yAxis = new NumberAxis(0,100,1);
+    	NumberAxis yAxis = new NumberAxis(60,130, 5);
  	
     	LineChart<String,Number> Frecuencias = new LineChart(xAxis,yAxis);
 
-    	Frecuencias.setTitle(" Saturacion O2");
+    	Frecuencias.setTitle("Oximetro");
     	XYChart.Series series = new XYChart.Series<>();
     	for(int i =0; i<arrayListDatosMedicos.size();i++) {
     		series.getData().add(new XYChart.Data<>(arrayListFechas2.get(i),arrayListDatosMedicos.get(i)));
@@ -193,7 +193,8 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	
     }
     
- 	public String getFechaString(Date dummy) {
+ 	@SuppressWarnings("deprecation")
+	public String getFechaString(Date dummy) {
 		// Choose time zone in which you want to interpret your Date
 		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
 
