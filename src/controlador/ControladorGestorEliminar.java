@@ -94,8 +94,8 @@ public class ControladorGestorEliminar implements Initializable {
 			subMenuPaciente.setTitle("Menu " + gestor.getNombreCompleto());
 			subMenuPaciente.setScene(new Scene(medicoSubMenuPaciente));
 			subMenuPaciente.show();
-			subMenuPaciente.setMinHeight(600);
-			subMenuPaciente.setMinWidth(800);
+			subMenuPaciente.setMinHeight(318);
+			subMenuPaciente.setMinWidth(413);
 
 			Stage CerrarVentanaSensores = (Stage) btnVolver.getScene().getWindow();
 			CerrarVentanaSensores.close();

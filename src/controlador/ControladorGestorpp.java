@@ -50,8 +50,8 @@ public class ControladorGestorpp implements Initializable {
     		MensajeriaPaciente.setTitle("Eliminar Usuario");
     		MensajeriaPaciente.setScene(new Scene(eliminar));
     		MensajeriaPaciente.show();
-    		MensajeriaPaciente.setMinHeight(525);
-    		MensajeriaPaciente.setMinWidth(620);
+    		MensajeriaPaciente.setMinHeight(318);
+    		MensajeriaPaciente.setMinWidth(413);
     		
     		Stage CambioVentanaMensajes = (Stage) btnEliminar.getScene().getWindow();
     		CambioVentanaMensajes.close();
@@ -72,8 +72,8 @@ public class ControladorGestorpp implements Initializable {
     		MensajeriaPaciente.setTitle("Registrar Usuario");
     		MensajeriaPaciente.setScene(new Scene(eliminar));
     		MensajeriaPaciente.show();
-    		MensajeriaPaciente.setMinHeight(525);
-    		MensajeriaPaciente.setMinWidth(620);
+    		MensajeriaPaciente.setMinHeight(410);
+    		MensajeriaPaciente.setMinWidth(410);
     		
     		Stage CambioVentanaMensajes = (Stage) btnRegistrar.getScene().getWindow();
     		CambioVentanaMensajes.close();

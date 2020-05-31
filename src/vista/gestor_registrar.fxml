@@ -45,7 +45,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="textoDNI" prefHeight="26.0" prefWidth="274.0" promptText="76459842F" GridPane.columnIndex="1" />
+                  <TextField fx:id="textoDNI" prefHeight="26.0" prefWidth="274.0" promptText=" " GridPane.columnIndex="1" />
                   <TextField fx:id="textoNombre" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="textoApellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <PasswordField fx:id="textoContrasena" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -61,7 +61,7 @@
                   <Label text="Apellidos:" GridPane.rowIndex="2" />
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="8">
                      <children>
-                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutY="6.0" onAction="#pulsarBtnCancelar_reg" styleClass="btn" stylesheets="@application.css" text="Cancelar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                        <JFXButton fx:id="btnCancelar" buttonType="RAISED" layoutY="6.0" onAction="#pulsarBtnCancelar_reg" styleClass="btn" stylesheets="@application.css" text="Volver" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                            <ripplerFill>
                               <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                  <stops>

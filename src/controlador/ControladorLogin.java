@@ -209,8 +209,8 @@ public class ControladorLogin implements Initializable {
 					Gestorpp.setTitle("Menu Gestor");
 					Gestorpp.setScene(new Scene(GestorVentana));
 					Gestorpp.show();
-					Gestorpp.setMinHeight(500);
-					Gestorpp.setMinWidth(700);
+					Gestorpp.setMinHeight(318);
+					Gestorpp.setMinWidth(413);
 
 					System.out.println("Cerrando ventana de Login.");
 					Stage CerrarVentanaLogin = (Stage) buttonAceptar.getScene().getWindow();
