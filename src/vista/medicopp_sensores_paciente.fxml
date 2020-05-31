@@ -74,7 +74,7 @@
                         <AnchorPane fx:id="anchorPaneTension" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </Tab>
-                  <Tab text="Saturación O2">
+                  <Tab text="Presión">
                      <content>
                         <AnchorPane fx:id="AnchorPaneSaturacion" prefHeight="200.0" prefWidth="200.0" />
                      </content>
