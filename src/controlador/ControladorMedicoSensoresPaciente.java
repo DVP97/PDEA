@@ -99,12 +99,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	ArrayList<Integer> arrayListFrecAntes = new ArrayList<Integer>();
     	for(int i =0; i < arraypulsiometro.size(); i++){
     		Pulsiometro p = arraypulsiometro.get(i);
-    		arrayListFrecAntes.add(p.getFrecuenciaAntes());
-    	}
-    	ArrayList<Integer> arrayListFrecDespues = new ArrayList<Integer>();
-    	for(int i =0; i < arraypulsiometro.size(); i++){
-    		Pulsiometro p = arraypulsiometro.get(i);
-    		arrayListFrecDespues.add(p.getFrecuenciaDespues());
+    		arrayListFrecAntes.add(p.getDato());
     	}
     	ArrayList<String> arrayListFechas = new ArrayList<String>();
     	for(int i =0; i < arraypulsiometro.size(); i++){
@@ -122,11 +117,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	for(int i =0; i<arrayListFrecAntes.size();i++) {
     		series.getData().add(new XYChart.Data<>(arrayListFechas.get(i),arrayListFrecAntes.get(i)));
     	}
-    	XYChart.Series series2 = new XYChart.Series<>();
-    	for(int i =0; i<arrayListFrecDespues.size();i++) {
-    		series2.getData().add(new XYChart.Data<>(arrayListFechas.get(i),arrayListFrecDespues.get(i)));
-    	}
-    	Frecuencias.getData().addAll(series,series2);
+    	Frecuencias.getData().addAll(series);
     	
     	AnchorPaneFrecuencia.getChildren().add(Frecuencias);
     	AnchorPaneFrecuencia.setTopAnchor(Frecuencias, 0.0);
@@ -169,7 +160,7 @@ public class ControladorMedicoSensoresPaciente implements Initializable {
     	anchorPaneTension.setRightAnchor(Sistoles, 0.0);
     }
 
-     void InicializarGraficaSaturacion(){
+	void InicializarGraficaSaturacion(){
     	 ArrayList<Oximetro> arrayoximetro = fbd.getDatosSensor2De((pacienteActual.getDni()));
     	ArrayList<Integer> arrayListDatosMedicos = new ArrayList<Integer>();
     	for(int i =0; i < arrayoximetro.size(); i++){
