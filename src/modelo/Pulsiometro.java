@@ -2,40 +2,28 @@ package modelo;
 
 import java.util.Date;
 
-public final class Pulsiometro extends datoSensor{
-	private Integer frecuenciaAntes;
-	private Integer frecuenciaDespues;
-	
-	
-	public Pulsiometro(Date fecha, Integer frecuenciaAntes, Integer frecuenciaDespues,  String dni) {
-		super(fecha, dni);
-		this.frecuenciaAntes = frecuenciaAntes;
-		this.frecuenciaDespues = frecuenciaDespues;
+public final class Pulsiometro extends datoSensor {
+	private Integer dato;
 
+	public Pulsiometro(Date fecha, Integer dato, String dni) {
+		super(fecha, dni);
+		this.dato = dato;
 
 	}
-	
+
 	public Pulsiometro() {
 		super();
-		this.frecuenciaAntes= null;
-		this.frecuenciaDespues= null;
+		this.dato = null;
 	}
-	
-	//GETTERS
 
-	public Integer getFrecuenciaAntes() {
-		return frecuenciaAntes;
+	// GETTERS
+	public Integer getDato() {
+		return dato;
 	}
-	public Integer getFrecuenciaDespues() {
-		return frecuenciaDespues;
-	}
-	
-	//SETTERS
-	public void setFrecuenciaDespues(Integer frecuenciaDespues) {
-		this.frecuenciaDespues = frecuenciaDespues;
-	}
-	public void setFrecuenciaAntes(Integer frecuenciaAntes) {
-		this.frecuenciaAntes = frecuenciaAntes;
+
+	// SETTERS
+	public void setDato(Integer dato) {
+		this.dato = dato;
 	}
 
 }

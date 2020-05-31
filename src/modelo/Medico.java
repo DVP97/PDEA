@@ -9,6 +9,7 @@ public final class Medico extends Usuario{
 		super(dni, nombre, apellidos, telefono, contrasena);
 		this.isGestor = isGestor;
 	}
+	
 	public Medico() {
 		super();
 		this.isGestor = false;

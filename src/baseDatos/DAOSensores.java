@@ -36,8 +36,7 @@ public class DAOSensores extends AbstractDAO{
 			while (rsPaciente.next()) {
 				datoS1 = new Pulsiometro(
 						rsPaciente.getDate("fecha_dato"), 
-						rsPaciente.getInt("frecuenciaAntes"),
-						rsPaciente.getInt("frecuenciaDespues"), 
+						rsPaciente.getInt("dato"),
 						rsPaciente.getString("paciente"));
 				s1.add(datoS1);
 			}
@@ -58,39 +57,19 @@ public class DAOSensores extends AbstractDAO{
 		ArrayList<Pulsiometro> sensor1 = getDatosSensor1De(dni);
 		for (int i =0 ; i<sensor1.size();i++) {
 			Pulsiometro s1 = sensor1.get(i);
-			int a = s1.getFrecuenciaAntes().compareTo(50);
-			int b = s1.getFrecuenciaAntes().compareTo(100);
-			int c = s1.getFrecuenciaDespues().compareTo(75);
-			int d = s1.getFrecuenciaDespues().compareTo(136);
+			int a = s1.getDato().compareTo(50);
+			int b = s1.getDato().compareTo(150);
+			
 			if(a<0) {
 				Aviso aviso = new Aviso();
-				aviso.setConcepto("La frecuencia cardiaca antes de hacer el ejercicio es demasiado baja.");
+				aviso.setConcepto("La frecuencia cardiaca es demasiado baja.");
 				aviso.setDatoSensor(s1);
 				aviso.setNombreSensor("Sensor 1");
 				aviso.setNombrePaciente();
 				avisos.add(aviso);
 			}if(b>0) {
 				Aviso aviso = new Aviso();
-				aviso.setConcepto("La frecuencia cardiaca antes de hacer el ejercicio es demasiado alta.");
-				aviso.setDatoSensor(s1);
-				aviso.setNombrePaciente();
-
-				aviso.setNombreSensor("Sensor 1");
-
-				avisos.add(aviso);
-			}if(c<0) {
-				Aviso aviso = new Aviso();
-				aviso.setConcepto("La frecuencia cardiaca despues de hacer el ejercicio es demasiado baja.");
-				aviso.setDatoSensor(s1);
-				aviso.setNombrePaciente();
-
-				aviso.setNombreSensor("Sensor 1");
-
-				avisos.add(aviso);
-			}
-			if(d<0) {
-				Aviso aviso = new Aviso();
-				aviso.setConcepto("La frecuencia cardiaca despues de hacer el ejercicio es demasiado alta.");
+				aviso.setConcepto("La frecuencia cardiaca es demasiado alta.");
 				aviso.setDatoSensor(s1);
 				aviso.setNombrePaciente();
 
