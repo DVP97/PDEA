@@ -39,6 +39,8 @@ public class ControladorCuidadorpp implements Initializable {
 	private static Cuidador cuidadorActual = new Cuidador();
 
 	
+	//holq
+	
 
 	private static baseDatos.FachadaBaseDatos fbd = application.Main.getFbd();
 	int numeroPacientes = fbd.obtenerPacientesCuidador(cuidadorActual).size();
