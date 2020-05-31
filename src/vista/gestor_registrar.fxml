@@ -50,6 +50,8 @@
                   <TextField fx:id="textoApellidos" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <PasswordField fx:id="textoContrasena" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <PasswordField fx:id="textoContrasena2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="textoTelefono" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <JFXDatePicker fx:id="campoFecha" editable="false" prefHeight="27.0" prefWidth="353.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <JFXComboBox fx:id="comboRol" prefHeight="28.0" prefWidth="132.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label text="DNI:" />
                   <Label text="Nombre:" GridPane.rowIndex="1" />
@@ -86,8 +88,6 @@
                   </AnchorPane>
                   <Label text="Telefono:" GridPane.rowIndex="5" />
                   <Label text="Fecha de nacimiento:" GridPane.rowIndex="6" />
-                  <TextField fx:id="textoTelefono" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <JFXDatePicker fx:id="campoFecha" editable="false" prefHeight="27.0" prefWidth="353.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                </children>
             </GridPane>
             <ImageView fitHeight="55.0" fitWidth="67.0" layoutX="527.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">

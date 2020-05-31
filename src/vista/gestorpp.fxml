@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
@@ -39,33 +38,34 @@
             <RowConstraints maxHeight="350.0" minHeight="10.0" prefHeight="350.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Group GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.vgrow="SOMETIMES" />
-            <JFXButton fx:id="btnRegistrar" buttonType="RAISED" minWidth="600.0" onAction="#pressBtnRegistrar" prefHeight="49.0" prefWidth="176.0" styleClass="btnPaciente" stylesheets="@application.css" text="Registrar" textAlignment="CENTER">
-               <ripplerFill>
-                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                     <stops>
-                        <Stop color="#81f1c1" />
-                        <Stop color="#2e2e2e" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </ripplerFill>
-               <GridPane.margin>
-                  <Insets left="70.0" right="10.0" />
-               </GridPane.margin>
-            </JFXButton>
-            <JFXButton fx:id="btnEliminar" buttonType="RAISED" minWidth="600.0" onAction="#pressBtnEliminar" prefHeight="49.0" prefWidth="176.0" styleClass="btnPaciente" stylesheets="@application.css" text="Eliminar" textAlignment="CENTER" GridPane.rowIndex="2">
-               <ripplerFill>
-                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-                     <stops>
-                        <Stop color="#81f1c1" />
-                        <Stop color="#2e2e2e" offset="1.0" />
-                     </stops>
-                  </RadialGradient>
-               </ripplerFill>
-               <GridPane.margin>
-                  <Insets left="70.0" right="10.0" />
-               </GridPane.margin>
-            </JFXButton>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <JFXButton fx:id="btnRegistrar" buttonType="RAISED" layoutX="2.0" layoutY="14.0" minWidth="310.0" onAction="#pressBtnRegistrar" prefHeight="49.0" prefWidth="310.0" styleClass="btnPaciente" stylesheets="@application.css" text="Registrar" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="15.0">
+                     <ripplerFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#81f1c1" />
+                              <Stop color="#2e2e2e" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </ripplerFill>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <JFXButton fx:id="btnEliminar" buttonType="RAISED" minWidth="310.0" onAction="#pressBtnEliminar" prefHeight="46.0" prefWidth="310.0" styleClass="btnPaciente" stylesheets="@application.css" text="Eliminar" textAlignment="CENTER" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="15.0">
+                     <ripplerFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                           <stops>
+                              <Stop color="#81f1c1" />
+                              <Stop color="#2e2e2e" offset="1.0" />
+                           </stops>
+                        </RadialGradient>
+                     </ripplerFill>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
          </children>
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="100.0" />
