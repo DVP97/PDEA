@@ -40,7 +40,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <JFXButton fx:id="btnRegistrar" buttonType="RAISED" layoutX="2.0" layoutY="14.0" minWidth="310.0" onAction="#pressBtnRegistrar" prefHeight="49.0" prefWidth="310.0" styleClass="btnPaciente" stylesheets="@application.css" text="Registrar" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="15.0">
+                  <JFXButton fx:id="btnRegistrar" buttonType="RAISED" layoutX="2.0" layoutY="14.0" onAction="#pressBtnRegistrar" prefHeight="49.0" prefWidth="310.0" styleClass="btnPaciente" stylesheets="@application.css" text="Registrar" textAlignment="CENTER" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="15.0">
                      <ripplerFill>
                         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                            <stops>
@@ -54,7 +54,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                <children>
-                  <JFXButton fx:id="btnEliminar" buttonType="RAISED" minWidth="310.0" onAction="#pressBtnEliminar" prefHeight="46.0" prefWidth="310.0" styleClass="btnPaciente" stylesheets="@application.css" text="Eliminar" textAlignment="CENTER" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="15.0">
+                  <JFXButton fx:id="btnEliminar" buttonType="RAISED" onAction="#pressBtnEliminar" prefHeight="46.0" prefWidth="310.0" styleClass="btnPaciente" stylesheets="@application.css" text="Eliminar" textAlignment="CENTER" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="15.0">
                      <ripplerFill>
                         <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                            <stops>
