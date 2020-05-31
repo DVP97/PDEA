@@ -69,12 +69,12 @@
                         <AnchorPane fx:id="AnchorPaneFrecuencia" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                      </content>
                   </Tab>
-                  <Tab text="Tensión">
+                  <Tab text="Presión">
                      <content>
                         <AnchorPane fx:id="anchorPaneTension" prefHeight="200.0" prefWidth="200.0" />
                      </content>
                   </Tab>
-                  <Tab text="Presión">
+                  <Tab text="Tensión">
                      <content>
                         <AnchorPane fx:id="AnchorPaneSaturacion" prefHeight="200.0" prefWidth="200.0" />
                      </content>
